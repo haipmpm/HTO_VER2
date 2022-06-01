@@ -738,14 +738,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HIKARI_HTO_VER2.exe" size="896448">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HIKARI_HTO_VER2.exe" size="916928">
       <assemblyIdentity name="HIKARI_HTO_VER2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jDGDSt7Q8Q1WSUgrzGIc9gUEDOyNWKWWf8ELJvPiPuQ=</dsig:DigestValue>
+        <dsig:DigestValue>rgkKNCWQeuJIaa+L3J0WTh8HgkMubOvEOEGFCkJl/WY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

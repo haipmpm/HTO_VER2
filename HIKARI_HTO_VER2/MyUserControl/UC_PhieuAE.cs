@@ -187,7 +187,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 string str_data_header_AE = String.Join("†", lst_texbox_Entry_AE_header.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string str_data_body_AE = String.Join("†", lst_texbox_Entry_AE_Body.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE);
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString());
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Split('‡')[1].ToString().Split('†').Length.ToString());
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";
@@ -234,8 +234,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             tbDetail.Columns.Add("Truong9", typeof(String));
             tbDetail.Columns.Add("Truong10", typeof(String));
             foreach (var item in lst)
-            {
-            
+            {            
                 if (String.IsNullOrEmpty(item.txt_Truong9.Text)==false)
                 {
                     indexLST.Add(lst.IndexOf(item));

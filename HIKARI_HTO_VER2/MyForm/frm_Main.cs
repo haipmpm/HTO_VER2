@@ -191,5 +191,19 @@ namespace HIKARI_HTO_VER2.MyForm
         {
 
         }
+
+        private void frm_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Hikari_LoginDLL.Hikari_Login.updateToken(Global.ProjectCode, Global.strUsername, Global.Strtoken);
+            if (DialogResult != DialogResult.None)
+            {
+                DialogResult = DialogResult.Yes;
+            }
+        }
+
+        private void frm_Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

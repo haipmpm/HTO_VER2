@@ -29,7 +29,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             CheckCBB_Status.Properties.DataSource = GlobalDB.DBLinq.Admin_Status_GetListBacth(admin_info.Style_batch.ToString()).ToList();
             CheckCBB_Status.Properties.ValueMember = "ID";
             CheckCBB_Status.Properties.DisplayMember = "BatchName";
-            
+            CheckCBB_Status.CheckAll();
         }
 
         private void dtpk_status_ValueChanged(object sender, EventArgs e)
@@ -70,36 +70,44 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             if (str_batchId != "")
             {
-                var Result = (from w in GlobalDB.DBLinq.Admin_Status( admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1,w.TongPhieuCheck1 ,w.UserLC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3,w.DateCreate }).ToList();
+                var Result = (from w in GlobalDB.DBLinq.Admin_Status(admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1, w.TongPhieuCheck1, w.UserLC_1, w.Status_LC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3, w.Status_LC_3, w.Ngaytao, w.User_Export, w.Hoanthanh1, w.Hoanthanh3 }).ToList();
                 grd_Status.DataSource = null;
                 grd_Status.DataSource = Result;
 
                 //// Tính toán và Add vào Footer
-                grdV_Status.Columns["BatchType"].Summary.Clear();
+                grdV_Status.Columns["NumberImage"].Summary.Clear();
                 grdV_Status.Columns["Hit_E11"].Summary.Clear();
                 grdV_Status.Columns["Hit_E12"].Summary.Clear();
                 grdV_Status.Columns["PhieuCheck1"].Summary.Clear();
+                grdV_Status.Columns["TongPhieuCheck1"].Summary.Clear();
                 int tongSL = Result.Sum(x => Convert.ToInt32(x.NumberImage));
-                grdV_Status.Columns["BatchType"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng Ảnh");
-                grdV_Status.Columns["BatchType"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng nhập");
-                grdV_Status.Columns["BatchType"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Còn lại");
+                grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng Ảnh");
+                grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng nhập");
+                grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Còn lại");
                 int Conlai_LV1 = Result.Sum(x => Convert.ToInt32(x.Hit_E11));
                 int Conlai_LV2 = Result.Sum(x => Convert.ToInt32(x.Hit_E12));
                 int Conlai_Check = Result.Sum(x => Convert.ToInt32(x.PhieuCheck1));
                 int Tong_Check = Result.Sum(x => Convert.ToInt32(x.TongPhieuCheck1));
+                int Hoanthanhlv1 = Result.Sum(x => Convert.ToInt32(x.Hoanthanh1));
+                int Hoanthanhlv3 = Result.Sum(x => Convert.ToInt32(x.Hoanthanh3));
 
                 grdV_Status.Columns["Hit_E11"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E11", tongSL.ToString());
                 grdV_Status.Columns["Hit_E11"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E11", (tongSL - Conlai_LV1).ToString());
                 grdV_Status.Columns["Hit_E11"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E11", Conlai_LV1.ToString());
-                
+
                 grdV_Status.Columns["Hit_E12"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E12", tongSL.ToString());
                 grdV_Status.Columns["Hit_E12"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E12", (tongSL - Conlai_LV2).ToString());
                 grdV_Status.Columns["Hit_E12"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E12", Conlai_LV2.ToString());
 
-                grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "  Tổng ảnh Check  :   "+ Tong_Check.ToString());
-                grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "Hoàn thành Check  :   " +(Tong_Check - Conlai_Check).ToString());
-                grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "         Còn lại  :   " + Conlai_Check.ToString());
-                
+                grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "Tổng Lỗi:  " + Conlai_Check.ToString());
+                grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "   % Lỗi:  " + Math.Round(((double)Conlai_Check / (double)Tong_Check) * 100, 2).ToString() + " %");
+                //grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "Hoàn thành Check:   " +(Tong_Check - Conlai_Check).ToString());
+                //grdV_Status.Columns["PhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "         Còn lại:   " + Conlai_Check.ToString());
+
+                grdV_Status.Columns["TongPhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", " Ảnh Hoàn thành:  " + Hoanthanhlv1.ToString());
+                grdV_Status.Columns["TongPhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "   % Hoàn thành:  " + Math.Round(((double)Hoanthanhlv1 / (double)tongSL) * 100, 2).ToString() + " %");
+                //grdV_Status.Columns["TongPhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "% Hoàn thành:   " + (100.00 - Math.Round(((double)(Tong_Check - Conlai_Check) / (double)(tongSL - Conlai_LV1)) * 100, 2)).ToString());
+                //grdV_Status.Columns["TongPhieuCheck1"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "PhieuCheck1", "   % Còn lại:   " + Math.Round(((double)(Tong_Check - Conlai_Check) / (double)(Conlai_LV1)) * 100, 2).ToString());
             }
             else
             {
@@ -117,6 +125,31 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 if (grdV_Status.GetRowCellValue(e.RowHandle,columns).ToString() == "0")
                 {
                     e.Appearance.BackColor = Color.LightSkyBlue;
+                }
+            }
+            if (columns == "Status_LC_1")
+            {
+                if (string.IsNullOrEmpty(grdV_Status.GetRowCellValue(e.RowHandle, columns).ToString()) == false)
+                {
+                    if (grdV_Status.GetRowCellValue(e.RowHandle, columns).ToString() == "Run")
+                    {
+                        e.Appearance.BackColor = Color.SandyBrown;
+                    }
+                    else if (grdV_Status.GetRowCellValue(e.RowHandle, columns).ToString() == "OK")
+                    {
+                        e.Appearance.BackColor = Color.LightSkyBlue;
+                    }
+                }
+
+            }
+            if (columns == "User_Export")
+            {
+                if (string.IsNullOrEmpty(grdV_Status.GetRowCellValue(e.RowHandle, columns).ToString()) == false)
+                {
+                    if (grdV_Status.GetRowCellValue(e.RowHandle, columns).ToString() != "")
+                    {
+                        e.Appearance.BackColor = Color.LightSkyBlue;
+                    }
                 }
             }
         }
@@ -149,6 +182,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
         }
 
         private void cb_AT_CheckedChanged(object sender, EventArgs e)
+        {
+            UC_Status_Load(null, null);
+        }
+
+        private void CheckCBB_Status_Enter(object sender, EventArgs e)
         {
             UC_Status_Load(null, null);
         }

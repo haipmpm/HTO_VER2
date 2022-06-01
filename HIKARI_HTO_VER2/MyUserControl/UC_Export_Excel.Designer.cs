@@ -29,179 +29,258 @@ namespace HIKARI_HTO_VER2.MyUserControl
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_ShowData = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_exit = new System.Windows.Forms.Button();
-            this.btn_xuatExel = new System.Windows.Forms.Button();
-            this.cbo_Loai = new System.Windows.Forms.ComboBox();
-            this.lwv_Batch = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rdb_AT = new System.Windows.Forms.RadioButton();
+            this.rdb_AE = new System.Windows.Forms.RadioButton();
+            this.btn_Export = new System.Windows.Forms.Button();
+            this.CheckCBB_Export = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_View = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.Tab_Result = new DevExpress.XtraTab.XtraTabPage();
+            this.grd_img = new DevExpress.XtraGrid.GridControl();
+            this.grdV_img = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Tab_Error = new DevExpress.XtraTab.XtraTabPage();
+            this.grd_Error = new DevExpress.XtraGrid.GridControl();
+            this.grdV_Error = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckCBB_Export.Properties)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.Tab_Result.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_img)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdV_img)).BeginInit();
+            this.Tab_Error.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Error)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdV_Error)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_ShowData
-            // 
-            this.btn_ShowData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ShowData.Location = new System.Drawing.Point(147, 136);
-            this.btn_ShowData.Name = "btn_ShowData";
-            this.btn_ShowData.Size = new System.Drawing.Size(84, 37);
-            this.btn_ShowData.TabIndex = 16;
-            this.btn_ShowData.Text = "Hiển thị";
-            this.btn_ShowData.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(14, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Chọn Loại";
-            // 
-            // btn_exit
-            // 
-            this.btn_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_exit.Location = new System.Drawing.Point(267, 136);
-            this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(89, 37);
-            this.btn_exit.TabIndex = 12;
-            this.btn_exit.Text = "Thoát";
-            this.btn_exit.UseVisualStyleBackColor = true;
-            // 
-            // btn_xuatExel
-            // 
-            this.btn_xuatExel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xuatExel.Location = new System.Drawing.Point(17, 136);
-            this.btn_xuatExel.Name = "btn_xuatExel";
-            this.btn_xuatExel.Size = new System.Drawing.Size(89, 37);
-            this.btn_xuatExel.TabIndex = 13;
-            this.btn_xuatExel.Text = "Xuất Excel";
-            this.btn_xuatExel.UseVisualStyleBackColor = true;
-            // 
-            // cbo_Loai
-            // 
-            this.cbo_Loai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbo_Loai.FormattingEnabled = true;
-            this.cbo_Loai.Items.AddRange(new object[] {
-            ""});
-            this.cbo_Loai.Location = new System.Drawing.Point(103, 5);
-            this.cbo_Loai.Margin = new System.Windows.Forms.Padding(2);
-            this.cbo_Loai.Name = "cbo_Loai";
-            this.cbo_Loai.Size = new System.Drawing.Size(171, 28);
-            this.cbo_Loai.TabIndex = 11;
-            // 
-            // lwv_Batch
-            // 
-            this.lwv_Batch.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader1,
-            this.columnHeader2});
-            this.lwv_Batch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lwv_Batch.FullRowSelect = true;
-            this.lwv_Batch.GridLines = true;
-            this.lwv_Batch.HideSelection = false;
-            this.lwv_Batch.Location = new System.Drawing.Point(396, 5);
-            this.lwv_Batch.Name = "lwv_Batch";
-            this.lwv_Batch.Size = new System.Drawing.Size(657, 187);
-            this.lwv_Batch.TabIndex = 17;
-            this.lwv_Batch.UseCompatibleStateImageBehavior = false;
-            this.lwv_Batch.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Stt";
-            this.columnHeader3.Width = 72;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "BatchID";
-            this.columnHeader1.Width = 237;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "BatchName";
-            this.columnHeader2.Width = 256;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1056, 458);
-            this.dataGridView1.TabIndex = 18;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(150)))), ((int)(((byte)(190)))));
-            this.panel1.Controls.Add(this.cbo_Loai);
-            this.panel1.Controls.Add(this.lwv_Batch);
-            this.panel1.Controls.Add(this.btn_xuatExel);
-            this.panel1.Controls.Add(this.btn_ShowData);
-            this.panel1.Controls.Add(this.btn_exit);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.rdb_AT);
+            this.panel1.Controls.Add(this.rdb_AE);
+            this.panel1.Controls.Add(this.btn_Export);
+            this.panel1.Controls.Add(this.CheckCBB_Export);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btn_View);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1056, 202);
-            this.panel1.TabIndex = 19;
+            this.panel1.Size = new System.Drawing.Size(1056, 46);
+            this.panel1.TabIndex = 2;
+            // 
+            // rdb_AT
+            // 
+            this.rdb_AT.AutoSize = true;
+            this.rdb_AT.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdb_AT.ForeColor = System.Drawing.Color.White;
+            this.rdb_AT.Location = new System.Drawing.Point(91, 10);
+            this.rdb_AT.Name = "rdb_AT";
+            this.rdb_AT.Size = new System.Drawing.Size(53, 26);
+            this.rdb_AT.TabIndex = 12;
+            this.rdb_AT.Text = "AT";
+            this.rdb_AT.UseVisualStyleBackColor = true;
+            this.rdb_AT.CheckedChanged += new System.EventHandler(this.rdb_AT_CheckedChanged);
+            // 
+            // rdb_AE
+            // 
+            this.rdb_AE.AutoSize = true;
+            this.rdb_AE.Checked = true;
+            this.rdb_AE.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdb_AE.ForeColor = System.Drawing.Color.White;
+            this.rdb_AE.Location = new System.Drawing.Point(16, 10);
+            this.rdb_AE.Name = "rdb_AE";
+            this.rdb_AE.Size = new System.Drawing.Size(54, 26);
+            this.rdb_AE.TabIndex = 11;
+            this.rdb_AE.TabStop = true;
+            this.rdb_AE.Text = "AE";
+            this.rdb_AE.UseVisualStyleBackColor = true;
+            this.rdb_AE.CheckedChanged += new System.EventHandler(this.rdb_AE_CheckedChanged);
+            // 
+            // btn_Export
+            // 
+            this.btn_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Export.BackColor = System.Drawing.Color.OrangeRed;
+            this.btn_Export.Enabled = false;
+            this.btn_Export.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Export.ForeColor = System.Drawing.Color.Black;
+            this.btn_Export.Location = new System.Drawing.Point(936, 7);
+            this.btn_Export.Name = "btn_Export";
+            this.btn_Export.Size = new System.Drawing.Size(120, 33);
+            this.btn_Export.TabIndex = 10;
+            this.btn_Export.Text = "Export Data";
+            this.btn_Export.UseVisualStyleBackColor = false;
+            // 
+            // CheckCBB_Export
+            // 
+            this.CheckCBB_Export.Location = new System.Drawing.Point(334, 8);
+            this.CheckCBB_Export.Name = "CheckCBB_Export";
+            this.CheckCBB_Export.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckCBB_Export.Properties.Appearance.Options.UseFont = true;
+            this.CheckCBB_Export.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.CheckCBB_Export.Size = new System.Drawing.Size(406, 30);
+            this.CheckCBB_Export.TabIndex = 9;
+            this.CheckCBB_Export.Enter += new System.EventHandler(this.CheckCBB_Export_Enter);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(200, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Name Batch:";
+            // 
+            // btn_View
+            // 
+            this.btn_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_View.ForeColor = System.Drawing.Color.Black;
+            this.btn_View.Location = new System.Drawing.Point(776, 7);
+            this.btn_View.Name = "btn_View";
+            this.btn_View.Size = new System.Drawing.Size(120, 33);
+            this.btn_View.TabIndex = 7;
+            this.btn_View.Text = "View Data";
+            this.btn_View.UseVisualStyleBackColor = true;
+            this.btn_View.Click += new System.EventHandler(this.btn_View_Click);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 202);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1056, 458);
-            this.panel2.TabIndex = 20;
+            this.panel2.Size = new System.Drawing.Size(1056, 660);
+            this.panel2.TabIndex = 3;
             // 
-            // backgroundWorker1
+            // panel3
             // 
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.xtraTabControl1);
+            this.panel3.Location = new System.Drawing.Point(0, 47);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1056, 613);
+            this.panel3.TabIndex = 3;
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.Tab_Result;
+            this.xtraTabControl1.Size = new System.Drawing.Size(1056, 613);
+            this.xtraTabControl1.TabIndex = 2;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.Tab_Result,
+            this.Tab_Error});
+            // 
+            // Tab_Result
+            // 
+            this.Tab_Result.Controls.Add(this.grd_img);
+            this.Tab_Result.Name = "Tab_Result";
+            this.Tab_Result.Size = new System.Drawing.Size(1050, 585);
+            this.Tab_Result.Text = "Tab Result";
+            // 
+            // grd_img
+            // 
+            this.grd_img.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_img.Location = new System.Drawing.Point(0, 0);
+            this.grd_img.MainView = this.grdV_img;
+            this.grd_img.Name = "grd_img";
+            this.grd_img.Size = new System.Drawing.Size(1050, 585);
+            this.grd_img.TabIndex = 0;
+            this.grd_img.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdV_img});
+            // 
+            // grdV_img
+            // 
+            this.grdV_img.GridControl = this.grd_img;
+            this.grdV_img.IndicatorWidth = 30;
+            this.grdV_img.Name = "grdV_img";
+            this.grdV_img.OptionsView.ColumnAutoWidth = false;
+            this.grdV_img.OptionsView.ShowGroupPanel = false;
+            this.grdV_img.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdV_img_CustomDrawRowIndicator);
+            // 
+            // Tab_Error
+            // 
+            this.Tab_Error.Controls.Add(this.grd_Error);
+            this.Tab_Error.Name = "Tab_Error";
+            this.Tab_Error.Size = new System.Drawing.Size(1050, 585);
+            this.Tab_Error.Text = "Tab Error";
+            // 
+            // grd_Error
+            // 
+            this.grd_Error.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_Error.Location = new System.Drawing.Point(0, 0);
+            this.grd_Error.MainView = this.grdV_Error;
+            this.grd_Error.Name = "grd_Error";
+            this.grd_Error.Size = new System.Drawing.Size(1050, 585);
+            this.grd_Error.TabIndex = 1;
+            this.grd_Error.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdV_Error});
+            // 
+            // grdV_Error
+            // 
+            this.grdV_Error.GridControl = this.grd_Error;
+            this.grdV_Error.IndicatorWidth = 30;
+            this.grdV_Error.Name = "grdV_Error";
+            this.grdV_Error.OptionsView.ColumnAutoWidth = false;
+            this.grdV_Error.OptionsView.ShowGroupPanel = false;
+            this.grdV_Error.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdV_Error_CustomDrawRowIndicator);
             // 
             // UC_Export_Excel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Name = "UC_Export_Excel";
             this.Size = new System.Drawing.Size(1056, 660);
             this.Load += new System.EventHandler(this.UC_Export_Excel_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckCBB_Export.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.Tab_Result.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_img)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdV_img)).EndInit();
+            this.Tab_Error.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Error)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdV_Error)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_ShowData;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_exit;
-        private System.Windows.Forms.Button btn_xuatExel;
-        private System.Windows.Forms.ComboBox cbo_Loai;
-        private System.Windows.Forms.ListView lwv_Batch;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_Export;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit CheckCBB_Export;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_View;
         private System.Windows.Forms.Panel panel2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage Tab_Result;
+        private DevExpress.XtraGrid.GridControl grd_img;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdV_img;
+        private DevExpress.XtraTab.XtraTabPage Tab_Error;
+        private DevExpress.XtraGrid.GridControl grd_Error;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdV_Error;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.RadioButton rdb_AT;
+        private System.Windows.Forms.RadioButton rdb_AE;
     }
 }

@@ -261,17 +261,24 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<Admin_Status_ViewChitiet_V2Result>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Pfm_GetData", IsComposable=true)]
+		public object Admin_Pfm_GetData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
+		{
+			return ((object)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Status_GetListBacth")]
+		public ISingleResult<Admin_Status_GetListBacthResult> Admin_Status_GetListBacth([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(50)")] string style_Batch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Batch);
+			return ((ISingleResult<Admin_Status_GetListBacthResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Status")]
 		public ISingleResult<Admin_StatusResult> Admin_Status([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(20)")] string style_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListBatch", DbType="NVarChar(MAX)")] string listBatch)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Batch, listBatch);
 			return ((ISingleResult<Admin_StatusResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Pfm_GetData", IsComposable=true)]
-		public object Admin_Pfm_GetData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
-		{
-			return ((object)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End).ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_return_Role_image_v2")]
@@ -281,11 +288,32 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Status_GetListBacth")]
-		public ISingleResult<Admin_Status_GetListBacthResult> Admin_Status_GetListBacth([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(50)")] string style_Batch)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_GetListLC_Export")]
+		public ISingleResult<Admin_GetListLC_ExportResult> Admin_GetListLC_Export([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(5)")] string style_Batch)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Batch);
-			return ((ISingleResult<Admin_Status_GetListBacthResult>)(result.ReturnValue));
+			return ((ISingleResult<Admin_GetListLC_ExportResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LC_Exit_Batch")]
+		public int LC_Exit_Batch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(50)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string level)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Batch, status, level);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LC_Update_Info_LC")]
+		public int LC_Update_Info_LC([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(50)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_LC", DbType="NVarChar(100)")] string time_LC, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(100)")] string time_Start)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Batch, userName, time_LC, time_Start);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Export_Data")]
+		public ISingleResult<Admin_Export_DataResult> Admin_Export_Data([global::System.Data.Linq.Mapping.ParameterAttribute(Name="List_ID_Batch", DbType="NVarChar(MAX)")] string list_ID_Batch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), list_ID_Batch);
+			return ((ISingleResult<Admin_Export_DataResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2511,6 +2539,50 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
+	public partial class Admin_Status_GetListBacthResult
+	{
+		
+		private int _ID;
+		
+		private string _BatchName;
+		
+		public Admin_Status_GetListBacthResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(255)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+	}
+	
 	public partial class Admin_StatusResult
 	{
 		
@@ -2532,6 +2604,8 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		
 		private string _UserLC_1;
 		
+		private string _Status_LC_1;
+		
 		private System.Nullable<int> _Hit_E31;
 		
 		private System.Nullable<int> _Hit_E32;
@@ -2542,7 +2616,15 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		
 		private string _UserLC_3;
 		
-		private string _DateCreate;
+		private string _Status_LC_3;
+		
+		private string _Ngaytao;
+		
+		private string _User_Export;
+		
+		private System.Nullable<int> _Hoanthanh1;
+		
+		private System.Nullable<int> _Hoanthanh3;
 		
 		public Admin_StatusResult()
 		{
@@ -2692,6 +2774,22 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_1", DbType="NVarChar(50)")]
+		public string Status_LC_1
+		{
+			get
+			{
+				return this._Status_LC_1;
+			}
+			set
+			{
+				if ((this._Status_LC_1 != value))
+				{
+					this._Status_LC_1 = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E31", DbType="Int")]
 		public System.Nullable<int> Hit_E31
 		{
@@ -2772,31 +2870,95 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreate", DbType="NVarChar(50)")]
-		public string DateCreate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_3", DbType="NVarChar(50)")]
+		public string Status_LC_3
 		{
 			get
 			{
-				return this._DateCreate;
+				return this._Status_LC_3;
 			}
 			set
 			{
-				if ((this._DateCreate != value))
+				if ((this._Status_LC_3 != value))
 				{
-					this._DateCreate = value;
+					this._Status_LC_3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaytao", DbType="NVarChar(50)")]
+		public string Ngaytao
+		{
+			get
+			{
+				return this._Ngaytao;
+			}
+			set
+			{
+				if ((this._Ngaytao != value))
+				{
+					this._Ngaytao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Export", DbType="NVarChar(200)")]
+		public string User_Export
+		{
+			get
+			{
+				return this._User_Export;
+			}
+			set
+			{
+				if ((this._User_Export != value))
+				{
+					this._User_Export = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hoanthanh1", DbType="Int")]
+		public System.Nullable<int> Hoanthanh1
+		{
+			get
+			{
+				return this._Hoanthanh1;
+			}
+			set
+			{
+				if ((this._Hoanthanh1 != value))
+				{
+					this._Hoanthanh1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hoanthanh3", DbType="Int")]
+		public System.Nullable<int> Hoanthanh3
+		{
+			get
+			{
+				return this._Hoanthanh3;
+			}
+			set
+			{
+				if ((this._Hoanthanh3 != value))
+				{
+					this._Hoanthanh3 = value;
 				}
 			}
 		}
 	}
 	
-	public partial class Admin_Status_GetListBacthResult
+	public partial class Admin_GetListLC_ExportResult
 	{
 		
 		private int _ID;
 		
 		private string _BatchName;
 		
-		public Admin_Status_GetListBacthResult()
+		public Admin_GetListLC_ExportResult()
 		{
 		}
 		
@@ -2828,6 +2990,122 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._BatchName != value))
 				{
 					this._BatchName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Admin_Export_DataResult
+	{
+		
+		private string _BatchName;
+		
+		private System.Nullable<int> _ID_Batch;
+		
+		private string _ImageName;
+		
+		private string _ResultLC;
+		
+		private string _Loai;
+		
+		private string _PathPicture;
+		
+		public Admin_Export_DataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int")]
+		public System.Nullable<int> ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this._ID_Batch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(500)")]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this._ImageName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResultLC", DbType="NVarChar(MAX)")]
+		public string ResultLC
+		{
+			get
+			{
+				return this._ResultLC;
+			}
+			set
+			{
+				if ((this._ResultLC != value))
+				{
+					this._ResultLC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loai", DbType="NVarChar(50)")]
+		public string Loai
+		{
+			get
+			{
+				return this._Loai;
+			}
+			set
+			{
+				if ((this._Loai != value))
+				{
+					this._Loai = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PathPicture", DbType="NVarChar(MAX)")]
+		public string PathPicture
+		{
+			get
+			{
+				return this._PathPicture;
+			}
+			set
+			{
+				if ((this._PathPicture != value))
+				{
+					this._PathPicture = value;
 				}
 			}
 		}

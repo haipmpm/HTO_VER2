@@ -180,8 +180,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     lst_header_AT[1].Enabled = true;
                     lst_header_AT[2].Enabled = true;
                     lst_header_AT[3].Enabled = true;
-                }
-                rtb.Text = rtb.Text.ToUpper();
+                }                
             }
         }
         private void rtb_KeyPress(object sender, KeyPressEventArgs e)
@@ -288,7 +287,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         {
             // Clear Toàn bộ dữ liệu
             lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
-            lst_to_List_Rtb.ForEach(x => x.ForEach(s=> { s.Text = ""; s.ForeColor = Color.Black; s.BackColor = Color.WhiteSmoke; }));            
+            lst_to_List_Rtb.ForEach(x => x.ForEach(s=> { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));            
             CheckInfo = InfoCheck;
             lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
             lb_User1.ForeColor = Color.Orange;
@@ -297,31 +296,20 @@ namespace HIKARI_HTO_VER2.MyUserControl
             if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
             {
                 //string s1 = "", s2 = "";
-                #region ADD Info cho các trường ở phần Header
+                #region ADD Info cho các trường ở giao diện AT
                 for (int i = 0; i < lst_to_List_Rtb.Count; i++)
-                {                    
+                {
                     for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
                     {
-                        lst_to_List_Rtb[i][z].ForeColor =  Color.Red;                        
-                        lst_to_List_Rtb[i][z].Text = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
-                        string s1, s2;
+                        lst_to_List_Rtb[i][z].ForeColor =  Color.Red;
+                        string s1 = "", s2 = "";
                         s1 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
                         s2 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
-                        //if (i == 0)
-                        //{
-                        //    if (s1 != s2)
-                        //    {
-                        //        lb_header[z].BackColor = Color.Red;                                
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    if (s1 != s2)
-                        //    {
-                        //        lb_header[i + 3].BackColor = Color.Red;
-                        //    }
-                        //}
-                        lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
+                        lst_to_List_Rtb[i][z].Text = s1;
+                        if (s1 != s2)
+                        {
+                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
+                        }                        
                         c = null;
                         c = new int[s1.Length + 1, s2.Length + 1];
                         LCS(s1, s2);
@@ -472,6 +460,74 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         }
 
-        
+        private void lb_User1_Click(object sender, EventArgs e)
+        {
+            lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
+            lst_to_List_Rtb.ForEach(x => x.ForEach(s => { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));
+            lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
+            lb_User1.ForeColor = Color.Orange;
+            lb_User2.Text = "Name 2: " + CheckInfo.UserName_E2.ToString();
+            lb_User2.ForeColor = Color.Black;
+            if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
+            {
+                //string s1 = "", s2 = "";
+                #region ADD Info cho các trường ở giao diện AT
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
+                    {
+                        lst_to_List_Rtb[i][z].ForeColor = Color.Red;
+                        string s1 = "", s2 = "";
+                        s1 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
+                        s2 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
+                        lst_to_List_Rtb[i][z].Text = s1;
+                        if (s1 != s2)
+                        {
+                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
+                        }
+                        c = null;
+                        c = new int[s1.Length + 1, s2.Length + 1];
+                        LCS(s1, s2);
+                        BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
+                    }
+                }
+                #endregion
+            }
+        }
+
+        private void lb_User2_Click(object sender, EventArgs e)
+        {
+            lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
+            lst_to_List_Rtb.ForEach(x => x.ForEach(s => { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));
+            lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
+            lb_User1.ForeColor = Color.Black;
+            lb_User2.Text = "Name 2: " + CheckInfo.UserName_E2.ToString();
+            lb_User2.ForeColor = Color.Orange;
+            if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
+            {
+                //string s1 = "", s2 = "";
+                #region ADD Info cho các trường ở giao diện AT
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
+                    {
+                        lst_to_List_Rtb[i][z].ForeColor = Color.Red;
+                        string s1 = "", s2 = "";
+                        s1 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
+                        s2 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
+                        lst_to_List_Rtb[i][z].Text = s1;
+                        if (s1 != s2)
+                        {
+                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
+                        }
+                        c = null;
+                        c = new int[s1.Length + 1, s2.Length + 1];
+                        LCS(s1, s2);
+                        BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
+                    }
+                }
+                #endregion
+            }
+        }
     }
 }

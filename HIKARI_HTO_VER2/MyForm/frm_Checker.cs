@@ -119,7 +119,7 @@ namespace HIKARI_HTO_VER2.MyForm
             if (btn_Submit.Enabled == false)
                 return;
             btn_Submit.Enabled = false;
-            CheckInfo.flZoom = ImgV.CurrentZoom;
+            
             //if (ApplicationDeployment.IsNetworkDeployed)
             //{
             BackgroundWorker a = new BackgroundWorker();
@@ -150,6 +150,7 @@ namespace HIKARI_HTO_VER2.MyForm
             else
             {
                 //bool Execult_Sql = false;
+                CheckInfo.flZoom = ImgV.CurrentZoom;
                 int Complete = 0;
                 if (Global.BatchTypeSelected == "AE")
                 {

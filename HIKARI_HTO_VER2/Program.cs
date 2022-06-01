@@ -45,7 +45,11 @@ namespace HIKARI_HTO_VER2
                 //        return;
                 //    }
                 //}
-
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    System.Deployment.Application.ApplicationDeployment ad = System.Deployment.Application.ApplicationDeployment.CurrentDeployment;
+                    strVersion = ad.CurrentVersion.ToString();
+                }
 
                 if (lg.ShowLoginForm("HTO Version 2.0" + strVersion) == true)
                 {
@@ -90,13 +94,14 @@ namespace HIKARI_HTO_VER2
                                             select address).FirstOrDefault();
                         Global.strIP_Adress = firstAddress.ToString();
 
+
+
                         frm_Main formMain = new frm_Main();
                         formMain.lb_Title.Text = formMain.lb_Title.Text + strVersion;
                         if (formMain.ShowDialog() == DialogResult.Yes)
                         {
                             loop = true;
-                        }    
-                            
+                        }
                     }
                 }
             }

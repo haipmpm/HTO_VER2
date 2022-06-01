@@ -23,7 +23,7 @@ namespace HIKARI_HTO_VER2.MyForm
         LastCheck_info lc_info;        
         bool change_data_save = false;
         bool change = false;
-        DateTime dt_now = new DateTime();
+        DateTime dtime_now = new DateTime();
         public frm_LastCheck()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lc_info = new LastCheck_info();
             
         }
-        bool startLC = false;
+        int StartLC = 0;
         private void btn_start_Click(object sender, EventArgs e)
         {
             if (btn_start.Text == "Start LastCheck")
@@ -45,7 +45,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     dt_Data_batch = using_data.LC_GetData_batch(Global.BatchIDSelected, Global.strUsername, Global.Level_Image.ToString());
                     if (dt_Data_batch.Rows.Count > 0)
                     {
-                        startLC = true;
+                        StartLC = 1;
                         Creater_Columns_Table(Global.BatchTypeSelected);                        
                         dt_Data_batch.Columns.Add("Select_Row");
                         dt_Data_batch.Columns.Add("Changed_Data");
@@ -63,7 +63,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     else
                     {
                         MessageBox.Show("Batch này đang có người LastCheck !!!");
-                        dt_now = DateTime.Now;
+                        dtime_now = DateTime.Now;
                         this.Close(); return;
                     }
                     #region code cũ
@@ -98,15 +98,16 @@ namespace HIKARI_HTO_VER2.MyForm
                 }
                 else
                 {
+                    StartLC = 3;
                     this.Close();
                 }
             }
             else if (btn_start.Text == "Done Batch")
             {
-                startLC = false;
+                StartLC = 2;
                 this.Close();
             }
-            dt_now = DateTime.Now;
+            dtime_now = DateTime.Now;
         }
 
         private void frm_LastCheck_Load(object sender, EventArgs e)
@@ -120,7 +121,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 this.Close();
             }
             splitContainerControl3.SplitterPosition = splitContainerControl3.Height - 10;
-            dt_now = DateTime.Now;
+            dtime_now = DateTime.Now;
         }
 
         private void bgw_Load_Data_DoWork(object sender, DoWorkEventArgs e)
@@ -135,14 +136,33 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void frm_LastCheck_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (startLC)
+            if (StartLC == 1)
             {
-                MessageBox.Show("Bạn chưa nhấn nút Done Batch hoàn thành !!!","Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                e.Cancel = true;
+                var Question = MessageBox.Show("Thoát phiên LastCheck Batch " + Global.BatchNameSelected + "", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Question == DialogResult.Yes)
+                {
+                    GlobalDB.DBLinq.LC_Exit_Batch(Global.BatchIDSelected, "Exit", "1");
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+                //MessageBox.Show("Bạn chưa nhấn nút Done Batch hoàn thành !!!","Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                //e.Cancel = true;
+            }
+            else if (StartLC == 2)
+            {
+                GlobalDB.DBLinq.LC_Exit_Batch(Global.BatchIDSelected, "OK", "1");
+            }
+            else
+            {
+                return;
             }
             TimeSpan Tsp = new TimeSpan();
-            Tsp = DateTime.Now - dt_now;
+            Tsp = DateTime.Now - dtime_now;
             int time_Lc = Convert.ToInt32(Tsp.TotalSeconds);
+            string dtime = dtime_now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            GlobalDB.DBLinq.LC_Update_Info_LC(Global.BatchIDSelected, Global.strUsername, time_Lc.ToString(), dtime);
 
         }
 

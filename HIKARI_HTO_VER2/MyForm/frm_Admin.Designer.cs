@@ -54,7 +54,6 @@ namespace HIKARI_HTO_VER2.MyForm
             this.uC_Status1 = new HIKARI_HTO_VER2.MyUserControl.UC_Admin_Status();
             this.Performance = new System.Windows.Forms.TabPage();
             this.uC_PfmAdmin1 = new HIKARI_HTO_VER2.MyUserControl.UC_Admin_Pfm();
-            this.Rf_img = new System.Windows.Forms.TabPage();
             this.btn_xoa1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btn_Xoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -65,6 +64,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.chk_ApplyEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.uC_Export_Excel1 = new HIKARI_HTO_VER2.MyUserControl.UC_Export_Excel();
             this.Tab_Admin.SuspendLayout();
             this.Batch_Mng.SuspendLayout();
             this.export_Excel.SuspendLayout();
@@ -87,7 +87,6 @@ namespace HIKARI_HTO_VER2.MyForm
             this.Tab_Admin.Controls.Add(this.export_Excel);
             this.Tab_Admin.Controls.Add(this.Status);
             this.Tab_Admin.Controls.Add(this.Performance);
-            this.Tab_Admin.Controls.Add(this.Rf_img);
             this.Tab_Admin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tab_Admin.Location = new System.Drawing.Point(0, 0);
             this.Tab_Admin.Name = "Tab_Admin";
@@ -117,6 +116,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // export_Excel
             // 
+            this.export_Excel.Controls.Add(this.uC_Export_Excel1);
             this.export_Excel.Controls.Add(this.progressBar1);
             this.export_Excel.Location = new System.Drawing.Point(4, 22);
             this.export_Excel.Name = "export_Excel";
@@ -130,7 +130,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(22, -68);
+            this.progressBar1.Location = new System.Drawing.Point(22, -727);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(0, 10);
             this.progressBar1.TabIndex = 11;
@@ -170,15 +170,6 @@ namespace HIKARI_HTO_VER2.MyForm
             this.uC_PfmAdmin1.Name = "uC_PfmAdmin1";
             this.uC_PfmAdmin1.Size = new System.Drawing.Size(1426, 733);
             this.uC_PfmAdmin1.TabIndex = 0;
-            // 
-            // Rf_img
-            // 
-            this.Rf_img.Location = new System.Drawing.Point(4, 22);
-            this.Rf_img.Name = "Rf_img";
-            this.Rf_img.Size = new System.Drawing.Size(1426, 733);
-            this.Rf_img.TabIndex = 4;
-            this.Rf_img.Text = "Refresh Role Image";
-            this.Rf_img.UseVisualStyleBackColor = true;
             // 
             // btn_xoa1
             // 
@@ -252,6 +243,14 @@ namespace HIKARI_HTO_VER2.MyForm
             this.repositoryItemButtonEdit4.Name = "repositoryItemButtonEdit4";
             this.repositoryItemButtonEdit4.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // uC_Export_Excel1
+            // 
+            this.uC_Export_Excel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uC_Export_Excel1.Location = new System.Drawing.Point(3, 3);
+            this.uC_Export_Excel1.Name = "uC_Export_Excel1";
+            this.uC_Export_Excel1.Size = new System.Drawing.Size(1420, 727);
+            this.uC_Export_Excel1.TabIndex = 12;
+            // 
             // frm_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,7 +287,6 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.TabPage export_Excel;
         private System.Windows.Forms.TabPage Status;
         private System.Windows.Forms.TabPage Performance;
-        private System.Windows.Forms.TabPage Rf_img;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btn_xoa1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btn_Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
@@ -303,5 +301,6 @@ namespace HIKARI_HTO_VER2.MyForm
         private MyUserControl.Manager_Batch manager_Batch1;
         private MyUserControl.UC_Admin_Pfm uC_PfmAdmin1;
         private MyUserControl.UC_Admin_Status uC_Status1;
+        private MyUserControl.UC_Export_Excel uC_Export_Excel1;
     }
 }

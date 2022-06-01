@@ -47,10 +47,11 @@ namespace HIKARI_HTO_VER2.MyForm
             this.lb_hienthi = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btn_BackEntry_1 = new System.Windows.Forms.Button();
-            this.btn_BackCheck = new System.Windows.Forms.Button();
-            this.btn_BackEntry_2 = new System.Windows.Forms.Button();
             this.btn_backImage = new System.Windows.Forms.Button();
+            this.btn_BackEntry_2 = new System.Windows.Forms.Button();
+            this.btn_BackCheck = new System.Windows.Forms.Button();
+            this.btn_BackEntry_1 = new System.Windows.Forms.Button();
+            this.btn_rt_batchLC = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Chitiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_Chitiet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -219,6 +220,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(150)))), ((int)(((byte)(190)))));
+            this.panel3.Controls.Add(this.btn_rt_batchLC);
             this.panel3.Controls.Add(this.btn_backImage);
             this.panel3.Controls.Add(this.btn_BackEntry_2);
             this.panel3.Controls.Add(this.btn_BackCheck);
@@ -229,49 +231,60 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel3.Size = new System.Drawing.Size(1167, 41);
             this.panel3.TabIndex = 3;
             // 
-            // btn_BackEntry_1
-            // 
-            this.btn_BackEntry_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BackEntry_1.Location = new System.Drawing.Point(296, 3);
-            this.btn_BackEntry_1.Name = "btn_BackEntry_1";
-            this.btn_BackEntry_1.Size = new System.Drawing.Size(175, 35);
-            this.btn_BackEntry_1.TabIndex = 0;
-            this.btn_BackEntry_1.Text = "Return Entry LV1";
-            this.btn_BackEntry_1.UseVisualStyleBackColor = true;
-            this.btn_BackEntry_1.Click += new System.EventHandler(this.btn_BackEntry_1_Click);
-            // 
-            // btn_BackCheck
-            // 
-            this.btn_BackCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BackCheck.Location = new System.Drawing.Point(878, 3);
-            this.btn_BackCheck.Name = "btn_BackCheck";
-            this.btn_BackCheck.Size = new System.Drawing.Size(143, 35);
-            this.btn_BackCheck.TabIndex = 1;
-            this.btn_BackCheck.Text = "Return Checker";
-            this.btn_BackCheck.UseVisualStyleBackColor = true;
-            this.btn_BackCheck.Click += new System.EventHandler(this.btn_BackCheck_Click);
-            // 
-            // btn_BackEntry_2
-            // 
-            this.btn_BackEntry_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BackEntry_2.Location = new System.Drawing.Point(582, 3);
-            this.btn_BackEntry_2.Name = "btn_BackEntry_2";
-            this.btn_BackEntry_2.Size = new System.Drawing.Size(172, 35);
-            this.btn_BackEntry_2.TabIndex = 2;
-            this.btn_BackEntry_2.Text = "Return Entry LV2";
-            this.btn_BackEntry_2.UseVisualStyleBackColor = true;
-            this.btn_BackEntry_2.Click += new System.EventHandler(this.btn_BackEntry_2_Click);
-            // 
             // btn_backImage
             // 
             this.btn_backImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_backImage.Location = new System.Drawing.Point(28, 3);
             this.btn_backImage.Name = "btn_backImage";
-            this.btn_backImage.Size = new System.Drawing.Size(175, 35);
+            this.btn_backImage.Size = new System.Drawing.Size(157, 35);
             this.btn_backImage.TabIndex = 3;
             this.btn_backImage.Text = "Return Image";
             this.btn_backImage.UseVisualStyleBackColor = true;
             this.btn_backImage.Click += new System.EventHandler(this.btn_backImage_Click);
+            // 
+            // btn_BackEntry_2
+            // 
+            this.btn_BackEntry_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BackEntry_2.Location = new System.Drawing.Point(502, 3);
+            this.btn_BackEntry_2.Name = "btn_BackEntry_2";
+            this.btn_BackEntry_2.Size = new System.Drawing.Size(157, 35);
+            this.btn_BackEntry_2.TabIndex = 2;
+            this.btn_BackEntry_2.Text = "Return Entry LV2";
+            this.btn_BackEntry_2.UseVisualStyleBackColor = true;
+            this.btn_BackEntry_2.Click += new System.EventHandler(this.btn_BackEntry_2_Click);
+            // 
+            // btn_BackCheck
+            // 
+            this.btn_BackCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BackCheck.Location = new System.Drawing.Point(763, 3);
+            this.btn_BackCheck.Name = "btn_BackCheck";
+            this.btn_BackCheck.Size = new System.Drawing.Size(157, 35);
+            this.btn_BackCheck.TabIndex = 1;
+            this.btn_BackCheck.Text = "Return Checker";
+            this.btn_BackCheck.UseVisualStyleBackColor = true;
+            this.btn_BackCheck.Click += new System.EventHandler(this.btn_BackCheck_Click);
+            // 
+            // btn_BackEntry_1
+            // 
+            this.btn_BackEntry_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BackEntry_1.Location = new System.Drawing.Point(256, 3);
+            this.btn_BackEntry_1.Name = "btn_BackEntry_1";
+            this.btn_BackEntry_1.Size = new System.Drawing.Size(157, 35);
+            this.btn_BackEntry_1.TabIndex = 0;
+            this.btn_BackEntry_1.Text = "Return Entry LV1";
+            this.btn_BackEntry_1.UseVisualStyleBackColor = true;
+            this.btn_BackEntry_1.Click += new System.EventHandler(this.btn_BackEntry_1_Click);
+            // 
+            // btn_rt_batchLC
+            // 
+            this.btn_rt_batchLC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_rt_batchLC.Location = new System.Drawing.Point(1007, 3);
+            this.btn_rt_batchLC.Name = "btn_rt_batchLC";
+            this.btn_rt_batchLC.Size = new System.Drawing.Size(157, 35);
+            this.btn_rt_batchLC.TabIndex = 5;
+            this.btn_rt_batchLC.Text = "Return LC";
+            this.btn_rt_batchLC.UseVisualStyleBackColor = true;
+            this.btn_rt_batchLC.Click += new System.EventHandler(this.btn_rt_batchLC_Click);
             // 
             // Admin_Status_Detail_Batch
             // 
@@ -319,5 +332,6 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Button btn_BackEntry_1;
         private System.Windows.Forms.Button btn_BackEntry_2;
         private System.Windows.Forms.Button btn_backImage;
+        private System.Windows.Forms.Button btn_rt_batchLC;
     }
 }

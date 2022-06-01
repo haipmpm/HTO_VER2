@@ -51,6 +51,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.PhieuCheck3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TongPhieuCheck3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UserLC_3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.User_Export = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Hoanthanh1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Hoanthanh3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckCBB_Status.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Status)).BeginInit();
@@ -112,6 +115,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.CheckCBB_Status.Size = new System.Drawing.Size(398, 30);
             this.CheckCBB_Status.TabIndex = 6;
+            this.CheckCBB_Status.Enter += new System.EventHandler(this.CheckCBB_Status_Enter);
             // 
             // label2
             // 
@@ -177,7 +181,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Hit_E32,
             this.PhieuCheck3,
             this.TongPhieuCheck3,
-            this.UserLC_3});
+            this.UserLC_3,
+            this.User_Export,
+            this.Hoanthanh1,
+            this.Hoanthanh3});
             this.grdV_Status.GridControl = this.grd_Status;
             this.grdV_Status.IndicatorWidth = 30;
             this.grdV_Status.Name = "grdV_Status";
@@ -289,6 +296,26 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.UserLC_3.FieldName = "UserLC_3";
             this.UserLC_3.Name = "UserLC_3";
             // 
+            // User_Export
+            // 
+            this.User_Export.Caption = "User Export";
+            this.User_Export.FieldName = "User_Export";
+            this.User_Export.Name = "User_Export";
+            this.User_Export.Visible = true;
+            this.User_Export.VisibleIndex = 8;
+            // 
+            // Hoanthanh1
+            // 
+            this.Hoanthanh1.Caption = "Hoàn thành lv1";
+            this.Hoanthanh1.FieldName = "Hoanthanh1";
+            this.Hoanthanh1.Name = "Hoanthanh1";
+            // 
+            // Hoanthanh3
+            // 
+            this.Hoanthanh3.Caption = "Hoàn thành lv3";
+            this.Hoanthanh3.FieldName = "Hoanthanh3";
+            this.Hoanthanh3.Name = "Hoanthanh3";
+            // 
             // UC_Admin_Status
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,5 +358,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private DevExpress.XtraGrid.Columns.GridColumn PhieuCheck3;
         private DevExpress.XtraGrid.Columns.GridColumn TongPhieuCheck1;
         private DevExpress.XtraGrid.Columns.GridColumn TongPhieuCheck3;
+        private DevExpress.XtraGrid.Columns.GridColumn User_Export;
+        private DevExpress.XtraGrid.Columns.GridColumn Hoanthanh1;
+        private DevExpress.XtraGrid.Columns.GridColumn Hoanthanh3;
     }
 }

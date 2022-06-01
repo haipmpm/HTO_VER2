@@ -275,6 +275,19 @@
       <Column Name="Content_LC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.Admin_Pfm_GetData" Method="Admin_Pfm_GetData" IsComposable="true">
+    <Parameter Name="style_Pfm" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Time_Start" Parameter="time_Start" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Time_End" Parameter="time_End" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.Admin_Status_GetListBacth" Method="Admin_Status_GetListBacth">
+    <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Admin_Status_GetListBacthResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BatchName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.Admin_Status" Method="Admin_Status">
     <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(20)" />
     <Parameter Name="ListBatch" Parameter="listBatch" Type="System.String" DbType="NVarChar(MAX)" />
@@ -288,19 +301,18 @@
       <Column Name="PhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TongPhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserLC_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status_LC_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Hit_E31" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Hit_E32" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TongPhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserLC_3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DateCreate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status_LC_3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ngaytao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Export" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Hoanthanh1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hoanthanh3" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.Admin_Pfm_GetData" Method="Admin_Pfm_GetData" IsComposable="true">
-    <Parameter Name="style_Pfm" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Time_Start" Parameter="time_Start" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Time_End" Parameter="time_End" Type="System.String" DbType="NVarChar(50)" />
-    <Return Type="object" />
   </Function>
   <Function Name="dbo.Admin_return_Role_image_v2" Method="Admin_return_Role_image_v2">
     <Parameter Name="Style_Role" Parameter="style_Role" Type="System.String" DbType="NVarChar(50)" />
@@ -309,11 +321,35 @@
     <Parameter Name="Level_image" Parameter="level_image" Type="System.String" DbType="NVarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.Admin_Status_GetListBacth" Method="Admin_Status_GetListBacth">
-    <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="Admin_Status_GetListBacthResult">
+  <Function Name="dbo.Admin_GetListLC_Export" Method="Admin_GetListLC_Export">
+    <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(5)" />
+    <ElementType Name="Admin_GetListLC_ExportResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BatchName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LC_Exit_Batch" Method="LC_Exit_Batch">
+    <Parameter Name="ID_Batch" Parameter="iD_Batch" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="status" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="level" Type="System.String" DbType="NVarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LC_Update_Info_LC" Method="LC_Update_Info_LC">
+    <Parameter Name="ID_Batch" Parameter="iD_Batch" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Time_LC" Parameter="time_LC" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Time_Start" Parameter="time_Start" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Admin_Export_Data" Method="Admin_Export_Data">
+    <Parameter Name="List_ID_Batch" Parameter="list_ID_Batch" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="Admin_Export_DataResult">
+      <Column Name="BatchName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ID_Batch" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ResultLC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Loai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PathPicture" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -84,8 +84,9 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // btn_SaveData
             // 
+            this.btn_SaveData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_SaveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SaveData.Location = new System.Drawing.Point(3, 1);
+            this.btn_SaveData.Location = new System.Drawing.Point(1313, 3);
             this.btn_SaveData.Name = "btn_SaveData";
             this.btn_SaveData.Size = new System.Drawing.Size(118, 29);
             this.btn_SaveData.TabIndex = 8;
@@ -95,7 +96,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(325, 5);
+            this.progressBar1.Location = new System.Drawing.Point(186, 6);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(350, 19);
             this.progressBar1.TabIndex = 7;
@@ -115,7 +116,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.btn_start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_start.Location = new System.Drawing.Point(1264, 1);
+            this.btn_start.Location = new System.Drawing.Point(1098, 3);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(149, 29);
             this.btn_start.TabIndex = 2;
@@ -126,7 +127,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // btn_CheckLogic
             // 
             this.btn_CheckLogic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CheckLogic.Location = new System.Drawing.Point(201, 1);
+            this.btn_CheckLogic.Location = new System.Drawing.Point(3, 3);
             this.btn_CheckLogic.Name = "btn_CheckLogic";
             this.btn_CheckLogic.Size = new System.Drawing.Size(118, 29);
             this.btn_CheckLogic.TabIndex = 0;
@@ -257,7 +258,10 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // grdV_Data
             // 
-            this.grdV_Data.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.grdV_Data.Appearance.FocusedCell.BackColor = System.Drawing.Color.Khaki;
+            this.grdV_Data.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.WhiteSmoke;
+            this.grdV_Data.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.grdV_Data.Appearance.FocusedRow.BackColor = System.Drawing.Color.Gainsboro;
             this.grdV_Data.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.WhiteSmoke;
             this.grdV_Data.Appearance.FocusedRow.Options.UseBackColor = true;
             this.grdV_Data.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

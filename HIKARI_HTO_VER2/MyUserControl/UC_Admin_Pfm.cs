@@ -35,14 +35,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
             admin_info.dt_pfm_Entry.Columns.Add("Số dòng sai", typeof(double));
             admin_info.dt_pfm_Entry.Columns.Add("Thời gian (h)", typeof(double));
             admin_info.dt_pfm_Entry.Columns.Add("Hiệu Suất (%)", typeof(double));
-            admin_info.dt_pfm_Entry.Columns.Add("Năng Suất (%)", typeof(double));
+            admin_info.dt_pfm_Entry.Columns.Add("Năng Suất", typeof(double));
 
             admin_info.dt_pfm_Check = new DataTable();
             admin_info.dt_pfm_Check.Columns.Add("UserName");
             admin_info.dt_pfm_Check.Columns.Add("Nhân Viên");
             admin_info.dt_pfm_Check.Columns.Add("Tổng phiếu xử lý", typeof(double));
             admin_info.dt_pfm_Check.Columns.Add("Thời gian (h)", typeof(double));
-            admin_info.dt_pfm_Check.Columns.Add("Năng Suất (%)", typeof(double));
+            admin_info.dt_pfm_Check.Columns.Add("Năng Suất", typeof(double));
+
+            admin_info.dt_pfm_LastCheck = new DataTable();
+            admin_info.dt_pfm_LastCheck.Columns.Add("UserName");
+            admin_info.dt_pfm_LastCheck.Columns.Add("Nhân Viên");
+            admin_info.dt_pfm_LastCheck.Columns.Add("Thời gian (h)", typeof(double));
         }
         int tiendo_View = 0;
         
@@ -54,10 +59,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 MessageBox.Show("Thời gian được chọn sai !!!");
                 return;
-            }
-                      
+            }                      
             if (rdb_Entry.Checked) // Tính PFM của Entry
             {
+                admin_info.Str_Select_Pfm = "Entry";
                 admin_info.dt_pfm_Entry.Clear();
                 DataTable pfm_AE = new DataTable();
                 DataTable pfm_AT = new DataTable();
@@ -124,7 +129,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                             rowindex["Số dòng sai"] = element.Loisai;
                             rowindex["Thời gian (h)"] = Math.Round(element.Thoigian, 2);
                             rowindex["Hiệu Suất (%)"] = Math.Round((Convert.ToDouble(element.Tongtruong - element.Loisai) / element.Tongtruong) * 100, 2);
-                            rowindex["Năng Suất (%)"] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian), 2);
+                            rowindex["Năng Suất"] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian), 2);
                             pfm_AE.Rows.Add(rowindex);//Năng Suất (%)
                         }
                         else
@@ -137,7 +142,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                             rowindex["Số dòng sai"] = element.Loisai;
                             rowindex["Thời gian (h)"] = Math.Round(element.Thoigian, 2);
                             rowindex["Hiệu Suất (%)"] = Math.Round((Convert.ToDouble(element.Tongtruong - element.Loisai) / element.Tongtruong) * 100, 2);
-                            rowindex["Năng Suất (%)"] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian), 2);
+                            rowindex["Năng Suất"] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian), 2);
                             pfm_AT.Rows.Add(rowindex);
                         }
                     } 
@@ -235,9 +240,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong) * 100, 2);
                         pfm_AE.Rows.Add(newRow6);
                     }
+                    grdV_pfm_AE.Columns.Clear();
                     grd_pfm_AE.DataSource = null;
                     grd_pfm_AE.DataSource = pfm_AE;
 
+                    grdV_pfm_AT.Columns.Clear();
                     grd_pfm_AT.DataSource = null;
                     grd_pfm_AT.DataSource = pfm_AT;
                     #endregion                    
@@ -246,9 +253,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             else if (rdb_Check.Checked) // Tính PFM của Checker
             {
-                admin_info.dt_pfm_Check.Clear();
-                DataTable pfm_Checker = new DataTable();
-                pfm_Checker = admin_info.dt_pfm_Check.Clone();                
+                admin_info.Str_Select_Pfm = "Check";
+                admin_info.dt_pfm_Check.Clear();                            
                 DataTable dt_Checker = new DataTable();
                 string ConnectionString = Global.ConnectionString;
                 SqlConnection con = new SqlConnection(ConnectionString);
@@ -283,50 +289,97 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 double FullThoigian = results.Sum(x => x.Thoigian);
                 foreach (var element in results)
                 {                    
-                    var rowindex = pfm_Checker.NewRow();
-                    rowindex[pfm_Checker.Columns[0].ToString()] = element.UserName;
-                    rowindex[pfm_Checker.Columns[1].ToString()] = element.Fullname;
-                    rowindex[pfm_Checker.Columns[2].ToString()] = element.Tongtruong;
-                    rowindex[pfm_Checker.Columns[3].ToString()] = element.Thoigian;
-                    rowindex[pfm_Checker.Columns[4].ToString()] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian) , 2);
-                    pfm_Checker.Rows.Add(rowindex);     
+                    var rowindex = admin_info.dt_pfm_Check.NewRow();
+                    rowindex[admin_info.dt_pfm_Check.Columns[0].ToString()] = element.UserName;
+                    rowindex[admin_info.dt_pfm_Check.Columns[1].ToString()] = element.Fullname;
+                    rowindex[admin_info.dt_pfm_Check.Columns[2].ToString()] = element.Tongtruong;
+                    rowindex[admin_info.dt_pfm_Check.Columns[3].ToString()] = element.Thoigian;
+                    rowindex[admin_info.dt_pfm_Check.Columns[4].ToString()] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian) , 2);
+                    admin_info.dt_pfm_Check.Rows.Add(rowindex);     
                 }
-                DataRow newRow = pfm_Checker.NewRow();
-                DataRow newRow1 = pfm_Checker.NewRow();
-                DataRow newRow2 = pfm_Checker.NewRow();
-                DataRow newRow3 = pfm_Checker.NewRow();
-                DataRow newRow4 = pfm_Checker.NewRow();
+                DataRow newRow = admin_info.dt_pfm_Check.NewRow();
+                DataRow newRow1 = admin_info.dt_pfm_Check.NewRow();
+                DataRow newRow2 = admin_info.dt_pfm_Check.NewRow();
+                DataRow newRow3 = admin_info.dt_pfm_Check.NewRow();
+                DataRow newRow4 = admin_info.dt_pfm_Check.NewRow();
                 // Tính ra thông số Max, Min, Avgs
                 newRow1[1] = "Cao nhất";
-                newRow1[2] = pfm_Checker.Compute("Max (["+ pfm_Checker.Columns[2].ToString() + "])", "");
-                newRow1[3] = pfm_Checker.Compute("Max ([" + pfm_Checker.Columns[3].ToString() + "])", "");
-                newRow1[4] = pfm_Checker.Compute("Max ([" + pfm_Checker.Columns[4].ToString() + "])", "");
+                newRow1[2] = admin_info.dt_pfm_Check.Compute("Max (["+ admin_info.dt_pfm_Check.Columns[2].ToString() + "])", "");
+                newRow1[3] = admin_info.dt_pfm_Check.Compute("Max ([" + admin_info.dt_pfm_Check.Columns[3].ToString() + "])", "");
+                newRow1[4] = admin_info.dt_pfm_Check.Compute("Max ([" + admin_info.dt_pfm_Check.Columns[4].ToString() + "])", "");
                 newRow2[1] = "Thấp nhất";
-                newRow2[2] = pfm_Checker.Compute("Min ([" + pfm_Checker.Columns[2].ToString() + "])", "");
-                newRow2[3] = pfm_Checker.Compute("Min ([" + pfm_Checker.Columns[3].ToString() + "])", "");
-                newRow2[4] = pfm_Checker.Compute("Min ([" + pfm_Checker.Columns[4].ToString() + "])", "");
+                newRow2[2] = admin_info.dt_pfm_Check.Compute("Min ([" + admin_info.dt_pfm_Check.Columns[2].ToString() + "])", "");
+                newRow2[3] = admin_info.dt_pfm_Check.Compute("Min ([" + admin_info.dt_pfm_Check.Columns[3].ToString() + "])", "");
+                newRow2[4] = admin_info.dt_pfm_Check.Compute("Min ([" + admin_info.dt_pfm_Check.Columns[4].ToString() + "])", "");
                 try
                 {
                     newRow3[1] = "Trung bình";
-                    newRow3[2] = Math.Round(double.Parse(pfm_Checker.Compute("Avg ([" + pfm_Checker.Columns[2].ToString() + "])", "").ToString()), 0);
-                    newRow3[3] = Math.Round(double.Parse(pfm_Checker.Compute("Avg ([" + pfm_Checker.Columns[3].ToString() + "])", "").ToString()), 0);
-                    newRow3[4] = Math.Round(double.Parse(pfm_Checker.Compute("Avg ([" + pfm_Checker.Columns[4].ToString() + "])", "").ToString()), 0);
+                    newRow3[2] = Math.Round(double.Parse(admin_info.dt_pfm_Check.Compute("Avg ([" + admin_info.dt_pfm_Check.Columns[2].ToString() + "])", "").ToString()), 0);
+                    newRow3[3] = Math.Round(double.Parse(admin_info.dt_pfm_Check.Compute("Avg ([" + admin_info.dt_pfm_Check.Columns[3].ToString() + "])", "").ToString()), 0);
+                    newRow3[4] = Math.Round(double.Parse(admin_info.dt_pfm_Check.Compute("Avg ([" + admin_info.dt_pfm_Check.Columns[4].ToString() + "])", "").ToString()), 0);
                 }
                 catch
                 { }
-                pfm_Checker.Rows.Add(newRow); pfm_Checker.Rows.Add(newRow1); pfm_Checker.Rows.Add(newRow2); pfm_Checker.Rows.Add(newRow3); pfm_Checker.Rows.Add(newRow4);
-                DataRow newRow5 = pfm_Checker.NewRow();
-                DataRow newRow6 = pfm_Checker.NewRow();
-                pfm_Checker.Rows.Add(newRow5);
+                admin_info.dt_pfm_Check.Rows.Add(newRow); admin_info.dt_pfm_Check.Rows.Add(newRow1); admin_info.dt_pfm_Check.Rows.Add(newRow2); admin_info.dt_pfm_Check.Rows.Add(newRow3); admin_info.dt_pfm_Check.Rows.Add(newRow4);
+                DataRow newRow5 = admin_info.dt_pfm_Check.NewRow();
+                DataRow newRow6 = admin_info.dt_pfm_Check.NewRow();
+                admin_info.dt_pfm_Check.Rows.Add(newRow5);
                 newRow6[1] = "ALL";
                 newRow6[2] = FullTruong;                
-                newRow6[3] = FullThoigian.ToString();                
-                pfm_Checker.Rows.Add(newRow6);
+                newRow6[3] = FullThoigian.ToString();
+                admin_info.dt_pfm_Check.Rows.Add(newRow6);
+                grdV_pfm_AE.Columns.Clear();
+                grdV_pfm_AT.Columns.Clear();
+                grd_pfm_AE.DataSource = null;
+                grd_pfm_AE.DataSource = admin_info.dt_pfm_LastCheck;
 
             }
             else if (rdb_LastCheck.Checked) // Tính PFM của LastCheck
             {
-                
+                admin_info.Str_Select_Pfm = "LastCheck";
+                admin_info.dt_pfm_LastCheck.Clear();
+                DataTable dt_Checker = new DataTable();
+                string ConnectionString = Global.ConnectionString;
+                SqlConnection con = new SqlConnection(ConnectionString);
+                SqlCommand cmd = new SqlCommand("Admin_Pfm_LC", con);
+                try
+                {
+                    DataSet ds = new DataSet();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 60 * 60;
+                    cmd.Parameters.AddWithValue("@Time_Start", admin_info.Time_Start);
+                    cmd.Parameters.AddWithValue("@Time_End", admin_info.Time_End);
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = cmd;
+                    da.Fill(ds);
+                    dt_Checker = ds.Tables[0];
+                    con.Close();
+                }
+                catch (Exception ex)
+                {
+                    con.Close(); MessageBox.Show(ex.ToString());
+                }
+                var results = from status in dt_Checker.AsEnumerable()
+                              group status by (status.Field<string>("UserName")) into status
+                              select new
+                              {
+                                  UserName = status.Select(x => x.Field<string>("UserName")).FirstOrDefault(),
+                                  Fullname = status.Select(x => x.Field<string>("FullName")).FirstOrDefault(),
+                                  Thoigian = ((status.Select(x => x.Field<int>("Time_LC")).Sum())),
+                              };
+                double FullThoigian = results.Sum(x => x.Thoigian);
+                foreach (var element in results)
+                {
+                    var rowindex = admin_info.dt_pfm_LastCheck.NewRow();
+                    rowindex[admin_info.dt_pfm_LastCheck.Columns[0].ToString()] = element.UserName;
+                    rowindex[admin_info.dt_pfm_LastCheck.Columns[1].ToString()] = element.Fullname;
+                    rowindex[admin_info.dt_pfm_LastCheck.Columns[2].ToString()] = Math.Round(Convert.ToDouble(element.Thoigian) / 3600, 2);
+                    admin_info.dt_pfm_LastCheck.Rows.Add(rowindex);
+                }
+                grdV_pfm_AE.Columns.Clear();
+                grdV_pfm_AT.Columns.Clear();
+                grd_pfm_AE.DataSource = null;
+                grd_pfm_AE.DataSource = admin_info.dt_pfm_LastCheck;
             }
             //MessageBox.Show("Show Performance Complete !!!");            
         }
@@ -343,43 +396,60 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         private void btn_Export_Click(object sender, EventArgs e)
         {
-            if (rdb_Entry.Checked)
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel Files |*.xlsx";
+            sfd.Title = "Save an Excel File";
+            sfd.FileName = "Export_Pfm_" + admin_info.Str_Select_Pfm + "";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx"))
+                if (admin_info.Str_Select_Pfm == "Entry")
                 {
-                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
-                    File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
+                    (grd_pfm_AE.MainView as GridView).OptionsPrint.PrintHeader = true;
+                    XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
+                    advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions.ExportType = ExportType.WYSIWYG;
+                    advOptions.SheetName = "Pfm_AE" + admin_info.Str_Select_Pfm + "";
+                    grd_pfm_AE.ExportToXlsx(sfd.FileName, advOptions);
+
+                    (grd_pfm_AT.MainView as GridView).OptionsPrint.PrintHeader = true;
+                    XlsxExportOptionsEx advOptions_AT = new XlsxExportOptionsEx();
+                    advOptions_AT.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions_AT.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions_AT.ExportType = ExportType.WYSIWYG;
+                    advOptions_AT.SheetName = "Pfm_AT" + admin_info.Str_Select_Pfm + "";
+                    grd_pfm_AT.ExportToXlsx(sfd.FileName, advOptions_AT);
                 }
                 else
                 {
-                    File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
+                    (grd_pfm_AE.MainView as GridView).OptionsPrint.PrintHeader = true;
+                    XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
+                    advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    advOptions.ExportType = ExportType.WYSIWYG;
+                    advOptions.SheetName = "Pfm_" + admin_info.Str_Select_Pfm + "";
+                    grd_pfm_AE.ExportToXlsx(sfd.FileName, advOptions);
                 }
-                TableToExcel(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
             }
-            else
-            {
-                
-            }
-            #region
-            //string path = "D:\\test.xlsx";
-            //(grd_pfm_AE.MainView as GridView).OptionsPrint.PrintHeader = false;
-            //XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
-            //advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
-            //advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
-            //advOptions.ExportType = ExportType.WYSIWYG;
-            //advOptions.SheetName = "Exported from Data Grid";
+            #region 
+            //if (rdb_Entry.Checked)
+            //{
+            //    if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx"))
+            //    {
+            //        File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
+            //        File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
+            //    }
+            //    else
+            //    {
+            //        File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
+            //    }
+            //    TableToExcel(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
+            //}
+            //else
+            //{
 
-            ////grd_pfm_AE.ExportToXlsx(path, advOptions);
-
-            //XlsxExportOptionsEx advOptions1 = new XlsxExportOptionsEx();
-            //advOptions1.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
-            //advOptions1.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
-            //advOptions1.ExportType = ExportType.WYSIWYG;
-            //advOptions1.SheetName = "Exported from Data Grid111";
-            //grd_pfm_AE.ExportToXlsx(path, advOptions1);
-            //// Open the created XLSX file with the default application.
-            //Process.Start(path);
-            #endregion
+            //}
+            #endregion            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

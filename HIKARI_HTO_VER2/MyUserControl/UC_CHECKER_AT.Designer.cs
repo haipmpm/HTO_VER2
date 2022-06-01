@@ -825,6 +825,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.lb_User2.Size = new System.Drawing.Size(68, 20);
             this.lb_User2.TabIndex = 55;
             this.lb_User2.Text = "Name 2:";
+            this.lb_User2.Click += new System.EventHandler(this.lb_User2_Click);
             // 
             // lb_User1
             // 
@@ -835,6 +836,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.lb_User1.Size = new System.Drawing.Size(68, 20);
             this.lb_User1.TabIndex = 54;
             this.lb_User1.Text = "Name 1:";
+            this.lb_User1.Click += new System.EventHandler(this.lb_User1_Click);
             // 
             // UC_CHECKER_AT
             // 

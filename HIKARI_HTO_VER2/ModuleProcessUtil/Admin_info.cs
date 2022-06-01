@@ -11,6 +11,7 @@ namespace HIKARI_HTO_VER2.ModuleProcessUtil
     {
         public string dataDetail = "AE";
         public string dataTitle = "AT";
+        public string Str_Select_Pfm { get; set; }
         public DataTable  dt_pfm { get; set; }
         public DataTable dt_pfm_Entry { get; set; }
         public DataTable dt_pfm_Check { get; set; }

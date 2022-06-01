@@ -118,5 +118,15 @@ namespace HIKARI_HTO_VER2.MyForm
             }
             else { return; }
         }
+
+        private void btn_rt_batchLC_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn muốn Batch LC lại ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("LC", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                Admin_Status_Detail_Batch_Load(null, null);
+            }
+            else { return; }
+        }
     }
 }
