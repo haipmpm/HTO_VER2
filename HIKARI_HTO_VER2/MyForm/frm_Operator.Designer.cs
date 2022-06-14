@@ -44,6 +44,9 @@ namespace HIKARI_HTO_VER2.MyForm
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.lb_quyDinh = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Save = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_BackImage = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Submit_Logout = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Submit = new DevExpress.XtraEditors.SimpleButton();
             this.lb_SoPhieuCon = new DevExpress.XtraEditors.LabelControl();
@@ -193,6 +196,9 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btn_Cancel);
+            this.panelControl2.Controls.Add(this.btn_Save);
+            this.panelControl2.Controls.Add(this.btn_BackImage);
             this.panelControl2.Controls.Add(this.btn_Submit_Logout);
             this.panelControl2.Controls.Add(this.btn_Submit);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -201,12 +207,53 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panelControl2.Size = new System.Drawing.Size(564, 46);
             this.panelControl2.TabIndex = 1;
             // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.Appearance.Options.UseFont = true;
+            this.btn_Cancel.Location = new System.Drawing.Point(296, 7);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(85, 37);
+            this.btn_Cancel.TabIndex = 6;
+            this.btn_Cancel.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.btn_Cancel, "Nhấn Ctrl + Enter để submit");
+            this.btn_Cancel.Visible = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btn_Save
+            // 
+            this.btn_Save.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_Save.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Save.Appearance.Options.UseFont = true;
+            this.btn_Save.Location = new System.Drawing.Point(114, 6);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(85, 37);
+            this.btn_Save.TabIndex = 5;
+            this.btn_Save.Text = "Save";
+            this.btn_Save.Visible = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // btn_BackImage
+            // 
+            this.btn_BackImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_BackImage.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BackImage.Appearance.Options.UseFont = true;
+            this.btn_BackImage.Location = new System.Drawing.Point(5, 13);
+            this.btn_BackImage.Name = "btn_BackImage";
+            this.btn_BackImage.Size = new System.Drawing.Size(85, 25);
+            this.btn_BackImage.TabIndex = 4;
+            this.btn_BackImage.Text = "<< Xem lại";
+            this.toolTip1.SetToolTip(this.btn_BackImage, "Nhấn Ctrl + B");
+            this.btn_BackImage.Visible = false;
+            this.btn_BackImage.Click += new System.EventHandler(this.btn_BackImage_Click);
+            // 
             // btn_Submit_Logout
             // 
             this.btn_Submit_Logout.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Submit_Logout.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Submit_Logout.Appearance.Options.UseFont = true;
-            this.btn_Submit_Logout.Location = new System.Drawing.Point(319, 7);
+            this.btn_Submit_Logout.Location = new System.Drawing.Point(353, 7);
             this.btn_Submit_Logout.Name = "btn_Submit_Logout";
             this.btn_Submit_Logout.Size = new System.Drawing.Size(131, 35);
             this.btn_Submit_Logout.TabIndex = 2;
@@ -219,7 +266,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Submit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Submit.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Submit.Appearance.Options.UseFont = true;
-            this.btn_Submit.Location = new System.Drawing.Point(144, 6);
+            this.btn_Submit.Location = new System.Drawing.Point(205, 6);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(85, 37);
             this.btn_Submit.TabIndex = 1;
@@ -484,5 +531,8 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Label label1;
         private MyUserControl.UC_PhieuAE uC_PhieuAE1;
         private MyUserControl.UC_PhieuAT uC_PhieuAT1;
+        protected DevExpress.XtraEditors.SimpleButton btn_BackImage;
+        protected DevExpress.XtraEditors.SimpleButton btn_Cancel;
+        protected DevExpress.XtraEditors.SimpleButton btn_Save;
     }
 }

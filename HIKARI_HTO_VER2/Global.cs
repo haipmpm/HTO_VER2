@@ -46,13 +46,13 @@ namespace HIKARI_HTO_VER2
                                             "Nếu phiếu không có thông tin (trống toàn bộ): Nhấn Yes để submit phiếu trống. \n" +
                                             "Nếu phiếu có thông tin: Nhấn No để nhập lại phiếu này.";
 
-        public static string RegulationAE = "QUY ĐỊNH: \n - Trường 2 không được để trống \n - Trường 9 nếu không đọc được thì có thể điền vào ? hoặc T để \n lastCheck kiểm tra lại " +
+        public static string RegulationAE = "QUY ĐỊNH: \n - Trường 2 không được để trống \n - Có thể nhập được T và ? (Tuỳ trường hợp) \n  để LastCheck kiểm tra lại " +
             "\n - Trường 3, 4 và 5 CHỈ NHẬP GIÁ TRỊ ĐƯỢC SỬA ";
 
         public static string RegulationAT = "QUY ĐỊNH: \n - Trường 2 không được để trống \n - Trường 7: \n + Điền YOHAKU khi các dòng cuối phiếu không có dữ liệu \n + Điền SAKUJYO khi dữ liệu giữa phiếu bị gạch bỏ hoặc trống nguyên dòng" +
             "\n + Điền KAKISONJI khi cả phiếu gạch chéo, bỏ  \n + Điền MISIYO khi cả phiếu trống (phiếu trắng) +\n" +
             "Lưu ý Nếu mã sản phẩm bị gạch bỏ. Nhưng vẫn có giá trị trường số 8 và 9.\n số lượng SP thì Mã SP để trống. \n và dòng đó vẫn nhập bình thường \n " +
-            " - Trường 9 nếu không đọc được thì có thể điền vào ? hoặc T để  \n lastCheck kiểm tra lại ";
+            " - Trường 9 nếu không đọc được thì có thể điền vào ? \n LastCheck kiểm tra lại ";
 
         public static bool checkTokenLogin()
         {

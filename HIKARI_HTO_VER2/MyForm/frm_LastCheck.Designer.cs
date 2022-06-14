@@ -51,6 +51,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grdV_CheckLogic = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.bgw_Load_Data = new System.ComponentModel.BackgroundWorker();
             this.bgw_CheckLogic = new System.ComponentModel.BackgroundWorker();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::HIKARI_HTO_VER2.MyUserControl.WaitForm1), true, true);
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -145,7 +146,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1434, 728);
-            this.splitContainerControl1.SplitterPosition = 681;
+            this.splitContainerControl1.SplitterPosition = 800;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -155,7 +156,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(681, 728);
+            this.panel2.Size = new System.Drawing.Size(800, 728);
             this.panel2.TabIndex = 0;
             // 
             // ImgV
@@ -169,7 +170,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.ImgV.MaxZoom = 20F;
             this.ImgV.MinZoom = 0.05F;
             this.ImgV.Name = "ImgV";
-            this.ImgV.Size = new System.Drawing.Size(681, 728);
+            this.ImgV.Size = new System.Drawing.Size(800, 728);
             this.ImgV.TabIndex = 6;
             this.ImgV.TabStop = false;
             // 
@@ -182,8 +183,8 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(748, 728);
-            this.splitContainerControl2.SplitterPosition = 172;
+            this.splitContainerControl2.Size = new System.Drawing.Size(629, 728);
+            this.splitContainerControl2.SplitterPosition = 157;
             this.splitContainerControl2.TabIndex = 1;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
@@ -193,7 +194,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grd_Image.Location = new System.Drawing.Point(0, 0);
             this.grd_Image.MainView = this.grdV_Image;
             this.grd_Image.Name = "grd_Image";
-            this.grd_Image.Size = new System.Drawing.Size(172, 728);
+            this.grd_Image.Size = new System.Drawing.Size(157, 728);
             this.grd_Image.TabIndex = 0;
             this.grd_Image.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_Image});
@@ -203,7 +204,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grdV_Image.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdV_Image.Appearance.Row.Options.UseFont = true;
             this.grdV_Image.GridControl = this.grd_Image;
-            this.grdV_Image.IndicatorWidth = 25;
+            this.grdV_Image.IndicatorWidth = 35;
             this.grdV_Image.Name = "grdV_Image";
             this.grdV_Image.OptionsBehavior.Editable = false;
             this.grdV_Image.OptionsBehavior.ReadOnly = true;
@@ -213,6 +214,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grdV_Image.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdV_Image_CustomDrawRowIndicator);
             this.grdV_Image.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grdV_Image_RowCellStyle);
             this.grdV_Image.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdV_Image_FocusedRowChanged);
+            this.grdV_Image.MouseLeave += new System.EventHandler(this.grdV_Image_MouseLeave);
             // 
             // splitContainerControl3
             // 
@@ -229,7 +231,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitContainerControl3.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.splitContainerControl3.Panel2.Controls.Add(this.panel4);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(571, 728);
+            this.splitContainerControl3.Size = new System.Drawing.Size(467, 728);
             this.splitContainerControl3.SplitterPosition = 539;
             this.splitContainerControl3.TabIndex = 0;
             this.splitContainerControl3.Text = "splitContainerControl3";
@@ -240,7 +242,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(563, 535);
+            this.panel3.Size = new System.Drawing.Size(459, 535);
             this.panel3.TabIndex = 0;
             // 
             // grd_Data
@@ -249,7 +251,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grd_Data.Location = new System.Drawing.Point(0, 0);
             this.grd_Data.MainView = this.grdV_Data;
             this.grd_Data.Name = "grd_Data";
-            this.grd_Data.Size = new System.Drawing.Size(563, 535);
+            this.grd_Data.Size = new System.Drawing.Size(459, 535);
             this.grd_Data.TabIndex = 1;
             this.grd_Data.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_Data});
@@ -274,7 +276,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grdV_Data.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.White;
             this.grdV_Data.Appearance.SelectedRow.Options.UseBackColor = true;
             this.grdV_Data.GridControl = this.grd_Data;
-            this.grdV_Data.IndicatorWidth = 25;
+            this.grdV_Data.IndicatorWidth = 30;
             this.grdV_Data.Name = "grdV_Data";
             this.grdV_Data.OptionsCustomization.AllowFilter = false;
             this.grdV_Data.OptionsCustomization.AllowSort = false;
@@ -283,6 +285,8 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grdV_Data.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grdV_Data_RowCellStyle);
             this.grdV_Data.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grdV_Data_ShowingEditor);
             this.grdV_Data.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdV_Data_CellValueChanged);
+            this.grdV_Data.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdV_Data_CellValueChanging);
+            this.grdV_Data.MouseLeave += new System.EventHandler(this.grdV_Data_MouseLeave);
             // 
             // panel4
             // 
@@ -290,7 +294,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(563, 176);
+            this.panel4.Size = new System.Drawing.Size(459, 176);
             this.panel4.TabIndex = 1;
             // 
             // grd_CheckLogic
@@ -299,7 +303,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grd_CheckLogic.Location = new System.Drawing.Point(0, 0);
             this.grd_CheckLogic.MainView = this.grdV_CheckLogic;
             this.grd_CheckLogic.Name = "grd_CheckLogic";
-            this.grd_CheckLogic.Size = new System.Drawing.Size(563, 176);
+            this.grd_CheckLogic.Size = new System.Drawing.Size(459, 176);
             this.grd_CheckLogic.TabIndex = 2;
             this.grd_CheckLogic.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_CheckLogic});
@@ -325,6 +329,10 @@ namespace HIKARI_HTO_VER2.MyForm
             this.bgw_Load_Data.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_Load_Data_DoWork);
             this.bgw_Load_Data.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_Load_Data_RunWorkerCompleted);
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
             // frm_LastCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +346,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_LastCheck_FormClosing);
             this.Load += new System.EventHandler(this.frm_LastCheck_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_LastCheck_KeyDown);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
@@ -382,5 +391,6 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.ComponentModel.BackgroundWorker bgw_CheckLogic;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btn_SaveData;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

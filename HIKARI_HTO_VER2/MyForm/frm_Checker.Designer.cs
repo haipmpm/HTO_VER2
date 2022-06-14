@@ -37,7 +37,15 @@ namespace HIKARI_HTO_VER2.MyForm
             this.tabcontrol = new DevExpress.XtraTab.XtraTabControl();
             this.tab_AT = new DevExpress.XtraTab.XtraTabPage();
             this.uC_CHECKER_AT1 = new HIKARI_HTO_VER2.MyUserControl.UC_CHECKER_AT();
+            this.AE_Back = new DevExpress.XtraTab.XtraTabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.uc_CheckAE_Back1 = new HIKARI_HTO_VER2.MyUserControl.Uc_CheckAE_Back();
+            this.AT_Back = new DevExpress.XtraTab.XtraTabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.uc_CheckAT_Back1 = new HIKARI_HTO_VER2.MyUserControl.Uc_CheckAT_Back();
+            this.btn_Next = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_back = new DevExpress.XtraEditors.SimpleButton();
             this.lb_quyDinh = new System.Windows.Forms.Label();
             this.lb_IdImage = new System.Windows.Forms.Label();
             this.btn_CopyInfo = new DevExpress.XtraEditors.SimpleButton();
@@ -48,27 +56,35 @@ namespace HIKARI_HTO_VER2.MyForm
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panel_Right = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Save = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_BackImage = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Submit_Logout = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Submit = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Review = new DevExpress.XtraEditors.SimpleButton();
             this.ImgV = new ImageViewerTR.ImageViewerTR();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lb_batchname = new System.Windows.Forms.Label();
             this.splitMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.lb_SoPhieuDaCheck = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.lb_TongPhieu = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panel_Top = new DevExpress.XtraEditors.PanelControl();
-            this.cbb_Batch_Check = new System.Windows.Forms.ComboBox();
-            this.lb_batchname = new System.Windows.Forms.Label();
             this.lb_checkconlai = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cbb_Batch_Check = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tab_AE.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabcontrol)).BeginInit();
             this.tabcontrol.SuspendLayout();
             this.tab_AT.SuspendLayout();
+            this.AE_Back.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.AT_Back.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_Right)).BeginInit();
             this.panel_Right.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -105,7 +121,9 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.tabcontrol);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.btn_Next);
             this.splitContainerControl1.Panel2.Controls.Add(this.label1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.btn_back);
             this.splitContainerControl1.Panel2.Controls.Add(this.lb_quyDinh);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(844, 683);
@@ -125,7 +143,9 @@ namespace HIKARI_HTO_VER2.MyForm
             this.tabcontrol.TabIndex = 0;
             this.tabcontrol.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tab_AE,
-            this.tab_AT});
+            this.tab_AT,
+            this.AE_Back,
+            this.AT_Back});
             this.toolTip1.SetToolTip(this.tabcontrol, "Nhấn / để chuyển tab Phiếu Bìa và Phiếu Chi Tiết");
             // 
             // tab_AT
@@ -144,18 +164,94 @@ namespace HIKARI_HTO_VER2.MyForm
             this.uC_CHECKER_AT1.Size = new System.Drawing.Size(838, 476);
             this.uC_CHECKER_AT1.TabIndex = 0;
             // 
+            // AE_Back
+            // 
+            this.AE_Back.Controls.Add(this.panel1);
+            this.AE_Back.Name = "AE_Back";
+            this.AE_Back.Size = new System.Drawing.Size(838, 476);
+            this.AE_Back.Text = "AE_Back";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.uc_CheckAE_Back1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(838, 476);
+            this.panel1.TabIndex = 0;
+            // 
+            // uc_CheckAE_Back1
+            // 
+            this.uc_CheckAE_Back1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_CheckAE_Back1.Location = new System.Drawing.Point(0, 0);
+            this.uc_CheckAE_Back1.Name = "uc_CheckAE_Back1";
+            this.uc_CheckAE_Back1.Size = new System.Drawing.Size(838, 476);
+            this.uc_CheckAE_Back1.TabIndex = 0;
+            // 
+            // AT_Back
+            // 
+            this.AT_Back.Controls.Add(this.panel2);
+            this.AT_Back.Name = "AT_Back";
+            this.AT_Back.Size = new System.Drawing.Size(838, 476);
+            this.AT_Back.Text = "AT_Back";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.uc_CheckAT_Back1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(838, 476);
+            this.panel2.TabIndex = 0;
+            // 
+            // uc_CheckAT_Back1
+            // 
+            this.uc_CheckAT_Back1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_CheckAT_Back1.Location = new System.Drawing.Point(0, 0);
+            this.uc_CheckAT_Back1.Name = "uc_CheckAT_Back1";
+            this.uc_CheckAT_Back1.Size = new System.Drawing.Size(838, 476);
+            this.uc_CheckAT_Back1.TabIndex = 0;
+            // 
+            // btn_Next
+            // 
+            this.btn_Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Next.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Next.Appearance.Options.UseFont = true;
+            this.btn_Next.Location = new System.Drawing.Point(754, 143);
+            this.btn_Next.Name = "btn_Next";
+            this.btn_Next.Size = new System.Drawing.Size(85, 25);
+            this.btn_Next.TabIndex = 10;
+            this.btn_Next.Text = ">>";
+            this.toolTip1.SetToolTip(this.btn_Next, "Nhấn Ctrl + W");
+            this.btn_Next.Visible = false;
+            this.btn_Next.Click += new System.EventHandler(this.btn_Next_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(3, 99);
+            this.label1.Location = new System.Drawing.Point(4, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 72);
+            this.label1.Size = new System.Drawing.Size(330, 72);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Xoay trái: Ctrl + Left\r\nXoay phải: Ctrl+ Right\r\nZoom out: Ctrl + Up\r\nZoom in: Ctr" +
-    "l + Down";
+            this.label1.Text = "Xoay trái: Ctrl + Left       -- Xem lại ảnh: Ctrl + B\r\nXoay phải: Ctrl+ Right    " +
+    "-- \r\nZoom out: Ctrl + Up\r\nZoom in: Ctrl + Down";
+            // 
+            // btn_back
+            // 
+            this.btn_back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_back.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_back.Appearance.Options.UseFont = true;
+            this.btn_back.Location = new System.Drawing.Point(656, 143);
+            this.btn_back.Name = "btn_back";
+            this.btn_back.Size = new System.Drawing.Size(85, 25);
+            this.btn_back.TabIndex = 9;
+            this.btn_back.Text = "<<";
+            this.toolTip1.SetToolTip(this.btn_back, "Nhấn Ctrl + Q");
+            this.btn_back.Visible = false;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // lb_quyDinh
             // 
@@ -249,6 +345,9 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btn_Cancel);
+            this.panelControl2.Controls.Add(this.btn_Save);
+            this.panelControl2.Controls.Add(this.btn_BackImage);
             this.panelControl2.Controls.Add(this.btn_Submit_Logout);
             this.panelControl2.Controls.Add(this.btn_Submit);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -256,6 +355,47 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(844, 46);
             this.panelControl2.TabIndex = 1;
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.Appearance.Options.UseFont = true;
+            this.btn_Cancel.Location = new System.Drawing.Point(435, 5);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(85, 37);
+            this.btn_Cancel.TabIndex = 8;
+            this.btn_Cancel.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.btn_Cancel, "Nhấn Ctrl + Enter để submit");
+            this.btn_Cancel.Visible = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btn_Save
+            // 
+            this.btn_Save.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_Save.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Save.Appearance.Options.UseFont = true;
+            this.btn_Save.Location = new System.Drawing.Point(180, 5);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(85, 37);
+            this.btn_Save.TabIndex = 7;
+            this.btn_Save.Text = "Save";
+            this.btn_Save.Visible = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            // 
+            // btn_BackImage
+            // 
+            this.btn_BackImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_BackImage.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BackImage.Appearance.Options.UseFont = true;
+            this.btn_BackImage.Location = new System.Drawing.Point(6, 12);
+            this.btn_BackImage.Name = "btn_BackImage";
+            this.btn_BackImage.Size = new System.Drawing.Size(85, 25);
+            this.btn_BackImage.TabIndex = 5;
+            this.btn_BackImage.Text = "<< Xem lại";
+            this.toolTip1.SetToolTip(this.btn_BackImage, "Nhấn Ctrl + B");
+            this.btn_BackImage.Visible = false;
+            this.btn_BackImage.Click += new System.EventHandler(this.btn_BackImage_Click);
             // 
             // btn_Submit_Logout
             // 
@@ -274,7 +414,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Submit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Submit.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Submit.Appearance.Options.UseFont = true;
-            this.btn_Submit.Location = new System.Drawing.Point(183, 6);
+            this.btn_Submit.Location = new System.Drawing.Point(286, 6);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(143, 37);
             this.btn_Submit.TabIndex = 1;
@@ -313,6 +453,16 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Gợi ý";
+            // 
+            // lb_batchname
+            // 
+            this.lb_batchname.AutoSize = true;
+            this.lb_batchname.Location = new System.Drawing.Point(48, 7);
+            this.lb_batchname.Name = "lb_batchname";
+            this.lb_batchname.Size = new System.Drawing.Size(13, 13);
+            this.lb_batchname.TabIndex = 16;
+            this.lb_batchname.Text = "_";
+            this.toolTip1.SetToolTip(this.lb_batchname, "Click để copy tên hình");
             // 
             // splitMain
             // 
@@ -389,27 +539,6 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel_Top.TabIndex = 39;
             this.panel_Top.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Top_Paint);
             // 
-            // cbb_Batch_Check
-            // 
-            this.cbb_Batch_Check.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbb_Batch_Check.FormattingEnabled = true;
-            this.cbb_Batch_Check.Location = new System.Drawing.Point(172, 3);
-            this.cbb_Batch_Check.Name = "cbb_Batch_Check";
-            this.cbb_Batch_Check.Size = new System.Drawing.Size(41, 21);
-            this.cbb_Batch_Check.TabIndex = 15;
-            this.cbb_Batch_Check.Visible = false;
-            this.cbb_Batch_Check.SelectedIndexChanged += new System.EventHandler(this.cbb_Batch_Check_SelectedIndexChanged);
-            // 
-            // lb_batchname
-            // 
-            this.lb_batchname.AutoSize = true;
-            this.lb_batchname.Location = new System.Drawing.Point(48, 7);
-            this.lb_batchname.Name = "lb_batchname";
-            this.lb_batchname.Size = new System.Drawing.Size(13, 13);
-            this.lb_batchname.TabIndex = 16;
-            this.lb_batchname.Text = "_";
-            this.toolTip1.SetToolTip(this.lb_batchname, "Click để copy tên hình");
-            // 
             // lb_checkconlai
             // 
             this.lb_checkconlai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -427,6 +556,21 @@ namespace HIKARI_HTO_VER2.MyForm
             this.labelControl4.Size = new System.Drawing.Size(78, 13);
             this.labelControl4.TabIndex = 17;
             this.labelControl4.Text = "Số phiếu còn lại:";
+            // 
+            // cbb_Batch_Check
+            // 
+            this.cbb_Batch_Check.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_Batch_Check.FormattingEnabled = true;
+            this.cbb_Batch_Check.Location = new System.Drawing.Point(172, 3);
+            this.cbb_Batch_Check.Name = "cbb_Batch_Check";
+            this.cbb_Batch_Check.Size = new System.Drawing.Size(41, 21);
+            this.cbb_Batch_Check.TabIndex = 15;
+            this.cbb_Batch_Check.Visible = false;
+            this.cbb_Batch_Check.SelectedIndexChanged += new System.EventHandler(this.cbb_Batch_Check_SelectedIndexChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
             // 
             // frm_Checker
             // 
@@ -449,6 +593,10 @@ namespace HIKARI_HTO_VER2.MyForm
             ((System.ComponentModel.ISupportInitialize)(this.tabcontrol)).EndInit();
             this.tabcontrol.ResumeLayout(false);
             this.tab_AT.ResumeLayout(false);
+            this.AE_Back.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.AT_Back.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panel_Right)).EndInit();
             this.panel_Right.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -496,5 +644,17 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Label lb_batchname;
         private DevExpress.XtraEditors.LabelControl lb_checkconlai;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        protected DevExpress.XtraEditors.SimpleButton btn_BackImage;
+        protected DevExpress.XtraEditors.SimpleButton btn_Cancel;
+        protected DevExpress.XtraEditors.SimpleButton btn_Save;
+        private DevExpress.XtraTab.XtraTabPage AE_Back;
+        private DevExpress.XtraTab.XtraTabPage AT_Back;
+        private System.Windows.Forms.Panel panel1;
+        private MyUserControl.Uc_CheckAE_Back uc_CheckAE_Back1;
+        private System.Windows.Forms.Panel panel2;
+        private MyUserControl.Uc_CheckAT_Back uc_CheckAT_Back1;
+        private System.Windows.Forms.Timer timer1;
+        protected DevExpress.XtraEditors.SimpleButton btn_Next;
+        protected DevExpress.XtraEditors.SimpleButton btn_back;
     }
 }

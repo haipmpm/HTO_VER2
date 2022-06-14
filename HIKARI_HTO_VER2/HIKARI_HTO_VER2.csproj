@@ -26,7 +26,7 @@
     <InstallUrl>http://10.10.1.18:8888/UpdateTool/Tool_Hikari_HTO_Ver2/</InstallUrl>
     <UpdateUrl>http://10.10.1.18:8888/UpdateTool/Tool_Hikari_HTO_Ver2/</UpdateUrl>
     <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,10 +118,13 @@
     <Compile Include="LinqToSQLProcess\using_Tb_Batch.cs" />
     <Compile Include="LinqToSQLProcess\using_Tb_Data.cs" />
     <Compile Include="ModuleProcessUtil\Admin_info.cs" />
+    <Compile Include="ModuleProcessUtil\Check_Info_imgBack.cs" />
     <Compile Include="ModuleProcessUtil\Check_Info.cs" />
     <Compile Include="ModuleProcessUtil\Entry_info.cs" />
     <Compile Include="ModuleProcessUtil\Ham_Chung.cs" />
     <Compile Include="ModuleProcessUtil\Info_Detail_Image.cs" />
+    <Compile Include="ModuleProcessUtil\Info_Image_Nhap.cs" />
+    <Compile Include="ModuleProcessUtil\Info_Image_Back.cs" />
     <Compile Include="ModuleProcessUtil\LastCheck_info.cs" />
     <Compile Include="MyForm\Admin_Status_Detail_Batch.cs">
       <SubType>Form</SubType>
@@ -176,6 +179,18 @@
     </Compile>
     <Compile Include="MyForm\frm_Operator.Designer.cs">
       <DependentUpon>frm_Operator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl\Uc_CheckAE_Back.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControl\Uc_CheckAE_Back.Designer.cs">
+      <DependentUpon>Uc_CheckAE_Back.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl\Uc_CheckAT_Back.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControl\Uc_CheckAT_Back.Designer.cs">
+      <DependentUpon>Uc_CheckAT_Back.cs</DependentUpon>
     </Compile>
     <Compile Include="MyUserControl\UC_Export_Excel.cs">
       <SubType>UserControl</SubType>
@@ -249,6 +264,12 @@
     <Compile Include="MyUserControl\UC_Admin_Status.Designer.cs">
       <DependentUpon>UC_Admin_Status.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyUserControl\WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControl\WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProcessUtil\Constant.cs" />
     <Compile Include="ProcessUtil\LogFile.cs" />
     <Compile Include="Program.cs" />
@@ -289,6 +310,12 @@
     <EmbeddedResource Include="MyForm\frm_Operator.resx">
       <DependentUpon>frm_Operator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControl\Uc_CheckAE_Back.resx">
+      <DependentUpon>Uc_CheckAE_Back.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControl\Uc_CheckAT_Back.resx">
+      <DependentUpon>Uc_CheckAT_Back.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyUserControl\UC_Export_Excel.resx">
       <DependentUpon>UC_Export_Excel.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControl\UC_Admin_Status.resx">
       <DependentUpon>UC_Admin_Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControl\WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

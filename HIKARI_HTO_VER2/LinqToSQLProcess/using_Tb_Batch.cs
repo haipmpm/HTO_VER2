@@ -44,6 +44,18 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return null;
         }
+        public List<Main_GetListBatch_Check_NewResult> Get_ListBatch_Checker_New0806(int level_image, string ID_Batch)
+        {
+            try
+            {
+                return GlobalDB.DBLinq.Main_GetListBatch_Check_New(ID_Batch, level_image.ToString()).ToList();
+            }
+            catch (Exception ex)
+            {
+                logErr.AddLogErr(ex);
+            }
+            return null;
+        }
         public List<spBatch_getListbatch_LC_v2Result> get_batch_LastCheck(string UserName)
         {
             try

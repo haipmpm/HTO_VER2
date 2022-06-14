@@ -23,13 +23,13 @@ namespace HIKARI_HTO_VER2.MyForm
         LastCheck_info lc_info;        
         bool change_data_save = false;
         bool change = false;
+        bool Done_batch = true;
         DateTime dtime_now = new DateTime();
         public frm_LastCheck()
         {
             InitializeComponent();
             using_data = new using_Tb_Data();
-            lc_info = new LastCheck_info();
-            
+            lc_info = new LastCheck_info();            
         }
         int StartLC = 0;
         private void btn_start_Click(object sender, EventArgs e)
@@ -38,6 +38,7 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 if (MessageBox.Show("Bạn muốn thực hiện LastCheck Batch: " + Global.BatchNameSelected + "", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    splashScreenManager1.ShowWaitForm();
                     btn_start.Text = "Done Batch";
                     btn_SaveData.Enabled = true;
                     btn_CheckLogic.Enabled = true;
@@ -62,39 +63,13 @@ namespace HIKARI_HTO_VER2.MyForm
                     }
                     else
                     {
+                        splashScreenManager1.CloseWaitForm();
                         MessageBox.Show("Batch này đang có người LastCheck !!!");
                         dtime_now = DateTime.Now;
                         this.Close(); return;
                     }
-                    #region code cũ
-                    //dt_Data_batch.Columns.Add("ID");
-                    //dt_Data_batch.Columns.Add("ImageName");
-                    //dt_Data_batch.Columns.Add("Content_E1");
-                    //dt_Data_batch.Columns.Add("Content_E2");
-                    //dt_Data_batch.Columns.Add("Content_Check");
-                    //dt_Data_batch.Columns.Add("Content_LC");
-                    //var DatainBatch = GlobalDB.DBLinq.LC_spData_Getdata(Global.BatchIDSelected, Global.strUsername, Global.Level_Image.ToString()).ToList();
-                    //dt_Data_batch.Rows.Add(DatainBatch.ToArray().OrderByDescending(x => x.ID).ToArray());
-                    //if (DatainBatch.Count > 1)
-                    //{
-
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Batch này đang có người LastCheck !!!");
-                    //    this.Close();return;
-                    //}
-
-                    //if (bgw_Load_Data.IsBusy)
-                    //{                    
-                    //    bgw_Load_Data.RunWorkerAsync();
-
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Quy trình đang bận xử lý chờ chút bạn nhé !!!");return;
-                    //}
-                    #endregion
+                    btn_CheckLogic_Click(null, null);
+                    splashScreenManager1.CloseWaitForm();
                 }
                 else
                 {
@@ -126,16 +101,22 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void bgw_Load_Data_DoWork(object sender, DoWorkEventArgs e)
         {
-
         }
 
         private void bgw_Load_Data_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
         }
 
         private void frm_LastCheck_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (change_data_save)
+            {
+                var Question = MessageBox.Show("Bạn có Sửa dữ liệu --> Thực hiện Save Data ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ;
+                if (Question == DialogResult.Yes)
+                {
+                    btn_SaveData_Click(null, null);
+                }                 
+            }
             if (StartLC == 1)
             {
                 var Question = MessageBox.Show("Thoát phiên LastCheck Batch " + Global.BatchNameSelected + "", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -254,26 +235,16 @@ namespace HIKARI_HTO_VER2.MyForm
             lc_info.Tb_LC = lc_info.Tb_Cloumns.Clone();
         }
         private void Show_image_Data(int Index_Row, string name_iamge)
-        {
-            //BackgroundWorker bgw = new BackgroundWorker();
-            //bgw.DoWork += delegate{
-                //lc_info.Tb_ContenE1.Clear();
-                //lc_info.Tb_ContenE2.Clear();
-                lc_info.Tb_ContenCheck.Clear();
-                lc_info.Tb_LC.Clear();
-                //lc_info.Tb_ContenE1 = Function_Data(dt_Data_batch.Rows[Index_Row]["Content_E1"].ToString());
-                //lc_info.Tb_ContenE2 = Function_Data(dt_Data_batch.Rows[Index_Row]["Content_E2"].ToString());
-                lc_info.Tb_ContenCheck = Function_Data(lc_info.Tb_Data_Batch.Rows[Index_Row]["Content_Check"].ToString());
-                lc_info.Tb_LC = Function_Data(lc_info.Tb_Data_Batch.Rows[Index_Row]["Content_LC"].ToString());
-            //};
-            //bgw.RunWorkerAsync();
-            //if (bgw.IsBusy)
-            //{
-            //    Thread.Sleep(1500);
-            //}
+        {            
+            lc_info.Tb_ContenCheck.Clear();
+            lc_info.Tb_LC.Clear();
+            //lc_info.Tb_ContenE1 = Function_Data(dt_Data_batch.Rows[Index_Row]["Content_E1"].ToString());
+            //lc_info.Tb_ContenE2 = Function_Data(dt_Data_batch.Rows[Index_Row]["Content_E2"].ToString());
+            lc_info.Tb_ContenCheck = Function_Data(lc_info.Tb_Data_Batch.Rows[Index_Row]["Content_Check"].ToString());
+            lc_info.Tb_LC = Function_Data(lc_info.Tb_Data_Batch.Rows[Index_Row]["Content_LC"].ToString());
+            
             grd_Data.DataSource = null;
-            grd_Data.DataSource = lc_info.Tb_LC;
-            grdV_Data.BestFitColumns();
+            grd_Data.DataSource = lc_info.Tb_LC;            
         }
         private void grdV_Image_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
@@ -342,79 +313,74 @@ namespace HIKARI_HTO_VER2.MyForm
             ColumnView View = (ColumnView)grd_Data.FocusedView;
             GridColumn column = View.Columns[grdV_Data.FocusedColumn.FieldName];
             int row = grdV_Data.FocusedRowHandle;            
-            if (Global.BatchTypeSelected == "AE")
+            
+            if (e.Control && e.KeyCode == Keys.Subtract)
             {
-                if (e.Control && e.KeyCode == Keys.Subtract)
+                if (row != 0)
                 {
-                    if (row != 0)
-                    {
-                        DeleteSelectedRows(grdV_Data);
-                        View.FocusedRowHandle = row - 1;
-                        View.FocusedColumn = grdV_Data.VisibleColumns[1];
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể xóa");
-                        return;
-                    }
-                    change = true;
-                    change_data_save = true;
+                    DeleteSelectedRows(grdV_Data);
+                    View.FocusedRowHandle = row - 1;
+                    View.FocusedColumn = grdV_Data.VisibleColumns[1];
                 }
-                else if (e.KeyCode == Keys.Enter)
+                else
                 {
-                    if (row >= 9)
-                    {
-                        return;
-                    }
-                    if (row < 0)
-                    {
-                        row = 1;
-                    }
-                    if (row == grdV_Data.RowCount - 1)
-                    {
-                        View.FocusedRowHandle = row + 1;
-                        View.FocusedColumn = column;
-                        grdV_Data.AddNewRow();
-                        View.FocusedRowHandle = row + 1;
-                        View.FocusedColumn = grdV_Data.VisibleColumns[0];
-                    }
-                    else
-                    {
-                        View.FocusedRowHandle = row + 1;
-                        View.FocusedColumn = column;
-                    }
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:2"] = lc_info.Tb_LC.Rows[row]["Truong:2"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:3"] = lc_info.Tb_LC.Rows[row]["Truong:3"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:4"] = lc_info.Tb_LC.Rows[row]["Truong:4"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:5"] = lc_info.Tb_LC.Rows[row]["Truong:5"].ToString();
-                    change = true;
-                    change_data_save = true;
+                    MessageBox.Show("Không thể xóa");
+                    return;
                 }
-                else if (e.Control && e.KeyCode == Keys.Add)
+                change = true;
+                change_data_save = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if (row >= 9)
                 {
-                    if (row >= 9)
-                    {
-                        return;
-                    }
-                    DataRow dtr = lc_info.Tb_LC.NewRow();
-                    lc_info.Tb_LC.Rows.InsertAt(dtr, row + 1);
-                    //dtcopy.Rows.Add();
-                    //dtcopy.AcceptChanges();
-                    grd_Data.DataSource = null;
-                    grd_Data.DataSource = lc_info.Tb_LC;
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:2"] = lc_info.Tb_LC.Rows[row]["Truong:2"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:3"] = lc_info.Tb_LC.Rows[row]["Truong:3"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:4"] = lc_info.Tb_LC.Rows[row]["Truong:4"].ToString();
-                    lc_info.Tb_LC.Rows[row + 1]["Truong:5"] = lc_info.Tb_LC.Rows[row]["Truong:5"].ToString();
-                    grd_Data.Focus();
+                    return;
+                }
+                if (row < 0)
+                {
+                    row = 1;
+                }
+                if (row == grdV_Data.RowCount - 1)
+                {
                     View.FocusedRowHandle = row + 1;
                     View.FocusedColumn = column;
-                    change = true;
-                    change_data_save = true;
-                    SendKeys.Send("{F2}");
-                    SendKeys.Send("{END}");
+                    grdV_Data.AddNewRow();
+                    View.FocusedRowHandle = row + 1;
+                    View.FocusedColumn = grdV_Data.VisibleColumns[0];
                 }
+                else
+                {
+                    View.FocusedRowHandle = row + 1;
+                    View.FocusedColumn = column;
+                }
+                lc_info.Tb_LC.Rows[row + 1]["Truong:2"] = lc_info.Tb_LC.Rows[row]["Truong:2"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:3"] = lc_info.Tb_LC.Rows[row]["Truong:3"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:4"] = lc_info.Tb_LC.Rows[row]["Truong:4"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:5"] = lc_info.Tb_LC.Rows[row]["Truong:5"].ToString();
+                change = true;
+                change_data_save = true;
             }
+            else if (e.Control && e.KeyCode == Keys.Add)
+            {
+                DataRow dtr = lc_info.Tb_LC.NewRow();
+                lc_info.Tb_LC.Rows.InsertAt(dtr, row + 1);
+                //dtcopy.Rows.Add();
+                //dtcopy.AcceptChanges();
+                grd_Data.DataSource = null;
+                grd_Data.DataSource = lc_info.Tb_LC;
+                lc_info.Tb_LC.Rows[row + 1]["Truong:2"] = lc_info.Tb_LC.Rows[row]["Truong:2"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:3"] = lc_info.Tb_LC.Rows[row]["Truong:3"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:4"] = lc_info.Tb_LC.Rows[row]["Truong:4"].ToString();
+                lc_info.Tb_LC.Rows[row + 1]["Truong:5"] = lc_info.Tb_LC.Rows[row]["Truong:5"].ToString();
+                grd_Data.Focus();
+                View.FocusedRowHandle = row + 1;
+                View.FocusedColumn = column;
+                change = true;
+                change_data_save = true;
+                SendKeys.Send("{F2}");
+                SendKeys.Send("{END}");
+            }
+            
         }
         private void grdV_Image_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
@@ -458,6 +424,7 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void btn_CheckLogic_Click(object sender, EventArgs e)
         {
+            Done_batch = false;
             if (lc_info.Tb_Data_Batch.Rows.Count > 0)
             {
                 lc_info.Tb_CheckLogic = new DataTable();
@@ -486,9 +453,10 @@ namespace HIKARI_HTO_VER2.MyForm
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 2 trống", i, 0, t);
                                     }
-                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 6)
+                                    else if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 6)
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 2 khác 6 kí tự", i, 0, t);
+                                        Done_batch = true;
                                     }
                                 }
                                 else if (t == 1) // Check thông tin trường 3
@@ -510,9 +478,10 @@ namespace HIKARI_HTO_VER2.MyForm
                                 {
 
                                 }
-                                if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Contains("?"))
+                                if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Contains("?")) 
                                 {
                                     lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu chứa dấu ?", i, 0, t);
+                                    Done_batch = true;
                                 }
                             }
                             else // Check thông tin trường 9
@@ -522,10 +491,12 @@ namespace HIKARI_HTO_VER2.MyForm
                                     if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().Contains("?"))
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu chứa dấu ?", i, z, t);
+                                        Done_batch = true;
                                     }
                                     if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "T")
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu chứa kí tự 'T'", i, z, t);
+                                        Done_batch = true;
                                     }
                                 }
                             }
@@ -552,9 +523,10 @@ namespace HIKARI_HTO_VER2.MyForm
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 2 trống", i, 0, t);
                                     }
-                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 6)
+                                    else if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 6)
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 2 khác 6 kí tự", i, 0, t);
+                                        Done_batch = true;
                                     }
                                 }
                                 else if (t == 1) // Check thông tin trường 3
@@ -579,6 +551,7 @@ namespace HIKARI_HTO_VER2.MyForm
                                             if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "SAKUJYO" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "YOHAKU" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "KAKISONJI" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "MISIYO")
                                             {
                                                 lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 4 5 trống nhưng Trường 7 khác quy định", i, z, 5);
+                                                Done_batch = true;
                                             }
                                         }    
                                     }    
@@ -635,6 +608,14 @@ namespace HIKARI_HTO_VER2.MyForm
                 else
                 {
                     splitContainerControl3.SplitterPosition = splitContainerControl3.Height - 10;
+                }
+                if (Done_batch == true)
+                {
+                    btn_start.Enabled = false;
+                }
+                else
+                {
+                    btn_start.Enabled = true;
                 }
             }
             else
@@ -746,6 +727,59 @@ namespace HIKARI_HTO_VER2.MyForm
                 MessageBox.Show("Bạn không sửa dữ liệu !");
                 change_data_save = false;
             }
+        }
+
+        private void frm_LastCheck_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                if (e.KeyCode == Keys.F)
+                {
+                    ImgV.CurrentZoom = 1;
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    try
+                    { ImgV.RotateImage("270"); }
+                    catch
+                    { }
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Left)
+                {
+                    try
+                    { ImgV.RotateImage("90"); }
+                    catch
+                    { }
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    ImgV.CurrentZoom = ImgV.CurrentZoom + 0.1f;
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    ImgV.CurrentZoom = ImgV.CurrentZoom <= 0.1f ? 0.1f : ImgV.CurrentZoom - 0.1f;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void grdV_Image_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grdV_Data_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grdV_Data_CellValueChanging(object sender, CellValueChangedEventArgs e)
+        {
+            
         }
     }
 }

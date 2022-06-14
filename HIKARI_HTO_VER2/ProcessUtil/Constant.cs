@@ -35,6 +35,9 @@ namespace HIKARI_HTO_VER2.ProcessUtil
         public const int Truong12 = 12;
         public const int path = 19;
         public const int BatchName = 20;
-        public const int BatchID = 20;
+        public const int BatchID = 21;
+
+        public static string Columns_ConTentLC = "";
+        public static string Columns_ChangeData = "";
     }
 }

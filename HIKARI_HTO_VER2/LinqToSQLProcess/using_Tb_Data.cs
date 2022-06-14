@@ -71,14 +71,14 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return result;
         }      
-        public spData_InsertData_ENTRY_v2Result Entry_insertData(string ID_Image,string batchID, string DataEntry, string PairEntry, string levelimg, string Lendata)
+        public spData_InsertData_ENTRY_v2Result Entry_insertData(string ID_Image,string batchID, string DataEntry, string PairEntry, string levelimg, string Lendata, string Data_Split)
         {
             spData_InsertData_ENTRY_v2Result result = new spData_InsertData_ENTRY_v2Result();
             try
             {
                 //using (var DBLinq = new LinqToSQLModels.DBHikari_HPTDataContext(Global.ConnectionString))
                 //{
-                result = GlobalDB.DBLinq.spData_InsertData_ENTRY_v2(ID_Image, batchID, DataEntry, PairEntry, levelimg, Lendata).FirstOrDefault();
+                result = GlobalDB.DBLinq.spData_InsertData_ENTRY_v2(ID_Image, batchID, DataEntry, PairEntry, levelimg, Lendata, Data_Split).FirstOrDefault();
                 //}
             }
             catch (Exception ex)
@@ -87,7 +87,24 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return result;
         }
-        
+
+        public Entry_Check_ReturnBack_ImageResult InsertData_Back(string batchID,  string ID_Image, string PairEntry,  string username)
+        {
+            Entry_Check_ReturnBack_ImageResult result = new Entry_Check_ReturnBack_ImageResult();
+            try
+            {
+                //using (var DBLinq = new LinqToSQLModels.DBHikari_HPTDataContext(Global.ConnectionString))
+                //{
+                result = GlobalDB.DBLinq.Entry_Check_ReturnBack_Image(batchID, ID_Image,   PairEntry, username).FirstOrDefault();
+                //}
+            }
+            catch (Exception ex)
+            {
+                logErr.AddLogErr(ex);
+            }
+            return result;
+        }
+
 
         public DataTable LC_GetData_batch(string IDBatch, string UserName,string level_image)
         {
@@ -114,5 +131,10 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
                 throw;
             }
         }
+
+        //public string name_img (string Id_Batch, string Id_Img, string Status, string level_img)
+        //{
+            
+        //}
     }
 }

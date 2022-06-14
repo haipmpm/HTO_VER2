@@ -51,7 +51,7 @@ namespace HIKARI_HTO_VER2
                     strVersion = ad.CurrentVersion.ToString();
                 }
 
-                if (lg.ShowLoginForm("HTO Version 2.0" + strVersion) == true)
+                if (lg.ShowLoginForm("HTO Version 2.0 -- vs:" + strVersion) == true)
                 {
                     //Update log of login
 
@@ -93,9 +93,6 @@ namespace HIKARI_HTO_VER2
                                             where !IPAddress.IsLoopback(address) && address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork
                                             select address).FirstOrDefault();
                         Global.strIP_Adress = firstAddress.ToString();
-
-
-
                         frm_Main formMain = new frm_Main();
                         formMain.lb_Title.Text = formMain.lb_Title.Text + strVersion;
                         if (formMain.ShowDialog() == DialogResult.Yes)

@@ -107,5 +107,32 @@ namespace HIKARI_HTO_VER2.ModuleProcessUtil
             LCMapString(LOCALE_SYSTEM_DEFAULT, LCMAP_FULLWIDTH, halfWidth, -1, sb, sb.Capacity);
             return sb.ToString();
         }
+        public string getcharacter(int n, string str)
+        {
+            string kq = "";
+            for (int i = 1; i <= n; i++)
+            {
+                kq = kq.Insert(kq.Length, str);
+            }
+
+            return kq;
+        }
+
+        public string ThemKyTubatKyStrPhiaSau(string input, int iByte, string str)
+        {
+            if (input.Length > iByte)
+                return input.Substring(0, iByte);
+            if (input.Length == iByte)
+                return input;
+
+            return input.Insert(input.Length, getcharacter(iByte - input.Length, str));
+        }
+
+        public string ThemKyTuPhiaTruocVaBoKyTuPhiaSau(string input, int ibyte, string str)
+        {
+            if (input.Length >= ibyte)
+                return input.Substring(0, ibyte);
+            return input.Insert(0, getcharacter(ibyte - input.Length, str));
+        }
     }
 }

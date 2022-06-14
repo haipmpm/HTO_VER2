@@ -111,19 +111,6 @@
     <Parameter Name="status" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.spBatch_AddBatch_v2" Method="spBatch_AddBatch_v2">
-    <Parameter Name="BatchName" Parameter="batchName" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="PathPicture" Parameter="pathPicture" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="Location" Parameter="location" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="NumberImage" Parameter="numberImage" Type="System.Int32" DbType="Int" />
-    <Parameter Name="BatchType" Parameter="batchType" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="ChiaUser" Parameter="chiaUser" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="CongKhaiBatch" Parameter="congKhaiBatch" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="UserCreate" Parameter="userCreate" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="spBatch_AddBatch_v2Result">
-      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.spBatch_UpdateBatchChiaUser_v2" Method="spBatch_UpdateBatchChiaUser_v2">
     <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
     <Parameter Name="status" Type="System.Int32" DbType="Int" />
@@ -214,17 +201,6 @@
       <Column Name="Content_E2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Content_Check" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Content_LC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.spData_InsertData_ENTRY_v2" Method="spData_InsertData_ENTRY_v2">
-    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="Data_Entry" Parameter="data_Entry" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.String" DbType="NVarChar(5)" />
-    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="LenData_Entry" Parameter="lenData_Entry" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="spData_InsertData_ENTRY_v2Result">
-      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.spData_GetInfo_MissImage_Entry_v2" Method="spData_GetInfo_MissImage_Entry_v2">
@@ -350,6 +326,97 @@
       <Column Name="ResultLC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Loai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PathPicture" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spBatch_AddBatch_v2" Method="spBatch_AddBatch_v2">
+    <Parameter Name="BatchName" Parameter="batchName" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="PathPicture" Parameter="pathPicture" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Location" Parameter="location" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="NumberImage" Parameter="numberImage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BatchType" Parameter="batchType" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ChiaUser" Parameter="chiaUser" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CongKhaiBatch" Parameter="congKhaiBatch" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="UserCreate" Parameter="userCreate" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="spBatch_AddBatch_v2Result">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Entry_Check_ReturnBack_Image" Method="Entry_Check_ReturnBack_Image">
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ID_image" Parameter="iD_image" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="Entry_Check_ReturnBack_ImageResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Check_Update_Image_Back" Method="Check_Update_Image_Back">
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Error_E1" Parameter="error_E1" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Error_E2" Parameter="error_E2" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Data_Submit" Parameter="data_Submit" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TimeCheckUp" Parameter="timeCheckUp" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Check_ViewImage_Back_Next" Method="Check_ViewImage_Back_Next">
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Id_Img" Parameter="id_Img" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Status_Button" Parameter="status_Button" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Level_img" Parameter="level_img" Type="System.String" DbType="NVarChar(5)" />
+    <ElementType Name="Check_ViewImage_Back_NextResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Admin_Status_NEW" Method="Admin_Status_NEW">
+    <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="ListBatch" Parameter="listBatch" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="Admin_Status_NEWResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BatchName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BatchType" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NumberImage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E11" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E12" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongPhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserLC_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status_LC_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hit_E31" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E32" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongPhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserLC_3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status_LC_3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ngaytao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Export" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Hoanthanh1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hoanthanh3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Main_GetListBatch_Check_New" Method="Main_GetListBatch_Check_New">
+    <Parameter Name="Id_Batch" Parameter="id_Batch" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Main_GetListBatch_Check_NewResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BatchName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BatchType" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ChiaUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Ngaytao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hit_E11" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spData_InsertData_ENTRY_v2" Method="spData_InsertData_ENTRY_v2">
+    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Data_Entry" Parameter="data_Entry" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LenData_Entry" Parameter="lenData_Entry" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Data_Entry_Split" Parameter="data_Entry_Split" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="spData_InsertData_ENTRY_v2Result">
+      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

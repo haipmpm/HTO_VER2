@@ -20,25 +20,44 @@ namespace HIKARI_HTO_VER2.MyForm
         using_Tb_Batch using_Tb_Batch;
         using_Tb_Data using_Tb_Data;
         Entry_info Entry_info;
+        Info_Image_Back BackImage;
+        Info_Image_Nhap ImageNhap;
+
         public frm_Operator()
         {
             InitializeComponent();
             using_Tb_Batch = new using_Tb_Batch();
             using_Tb_Data = new using_Tb_Data();
             Entry_info = new Entry_info();
+            BackImage = new Info_Image_Back();
+            ImageNhap = new Info_Image_Nhap();
         }
          
         private void frm_Operator_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Enter)
             {
-                btn_Submit_Click(null, null);
-                e.Handled = true;
+                if (btn_Submit.Visible == true)
+                {
+                    btn_Submit_Click(null, null);
+                    e.Handled = true;
+                }                
             }
             else if (e.Modifiers == Keys.Control && e.KeyCode == Keys.L)
             {
-                btn_Submit_Logout_Click(null, null);
-                e.Handled = true;
+                if (btn_Submit_Logout.Visible == true)
+                {
+                    btn_Submit_Logout_Click(null, null);
+                    e.Handled = true;
+                }                
+            }
+            else if (e.Modifiers == Keys.Control && e.KeyCode == Keys.B)
+            {
+                if (btn_BackImage.Visible == true)
+                {
+                    btn_BackImage_Click(null, null);
+                    e.Handled = true;
+                }
             }
             if (e.Control)
             {                
@@ -87,6 +106,8 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_TongPhieu.Text = "";
             lb_IdImage.Text = "";
             Entry_info.flZoom = 0;
+            btn_BackImage.Visible = false;
+            
         }
 
 
@@ -148,9 +169,21 @@ namespace HIKARI_HTO_VER2.MyForm
 
                 if (kqsubmit == "3")
                 {
+                    btn_BackImage.Enabled = true;
+                    BackImage = new Info_Image_Back {
+                        data_nhap = tabcontrol.SelectedTabPage.Name == "tab_AE" ? uC_PhieuAE1.getDataFull() : uC_PhieuAT1.getDataFull(),
+                        ID_Batch = Global.BatchIDSelected,
+                        ID_Data = Entry_info.ID_Getdata.ToString(),
+                        Level_entry_Check = Global.Level_Pair_Entry_Nhap.ToString(),
+                        Level_img = Global.Level_Image.ToString(),
+                        Image_Name = Entry_info.imageName,
+                        BatchName = Global.BatchNameSelected,
+                        BatchType = Global.BatchTypeSelected
+                    };
                     ResetDataAllUC();
                     SetInformation();
                     startInput();
+                    btn_BackImage.Visible = true;
                 }
                 else if (kqsubmit == "1")
                 {
@@ -165,7 +198,6 @@ namespace HIKARI_HTO_VER2.MyForm
                     MessageBox.Show("Batch đã tắt 'Chế độ Công Khai' .", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Entry_info.imageName = "";
                     this.Close();
-
                 }
                 else if (kqsubmit == "5")
                 {
@@ -200,13 +232,13 @@ namespace HIKARI_HTO_VER2.MyForm
             else if (Global.BatchTypeSelected == "AT")
             {
                 lb_quyDinh.Text = Global.RegulationAT;
-
             }
             //GetImage. trường hợp hình bõ lỡ cần nhập lại thì đã tích hợp trong store getiamge ở database
             string kq = GetImageAndShow();
             if (kq == "NULL")//hết hình
             {
                 MessageBox.Show(@"Hoàn thành batch '" + lb_fBatchName.Text + "'");
+                btn_BackImage.Visible = false;
                 NhapBatchTiepTheo();
             }
             else if (kq == "OK")
@@ -269,6 +301,7 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 MessageBox.Show("Hoàn thành tất cả các Batch.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Entry_info.imageName = "";
+                btn_BackImage.Visible = false;
                 this.Close();
             }
         }
@@ -307,22 +340,10 @@ namespace HIKARI_HTO_VER2.MyForm
                     Entry_info.int_pair_Entry_Nhap = Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString());
                     Global.Level_Pair_Entry_Nhap = Entry_info.int_pair_Entry_Nhap;
                     string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName;
-                    try
-                    {                        
-                        System.Net.WebRequest request = System.Net.WebRequest.Create(path_webservice);
-                        System.Net.WebResponse response = request.GetResponse();
-                        System.IO.Stream responseStream = response.GetResponseStream();
-                        Bitmap Source_Image = new Bitmap(responseStream);
-                        ImgV.Dispose();
-                        ImgV.Image = Source_Image;
-                        lb_IdImage.Text = Entry_info.imageName;
-                        if (Entry_info.flZoom != 0)
-                        {
-                            ImgV.CurrentZoom = Entry_info.flZoom;
-                        }
-                    }
-                    catch 
+
+                    if (Show_image(path_webservice, Entry_info.imageName) == "ERROR")
                     {
+                        MessageBox.Show("Không thể load hình! \r\n " + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName);
                         lb_IdImage.Text = "";
                         return "ERROR";
                     }
@@ -392,7 +413,7 @@ namespace HIKARI_HTO_VER2.MyForm
             }
             else if (kqsubmit == "5")
             {
-                MessageBox.Show("Trường số 7 trống thông tin \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Trường số 7 8 9 10 trống thông tin \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.DialogResult = DialogResult.Yes;
             this.Close();
@@ -413,6 +434,182 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 Clipboard.SetText(copy);
             }
+        }
+        private void btn_BackImage_Click(object sender, EventArgs e)
+        {
+            var status_imgBack = using_Tb_Data.InsertData_Back(BackImage.ID_Batch, BackImage.ID_Data, BackImage.Level_entry_Check, Global.strUsername);
+            if (status_imgBack.Column1.ToString() == "Tat Cong Khai")
+            {
+                MessageBox.Show("Batch đã Tắt Công Khai !!!");
+                Entry_info.imageName = "";
+                this.Close();
+            }
+            else if (status_imgBack.Column1.ToString() == "Dang Check")
+            {
+                MessageBox.Show("Ảnh thực hiện Sửa dữ liệu đang ở Check !!!");
+                return;
+            }
+            else if (status_imgBack.Column1.ToString() == "User Khac")
+            {
+                MessageBox.Show("Ảnh thực hiện Sửa dữ liệu được User Khác lấy rồi nhé !!!");
+                return;
+            }
+
+            ImageNhap = new Info_Image_Nhap
+            {
+                data_nhap = tabcontrol.SelectedTabPage.Name == "tab_AE" ? uC_PhieuAE1.getDataFull() : uC_PhieuAT1.getDataFull(),
+                ID_Batch = Global.BatchIDSelected,
+                ID_Data = Entry_info.ID_Getdata.ToString(),
+                Level_entry_Check = Global.Level_Pair_Entry_Nhap.ToString(),
+                Level_img = Global.Level_Image.ToString(),
+                Image_Name = Entry_info.imageName,
+                BatchName = Global.BatchNameSelected,
+                BatchType = Global.BatchTypeSelected
+            };
+            ResetDataAllUC();
+            if (BackImage.data_nhap != "")
+            {
+                string path_webservice = Global.Webservice + BackImage.ID_Batch + "_" + BackImage.BatchName + @"/" + BackImage.Image_Name;
+                Show_image(path_webservice, BackImage.Image_Name);
+                Add_Data(BackImage.data_nhap, BackImage.BatchType);
+            }
+            btn_Save.Visible = true; btn_Cancel.Visible = true;
+            btn_Submit.Visible = false; btn_Submit_Logout.Visible = false;
+            btn_BackImage.Visible = false;
+        }
+        public string Show_image(string linkImg,string nameImage)
+        {
+            string Status_Image = "";
+            try
+            {
+                System.Net.WebRequest request = System.Net.WebRequest.Create(linkImg);
+                System.Net.WebResponse response = request.GetResponse();
+                System.IO.Stream responseStream = response.GetResponseStream();
+                Bitmap Source_Image = new Bitmap(responseStream);
+                ImgV.Dispose();
+                ImgV.Image = Source_Image;
+                lb_IdImage.Text = nameImage;
+                if (Entry_info.flZoom != 0)
+                {
+                    ImgV.CurrentZoom = Entry_info.flZoom;
+                }
+            }
+            catch
+            {
+                return Status_Image = "ERROR";
+            }
+            return Status_Image;
+        }
+
+        public void Add_Data(string linkDataImg, string style)
+        {
+            if (style == "AE")
+            {
+                for (int i = 0; i < uC_PhieuAE1.lst_texbox_Entry_AE_header.Count; i++)
+                {
+                    uC_PhieuAE1.lst_texbox_Entry_AE_header[i].Text = linkDataImg.Split('‡')[0].Split('†')[i].ToString();
+                }
+                for (int i = 0; i < uC_PhieuAE1.lst_texbox_Entry_AE_Body.Count; i++)
+                {
+                    uC_PhieuAE1.lst_texbox_Entry_AE_Body[i].Text = linkDataImg.Split('‡')[1].Split('†')[i].ToString();
+                }
+                uC_PhieuAE1.uC_HeaderAE1.txt_Truong2.Focus();
+            }
+            else
+            {
+                for (int i = 0; i < uC_PhieuAT1.lst_header_AT.Count; i++)
+                {
+                    uC_PhieuAT1.lst_header_AT[i].Text = linkDataImg.Split('‡')[0].Split('†')[i].ToString();
+                }
+                for (int i = 1; i <= uC_PhieuAT1.lst_to_List_body.Count; i++)
+                {
+                    for (int t = 0; t < uC_PhieuAT1.lst_to_List_body[i].Count; t++)
+                    {
+                        uC_PhieuAT1.lst_to_List_body[i][t].Text = linkDataImg.Split('‡')[i].Split('†')[t].ToString();
+                    }
+                }
+                uC_PhieuAT1.uC_HeaderAT1.txt_Truong2.Focus();
+            }
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            var status_imgBack = using_Tb_Data.InsertData_Back(BackImage.ID_Batch, BackImage.ID_Data, BackImage.Level_entry_Check, Global.strUsername);
+            if (status_imgBack.Column1.ToString() == "Tat Cong Khai")
+            {
+                MessageBox.Show("Batch đã Tắt Công Khai !!!");
+                Entry_info.imageName = "";
+                this.Close();
+            }
+            else if (status_imgBack.Column1.ToString() == "Dang Check")
+            {
+                MessageBox.Show("Ảnh thực hiện Sửa dữ liệu đang ở Check !!!");                
+                btn_Cancel_Click(null,null);
+                return;
+            }
+            else if (status_imgBack.Column1.ToString() == "User Khac")
+            {
+                MessageBox.Show("Ảnh thực hiện Sửa dữ liệu được User Khác lấy rồi nhé !!!");
+                btn_Cancel_Click(null, null);
+                return;
+            }
+            string kqsubmit = "";
+            if (tabcontrol.SelectedTabPage.Name == "tab_AE")
+            {
+                if (!uC_PhieuAE1.ConfirmEmptyWarning())
+                {
+                    return;
+                }
+                kqsubmit = uC_PhieuAE1.Submit(BackImage.ID_Batch, BackImage.ID_Data.ToString());
+            }
+            else if (tabcontrol.SelectedTabPage.Name == "tab_AT")
+            {
+                if (!uC_PhieuAT1.ConfirmEmptyWarning())
+                {
+                    return;
+                }
+                kqsubmit = uC_PhieuAT1.Submit(BackImage.ID_Batch, BackImage.ID_Data.ToString());
+            }
+            if (kqsubmit == "3")
+            {
+                ResetDataAllUC();
+                SetInformation();
+                string path_webservice = Global.Webservice + ImageNhap.ID_Batch + "_" + ImageNhap.BatchName + @"/" + ImageNhap.Image_Name;
+                Show_image(path_webservice, ImageNhap.Image_Name);
+                Add_Data(ImageNhap.data_nhap, ImageNhap.BatchType);
+                btn_Save.Visible = false; btn_Cancel.Visible = false;
+                btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;
+
+            }
+            else if (kqsubmit == "1")
+            {
+                MessageBox.Show("Không để trống trường 2  \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (kqsubmit == "2")
+            {
+                MessageBox.Show("Trống thông tin ID Batch và Image. \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (kqsubmit == "4")
+            {
+                MessageBox.Show("Batch đã tắt 'Chế độ Công Khai' .", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Entry_info.imageName = "";
+                this.Close();
+            }
+            else if (kqsubmit == "5")
+            {
+                MessageBox.Show("Trường số 7 trống thông tin \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            ResetDataAllUC();
+            SetInformation();
+            string path_webservice = Global.Webservice + ImageNhap.ID_Batch + "_" + ImageNhap.BatchName + @"/" + ImageNhap.Image_Name;
+            Show_image(path_webservice, ImageNhap.Image_Name);
+            Add_Data(ImageNhap.data_nhap, ImageNhap.BatchType);
+            btn_Save.Visible = false; btn_Cancel.Visible = false;
+            btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,14 @@ namespace HIKARI_HTO_VER2.MyForm
         using_Tb_Batch using_Tb_Batch;
         using_Tb_Data using_Tb_Data;        
         Check_Info CheckInfo;
-
+        Check_Info_imgBack Data_ImgBack;
         public frm_Checker()
         {
             InitializeComponent();
             using_Tb_Batch = new using_Tb_Batch();
             using_Tb_Data = new using_Tb_Data();
             CheckInfo = new Check_Info();
+            Data_ImgBack = new Check_Info_imgBack();
         }
 
         private void frm_Checker_Load(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_TongPhieu.Text = "";
             lb_IdImage.Text = "";
             CheckInfo.flZoom =0;
+            AE_Back.PageVisible = false;
+            AT_Back.PageVisible = false;
         }
 
         private void frm_Checker_KeyDown(object sender, KeyEventArgs e)
@@ -74,6 +78,16 @@ namespace HIKARI_HTO_VER2.MyForm
                 else if (e.KeyCode == Keys.Down)
                 {
                     ImgV.CurrentZoom = ImgV.CurrentZoom <= 0.1f ? 0.1f : ImgV.CurrentZoom - 0.1f;                    
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Q)
+                {
+                    btn_back_Click(null, null);
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.W)
+                {
+                    btn_Next_Click(null, null);
                     e.Handled = true;
                 }
             }
@@ -146,6 +160,8 @@ namespace HIKARI_HTO_VER2.MyForm
                 }
                 startInput();
                 btn_Submit_Logout.Enabled = true;
+                btn_back.Visible = true;
+                btn_Next.Visible = true;
             }
             else
             {
@@ -159,6 +175,7 @@ namespace HIKARI_HTO_VER2.MyForm
                         return;
                     }
                     Complete = uC_CHECKER_AE1.Submit_Data_Check(Convert.ToInt32(Global.BatchIDSelected), CheckInfo.ID_image);
+                    
                 }
                 else if (Global.BatchTypeSelected == "AT")
                 {
@@ -190,7 +207,25 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     MessageBox.Show("Đã có lỗi trong quá trình lưu dữ liệu của checker", "Thông Báo!", MessageBoxButtons.OK); return;
                 }
+                else if (Complete == 5)
+                {
+                    MessageBox.Show("Trường số 7 8 9 10 (Loại AT) trống dữ liệu", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
+                Data_ImgBack = new Check_Info_imgBack {
+                    BatchName = lb_batchname.Text,
+                    Content_E1 = CheckInfo.Content_E1,
+                    Content_E2 = CheckInfo.Content_E2,
+                    Data_check = Global.BatchTypeSelected == "AE" ? uC_CHECKER_AE1.getDataFull() : uC_CHECKER_AT1.getDataFull() ,
+                    ID_Batch = Convert.ToInt32(Global.BatchIDSelected),
+                    ID_image = CheckInfo.ID_image,
+                    NameImage = CheckInfo.NameImage,
+                    UserName_Check = CheckInfo.UserName_Check,
+                    UserName_E1 = CheckInfo.UserName_E1,
+                    UserName_E2 = CheckInfo.UserName_E2,
+                    style_bacth = Global.BatchTypeSelected
+                };
                 startInput();
+                btn_BackImage.Visible = true;
             }
         }
         private void startInput()
@@ -209,6 +244,7 @@ namespace HIKARI_HTO_VER2.MyForm
             if (kq == "NULL")//hết hình
             {
                 MessageBox.Show(@"Hoàn thành Check Batch '" + Global.BatchNameSelected + "'");
+                btn_BackImage.Visible = false;
                 Check_BatchTiepTheo();
             }
             else if (kq == "OK")
@@ -248,7 +284,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_IdImage.Text = "";
             lb_batchname.Text = "";
 
-            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image, Global.BatchIDSelected) select new { w.ID, w.BatchName, w.BatchType }).ToList();
+            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker_New0806(Global.Level_Image, Global.BatchIDSelected) select new { w.ID, w.BatchName, w.BatchType , w.Hit_E11}).Where(x=>x.Hit_E11 > 0).ToList();
 
             if (listResult.Count > 0)
             {
@@ -272,6 +308,7 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 MessageBox.Show("Hoàn thành tất cả các Batch.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CheckInfo.NameImage = "";
+                btn_BackImage.Visible = false;
                 this.Close();
             }
         }
@@ -318,23 +355,10 @@ namespace HIKARI_HTO_VER2.MyForm
                     CheckInfo.UserName_E2 = Info_Image_check.Select(x => x.UserName_E2).FirstOrDefault();
                     CheckInfo.ID_image = Convert.ToInt32(Info_Image_check.Select(x => x.ID).FirstOrDefault());
                     CheckInfo.NameImage = Info_Image_check.Select(x => x.ImageName).FirstOrDefault();
-                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + CheckInfo.NameImage; 
-                    try
-                    {
-                        System.Net.WebRequest request = System.Net.WebRequest.Create(path_webservice);
-                        System.Net.WebResponse response = request.GetResponse();
-                        System.IO.Stream responseStream = response.GetResponseStream();
-                        Bitmap Source_Image = new Bitmap(responseStream);
-                        ImgV.Dispose();
-                        ImgV.Image = Source_Image;
-                        lb_IdImage.Text = CheckInfo.NameImage;
-                        if (CheckInfo.flZoom != 0)
-                        {
-                            ImgV.CurrentZoom = CheckInfo.flZoom;
-                        }
-
-                    }
-                    catch
+                    CheckInfo.BatchName = Global.BatchNameSelected;
+                    CheckInfo.ID_Batch = Convert.ToInt32(Global.BatchIDSelected);
+                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + CheckInfo.NameImage;
+                    if (Show_image(path_webservice, CheckInfo.NameImage) == "ERROR")
                     {
                         MessageBox.Show("Không thể load hình! \r\n " + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + CheckInfo.NameImage);
                         lb_IdImage.Text = "";
@@ -484,6 +508,210 @@ namespace HIKARI_HTO_VER2.MyForm
         private void panel_Top_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            TimeSpan tsp = new TimeSpan();
+            tsp = DateTime.Now - dtime_Back;
+            int timerun = Convert.ToInt32(tsp.TotalMilliseconds);
+            
+            AE_Back.PageVisible = false;
+            AT_Back.PageVisible = false;
+            if (Global.BatchTypeSelected == "AE")
+            {
+                uc_CheckAE_Back1.Submit_Data_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                tab_AE.PageVisible = true;
+                tabcontrol.SelectedTabPage = tab_AE;
+                uC_CHECKER_AE1.FocusUC();
+                tab_AT.PageVisible = false;
+                uC_CHECKER_AE1.Add_Data_AE(CheckInfo);
+            }
+            else
+            {
+                uc_CheckAT_Back1.Submit_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                tab_AT.PageVisible = true;
+                tabcontrol.SelectedTabPage = tab_AT;
+                uC_CHECKER_AT1.FocusUC();
+                tab_AE.PageVisible = false;
+                uC_CHECKER_AT1.Add_Data_AT(CheckInfo);
+            }
+            string path_webservice = Global.Webservice + CheckInfo.ID_Batch + "_" + CheckInfo.BatchName + @"/" + CheckInfo.NameImage;
+            Show_image(path_webservice, CheckInfo.NameImage);
+            btn_Save.Visible = false; btn_Cancel.Visible = false;
+            btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;
+            btn_BackImage.Visible = false;
+            lb_IdImage.Text = CheckInfo.NameImage;
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            ResetDataAllUC();
+            SetInformation();
+            AE_Back.PageVisible = false;
+            AT_Back.PageVisible = false;
+            if (Global.BatchTypeSelected == "AE")
+            {
+                tab_AE.PageVisible = true;
+                tabcontrol.SelectedTabPage = tab_AE;
+                uC_CHECKER_AE1.FocusUC();
+                tab_AT.PageVisible = false;
+                uC_CHECKER_AE1.Add_Data_AE(CheckInfo);
+            }
+            else
+            {
+                tab_AT.PageVisible = true;
+                tabcontrol.SelectedTabPage = tab_AT;
+                uC_CHECKER_AT1.FocusUC();
+                tab_AE.PageVisible = false;
+                uC_CHECKER_AT1.Add_Data_AT(CheckInfo);
+            }
+            btn_BackImage.Visible = false;            
+            string path_webservice = Global.Webservice + CheckInfo.ID_Batch + "_" + CheckInfo.BatchName + @"/" + CheckInfo.NameImage;
+            Show_image(path_webservice, CheckInfo.NameImage);
+            //Add_Data(Data_ImgBack.data_nhap, Data_ImgBack.BatchType);
+            btn_Save.Visible = false; btn_Cancel.Visible = false;
+            btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;
+            btn_BackImage.Visible = false;
+            lb_IdImage.Text = CheckInfo.NameImage;
+        }
+        DateTime dtime_Back;
+        private void btn_BackImage_Click(object sender, EventArgs e)
+        {
+            dtime_Back =DateTime.Now;
+            if (Data_ImgBack.style_bacth == "AE")
+            {                
+                AE_Back.PageVisible = true;
+                AT_Back.PageVisible = false;
+                tabcontrol.SelectedTabPage = AE_Back;
+                uc_CheckAE_Back1.lst_header[0].Focus();
+                uc_CheckAE_Back1.Add_Data_Back(Data_ImgBack);
+            }
+            else
+            {
+                AE_Back.PageVisible = false;
+                AT_Back.PageVisible = true;
+                tabcontrol.SelectedTabPage = AT_Back;
+                uc_CheckAT_Back1.lst_header_AT[0].Focus();
+                uc_CheckAT_Back1.Add_Data_Back(Data_ImgBack);
+            }
+            string path_webservice = Global.Webservice + Data_ImgBack.ID_Batch + "_" + Data_ImgBack.BatchName + @"/" + Data_ImgBack.NameImage;
+            if (Show_image(path_webservice, Data_ImgBack.NameImage) == "ERROR")
+            {
+                MessageBox.Show("Không thể load hình! \r\n " + Data_ImgBack.ID_Batch + "_" + Data_ImgBack.BatchName + @"/" + Data_ImgBack.NameImage);
+                lb_IdImage.Text = "";
+                this.Close();
+            }
+            tab_AE.PageVisible = false;
+            tab_AT.PageVisible = false;
+            btn_Save.Visible = true; btn_Cancel.Visible = true;
+            btn_Submit.Visible = false; btn_Submit_Logout.Visible = false;
+            btn_BackImage.Visible = false;
+            lb_IdImage.Text = Data_ImgBack.NameImage;
+        }
+        public string Show_image(string linkImg, string nameImg)
+        {
+            string Status_Image = "";
+            try
+            {
+                System.Net.WebRequest request = System.Net.WebRequest.Create(linkImg);
+                System.Net.WebResponse response = request.GetResponse();
+                System.IO.Stream responseStream = response.GetResponseStream();
+                Bitmap Source_Image = new Bitmap(responseStream);
+                ImgV.Dispose();
+                ImgV.Image = Source_Image;
+                lb_IdImage.Text = nameImg;
+                if (CheckInfo.flZoom != 0)
+                {
+                    ImgV.CurrentZoom = CheckInfo.flZoom;
+                }
+            }
+            catch
+            {                
+                return Status_Image = "ERROR";
+            }
+            return Status_Image;
+        }
+
+        public void Add_Data(string linkDataImg, string style)
+        {
+            if (style == "AE")
+            {
+                for (int i = 0; i < uC_CHECKER_AE1.lst_header.Count; i++)
+                {
+                    uC_CHECKER_AE1.lst_header[i].Text = linkDataImg.Split('‡')[0].Split('†')[i].ToString();
+                }
+                for (int i = 0; i < uC_CHECKER_AE1.lst_body.Count; i++)
+                {
+                    uC_CHECKER_AE1.lst_body[i].Text = linkDataImg.Split('‡')[1].Split('†')[i].ToString();
+                }
+            }
+            else
+            {                
+                for (int i = 0; i < uC_CHECKER_AT1.lst_to_List_Rtb.Count; i++)
+                {
+                    for (int t = 0; t < uC_CHECKER_AT1.lst_to_List_Rtb[i].Count; t++)
+                    {
+                        uC_CHECKER_AT1.lst_to_List_Rtb[i][t].Text = linkDataImg.Split('‡')[i].Split('†')[t].ToString();
+                    }
+                }
+            }
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            if (btn_Save.Visible)
+            {
+                try
+                {
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Back", "1").FirstOrDefault().ToString();
+                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"/" + rs_nameImg;
+                    Process.Start(path_webservice);
+                }
+                catch (Exception)
+                {
+                }                
+            }
+            else
+            {
+                try
+                {
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, CheckInfo.ID_image.ToString(), "Back", "1").FirstOrDefault().Column1.ToString();
+                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"/" + rs_nameImg;
+                    Process.Start(path_webservice);
+                }
+                catch (Exception)
+                {                    
+                }
+            }
+        }
+
+        private void btn_Next_Click(object sender, EventArgs e)
+        {
+            if (btn_Save.Visible)
+            {
+                try
+                {
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Next", "1").FirstOrDefault().ToString();
+                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"/" + rs_nameImg;
+                    Process.Start(path_webservice);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            else
+            {
+                try
+                {
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, CheckInfo.ID_image.ToString(), "Next", "1").FirstOrDefault().Column1.ToString();
+                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"/" + rs_nameImg;
+                    Process.Start(path_webservice);
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
     }
 }

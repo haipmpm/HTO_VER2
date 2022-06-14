@@ -28,7 +28,6 @@ namespace HIKARI_HTO_VER2.ProcessUtil
         public static void WriteLog(String LogText)
         {
             FileStream fs = null;
-
             try
             {
                 fs = new FileStream(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\\"+Global.strUsername + DateTime.Now.Day +"_"+ DateTime.Now.Month + "_" + DateTime.Now.Year + ".txt", FileMode.Append);
@@ -44,6 +43,44 @@ namespace HIKARI_HTO_VER2.ProcessUtil
                 if (fs != null)
                     fs.Dispose();
             }
+        }
+        public static void Log(string logMessage, TextWriter w, bool EndFile)
+        {
+            //w.Write("\r\nLog Entry : ");
+            //w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+            //DateTime.Now.ToLongDateString());
+            //w.WriteLine("  :");
+            if (!EndFile)
+                w.WriteLine("{0}", logMessage);
+            else
+            {
+                w.Write("{0}", logMessage);
+            }
+            //w.WriteLine("-------------------------------");
+        }
+        public static void WriteLog(String fileName_username, String LogText, bool EndFile)
+        {
+            FileStream fs = null;
+
+            try
+            {
+                fs = new FileStream(fileName_username, FileMode.Append);
+                using (StreamWriter writer = new StreamWriter(fs, Encoding.GetEncoding(932), 512))
+                {
+                    Log(LogText, writer, EndFile);
+                    //writer.Write(LogText);
+                }
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Dispose();
+            }
+
+            //using (StreamWriter w = File.AppendText(fileName_username))
+            //{
+            //    Log(LogText, w);
+            //}
         }
     }
 }

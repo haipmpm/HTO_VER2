@@ -268,7 +268,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         public string getAllText()
         {
-            return txt_Truong7.Text ;
+            return txt_Truong7.Text + txt_truong8.Text + txt_truong9.Text + txt_Truong10.Text;
         }
 
         private void txt_Truong7_KeyPress(object sender, KeyPressEventArgs e)
@@ -277,10 +277,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
         }
 
         private void UC_Detail_AT_Load()
-        {
-            
+        {            
             txt_Truong7.AutoCompleteCustomSource = Global.listAuto;
-
             txt_Truong7.GotFocus += Txt_Truong7_GotFocus;
             txt_truong8.GotFocus += Txt_Truong7_GotFocus;
             txt_truong9.GotFocus += Txt_Truong7_GotFocus;

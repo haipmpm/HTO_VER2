@@ -14,21 +14,22 @@ namespace HIKARI_HTO_VER2.MyUserControl
 {
     public partial class UC_CHECKER_AT : UserControl
     {
-        List<RichTextBox> lst_header_AT = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT1 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT2 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT3 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT4 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT5 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT6 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT7 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT8 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT9 = new List<RichTextBox>();
-        List<RichTextBox> lst_body_AT10 = new List<RichTextBox>();
-        List<List<RichTextBox>> lst_to_List_Rtb = new List<List<RichTextBox>>();
+        public List<RichTextBox> lst_header_AT = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT1 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT2 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT3 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT4 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT5 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT6 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT7 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT8 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT9 = new List<RichTextBox>();
+        public List<RichTextBox> lst_body_AT10 = new List<RichTextBox>();
+        public List<List<RichTextBox>> lst_to_List_Rtb = new List<List<RichTextBox>>();
         Check_Info CheckInfo;
         Ham_Chung Function_tinhloi;
         List<Label> lb_header = new List<Label>();
+        bool bl_Load = false;
         public UC_CHECKER_AT()
         {
             InitializeComponent();
@@ -132,43 +133,40 @@ namespace HIKARI_HTO_VER2.MyUserControl
             RichTextBox rtb = (RichTextBox)(sender);
             if (rtb.Name.ToString().Contains("rtb_truong7_"))
             {
-                int index_rtb_7_inList = Convert.ToInt32(rtb.Name.ToString().Substring(rtb.Name.ToString().Length - 1, 1));
+                int index_rtb_7_inList = Convert.ToInt32(rtb.Name.ToString().Split('_')[2].ToString());
                 if (rtb.Text.ToUpper() == "SAKUJYO" || rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
                 {
-                    lst_header_AT[1].Text = "";
-                    lst_header_AT[2].Text = "";
-                    lst_header_AT[3].Text = "";
-                    lst_header_AT[1].Enabled = false;
-                    lst_header_AT[2].Enabled = false;
-                    lst_header_AT[3].Enabled = false;
                     lst_to_List_Rtb[index_rtb_7_inList][1].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][2].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][3].Text = "";
-                    lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = false;
-                    lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = false;
-                    lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = false;
-                    if (rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
+                    //lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = false;
+                    //lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = false;
+                    //lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = false;
+                    if (bl_Load == false)
                     {
-                        for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                        if (rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
                         {
-                            lst_to_List_Rtb[i][0].Text = rtb.Text.ToUpper();
-                            lst_to_List_Rtb[i][1].Text = "";
-                            lst_to_List_Rtb[i][2].Text = "";
-                            lst_to_List_Rtb[i][3].Text = "";
-                            lst_to_List_Rtb[i][0].Enabled = false;
-                            lst_to_List_Rtb[i][1].Enabled = false;
-                            lst_to_List_Rtb[i][2].Enabled = false;
-                            lst_to_List_Rtb[i][3].Enabled = false;
+                            for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                            {
+                                lst_to_List_Rtb[i][0].Text = rtb.Text.ToUpper();
+                                lst_to_List_Rtb[i][1].Text = "";
+                                lst_to_List_Rtb[i][2].Text = "";
+                                lst_to_List_Rtb[i][3].Text = "";
+                                lst_to_List_Rtb[i][0].Enabled = false;
+                                lst_to_List_Rtb[i][1].Enabled = false;
+                                lst_to_List_Rtb[i][2].Enabled = false;
+                                lst_to_List_Rtb[i][3].Enabled = false;
+                            }
                         }
-                    }
-                    else
-                    {
-                        for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
-                        {                            
-                            lst_to_List_Rtb[i][0].Enabled = true;
-                            lst_to_List_Rtb[i][1].Enabled = true;
-                            lst_to_List_Rtb[i][2].Enabled = true;
-                            lst_to_List_Rtb[i][3].Enabled = true;
+                        else
+                        {
+                            for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                            {
+                                lst_to_List_Rtb[i][0].Enabled = true;
+                                lst_to_List_Rtb[i][1].Enabled = true;
+                                lst_to_List_Rtb[i][2].Enabled = true;
+                                lst_to_List_Rtb[i][3].Enabled = true;
+                            }
                         }
                     }
                 }
@@ -210,6 +208,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 if (rtb.TabIndex > 0)
                 {
+                    bl_Load = true;
                     if (rtb.Text == CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) /4].Split('†')[(rtb.TabIndex - 1) % 4].ToString())
                     {
                         rtb.SelectionStart = 0;
@@ -258,6 +257,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         lb_User1.ForeColor = Color.Orange;
                         lb_User2.ForeColor = Color.Black;
                     }
+                    bl_Load = false;
                 }                
             }
         }
@@ -297,6 +297,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 //string s1 = "", s2 = "";
                 #region ADD Info cho các trường ở giao diện AT
+                bl_Load = true;
                 for (int i = 0; i < lst_to_List_Rtb.Count; i++)
                 {
                     for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
@@ -316,6 +317,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                     }
                 }
+                bl_Load = false;
                 #endregion
             }
         }
@@ -325,33 +327,41 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 return 1;
             }
+            // Bổ sung thêm quy định của AT (7 8 9 10 trống thì không cho Submit)
+            for (int i = 1; i < lst_to_List_Rtb.Count; i++)
+            {
+                if (lst_to_List_Rtb[i][0].Text + lst_to_List_Rtb[i][1].Text + lst_to_List_Rtb[i][2].Text + lst_to_List_Rtb[i][3].Text  == "")
+                {
+                    return 5;
+                }
+            }
             if (ID_Batch <= 0 || ID_Image <= 0)
             {
                 return 0;
             }
             // Trường 7 ở mỗi dòng không được bỏ trống
             //string str_data_header_AE = String.Join("†", lst_header_AT.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
-            List<string> lst_str_data_body_AE = new List<string>();
-            for (int i = 0; i < lst_to_List_Rtb.Count; i++)
-            {
-                if (lst_to_List_Rtb[i].ToList()[1].ToString() != "")
-                {
-                    lst_str_data_body_AE.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
-                }
-                else
-                {
-                    if (i == 0)
-                    {                        
-                        return 1;
-                    }
-                    else
-                    {                        
-                        return 2;
-                    }                    
-                }
-            }
+            List<string> lst_str_data_body_AT = new List<string>();
+            //for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+            //{
+            //    if (lst_to_List_Rtb[i].ToList()[1].ToString() != "")
+            //    {
+            //        lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
+            //    }
+            //    else
+            //    {
+            //        if (i == 0)
+            //        {                        
+            //            return 1;
+            //        }
+            //        else
+            //        {                        
+            //            return 2;
+            //        }                    
+            //    }
+            //}
             
-            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AE)); /*str_data_header_AE + "‡" +*/
+            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT)); /*str_data_header_AE + "‡" +*/
             
             int Error_E1 = 0, Error_E2 = 0;
             for (int i = 0; i < lst_to_List_Rtb.Count; i++)
@@ -470,6 +480,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lb_User2.ForeColor = Color.Black;
             if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
             {
+                bl_Load = true;
                 //string s1 = "", s2 = "";
                 #region ADD Info cho các trường ở giao diện AT
                 for (int i = 0; i < lst_to_List_Rtb.Count; i++)
@@ -491,6 +502,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                     }
                 }
+                bl_Load = false;
                 #endregion
             }
         }
@@ -505,6 +517,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lb_User2.ForeColor = Color.Orange;
             if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
             {
+                bl_Load = true;
                 //string s1 = "", s2 = "";
                 #region ADD Info cho các trường ở giao diện AT
                 for (int i = 0; i < lst_to_List_Rtb.Count; i++)
@@ -526,8 +539,20 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                     }
                 }
+                bl_Load = false;
                 #endregion
             }
+        }
+
+        public string getDataFull()
+        {
+            List<string> lst_str_data_body_AT = new List<string>();
+            for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+            {
+                lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
+            }
+            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));
+            return data_full;
         }
     }
 }

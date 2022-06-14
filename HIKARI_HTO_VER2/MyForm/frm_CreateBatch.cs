@@ -172,7 +172,7 @@ namespace HIKARI_HTO_VER2.MyForm
                             MessageBox.Show("Thiếu thông tin: Đường dẫn Image!"); return;
                         }                        
                     }
-                }
+                }                
                 backgroundWorker1.RunWorkerAsync();
             }
             catch(Exception exx)
@@ -300,6 +300,7 @@ namespace HIKARI_HTO_VER2.MyForm
         }
         private void Upload_Muti_Batch()
         {
+            splashScreenManager1.ShowWaitForm();
             btn_Browser.Enabled = false;
             txt_PathFolder.Enabled = false;
             List<string> lStrBath = new List<string>();
@@ -321,10 +322,10 @@ namespace HIKARI_HTO_VER2.MyForm
                 int Id_batch = 0;
                 var fBatch = new LinqToSQLModels.Tb_Batch
                 {
-                    BatchName = txt_BatchName.Text,
+                    BatchName = new DirectoryInfo(itemBatch).Name,
                     PathPicture = txt_Location.Text,
                     Location = txt_ImagePath.Text,
-                    NumberImage = Convert.ToInt32(soluonghinh.ToString()),
+                    NumberImage = Convert.ToInt32(pathImageLocation.Length),
                     BatchType = cbb_Loai.Text,
                     ChiaUser = chk_ChiaUserDESO.Checked ? true : false,
                     CongKhaiBatch = false,
@@ -362,43 +363,52 @@ namespace HIKARI_HTO_VER2.MyForm
                     catch (Exception exx)
                     {
                         tb_batch.Delete_Batch(Id_batch.ToString(), str_table_days);
+                        splashScreenManager1.CloseWaitForm();
                         MessageBox.Show(exx.ToString());
                         return;
                     }
                 }
                 else
                 { batchNameEmptyImage = batchNameEmptyImage + itemBatch + "\n"; }
+
                 int dem = 0;
                 StringBuilder str_path_img_server = new StringBuilder();
-                str_path_img_server.Append(Global.StrPath + "\\" + Id_batch + "_" + txt_BatchName.Text);
+                str_path_img_server.Append(Global.StrPath + "\\" + Id_batch + "_" + fBatch.BatchName.ToString());
+                if (!Directory.Exists(str_path_img_server.ToString()))
+                    Directory.CreateDirectory(str_path_img_server.ToString());
+                else
+                {
+                    MessageBox.Show("Bị trùng tên batch!");
+                    return;
+                }
                 BackgroundWorker bgw1 = new BackgroundWorker();
                 bgw1.DoWork += delegate
                 {
-                    for (int i = 0; i < _lFileNames.Count(); i += 3)
+                for (int i = 0; i < pathImageLocation.Count(); i += 3)
                     {
                         try
                         {
-                            File.Copy(_lFileNames[i], str_path_img_server + @"\" + new FileInfo(_lFileNames[i]).Name);
+                            File.Copy(pathImageLocation[i], str_path_img_server + @"\" + new FileInfo(pathImageLocation[i]).Name);
                             progressBar1.PerformStep();
-                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + _lFileNames.Count(); }));
+                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + pathImageLocation.Count(); }));
                         }
                         catch (Exception ex)
                         {
                             strError.Append(ex.Message);
-                        }                        
+                        }
                     }
                 };
                 bgw1.RunWorkerAsync();
                 BackgroundWorker bgw2 = new BackgroundWorker();
                 bgw2.DoWork += delegate
                 {
-                    for (int i = 1; i < _lFileNames.Count(); i += 3)
+                    for (int i = 1; i < pathImageLocation.Count(); i += 3)
                     {
                         try
                         {
-                            File.Copy(_lFileNames[i], str_path_img_server + @"\" + new FileInfo(_lFileNames[i]).Name);
+                            File.Copy(pathImageLocation[i], str_path_img_server + @"\" + new FileInfo(pathImageLocation[i]).Name);
                             progressBar1.PerformStep();
-                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + _lFileNames.Count(); }));
+                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + pathImageLocation.Count(); }));
                         }
                         catch (Exception ex)
                         {
@@ -410,13 +420,13 @@ namespace HIKARI_HTO_VER2.MyForm
                 BackgroundWorker bgw3 = new BackgroundWorker();
                 bgw3.DoWork += delegate
                 {
-                    for (int i = 2; i < _lFileNames.Count(); i += 3)
+                    for (int i = 2; i < pathImageLocation.Count(); i += 3)
                     {
                         try
                         {
-                            File.Copy(_lFileNames[i], str_path_img_server + @"\" + new FileInfo(_lFileNames[i]).Name);
+                            File.Copy(pathImageLocation[i], str_path_img_server + @"\" + new FileInfo(pathImageLocation[i]).Name);
                             progressBar1.PerformStep();
-                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + _lFileNames.Count(); }));
+                            lb_SoImageDaHoanThanh.BeginInvoke(new Action(() => { lb_SoImageDaHoanThanh.Text = (++dem) + @"\" + pathImageLocation.Count(); }));
                         }
                         catch (Exception ex)
                         {
@@ -430,22 +440,24 @@ namespace HIKARI_HTO_VER2.MyForm
                     Thread.Sleep(2000);
                 }
                 lb_SobatchHoanThanh.BeginInvoke(new Action(() => { lb_SobatchHoanThanh.Text = CountBatchFinish + @"/" + lStrBath.Count; }));
-                if (strError.Length > 0)
-                    MessageBox.Show("Có lỗi trong quá trình tạo batch: " + strError);
-                else if (string.IsNullOrEmpty(batchNameEmptyImage))
-                    MessageBox.Show("Tạo batch mới thành công!");
-                else
-                    MessageBox.Show("Tạo batch mới thành công!\nNhững batch sau không có ảnh:\n" + batchNameEmptyImage);
-                txt_BatchName.Text = "";
-                txt_ImagePath.Text = "";
-                lb_SoLuongHinh.Text = "";
-                txt_PathFolder.Text = "";
-                cbb_Loai.SelectedIndex = 0;
-                //btn_CreateBatch.Enabled = true;
-                btn_Browser.Enabled = true;
-                txt_PathFolder.Enabled = true;
-                txt_Location.Enabled = true;
             }
+            splashScreenManager1.CloseWaitForm();
+            if (strError.Length > 0)
+                MessageBox.Show("Có lỗi trong quá trình tạo batch: " + strError);
+            else if (string.IsNullOrEmpty(batchNameEmptyImage))
+                MessageBox.Show("Tạo batch mới thành công!");
+            else
+                MessageBox.Show("Tạo batch mới thành công!\nNhững batch sau không có ảnh:\n" + batchNameEmptyImage);
+            txt_BatchName.Text = "";
+            txt_ImagePath.Text = "";
+            lb_SoLuongHinh.Text = "";
+            txt_PathFolder.Text = "";
+            cbb_Loai.SelectedIndex = 0;
+            //btn_CreateBatch.Enabled = true;
+            btn_Browser.Enabled = true;
+            txt_PathFolder.Enabled = true;
+            txt_Location.Enabled = true;
+            
         }
 
         public static string[] GetFilesFrom(string searchFolder, string[] filters, bool isRecursive)
@@ -518,13 +530,15 @@ namespace HIKARI_HTO_VER2.MyForm
                 DisableControl();
                 lb_SoImageDaHoanThanh.Text = "";
                 Upload_Muti_Batch();
+                EnableControl();
             }
             else // Sự kiện Upload Single
             {                
                 DisableControl();
                 lb_SobatchHoanThanh.Text = "1";
                 lb_SoImageDaHoanThanh.Text = "";                    
-                Upload_Single_Batch();                
+                Upload_Single_Batch();
+                EnableControl();
             }
             #endregion
         }

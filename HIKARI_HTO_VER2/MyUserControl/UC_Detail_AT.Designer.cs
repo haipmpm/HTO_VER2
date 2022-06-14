@@ -111,7 +111,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Controls.Add(this.txt_Truong10);
             this.Name = "UC_Detail_AT";
             this.Size = new System.Drawing.Size(521, 33);
-            //this.Load += new System.EventHandler(this.UC_Detail_AT_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

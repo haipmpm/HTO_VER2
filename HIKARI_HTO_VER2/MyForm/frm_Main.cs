@@ -75,7 +75,7 @@ namespace HIKARI_HTO_VER2.MyForm
             }
             else if (cbb_Role.Text == Constant.CHECKDESO)
             {
-                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image,"0") select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser }).ToList();
+                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker_New0806(Global.Level_Image,"0") select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser, w.Hit_E11 }).Where(x => x.Hit_E11 > 0).ToList();
                 cbb_batchname.DataSource = List_check;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";

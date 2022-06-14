@@ -54,6 +54,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.User_Export = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Hoanthanh1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Hoanthanh3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Status_LC_1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckCBB_Status.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Status)).BeginInit();
@@ -113,7 +114,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.CheckCBB_Status.Properties.Appearance.Options.UseFont = true;
             this.CheckCBB_Status.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.CheckCBB_Status.Size = new System.Drawing.Size(398, 30);
+            this.CheckCBB_Status.Size = new System.Drawing.Size(515, 30);
             this.CheckCBB_Status.TabIndex = 6;
             this.CheckCBB_Status.Enter += new System.EventHandler(this.CheckCBB_Status_Enter);
             // 
@@ -177,6 +178,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.PhieuCheck1,
             this.TongPhieuCheck1,
             this.UserLC_1,
+            this.Status_LC_1,
             this.Hit_E31,
             this.Hit_E32,
             this.PhieuCheck3,
@@ -302,7 +304,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.User_Export.FieldName = "User_Export";
             this.User_Export.Name = "User_Export";
             this.User_Export.Visible = true;
-            this.User_Export.VisibleIndex = 8;
+            this.User_Export.VisibleIndex = 9;
             // 
             // Hoanthanh1
             // 
@@ -315,6 +317,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Hoanthanh3.Caption = "Hoàn thành lv3";
             this.Hoanthanh3.FieldName = "Hoanthanh3";
             this.Hoanthanh3.Name = "Hoanthanh3";
+            // 
+            // Status_LC_1
+            // 
+            this.Status_LC_1.Caption = "Trạng Thái LC";
+            this.Status_LC_1.FieldName = "Status_LC_1";
+            this.Status_LC_1.Name = "Status_LC_1";
+            this.Status_LC_1.Visible = true;
+            this.Status_LC_1.VisibleIndex = 8;
             // 
             // UC_Admin_Status
             // 
@@ -361,5 +371,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private DevExpress.XtraGrid.Columns.GridColumn User_Export;
         private DevExpress.XtraGrid.Columns.GridColumn Hoanthanh1;
         private DevExpress.XtraGrid.Columns.GridColumn Hoanthanh3;
+        private DevExpress.XtraGrid.Columns.GridColumn Status_LC_1;
     }
 }

@@ -173,7 +173,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_1.AutoSize = true;
             this.lb_t9_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_1.Location = new System.Drawing.Point(80, 114);
+            this.lb_t9_1.Location = new System.Drawing.Point(80, 117);
             this.lb_t9_1.Name = "lb_t9_1";
             this.lb_t9_1.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_1.TabIndex = 11;
@@ -183,7 +183,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_2.AutoSize = true;
             this.lb_t9_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_2.Location = new System.Drawing.Point(80, 150);
+            this.lb_t9_2.Location = new System.Drawing.Point(80, 153);
             this.lb_t9_2.Name = "lb_t9_2";
             this.lb_t9_2.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_2.TabIndex = 12;
@@ -193,7 +193,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_3.AutoSize = true;
             this.lb_t9_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_3.Location = new System.Drawing.Point(80, 186);
+            this.lb_t9_3.Location = new System.Drawing.Point(80, 189);
             this.lb_t9_3.Name = "lb_t9_3";
             this.lb_t9_3.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_3.TabIndex = 13;
@@ -203,7 +203,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_4.AutoSize = true;
             this.lb_t9_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_4.Location = new System.Drawing.Point(80, 222);
+            this.lb_t9_4.Location = new System.Drawing.Point(80, 225);
             this.lb_t9_4.Name = "lb_t9_4";
             this.lb_t9_4.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_4.TabIndex = 14;
@@ -213,7 +213,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_5.AutoSize = true;
             this.lb_t9_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_5.Location = new System.Drawing.Point(80, 258);
+            this.lb_t9_5.Location = new System.Drawing.Point(80, 261);
             this.lb_t9_5.Name = "lb_t9_5";
             this.lb_t9_5.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_5.TabIndex = 15;
@@ -223,7 +223,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_6.AutoSize = true;
             this.lb_t9_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_6.Location = new System.Drawing.Point(80, 293);
+            this.lb_t9_6.Location = new System.Drawing.Point(80, 296);
             this.lb_t9_6.Name = "lb_t9_6";
             this.lb_t9_6.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_6.TabIndex = 16;
@@ -233,7 +233,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_7.AutoSize = true;
             this.lb_t9_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_7.Location = new System.Drawing.Point(80, 329);
+            this.lb_t9_7.Location = new System.Drawing.Point(80, 332);
             this.lb_t9_7.Name = "lb_t9_7";
             this.lb_t9_7.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_7.TabIndex = 17;
@@ -243,7 +243,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_8.AutoSize = true;
             this.lb_t9_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_8.Location = new System.Drawing.Point(80, 365);
+            this.lb_t9_8.Location = new System.Drawing.Point(80, 368);
             this.lb_t9_8.Name = "lb_t9_8";
             this.lb_t9_8.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_8.TabIndex = 18;
@@ -253,7 +253,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_9.AutoSize = true;
             this.lb_t9_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_9.Location = new System.Drawing.Point(80, 401);
+            this.lb_t9_9.Location = new System.Drawing.Point(80, 404);
             this.lb_t9_9.Name = "lb_t9_9";
             this.lb_t9_9.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_9.TabIndex = 19;
@@ -263,7 +263,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.lb_t9_10.AutoSize = true;
             this.lb_t9_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_t9_10.Location = new System.Drawing.Point(80, 437);
+            this.lb_t9_10.Location = new System.Drawing.Point(80, 440);
             this.lb_t9_10.Name = "lb_t9_10";
             this.lb_t9_10.Size = new System.Drawing.Size(27, 20);
             this.lb_t9_10.TabIndex = 20;

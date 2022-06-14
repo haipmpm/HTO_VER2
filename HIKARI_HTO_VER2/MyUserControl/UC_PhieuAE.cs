@@ -1,5 +1,6 @@
 ﻿using HIKARI_HTO_VER2.LinqToSQLProcess;
 using HIKARI_HTO_VER2.ModuleProcessUtil;
+using HIKARI_HTO_VER2.MyForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,16 +16,16 @@ using System.Windows.Forms;
 namespace HIKARI_HTO_VER2.MyUserControl
 {
     public partial class UC_PhieuAE : UserControl
-    {
+    {       
         DataTable tbDetail;
         using_Tb_Data tb_Data;
         Ham_Chung ham_chung;
         DataRow dr;
+        
         public List<UC_Detail_AE> lst;
         public List<int> indexLST;
-
-        List<TextBox> lst_texbox_Entry_AE_header = new List<TextBox>();
-        List<TextBox> lst_texbox_Entry_AE_Body = new List<TextBox>();
+        public List<TextBox> lst_texbox_Entry_AE_header = new List<TextBox>();
+        public List<TextBox> lst_texbox_Entry_AE_Body = new List<TextBox>();
         public UC_PhieuAE()
         {
             InitializeComponent();
@@ -32,9 +33,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lst_texbox_Entry_AE_header = new List<TextBox>() { uC_HeaderAE1.txt_Truong2, uC_HeaderAE1.txt_Truong3, uC_HeaderAE1.txt_Truong4, uC_HeaderAE1.txt_Truong5 };
             lst_texbox_Entry_AE_Body = new List<TextBox>() { uC_Detail_AE1.txt_Truong9, uC_Detail_AE2.txt_Truong9, uC_Detail_AE3.txt_Truong9, uC_Detail_AE4.txt_Truong9, uC_Detail_AE5.txt_Truong9, uC_Detail_AE6.txt_Truong9, uC_Detail_AE7.txt_Truong9, uC_Detail_AE8.txt_Truong9, uC_Detail_AE9.txt_Truong9, uC_Detail_AE10.txt_Truong9 };
             ham_chung = new Ham_Chung();
-            tb_Data = new using_Tb_Data();
+            tb_Data = new using_Tb_Data();            
         }
-
        
         public void phieuMoi()
         {
@@ -187,7 +187,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 string str_data_header_AE = String.Join("†", lst_texbox_Entry_AE_header.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string str_data_body_AE = String.Join("†", lst_texbox_Entry_AE_Body.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE);
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Split('‡')[1].ToString().Split('†').Length.ToString());
+                // Dữ liệu đã được bỏ ô trống để qua LC
+                string str_data_body_AE_Split = String.Join("†", lst_texbox_Entry_AE_Body.Where(x=>x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
+                string Data_Split = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE_Split);                
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Split('‡')[1].ToString().Split('†').Length.ToString(), Data_Split);
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";
@@ -195,28 +198,18 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 else
                 {
                     return "4";
-                }
-                #region tắt code
-                //string ConnectionString = Global.ConnectionString;
-                //SqlConnection con = new SqlConnection(ConnectionString);
-                //con.Open();
-                //SqlCommand cmd = new SqlCommand("spData_InsertData_ENTRY_v2", con);
-                //cmd.Parameters.Clear();
-                //cmd.CommandTimeout = 10 * 60;
-                //cmd.CommandType = CommandType.StoredProcedure;
-                ////SqlParameter param = new SqlParameter();
-                ////cmd.Parameters.AddWithValue("@ListDetail", takeDataTableDetail()).SqlDbType = SqlDbType.Structured;
-                //cmd.Parameters.AddWithValue("@ID_Image_Data", ID_Image);
-                //cmd.Parameters.AddWithValue("@BatchID", ID_Batch);
-                //cmd.Parameters.AddWithValue("@Data_Entry",data_full);
-                //cmd.Parameters.AddWithValue("@Pair_Entry", Global.Level_Pair_Entry_Nhap.ToString());
-                //cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
-                //cmd.Parameters.AddWithValue("@LenData_Entry", data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString());
-                //cmd.ExecuteNonQuery();
-                //con.Close();
-                #endregion
+                }                
             }
+        }    
+        
+        public string getDataFull()
+        {
+            string str_data_header_AE = String.Join("†", lst_texbox_Entry_AE_header.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
+            string str_data_body_AE = String.Join("†", lst_texbox_Entry_AE_Body.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
+            string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE);
+            return data_full;
         }
+
         public void FocusUC()
         {
             this.BeginInvoke(new Action(() =>

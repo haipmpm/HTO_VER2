@@ -19,18 +19,18 @@ namespace HIKARI_HTO_VER2.MyUserControl
         public List<UC_Detail_AT> lst;
         DataTable tbDetail = new DataTable();
         DataRow dr;
-        List<TextBox> lst_header_AT = new List<TextBox>();
-        List<TextBox> lst_body_AT1 = new List<TextBox>();
-        List<TextBox> lst_body_AT2 = new List<TextBox>();
-        List<TextBox> lst_body_AT3 = new List<TextBox>();
-        List<TextBox> lst_body_AT4 = new List<TextBox>();
-        List<TextBox> lst_body_AT5 = new List<TextBox>();
-        List<TextBox> lst_body_AT6 = new List<TextBox>();
-        List<TextBox> lst_body_AT7 = new List<TextBox>();
-        List<TextBox> lst_body_AT8 = new List<TextBox>();
-        List<TextBox> lst_body_AT9 = new List<TextBox>();
-        List<TextBox> lst_body_AT10 = new List<TextBox>();
-        List<List<TextBox>> lst_to_List_body = new List<List<TextBox>>();
+        public List<TextBox> lst_header_AT = new List<TextBox>();
+        public List<TextBox> lst_body_AT1 = new List<TextBox>();
+        public List<TextBox> lst_body_AT2 = new List<TextBox>();
+        public List<TextBox> lst_body_AT3 = new List<TextBox>();
+        public List<TextBox> lst_body_AT4 = new List<TextBox>();
+        public List<TextBox> lst_body_AT5 = new List<TextBox>();
+        public List<TextBox> lst_body_AT6 = new List<TextBox>();
+        public List<TextBox> lst_body_AT7 = new List<TextBox>();
+        public List<TextBox> lst_body_AT8 = new List<TextBox>();
+        public List<TextBox> lst_body_AT9 = new List<TextBox>();
+        public List<TextBox> lst_body_AT10 = new List<TextBox>();
+        public List<List<TextBox>> lst_to_List_body = new List<List<TextBox>>();
         Ham_Chung ham_chung;
         public UC_PhieuAT()
         {
@@ -199,13 +199,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
                 if (txt.Text == "SAKUJYO" || txt.Text == "YOHAKU" || txt.Text == "KAKISONJI" || txt.Text == "MISIYO")
                 {
-
                     s.txt_truong8.Text = "";
-                    s.txt_truong8.Enabled = false;
+                    //s.txt_truong8.Enabled = false;
                     s.txt_truong9.Text = "";
-                    s.txt_truong9.Enabled = false;
+                    //s.txt_truong9.Enabled = false;
                     s.txt_Truong10.Text = "";
-                    s.txt_Truong10.Enabled = false;
+                    //s.txt_Truong10.Enabled = false;
                 }
                 else
                 {
@@ -304,7 +303,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     }
                 }
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString());
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString(), data_full);
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";
@@ -313,43 +312,21 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 {
                     return "4";
                 }
-
-                #region
-                //// Update dữ liệu Submit
-                //string ConnectionString = Global.ConnectionString;
-                //SqlConnection con = new SqlConnection(ConnectionString);
-                //con.Open();
-                //SqlCommand cmd = new SqlCommand("spData_InsertData_ENTRY_v2", con);
-                //cmd.Parameters.Clear();
-                //cmd.CommandTimeout = 10 * 60;
-                //cmd.CommandType = CommandType.StoredProcedure;
-                ////SqlParameter param = new SqlParameter();
-                ////cmd.Parameters.AddWithValue("@ListDetail", takeDataTableDetail()).SqlDbType = SqlDbType.Structured;
-                //cmd.Parameters.AddWithValue("@ID_Image_Data", ID_Image);
-                //cmd.Parameters.AddWithValue("@BatchID", ID_Batch);
-                //cmd.Parameters.AddWithValue("@Data_Entry", data_full);
-                //cmd.Parameters.AddWithValue("@Pair_Entry", Global.Level_Pair_Entry_Nhap.ToString());
-                //cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
-                //cmd.Parameters.AddWithValue("@LenData_Entry", data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString());
-                //#region close code cũ
-                ////SqlCommand cmd = new SqlCommand("spData_InsertData", con);
-                ////cmd.CommandTimeout = 10 * 60;
-                ////cmd.CommandType = CommandType.StoredProcedure;
-                ////cmd.Parameters.AddWithValue("@UserName", Global.strUsername);
-                ////cmd.Parameters.AddWithValue("@IdImage", IDImage);
-                ////cmd.Parameters.AddWithValue("@IDbatch", IDBatch);
-                ////cmd.Parameters.AddWithValue("@BatchType", Global.BatchTypeSelected);
-                ////cmd.Parameters.AddWithValue("@Truong2", uC_HeaderAT1.txt_Truong2.Text);
-                ////cmd.Parameters.AddWithValue("@Truong3", uC_HeaderAT1.txt_Truong3.Text);
-                ////cmd.Parameters.AddWithValue("@Truong4", uC_HeaderAT1.txt_Truong4.Text);
-                ////cmd.Parameters.AddWithValue("@Truong5", uC_HeaderAT1.txt_truong5.Text);
-                ////cmd.Parameters.AddWithValue("@ListDetail", takeDataTableDetail());
-                //#endregion
-                //cmd.ExecuteNonQuery();
-                //con.Close();
-                //return true;
-                #endregion
             }
+        }
+        public string getDataFull()
+        {
+            string str_data_header_AE = String.Join("†", lst_header_AT.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
+            List<string> lst_str_data_body_AE = new List<string>();
+            for (int i = 0; i < lst_to_List_body.Count; i++)
+            {
+                if (lst_to_List_body[i].ToList()[1].ToString() != "")
+                {
+                    lst_str_data_body_AE.Add(String.Join("†", lst_to_List_body[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
+                }
+            }
+            string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
+            return data_full;
         }
         //public DataTable takeDataTableDetail()
         //{

@@ -72,6 +72,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.lb_SoImageDaHoanThanh = new System.Windows.Forms.Label();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::HIKARI_HTO_VER2.MyUserControl.WaitForm1), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.txt_PathFolder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_FolderName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_UserCreate.Properties)).BeginInit();
@@ -489,6 +490,10 @@ namespace HIKARI_HTO_VER2.MyForm
             this.lb_SoImageDaHoanThanh.TabIndex = 94;
             this.lb_SoImageDaHoanThanh.Text = "0/0";
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
             // frm_CreateBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,5 +584,6 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Label lb_SoImageDaHoanThanh;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

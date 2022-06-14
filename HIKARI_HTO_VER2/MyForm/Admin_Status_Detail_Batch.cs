@@ -71,7 +71,7 @@ namespace HIKARI_HTO_VER2.MyForm
             btn_BackCheck.Enabled = false;
             try
             {
-                if (grdV_Chitiet.GetFocusedRowCellValue("Content_E2").ToString() != null && grdV_Chitiet.GetFocusedRowCellValue("Content_E1").ToString() != null)
+                if (grdV_Chitiet.GetFocusedRowCellValue("Content_E2") != null && grdV_Chitiet.GetFocusedRowCellValue("Content_E1") != null)
                 {
                     btn_BackCheck.Enabled = true;
                 }
@@ -121,7 +121,7 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void btn_rt_batchLC_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn muốn Batch LC lại ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn muốn thực hiện LC lại Bacth đang chọn ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 GlobalDB.DBLinq.Admin_return_Role_image_v2("LC", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
                 Admin_Status_Detail_Batch_Load(null, null);
