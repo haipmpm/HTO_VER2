@@ -350,6 +350,13 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split);
 			return ((ISingleResult<spData_InsertData_ENTRY_v2Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_View_Status_V3")]
+		public ISingleResult<Admin_View_Status_V3Result> Admin_View_Status_V3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(20)")] string style_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListBatch", DbType="NVarChar(MAX)")] string listBatch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Batch, listBatch);
+			return ((ISingleResult<Admin_View_Status_V3Result>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tb_Batch")]
@@ -3677,6 +3684,374 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Admin_View_Status_V3Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _BatchName;
+		
+		private string _BatchType;
+		
+		private System.Nullable<int> _NumberImage;
+		
+		private System.Nullable<int> _Hit_E11;
+		
+		private System.Nullable<int> _Hit_E12;
+		
+		private System.Nullable<int> _PhieuCheck1;
+		
+		private System.Nullable<int> _TongPhieuCheck1;
+		
+		private string _UserLC_1;
+		
+		private string _Status_LC_1;
+		
+		private System.Nullable<int> _Hit_E31;
+		
+		private System.Nullable<int> _Hit_E32;
+		
+		private System.Nullable<int> _PhieuCheck3;
+		
+		private System.Nullable<int> _TongPhieuCheck3;
+		
+		private string _UserLC_3;
+		
+		private string _Status_LC_3;
+		
+		private string _Ngaytao;
+		
+		private string _User_Export;
+		
+		private System.Nullable<int> _Hoanthanh1;
+		
+		private System.Nullable<int> _Hoanthanh3;
+		
+		public Admin_View_Status_V3Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(255)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(255)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this._BatchType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberImage", DbType="Int")]
+		public System.Nullable<int> NumberImage
+		{
+			get
+			{
+				return this._NumberImage;
+			}
+			set
+			{
+				if ((this._NumberImage != value))
+				{
+					this._NumberImage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
+		public System.Nullable<int> Hit_E11
+		{
+			get
+			{
+				return this._Hit_E11;
+			}
+			set
+			{
+				if ((this._Hit_E11 != value))
+				{
+					this._Hit_E11 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E12", DbType="Int")]
+		public System.Nullable<int> Hit_E12
+		{
+			get
+			{
+				return this._Hit_E12;
+			}
+			set
+			{
+				if ((this._Hit_E12 != value))
+				{
+					this._Hit_E12 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuCheck1", DbType="Int")]
+		public System.Nullable<int> PhieuCheck1
+		{
+			get
+			{
+				return this._PhieuCheck1;
+			}
+			set
+			{
+				if ((this._PhieuCheck1 != value))
+				{
+					this._PhieuCheck1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongPhieuCheck1", DbType="Int")]
+		public System.Nullable<int> TongPhieuCheck1
+		{
+			get
+			{
+				return this._TongPhieuCheck1;
+			}
+			set
+			{
+				if ((this._TongPhieuCheck1 != value))
+				{
+					this._TongPhieuCheck1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLC_1", DbType="NVarChar(255)")]
+		public string UserLC_1
+		{
+			get
+			{
+				return this._UserLC_1;
+			}
+			set
+			{
+				if ((this._UserLC_1 != value))
+				{
+					this._UserLC_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_1", DbType="NVarChar(50)")]
+		public string Status_LC_1
+		{
+			get
+			{
+				return this._Status_LC_1;
+			}
+			set
+			{
+				if ((this._Status_LC_1 != value))
+				{
+					this._Status_LC_1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E31", DbType="Int")]
+		public System.Nullable<int> Hit_E31
+		{
+			get
+			{
+				return this._Hit_E31;
+			}
+			set
+			{
+				if ((this._Hit_E31 != value))
+				{
+					this._Hit_E31 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E32", DbType="Int")]
+		public System.Nullable<int> Hit_E32
+		{
+			get
+			{
+				return this._Hit_E32;
+			}
+			set
+			{
+				if ((this._Hit_E32 != value))
+				{
+					this._Hit_E32 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuCheck3", DbType="Int")]
+		public System.Nullable<int> PhieuCheck3
+		{
+			get
+			{
+				return this._PhieuCheck3;
+			}
+			set
+			{
+				if ((this._PhieuCheck3 != value))
+				{
+					this._PhieuCheck3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongPhieuCheck3", DbType="Int")]
+		public System.Nullable<int> TongPhieuCheck3
+		{
+			get
+			{
+				return this._TongPhieuCheck3;
+			}
+			set
+			{
+				if ((this._TongPhieuCheck3 != value))
+				{
+					this._TongPhieuCheck3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLC_3", DbType="NVarChar(255)")]
+		public string UserLC_3
+		{
+			get
+			{
+				return this._UserLC_3;
+			}
+			set
+			{
+				if ((this._UserLC_3 != value))
+				{
+					this._UserLC_3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_3", DbType="NVarChar(50)")]
+		public string Status_LC_3
+		{
+			get
+			{
+				return this._Status_LC_3;
+			}
+			set
+			{
+				if ((this._Status_LC_3 != value))
+				{
+					this._Status_LC_3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaytao", DbType="NVarChar(50)")]
+		public string Ngaytao
+		{
+			get
+			{
+				return this._Ngaytao;
+			}
+			set
+			{
+				if ((this._Ngaytao != value))
+				{
+					this._Ngaytao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Export", DbType="NVarChar(200)")]
+		public string User_Export
+		{
+			get
+			{
+				return this._User_Export;
+			}
+			set
+			{
+				if ((this._User_Export != value))
+				{
+					this._User_Export = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hoanthanh1", DbType="Int")]
+		public System.Nullable<int> Hoanthanh1
+		{
+			get
+			{
+				return this._Hoanthanh1;
+			}
+			set
+			{
+				if ((this._Hoanthanh1 != value))
+				{
+					this._Hoanthanh1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hoanthanh3", DbType="Int")]
+		public System.Nullable<int> Hoanthanh3
+		{
+			get
+			{
+				return this._Hoanthanh3;
+			}
+			set
+			{
+				if ((this._Hoanthanh3 != value))
+				{
+					this._Hoanthanh3 = value;
 				}
 			}
 		}

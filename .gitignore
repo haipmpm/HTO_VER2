@@ -5,3 +5,11 @@
 *.application
 *.exe
 *.cache
+*.manifest
+*.cache
+*.exe
+*.manifest
+*.cache
+HIKARI_HTO_VER2/bin/Debug/
+*.cache
+*.application

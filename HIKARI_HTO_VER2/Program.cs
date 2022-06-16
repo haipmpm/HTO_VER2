@@ -21,7 +21,7 @@ namespace HIKARI_HTO_VER2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-
+            
             bool loop = true;
             while (loop)
             {

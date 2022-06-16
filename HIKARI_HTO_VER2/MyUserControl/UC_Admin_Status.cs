@@ -70,10 +70,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             if (str_batchId != "")
             {
-                var Result = (from w in GlobalDB.DBLinq.Admin_Status_NEW(admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1, w.TongPhieuCheck1, w.UserLC_1, w.Status_LC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3, w.Status_LC_3, w.Ngaytao, w.User_Export, w.Hoanthanh1, w.Hoanthanh3 }).ToList();                
+                var Result = (from w in GlobalDB.DBLinq.Admin_View_Status_V3(admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1, w.TongPhieuCheck1, w.UserLC_1, w.Status_LC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3, w.Status_LC_3, w.Ngaytao, w.User_Export, w.Hoanthanh1, w.Hoanthanh3 }).ToList();                
                 grd_Status.DataSource = null;
                 grd_Status.DataSource = Result;
                 //// Tính toán và Add vào Footer
+                grdV_Status.Columns["TongPhieuCheck1"].Width = 280;
                 grdV_Status.Columns["NumberImage"].Summary.Clear();
                 grdV_Status.Columns["Hit_E11"].Summary.Clear();
                 grdV_Status.Columns["Hit_E12"].Summary.Clear();

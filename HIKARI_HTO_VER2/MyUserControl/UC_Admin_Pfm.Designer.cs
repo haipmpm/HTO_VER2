@@ -29,7 +29,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lb_SoLuong = new DevExpress.XtraEditors.LabelControl();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Time_End = new DevExpress.XtraEditors.TimeEdit();
             this.time_Start = new DevExpress.XtraEditors.TimeEdit();
@@ -52,7 +54,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel4 = new System.Windows.Forms.Panel();
             this.grd_pfm_AT = new DevExpress.XtraGrid.GridControl();
             this.grdV_pfm_AT = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.lb_SoLuong = new DevExpress.XtraEditors.LabelControl();
+            this.printingSystem1 = new DevExpress.XtraPrinting.PrintingSystem(this.components);
+            this.ComponentLink1 = new DevExpress.XtraPrinting.PrintableComponentLink(this.components);
+            this.ComponentLink2 = new DevExpress.XtraPrinting.PrintableComponentLink(this.components);
+            this.compositeLink1 = new DevExpress.XtraPrintingLinks.CompositeLink(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Time_End.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.time_Start.Properties)).BeginInit();
@@ -66,6 +71,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_pfm_AT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_pfm_AT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printingSystem1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,6 +97,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel1.Size = new System.Drawing.Size(1157, 75);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lb_SoLuong
+            // 
+            this.lb_SoLuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_SoLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_SoLuong.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lb_SoLuong.Appearance.Options.UseFont = true;
+            this.lb_SoLuong.Appearance.Options.UseForeColor = true;
+            this.lb_SoLuong.Location = new System.Drawing.Point(495, 55);
+            this.lb_SoLuong.Name = "lb_SoLuong";
+            this.lb_SoLuong.Size = new System.Drawing.Size(51, 16);
+            this.lb_SoLuong.TabIndex = 26;
+            this.lb_SoLuong.Text = "  _         ";
             // 
             // progressBar1
             // 
@@ -167,6 +186,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // btn_Export
             // 
+            this.btn_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Export.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Export.ForeColor = System.Drawing.Color.Black;
             this.btn_Export.Location = new System.Drawing.Point(1022, 8);
@@ -329,18 +349,31 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grdV_pfm_AT.OptionsBehavior.ReadOnly = true;
             this.grdV_pfm_AT.OptionsView.ShowGroupPanel = false;
             // 
-            // lb_SoLuong
+            // printingSystem1
             // 
-            this.lb_SoLuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lb_SoLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_SoLuong.Appearance.ForeColor = System.Drawing.Color.White;
-            this.lb_SoLuong.Appearance.Options.UseFont = true;
-            this.lb_SoLuong.Appearance.Options.UseForeColor = true;
-            this.lb_SoLuong.Location = new System.Drawing.Point(495, 55);
-            this.lb_SoLuong.Name = "lb_SoLuong";
-            this.lb_SoLuong.Size = new System.Drawing.Size(51, 16);
-            this.lb_SoLuong.TabIndex = 26;
-            this.lb_SoLuong.Text = "  _         ";
+            this.printingSystem1.Links.AddRange(new object[] {
+            this.ComponentLink1,
+            this.ComponentLink2,
+            this.compositeLink1});
+            // 
+            // ComponentLink1
+            // 
+            this.ComponentLink1.Component = this.grd_pfm_AE;
+            this.ComponentLink1.PaperName = "AE";
+            this.ComponentLink1.PrintingSystemBase = this.printingSystem1;
+            // 
+            // ComponentLink2
+            // 
+            this.ComponentLink2.Component = this.grd_pfm_AT;
+            this.ComponentLink2.PaperName = "AT";
+            this.ComponentLink2.PrintingSystemBase = this.printingSystem1;
+            // 
+            // compositeLink1
+            // 
+            this.compositeLink1.Links.AddRange(new object[] {
+            this.ComponentLink1,
+            this.ComponentLink2});
+            this.compositeLink1.PrintingSystemBase = this.printingSystem1;
             // 
             // UC_Admin_Pfm
             // 
@@ -365,6 +398,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grd_pfm_AT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_pfm_AT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printingSystem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +429,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private DevExpress.XtraGrid.GridControl grd_pfm_AT;
         private DevExpress.XtraGrid.Views.Grid.GridView grdV_pfm_AT;
         private DevExpress.XtraEditors.LabelControl lb_SoLuong;
+        private DevExpress.XtraPrinting.PrintingSystem printingSystem1;
+        private DevExpress.XtraPrinting.PrintableComponentLink ComponentLink1;
+        private DevExpress.XtraPrinting.PrintableComponentLink ComponentLink2;
+        private DevExpress.XtraPrintingLinks.CompositeLink compositeLink1;
     }
 }

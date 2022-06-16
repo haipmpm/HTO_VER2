@@ -1,6 +1,7 @@
 ﻿using DevExpress.Export;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraPrintingLinks;
 using HIKARI_HTO_VER2.LinqToSQLProcess;
 using HIKARI_HTO_VER2.ModuleProcessUtil;
 using HIKARI_HTO_VER2.MyForm;
@@ -231,14 +232,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         pfm_AT.Rows.Add(newRow); pfm_AT.Rows.Add(newRow1); pfm_AT.Rows.Add(newRow2); pfm_AT.Rows.Add(newRow3); pfm_AT.Rows.Add(newRow4);
                         DataRow newRow5 = pfm_AT.NewRow();
                         DataRow newRow6 = pfm_AT.NewRow();
-                        pfm_AE.Rows.Add(newRow5);                        
+                        pfm_AT.Rows.Add(newRow5);                        
                         newRow6[1] = "ALL";
                         newRow6[2] = FullTruong;
                         newRow6[3] = (FullTruong - FullLoisai).ToString();
                         newRow6[4] = FullLoisai.ToString();
                         newRow6[5] = Math.Round(FullThoigian, 2);
                         newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong) * 100, 2);
-                        pfm_AE.Rows.Add(newRow6);
+                        pfm_AT.Rows.Add(newRow6);
                     }
                     grdV_pfm_AE.Columns.Clear();
                     grd_pfm_AE.DataSource = null;
@@ -293,7 +294,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     rowindex[admin_info.dt_pfm_Check.Columns[0].ToString()] = element.UserName;
                     rowindex[admin_info.dt_pfm_Check.Columns[1].ToString()] = element.Fullname;
                     rowindex[admin_info.dt_pfm_Check.Columns[2].ToString()] = element.Tongtruong;
-                    rowindex[admin_info.dt_pfm_Check.Columns[3].ToString()] = element.Thoigian;
+                    rowindex[admin_info.dt_pfm_Check.Columns[3].ToString()] = Math.Round((Convert.ToDouble(element.Thoigian)),2);
                     rowindex[admin_info.dt_pfm_Check.Columns[4].ToString()] = Math.Round((Convert.ToDouble(element.Tongtruong) / element.Thoigian) , 2);
                     admin_info.dt_pfm_Check.Rows.Add(rowindex);     
                 }
@@ -326,12 +327,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 admin_info.dt_pfm_Check.Rows.Add(newRow5);
                 newRow6[1] = "ALL";
                 newRow6[2] = FullTruong;                
-                newRow6[3] = FullThoigian.ToString();
+                newRow6[3] = Math.Round((Convert.ToDouble(FullThoigian)), 2); //FullThoigian.ToString();
                 admin_info.dt_pfm_Check.Rows.Add(newRow6);
                 grdV_pfm_AE.Columns.Clear();
                 grdV_pfm_AT.Columns.Clear();
                 grd_pfm_AE.DataSource = null;
-                grd_pfm_AE.DataSource = admin_info.dt_pfm_LastCheck;
+                grd_pfm_AE.DataSource = admin_info.dt_pfm_Check;
 
             }
             else if (rdb_LastCheck.Checked) // Tính PFM của LastCheck
@@ -399,26 +400,35 @@ namespace HIKARI_HTO_VER2.MyUserControl
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Excel Files |*.xlsx";
             sfd.Title = "Save an Excel File";
-            sfd.FileName = "Export_Pfm_" + admin_info.Str_Select_Pfm + "";
+            sfd.FileName = "PFM_Entry_AE_AT_"+ admin_info.Time_Start.Split(' ')[0].ToString() + "_"+ admin_info.Time_End.Split(' ')[0].ToString() + "";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 if (admin_info.Str_Select_Pfm == "Entry")
                 {
-                    (grd_pfm_AE.MainView as GridView).OptionsPrint.PrintHeader = true;
-                    XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
-                    advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
-                    advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
-                    advOptions.ExportType = ExportType.WYSIWYG;
-                    advOptions.SheetName = "Pfm_AE" + admin_info.Str_Select_Pfm + "";
-                    grd_pfm_AE.ExportToXlsx(sfd.FileName, advOptions);
-
-                    (grd_pfm_AT.MainView as GridView).OptionsPrint.PrintHeader = true;
-                    XlsxExportOptionsEx advOptions_AT = new XlsxExportOptionsEx();
-                    advOptions_AT.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
-                    advOptions_AT.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
-                    advOptions_AT.ExportType = ExportType.WYSIWYG;
-                    advOptions_AT.SheetName = "Pfm_AT" + admin_info.Str_Select_Pfm + "";
-                    grd_pfm_AT.ExportToXlsx(sfd.FileName, advOptions_AT);
+                    grd_pfm_AE.ForceInitialize();
+                    grd_pfm_AT.ForceInitialize();
+                    #region close code 
+                    //(grd_pfm_AE.MainView as GridView).OptionsPrint.PrintHeader = true;
+                    //XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
+                    //advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    //advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    //advOptions.ExportType = ExportType.WYSIWYG;
+                    //advOptions.SheetName = "AE";
+                    //(grd_pfm_AT.MainView as GridView).OptionsPrint.PrintHeader = true;
+                    //XlsxExportOptionsEx advOptions_AT = new XlsxExportOptionsEx();
+                    //advOptions_AT.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    //advOptions_AT.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    //advOptions_AT.ExportType = ExportType.WYSIWYG;
+                    //advOptions_AT.SheetName = "AT";                   
+                    #endregion
+                    compositeLink1.CreatePageForEachLink();
+                    XlsxExportOptionsEx options = new DevExpress.XtraPrinting.XlsxExportOptionsEx();
+                    options.ExportMode = XlsxExportMode.SingleFilePageByPage;
+                    options.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                    options.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                    compositeLink1.PrintingSystemBase.XlSheetCreated += PrintingSystemBase_XlSheetCreated1;
+                    compositeLink1.ExportToXlsx(sfd.FileName, options);
+                    Process.Start(sfd.FileName); 
                 }
                 else
                 {
@@ -430,27 +440,22 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     advOptions.SheetName = "Pfm_" + admin_info.Str_Select_Pfm + "";
                     grd_pfm_AE.ExportToXlsx(sfd.FileName, advOptions);
                 }
-            }
-            #region 
-            //if (rdb_Entry.Checked)
-            //{
-            //    if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx"))
-            //    {
-            //        File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
-            //        File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
-            //    }
-            //    else
-            //    {
-            //        File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Productivity.xlsx"), Properties.Resources.productivity);
-            //    }
-            //    TableToExcel(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Productivity.xlsx");
-            //}
-            //else
-            //{
-
-            //}
-            #endregion            
+            }     
         }
+
+        private void PrintingSystemBase_XlSheetCreated1(object sender, XlSheetCreatedEventArgs e)
+        {
+            if (e.Index==0)
+            {
+                e.SheetName = "AE";
+            }
+            else if (e.Index==1)
+            {
+                e.SheetName = "AT";
+            }
+        }
+
+        
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

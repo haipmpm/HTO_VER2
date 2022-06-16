@@ -419,4 +419,30 @@
       <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.Admin_View_Status_V3" Method="Admin_View_Status_V3">
+    <Parameter Name="Style_Batch" Parameter="style_Batch" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="ListBatch" Parameter="listBatch" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="Admin_View_Status_V3Result">
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BatchName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BatchType" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NumberImage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E11" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E12" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongPhieuCheck1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserLC_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status_LC_1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hit_E31" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hit_E32" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongPhieuCheck3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserLC_3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status_LC_3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ngaytao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Export" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Hoanthanh1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hoanthanh3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
