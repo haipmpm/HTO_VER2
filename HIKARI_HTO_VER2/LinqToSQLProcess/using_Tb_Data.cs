@@ -17,7 +17,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             logErr = new using_Tb_LogErr();
         }
         public int GetIDImage(string batchId, string tablename)
-        {           
+        {
             int res = 0;
             try
             {

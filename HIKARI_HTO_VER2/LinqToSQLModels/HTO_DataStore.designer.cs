@@ -177,13 +177,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spImage_GetImage_Input_Entry_v2")]
-		public ISingleResult<spImage_GetImage_Input_Entry_v2Result> spImage_GetImage_Input_Entry_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(255)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LevelUser", DbType="Int")] System.Nullable<int> levelUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Int")] System.Nullable<int> chiaUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(5)")] string level_Image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, levelUser, chiaUser, level_Image);
-			return ((ISingleResult<spImage_GetImage_Input_Entry_v2Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_getListBatch_Check_v2")]
 		public ISingleResult<spBatch_getListBatch_Check_v2Result> spBatch_getListBatch_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image)
 		{
@@ -356,6 +349,13 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Batch, listBatch);
 			return ((ISingleResult<Admin_View_Status_V3Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spImage_GetImage_Input_Entry_v2")]
+		public ISingleResult<spImage_GetImage_Input_Entry_v2Result> spImage_GetImage_Input_Entry_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(255)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LevelUser", DbType="NVarChar(5)")] string levelUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Int")] System.Nullable<int> chiaUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(5)")] string level_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, levelUser, chiaUser, level_Image);
+			return ((ISingleResult<spImage_GetImage_Input_Entry_v2Result>)(result.ReturnValue));
 		}
 	}
 	
@@ -1678,104 +1678,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._ChiaUser != value))
 				{
 					this._ChiaUser = value;
-				}
-			}
-		}
-	}
-	
-	public partial class spImage_GetImage_Input_Entry_v2Result
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private System.Nullable<int> _Cohieu1;
-		
-		private System.Nullable<int> _Cohieu2;
-		
-		private string _Name_Img;
-		
-		private System.Nullable<int> _pair;
-		
-		public spImage_GetImage_Input_Entry_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cohieu1", DbType="Int")]
-		public System.Nullable<int> Cohieu1
-		{
-			get
-			{
-				return this._Cohieu1;
-			}
-			set
-			{
-				if ((this._Cohieu1 != value))
-				{
-					this._Cohieu1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cohieu2", DbType="Int")]
-		public System.Nullable<int> Cohieu2
-		{
-			get
-			{
-				return this._Cohieu2;
-			}
-			set
-			{
-				if ((this._Cohieu2 != value))
-				{
-					this._Cohieu2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name_Img", DbType="NVarChar(255)")]
-		public string Name_Img
-		{
-			get
-			{
-				return this._Name_Img;
-			}
-			set
-			{
-				if ((this._Name_Img != value))
-				{
-					this._Name_Img = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pair", DbType="Int")]
-		public System.Nullable<int> pair
-		{
-			get
-			{
-				return this._pair;
-			}
-			set
-			{
-				if ((this._pair != value))
-				{
-					this._pair = value;
 				}
 			}
 		}
@@ -4052,6 +3954,140 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._Hoanthanh3 != value))
 				{
 					this._Hoanthanh3 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spImage_GetImage_Input_Entry_v2Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private System.Nullable<int> _Cohieu1;
+		
+		private System.Nullable<int> _Cohieu2;
+		
+		private string _Name_Img;
+		
+		private System.Nullable<int> _pair;
+		
+		private string _content1;
+		
+		private string _content2;
+		
+		public spImage_GetImage_Input_Entry_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cohieu1", DbType="Int")]
+		public System.Nullable<int> Cohieu1
+		{
+			get
+			{
+				return this._Cohieu1;
+			}
+			set
+			{
+				if ((this._Cohieu1 != value))
+				{
+					this._Cohieu1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cohieu2", DbType="Int")]
+		public System.Nullable<int> Cohieu2
+		{
+			get
+			{
+				return this._Cohieu2;
+			}
+			set
+			{
+				if ((this._Cohieu2 != value))
+				{
+					this._Cohieu2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name_Img", DbType="NVarChar(255)")]
+		public string Name_Img
+		{
+			get
+			{
+				return this._Name_Img;
+			}
+			set
+			{
+				if ((this._Name_Img != value))
+				{
+					this._Name_Img = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pair", DbType="Int")]
+		public System.Nullable<int> pair
+		{
+			get
+			{
+				return this._pair;
+			}
+			set
+			{
+				if ((this._pair != value))
+				{
+					this._pair = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_content1", DbType="NVarChar(MAX)")]
+		public string content1
+		{
+			get
+			{
+				return this._content1;
+			}
+			set
+			{
+				if ((this._content1 != value))
+				{
+					this._content1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_content2", DbType="NVarChar(MAX)")]
+		public string content2
+		{
+			get
+			{
+				return this._content2;
+			}
+			set
+			{
+				if ((this._content2 != value))
+				{
+					this._content2 = value;
 				}
 			}
 		}

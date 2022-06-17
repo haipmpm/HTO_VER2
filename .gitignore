@@ -13,3 +13,7 @@
 HIKARI_HTO_VER2/bin/Debug/
 *.cache
 *.application
+*.manifest
+*.application
+*.exe
+*.cache

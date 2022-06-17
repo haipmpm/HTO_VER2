@@ -39,7 +39,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             tb_Image_Change = new DataTable();
             tb_Image_Change.Columns.Add("ImageName");
             tb_Image_Change.Columns.Add("BatchName");
-            tb_Image_Change.Columns.Add("IdBatch");
+            tb_Image_Change.Columns.Add("Data");
         }
 
         private void UC_Export_Excel_Load(object sender, EventArgs e)
@@ -593,10 +593,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 DataRow dtr = tb_Result.NewRow();
                 tb_Result.Rows.InsertAt(dtr, row + 1);
                 //dtcopy.Rows.Add();
-                //dtcopy.AcceptChanges();
+                tb_Result.AcceptChanges();
                 grd_img.DataSource = null;
-                grd_img.DataSource = tb_Result;
-                Add_InfoRow_Gridcontrol(row);
+                grd_img.DataSource = tb_Result;                
                 grd_img.Focus();
                 View.FocusedRowHandle = row + 1;
                 View.FocusedColumn = column;                    
@@ -604,6 +603,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 Change_Data_Export(name_img, name_batch, ID_batch);
                 SendKeys.Send("{F2}");
                 SendKeys.Send("{END}");
+                Add_InfoRow_Gridcontrol(row);
             }            
         }
         private void Add_InfoRow_Gridcontrol(int row)
@@ -614,6 +614,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             tb_Result.Rows[row + 1][Constant.Truong03] = tb_Result.Rows[row][Constant.Truong03].ToString();
             tb_Result.Rows[row + 1][Constant.Truong04] = tb_Result.Rows[row][Constant.Truong04].ToString();
             tb_Result.Rows[row + 1][Constant.Truong05] = tb_Result.Rows[row][Constant.Truong05].ToString();
+            tb_Result.Rows[row + 1][Constant.Truong06] = tb_Result.Rows[row][Constant.Truong06].ToString();
             tb_Result.Rows[row + 1][Constant.Truong12] = tb_Result.Rows[row][Constant.Truong12].ToString();
             tb_Result.Rows[row + 1][Constant.path] = tb_Result.Rows[row][Constant.path].ToString();
             tb_Result.Rows[row + 1][Constant.BatchName] = tb_Result.Rows[row][Constant.BatchName].ToString();
@@ -721,6 +722,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 string name_img = grdV_img.GetRowCellValue(e.RowHandle, tb_Result.Columns[Constant.ImageName].ColumnName).ToString();
                 string name_batch = grdV_img.GetRowCellValue(e.RowHandle, tb_Result.Columns[Constant.BatchName].ColumnName).ToString();
                 string ID_batch = grdV_img.GetRowCellValue(e.RowHandle, tb_Result.Columns[Constant.BatchID].ColumnName).ToString();
+                //string stt = grdV_img.GetRowCellValue(e.RowHandle, tb_Result.Columns[Constant.Truong06].ColumnName).ToString();
+                tb_Result.AcceptChanges();
                 Change_Data_Export(name_img, name_batch, ID_batch);
             }
         }
@@ -735,13 +738,15 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 dt_update.Columns.Add("ImageName");
                 for (int i = 0; i < tb_Image_Change.Rows.Count; i++)
                 {
-                    DataRow[] dtr = tb_Result.Select("[TRƯỜNG] = '" + tb_Image_Change.Rows[i]["ImageName"].ToString() + "' and [BatchName] = '" + tb_Result.Rows[i]["BatchName"].ToString() + "'");
-                    string Vung1 = dtr[0].ItemArray[Constant.Truong02].ToString() + "†" + dtr[0].ItemArray[Constant.Truong03].ToString() + "†" + dtr[0].ItemArray[Constant.Truong04].ToString() + "†" + dtr[0].ItemArray[Constant.Truong05].ToString();
+                    DataTable dtr = tb_Result.Select("[TRƯỜNG] = '" + tb_Image_Change.Rows[i]["ImageName"].ToString() + "' and [BatchName] = '" + tb_Image_Change.Rows[i]["BatchName"].ToString() + "' ").CopyToDataTable();
+                    dtr.DefaultView.Sort = dtr.Columns[Constant.Truong06].ColumnName.ToString();
+                    dtr = dtr.DefaultView.ToTable();
+                    string Vung1 = dtr.Rows[0].ItemArray[Constant.Truong02].ToString() + "†" + dtr.Rows[0].ItemArray[Constant.Truong03].ToString() + "†" + dtr.Rows[0].ItemArray[Constant.Truong04].ToString() + "†" + dtr.Rows[0].ItemArray[Constant.Truong05].ToString();
                     string str_SaveData = "";
                     if (rdb_AE.Checked)
                     {
                         List<string> lst_Data = new List<string>();
-                        foreach (var item in dtr)
+                        foreach (DataRow item in dtr.Rows)
                         {
                             lst_Data.Add(item.ItemArray[Constant.Truong09].ToString());
                         }
@@ -750,13 +755,13 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     else if (rdb_AT.Checked)
                     { //‡
                         List<string> lst_Data = new List<string>();
-                        foreach (var item in dtr)
+                        foreach (DataRow item in dtr.Rows)
                         {
                             lst_Data.Add(item.ItemArray[Constant.Truong07] + "†" + item.ItemArray[Constant.Truong10] + "†" + item.ItemArray[Constant.Truong08] + "†" + item.ItemArray[Constant.Truong09]);
                         }
                         str_SaveData = Vung1 + "‡" + String.Join("‡", lst_Data);
                     }
-                    dt_update.Rows.Add(dtr[0].ItemArray[Constant.BatchID].ToString(), str_SaveData, dtr[0].ItemArray[Constant.ImageName].ToString());
+                    dt_update.Rows.Add(dtr.Rows[0].ItemArray[Constant.BatchID].ToString(), str_SaveData, dtr.Rows[0].ItemArray[Constant.ImageName].ToString());
                 }
                 try
                 {
