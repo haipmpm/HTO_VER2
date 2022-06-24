@@ -27,3 +27,9 @@ HIKARI_HTO_VER2/bin/Debug/
 *.resources
 *.cache
 *.cache
+*.manifest
+*.cache
+*.manifest
+*.pdb
+*.exe
+*.application
