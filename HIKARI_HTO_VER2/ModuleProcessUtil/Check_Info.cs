@@ -19,5 +19,8 @@ namespace HIKARI_HTO_VER2.ModuleProcessUtil
         public string NameImage { get; set; }
         public float flZoom { get; set; }
 
+        public string Content_E1_Tam { get; set; }
+
+        public string Content_E2_Tam { get; set; }
     }
 }

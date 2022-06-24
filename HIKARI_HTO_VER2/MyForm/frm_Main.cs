@@ -68,14 +68,14 @@ namespace HIKARI_HTO_VER2.MyForm
             cbb_batchname.DataSource = null;
             if (cbb_Role.Text == Constant.DESO)
             {
-                var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry(Global.Level_Image,"0",Global.LevelUser.ToString(),Global.strUsername) select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser }).ToList();
+                var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry_new(Global.Level_Image,"0",Global.LevelUser.ToString(),Global.strUsername) select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser }).ToList();
                 cbb_batchname.DataSource = listResult;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";
             }
             else if (cbb_Role.Text == Constant.CHECKDESO)
             {
-                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker_New0806(Global.Level_Image,"0") select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser, w.Hit_E11 }).Where(x => x.Hit_E11 > 0).ToList();
+                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image,"0") select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser, w.Hit_E11 }).Where(x => x.Hit_E11 > 0).ToList();
                 cbb_batchname.DataSource = List_check;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";
@@ -90,6 +90,7 @@ namespace HIKARI_HTO_VER2.MyForm
         }
         public void getListAutocompelet()
         {
+            Global.ListAutoComP = new AutocompleteMenuNS.AutocompleteMenu();
             using (HTO_DataStoreDataContext db = new HTO_DataStoreDataContext())
             {
                 List<spDataAutocomplete_GetListAutoComplete_v2Result> listAutoCompelete = new List<spDataAutocomplete_GetListAutoComplete_v2Result>();
@@ -97,6 +98,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 AutoCompleteStringCollection data = new AutoCompleteStringCollection();
                 foreach (var item in listAutoCompelete)
                 {
+                    Global.ListAutoComP.AddItem(item.MaSP.ToString());
                     data.Add(item.MaSP);
                 }
                 Global.listAuto = data;

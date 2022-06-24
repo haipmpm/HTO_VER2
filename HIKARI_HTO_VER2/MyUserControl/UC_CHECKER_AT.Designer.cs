@@ -29,6 +29,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_CHECKER_AT));
             this.rtb_truong2 = new System.Windows.Forms.RichTextBox();
             this.lb_t2 = new System.Windows.Forms.Label();
             this.lb_t3 = new System.Windows.Forms.Label();
@@ -94,10 +95,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.label19 = new System.Windows.Forms.Label();
             this.lb_User2 = new System.Windows.Forms.Label();
             this.lb_User1 = new System.Windows.Forms.Label();
+            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.SuspendLayout();
             // 
             // rtb_truong2
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong2, null);
             this.rtb_truong2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong2.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong2.Location = new System.Drawing.Point(98, 44);
@@ -131,6 +134,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong3
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong3, null);
             this.rtb_truong3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong3.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong3.Location = new System.Drawing.Point(251, 44);
@@ -153,6 +157,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong4
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong4, null);
             this.rtb_truong4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong4.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong4.Location = new System.Drawing.Point(394, 44);
@@ -175,6 +180,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong5
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong5, null);
             this.rtb_truong5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong5.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong5.Location = new System.Drawing.Point(574, 44);
@@ -199,7 +205,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(100, 90);
+            this.label6.Location = new System.Drawing.Point(167, 90);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(137, 20);
             this.label6.TabIndex = 10;
@@ -307,129 +313,140 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong7_1
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_1, this.autocompleteMenu1);
             this.rtb_truong7_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_1.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_1.Location = new System.Drawing.Point(33, 118);
             this.rtb_truong7_1.MaxLength = 30;
             this.rtb_truong7_1.Multiline = false;
             this.rtb_truong7_1.Name = "rtb_truong7_1";
-            this.rtb_truong7_1.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_1.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_1.TabIndex = 5;
             this.rtb_truong7_1.Text = "";
             // 
             // rtb_truong7_2
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_2, this.autocompleteMenu1);
             this.rtb_truong7_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_2.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_2.Location = new System.Drawing.Point(33, 154);
             this.rtb_truong7_2.MaxLength = 30;
             this.rtb_truong7_2.Multiline = false;
             this.rtb_truong7_2.Name = "rtb_truong7_2";
-            this.rtb_truong7_2.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_2.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_2.TabIndex = 9;
             this.rtb_truong7_2.Text = "";
             // 
             // rtb_truong7_3
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_3, this.autocompleteMenu1);
             this.rtb_truong7_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_3.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_3.Location = new System.Drawing.Point(33, 190);
             this.rtb_truong7_3.MaxLength = 30;
             this.rtb_truong7_3.Multiline = false;
             this.rtb_truong7_3.Name = "rtb_truong7_3";
-            this.rtb_truong7_3.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_3.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_3.TabIndex = 13;
             this.rtb_truong7_3.Text = "";
             // 
             // rtb_truong7_4
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_4, this.autocompleteMenu1);
             this.rtb_truong7_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_4.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_4.Location = new System.Drawing.Point(33, 226);
             this.rtb_truong7_4.MaxLength = 30;
             this.rtb_truong7_4.Multiline = false;
             this.rtb_truong7_4.Name = "rtb_truong7_4";
-            this.rtb_truong7_4.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_4.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_4.TabIndex = 17;
             this.rtb_truong7_4.Text = "";
             // 
             // rtb_truong7_5
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_5, this.autocompleteMenu1);
             this.rtb_truong7_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_5.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_5.Location = new System.Drawing.Point(33, 262);
             this.rtb_truong7_5.MaxLength = 30;
             this.rtb_truong7_5.Multiline = false;
             this.rtb_truong7_5.Name = "rtb_truong7_5";
-            this.rtb_truong7_5.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_5.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_5.TabIndex = 21;
             this.rtb_truong7_5.Text = "";
             // 
             // rtb_truong7_6
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_6, this.autocompleteMenu1);
             this.rtb_truong7_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_6.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_6.Location = new System.Drawing.Point(33, 297);
             this.rtb_truong7_6.MaxLength = 30;
             this.rtb_truong7_6.Multiline = false;
             this.rtb_truong7_6.Name = "rtb_truong7_6";
-            this.rtb_truong7_6.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_6.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_6.TabIndex = 25;
             this.rtb_truong7_6.Text = "";
             // 
             // rtb_truong7_7
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_7, this.autocompleteMenu1);
             this.rtb_truong7_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_7.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_7.Location = new System.Drawing.Point(33, 333);
             this.rtb_truong7_7.MaxLength = 30;
             this.rtb_truong7_7.Multiline = false;
             this.rtb_truong7_7.Name = "rtb_truong7_7";
-            this.rtb_truong7_7.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_7.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_7.TabIndex = 29;
             this.rtb_truong7_7.Text = "";
             // 
             // rtb_truong7_8
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_8, this.autocompleteMenu1);
             this.rtb_truong7_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_8.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_8.Location = new System.Drawing.Point(32, 369);
             this.rtb_truong7_8.MaxLength = 30;
             this.rtb_truong7_8.Multiline = false;
             this.rtb_truong7_8.Name = "rtb_truong7_8";
-            this.rtb_truong7_8.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_8.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_8.TabIndex = 33;
             this.rtb_truong7_8.Text = "";
             // 
             // rtb_truong7_9
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_9, this.autocompleteMenu1);
             this.rtb_truong7_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_9.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_9.Location = new System.Drawing.Point(33, 405);
             this.rtb_truong7_9.MaxLength = 30;
             this.rtb_truong7_9.Multiline = false;
             this.rtb_truong7_9.Name = "rtb_truong7_9";
-            this.rtb_truong7_9.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_9.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_9.TabIndex = 37;
             this.rtb_truong7_9.Text = "";
             // 
             // rtb_truong7_10
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong7_10, this.autocompleteMenu1);
             this.rtb_truong7_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong7_10.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong7_10.Location = new System.Drawing.Point(33, 441);
             this.rtb_truong7_10.MaxLength = 30;
             this.rtb_truong7_10.Multiline = false;
             this.rtb_truong7_10.Name = "rtb_truong7_10";
-            this.rtb_truong7_10.Size = new System.Drawing.Size(298, 30);
+            this.rtb_truong7_10.Size = new System.Drawing.Size(414, 30);
             this.rtb_truong7_10.TabIndex = 41;
             this.rtb_truong7_10.Text = "";
             // 
             // rtb_truong10_10
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_10, null);
             this.rtb_truong10_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_10.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_10.Location = new System.Drawing.Point(337, 441);
+            this.rtb_truong10_10.Location = new System.Drawing.Point(453, 441);
             this.rtb_truong10_10.MaxLength = 30;
             this.rtb_truong10_10.Multiline = false;
             this.rtb_truong10_10.Name = "rtb_truong10_10";
@@ -439,9 +456,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_9
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_9, null);
             this.rtb_truong10_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_9.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_9.Location = new System.Drawing.Point(337, 405);
+            this.rtb_truong10_9.Location = new System.Drawing.Point(453, 405);
             this.rtb_truong10_9.MaxLength = 30;
             this.rtb_truong10_9.Multiline = false;
             this.rtb_truong10_9.Name = "rtb_truong10_9";
@@ -451,9 +469,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_8
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_8, null);
             this.rtb_truong10_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_8.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_8.Location = new System.Drawing.Point(337, 369);
+            this.rtb_truong10_8.Location = new System.Drawing.Point(453, 369);
             this.rtb_truong10_8.MaxLength = 30;
             this.rtb_truong10_8.Multiline = false;
             this.rtb_truong10_8.Name = "rtb_truong10_8";
@@ -463,9 +482,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_7
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_7, null);
             this.rtb_truong10_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_7.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_7.Location = new System.Drawing.Point(337, 333);
+            this.rtb_truong10_7.Location = new System.Drawing.Point(453, 333);
             this.rtb_truong10_7.MaxLength = 30;
             this.rtb_truong10_7.Multiline = false;
             this.rtb_truong10_7.Name = "rtb_truong10_7";
@@ -475,9 +495,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_6
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_6, null);
             this.rtb_truong10_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_6.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_6.Location = new System.Drawing.Point(337, 297);
+            this.rtb_truong10_6.Location = new System.Drawing.Point(453, 297);
             this.rtb_truong10_6.MaxLength = 30;
             this.rtb_truong10_6.Multiline = false;
             this.rtb_truong10_6.Name = "rtb_truong10_6";
@@ -487,9 +508,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_5
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_5, null);
             this.rtb_truong10_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_5.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_5.Location = new System.Drawing.Point(337, 262);
+            this.rtb_truong10_5.Location = new System.Drawing.Point(453, 262);
             this.rtb_truong10_5.MaxLength = 30;
             this.rtb_truong10_5.Multiline = false;
             this.rtb_truong10_5.Name = "rtb_truong10_5";
@@ -499,9 +521,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_4
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_4, null);
             this.rtb_truong10_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_4.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_4.Location = new System.Drawing.Point(337, 226);
+            this.rtb_truong10_4.Location = new System.Drawing.Point(453, 226);
             this.rtb_truong10_4.MaxLength = 30;
             this.rtb_truong10_4.Multiline = false;
             this.rtb_truong10_4.Name = "rtb_truong10_4";
@@ -511,9 +534,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_3
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_3, null);
             this.rtb_truong10_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_3.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_3.Location = new System.Drawing.Point(337, 190);
+            this.rtb_truong10_3.Location = new System.Drawing.Point(453, 190);
             this.rtb_truong10_3.MaxLength = 30;
             this.rtb_truong10_3.Multiline = false;
             this.rtb_truong10_3.Name = "rtb_truong10_3";
@@ -523,9 +547,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_2
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_2, null);
             this.rtb_truong10_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_2.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_2.Location = new System.Drawing.Point(337, 154);
+            this.rtb_truong10_2.Location = new System.Drawing.Point(453, 154);
             this.rtb_truong10_2.MaxLength = 30;
             this.rtb_truong10_2.Multiline = false;
             this.rtb_truong10_2.Name = "rtb_truong10_2";
@@ -535,9 +560,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong10_1
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong10_1, null);
             this.rtb_truong10_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong10_1.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong10_1.Location = new System.Drawing.Point(337, 118);
+            this.rtb_truong10_1.Location = new System.Drawing.Point(453, 118);
             this.rtb_truong10_1.MaxLength = 30;
             this.rtb_truong10_1.Multiline = false;
             this.rtb_truong10_1.Name = "rtb_truong10_1";
@@ -549,7 +575,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(333, 90);
+            this.label17.Location = new System.Drawing.Point(457, 90);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(67, 20);
             this.label17.TabIndex = 31;
@@ -557,122 +583,132 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong8_10
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_10, null);
             this.rtb_truong8_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_10.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_10.Location = new System.Drawing.Point(416, 441);
+            this.rtb_truong8_10.Location = new System.Drawing.Point(532, 441);
             this.rtb_truong8_10.MaxLength = 30;
             this.rtb_truong8_10.Multiline = false;
             this.rtb_truong8_10.Name = "rtb_truong8_10";
-            this.rtb_truong8_10.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_10.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_10.TabIndex = 43;
             this.rtb_truong8_10.Text = "";
             // 
             // rtb_truong8_9
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_9, null);
             this.rtb_truong8_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_9.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_9.Location = new System.Drawing.Point(416, 405);
+            this.rtb_truong8_9.Location = new System.Drawing.Point(532, 405);
             this.rtb_truong8_9.MaxLength = 30;
             this.rtb_truong8_9.Multiline = false;
             this.rtb_truong8_9.Name = "rtb_truong8_9";
-            this.rtb_truong8_9.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_9.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_9.TabIndex = 39;
             this.rtb_truong8_9.Text = "";
             // 
             // rtb_truong8_8
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_8, null);
             this.rtb_truong8_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_8.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_8.Location = new System.Drawing.Point(416, 369);
+            this.rtb_truong8_8.Location = new System.Drawing.Point(532, 369);
             this.rtb_truong8_8.MaxLength = 30;
             this.rtb_truong8_8.Multiline = false;
             this.rtb_truong8_8.Name = "rtb_truong8_8";
-            this.rtb_truong8_8.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_8.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_8.TabIndex = 35;
             this.rtb_truong8_8.Text = "";
             // 
             // rtb_truong8_7
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_7, null);
             this.rtb_truong8_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_7.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_7.Location = new System.Drawing.Point(416, 333);
+            this.rtb_truong8_7.Location = new System.Drawing.Point(532, 333);
             this.rtb_truong8_7.MaxLength = 30;
             this.rtb_truong8_7.Multiline = false;
             this.rtb_truong8_7.Name = "rtb_truong8_7";
-            this.rtb_truong8_7.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_7.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_7.TabIndex = 31;
             this.rtb_truong8_7.Text = "";
             // 
             // rtb_truong8_6
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_6, null);
             this.rtb_truong8_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_6.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_6.Location = new System.Drawing.Point(416, 297);
+            this.rtb_truong8_6.Location = new System.Drawing.Point(532, 297);
             this.rtb_truong8_6.MaxLength = 30;
             this.rtb_truong8_6.Multiline = false;
             this.rtb_truong8_6.Name = "rtb_truong8_6";
-            this.rtb_truong8_6.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_6.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_6.TabIndex = 27;
             this.rtb_truong8_6.Text = "";
             // 
             // rtb_truong8_5
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_5, null);
             this.rtb_truong8_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_5.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_5.Location = new System.Drawing.Point(416, 262);
+            this.rtb_truong8_5.Location = new System.Drawing.Point(532, 262);
             this.rtb_truong8_5.MaxLength = 30;
             this.rtb_truong8_5.Multiline = false;
             this.rtb_truong8_5.Name = "rtb_truong8_5";
-            this.rtb_truong8_5.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_5.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_5.TabIndex = 23;
             this.rtb_truong8_5.Text = "";
             // 
             // rtb_truong8_4
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_4, null);
             this.rtb_truong8_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_4.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_4.Location = new System.Drawing.Point(416, 226);
+            this.rtb_truong8_4.Location = new System.Drawing.Point(532, 226);
             this.rtb_truong8_4.MaxLength = 30;
             this.rtb_truong8_4.Multiline = false;
             this.rtb_truong8_4.Name = "rtb_truong8_4";
-            this.rtb_truong8_4.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_4.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_4.TabIndex = 19;
             this.rtb_truong8_4.Text = "";
             // 
             // rtb_truong8_3
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_3, null);
             this.rtb_truong8_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_3.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_3.Location = new System.Drawing.Point(416, 190);
+            this.rtb_truong8_3.Location = new System.Drawing.Point(532, 190);
             this.rtb_truong8_3.MaxLength = 30;
             this.rtb_truong8_3.Multiline = false;
             this.rtb_truong8_3.Name = "rtb_truong8_3";
-            this.rtb_truong8_3.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_3.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_3.TabIndex = 15;
             this.rtb_truong8_3.Text = "";
             // 
             // rtb_truong8_2
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_2, null);
             this.rtb_truong8_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_2.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_2.Location = new System.Drawing.Point(416, 154);
+            this.rtb_truong8_2.Location = new System.Drawing.Point(532, 154);
             this.rtb_truong8_2.MaxLength = 30;
             this.rtb_truong8_2.Multiline = false;
             this.rtb_truong8_2.Name = "rtb_truong8_2";
-            this.rtb_truong8_2.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_2.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_2.TabIndex = 11;
             this.rtb_truong8_2.Text = "";
             // 
             // rtb_truong8_1
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong8_1, null);
             this.rtb_truong8_1.BackColor = System.Drawing.SystemColors.Window;
             this.rtb_truong8_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong8_1.ForeColor = System.Drawing.Color.Red;
-            this.rtb_truong8_1.Location = new System.Drawing.Point(416, 118);
+            this.rtb_truong8_1.Location = new System.Drawing.Point(532, 118);
             this.rtb_truong8_1.MaxLength = 30;
             this.rtb_truong8_1.Multiline = false;
             this.rtb_truong8_1.Name = "rtb_truong8_1";
-            this.rtb_truong8_1.Size = new System.Drawing.Size(250, 30);
+            this.rtb_truong8_1.Size = new System.Drawing.Size(134, 30);
             this.rtb_truong8_1.TabIndex = 7;
             this.rtb_truong8_1.Text = "";
             // 
@@ -680,7 +716,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(487, 90);
+            this.label18.Location = new System.Drawing.Point(558, 90);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(88, 20);
             this.label18.TabIndex = 42;
@@ -688,6 +724,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_10
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_10, null);
             this.rtb_truong9_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_10.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_10.Location = new System.Drawing.Point(672, 441);
@@ -700,6 +737,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_9
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_9, null);
             this.rtb_truong9_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_9.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_9.Location = new System.Drawing.Point(672, 405);
@@ -712,6 +750,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_8
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_8, null);
             this.rtb_truong9_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_8.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_8.Location = new System.Drawing.Point(672, 369);
@@ -724,6 +763,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_7
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_7, null);
             this.rtb_truong9_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_7.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_7.Location = new System.Drawing.Point(672, 333);
@@ -736,6 +776,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_6
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_6, null);
             this.rtb_truong9_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_6.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_6.Location = new System.Drawing.Point(672, 297);
@@ -748,6 +789,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_5
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_5, null);
             this.rtb_truong9_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_5.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_5.Location = new System.Drawing.Point(672, 262);
@@ -760,6 +802,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_4
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_4, null);
             this.rtb_truong9_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_4.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_4.Location = new System.Drawing.Point(672, 226);
@@ -772,6 +815,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_3
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_3, null);
             this.rtb_truong9_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_3.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_3.Location = new System.Drawing.Point(672, 190);
@@ -784,6 +828,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_2
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_2, null);
             this.rtb_truong9_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_2.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_2.Location = new System.Drawing.Point(672, 154);
@@ -796,6 +841,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // rtb_truong9_1
             // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rtb_truong9_1, null);
             this.rtb_truong9_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_truong9_1.ForeColor = System.Drawing.Color.Red;
             this.rtb_truong9_1.Location = new System.Drawing.Point(672, 118);
@@ -810,7 +856,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(683, 90);
+            this.label19.Location = new System.Drawing.Point(686, 90);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(114, 20);
             this.label19.TabIndex = 53;
@@ -837,6 +883,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.lb_User1.TabIndex = 54;
             this.lb_User1.Text = "Name 1:";
             this.lb_User1.Click += new System.EventHandler(this.lb_User1_Click);
+            // 
+            // autocompleteMenu1
+            // 
+            this.autocompleteMenu1.Colors = ((AutocompleteMenuNS.Colors)(resources.GetObject("autocompleteMenu1.Colors")));
+            this.autocompleteMenu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.autocompleteMenu1.ImageList = null;
+            this.autocompleteMenu1.Items = new string[0];
+            this.autocompleteMenu1.TargetControlWrapper = null;
             // 
             // UC_CHECKER_AT
             // 
@@ -983,5 +1037,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lb_User2;
         private System.Windows.Forms.Label lb_User1;
+        private AutocompleteMenuNS.AutocompleteMenu autocompleteMenu1;
     }
 }

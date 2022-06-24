@@ -28,6 +28,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
         public List<List<RichTextBox>> lst_to_List_Rtb = new List<List<RichTextBox>>();
         Check_Info_imgBack Check_back;
         Ham_Chung Function_tinhloi;
+        bool isSuggestOpened ;
+        bool bl_Load = false;
         public Uc_CheckAT_Back()
         {
             InitializeComponent();
@@ -48,6 +50,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         }
         public void Add_Data_Back(Check_Info_imgBack Data_Check_Back)
         {
+            bl_Load = true;
             Check_back = Data_Check_Back;
             lst_to_List_Rtb.ForEach(x => x.ForEach(s => { s.Text = "";s.ForeColor = Color.Black; })) ;
             for (int i = 0; i < lst_to_List_Rtb.Count; i++)
@@ -57,9 +60,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     lst_to_List_Rtb[i][t].Text = Check_back.Data_check.Split('‡')[i].Split('†')[t].ToString();
                 }
             }
+            bl_Load = false;
         }
         private void Uc_CheckAT_Back_Load(object sender, EventArgs e)
         {
+            autocompleteMenu1.Items = Global.ListAutoComP.Items;
+            autocompleteMenu1.AllowsTabKey = true;
+            autocompleteMenu1.Opening += AutocompleteMenu1_Opening;
+            autocompleteMenu1.Selected += AutocompleteMenu1_Selected;
             lst_to_List_Rtb.ForEach(x =>
             {
                 x.ForEach(s =>
@@ -68,69 +76,108 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     s.TextChanged += S_TextChanged;
                     s.KeyDown += S_KeyDown;
                     s.Enter += S_Enter;
+                    s.Leave += S_Leave;
                 });
             });
+        }
+
+        private void S_Leave(object sender, EventArgs e)
+        {
+            RichTextBox rtb = (RichTextBox)(sender);
+            isSuggestOpened = false;
+            if (rtb.Name.Contains("rtb_truong7_"))
+            {
+                autocompleteMenu1.Enabled = false;
+            }
+        }
+
+        private void AutocompleteMenu1_Selected(object sender, AutocompleteMenuNS.SelectedEventArgs e)
+        {
+            isSuggestOpened = false;
+        }
+
+        private void AutocompleteMenu1_Opening(object sender, CancelEventArgs e)
+        {
+            isSuggestOpened = true;
         }
 
         private void S_Enter(object sender, EventArgs e)
         {
             RichTextBox rtb = (RichTextBox)(sender);
             rtb.SelectAll();
+            isSuggestOpened = false;
+            if (rtb.Name.Contains("rtb_truong7_"))
+            {
+                autocompleteMenu1.Enabled = true;
+            }
         }
 
         private void S_KeyDown(object sender, KeyEventArgs e)
         {
             RichTextBox rtb = (RichTextBox)(sender);
-            if (e.KeyCode == Keys.Up)
+            if (isSuggestOpened == false)
             {
-                try
+                if (e.KeyCode == Keys.Up)
                 {
-                    lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) - 1][(rtb.TabIndex - 1) % 4].Focus();
-                    e.Handled = true;
-                }
-                catch { rtb.Focus(); e.Handled = true; }
+                    try
+                    {
+                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) - 1][(rtb.TabIndex - 1) % 4].Focus();
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
 
+                }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    try
+                    {
+                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][(rtb.TabIndex - 1) % 4].Focus();
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    try
+                    {
+                        if ((rtb.TabIndex) % 4 == 0 && rtb.TabIndex > 1)
+                        {
+                            lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][0].Focus();
+                        }
+                        else
+                        {
+                            lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 1) % 4) + 1].Focus();
+                        }
+
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
+                }
+                else if (e.KeyCode == Keys.Left)
+                {
+                    try
+                    {
+                        if ((rtb.TabIndex - 1) % 4 == 0 && rtb.TabIndex > 1)
+                        {
+                            lst_to_List_Rtb[((rtb.TabIndex - 2) / 4)][3].Focus();
+                        }
+                        else
+                        {
+                            lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 2) % 4)].Focus();
+                        }
+
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
+                }
             }
-            else if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
                     lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][(rtb.TabIndex - 1) % 4].Focus();
                     e.Handled = true;
-                }
-                catch { rtb.Focus(); e.Handled = true; }
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                try
-                {
-                    if ((rtb.TabIndex) % 4 == 0 && rtb.TabIndex > 1)
-                    {
-                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][0].Focus();
-                    }
-                    else
-                    {
-                        lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 1) % 4) + 1].Focus();
-                    }
-
-                    e.Handled = true;
-                }
-                catch { rtb.Focus(); e.Handled = true; }
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                try
-                {
-                    if ((rtb.TabIndex - 1) % 4 == 0 && rtb.TabIndex > 1)
-                    {
-                        lst_to_List_Rtb[((rtb.TabIndex - 2) / 4)][3].Focus();
-                    }
-                    else
-                    {
-                        lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 2) % 4)].Focus();
-                    }
-
-                    e.Handled = true;
+                    isSuggestOpened = false;
                 }
                 catch { rtb.Focus(); e.Handled = true; }
             }
@@ -156,33 +203,37 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = false;
                     lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = false;
                     lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = false;
-                    if (rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
+                    if (bl_Load == false)
                     {
-                        for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                        if (rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
                         {
-                            lst_to_List_Rtb[i][0].Text = rtb.Text.ToUpper();
-                            lst_to_List_Rtb[i][1].Text = "";
-                            lst_to_List_Rtb[i][2].Text = "";
-                            lst_to_List_Rtb[i][3].Text = "";
-                            lst_to_List_Rtb[i][0].Enabled = false;
-                            lst_to_List_Rtb[i][1].Enabled = false;
-                            lst_to_List_Rtb[i][2].Enabled = false;
-                            lst_to_List_Rtb[i][3].Enabled = false;
+                            for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                            {
+                                lst_to_List_Rtb[i][0].Text = rtb.Text.ToUpper();
+                                lst_to_List_Rtb[i][1].Text = "";
+                                lst_to_List_Rtb[i][2].Text = "";
+                                lst_to_List_Rtb[i][3].Text = "";
+                                lst_to_List_Rtb[i][0].Enabled = false;
+                                lst_to_List_Rtb[i][1].Enabled = false;
+                                lst_to_List_Rtb[i][2].Enabled = false;
+                                lst_to_List_Rtb[i][3].Enabled = false;
+                            }
                         }
-                    }
-                    else
-                    {
-                        for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                        else
                         {
-                            lst_to_List_Rtb[i][0].Enabled = true;
-                            lst_to_List_Rtb[i][1].Enabled = true;
-                            lst_to_List_Rtb[i][2].Enabled = true;
-                            lst_to_List_Rtb[i][3].Enabled = true;
+                            for (int i = index_rtb_7_inList + 1; i < lst_to_List_Rtb.Count; i++)
+                            {
+                                lst_to_List_Rtb[i][0].Enabled = true;
+                                lst_to_List_Rtb[i][1].Enabled = true;
+                                lst_to_List_Rtb[i][2].Enabled = true;
+                                lst_to_List_Rtb[i][3].Enabled = true;
+                            }
                         }
                     }
                 }
                 else
                 {
+                    lst_to_List_Rtb[index_rtb_7_inList][0].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = true;
@@ -203,14 +254,25 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     e.Handled = true;
                 }
             }
-            if ((e.KeyChar == '@') && (e.KeyChar != '#') && (e.KeyChar != '-'))
+            else if (rtb.TabIndex / 4 > 1 && rtb.TabIndex % 4 == 0)
             {
-                e.Handled = true;
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '?') && (e.KeyChar != 't'))
+                {
+                    e.Handled = true;
+                }
+
+                // only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
             }
+            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
 
         public int Submit_Check_Back(int ID_Batch, int ID_Image, int timeUpdate)
         {
+            isSuggestOpened = false;
             if (String.IsNullOrEmpty(rtb_truong2.Text) == true)
             {
                 return 1;

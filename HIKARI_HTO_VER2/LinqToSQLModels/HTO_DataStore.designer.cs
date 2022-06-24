@@ -177,13 +177,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_getListBatch_Check_v2")]
-		public ISingleResult<spBatch_getListBatch_Check_v2Result> spBatch_getListBatch_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, level_Image);
-			return ((ISingleResult<spBatch_getListBatch_Check_v2Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetImage_Check_v2")]
 		public ISingleResult<spData_GetImage_Check_v2Result> spData_GetImage_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(255)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(5)")] string level_Image)
 		{
@@ -226,24 +219,11 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spData_Getinfo_Image_Check_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_GetListBatch_Entry_v2")]
-		public ISingleResult<spBatch_GetListBatch_Entry_v2Result> spBatch_GetListBatch_Entry_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(255)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(50)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string level_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(255)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), level_Image, iD_Batch, level_User, userName);
-			return ((ISingleResult<spBatch_GetListBatch_Entry_v2Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Status_ViewChitiet_V2")]
 		public ISingleResult<Admin_Status_ViewChitiet_V2Result> Admin_Status_ViewChitiet_V2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID);
 			return ((ISingleResult<Admin_Status_ViewChitiet_V2Result>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Pfm_GetData", IsComposable=true)]
-		public object Admin_Pfm_GetData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
-		{
-			return ((object)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End).ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Status_GetListBacth")]
@@ -330,20 +310,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<Admin_Status_NEWResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Main_GetListBatch_Check_New")]
-		public ISingleResult<Main_GetListBatch_Check_NewResult> Main_GetListBatch_Check_New([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, level_Image);
-			return ((ISingleResult<Main_GetListBatch_Check_NewResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_InsertData_ENTRY_v2")]
-		public ISingleResult<spData_InsertData_ENTRY_v2Result> spData_InsertData_ENTRY_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="NVarChar(5)")] string pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="NVarChar(50)")] string lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split);
-			return ((ISingleResult<spData_InsertData_ENTRY_v2Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_View_Status_V3")]
 		public ISingleResult<Admin_View_Status_V3Result> Admin_View_Status_V3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(20)")] string style_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListBatch", DbType="NVarChar(MAX)")] string listBatch)
 		{
@@ -356,6 +322,40 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, levelUser, chiaUser, level_Image);
 			return ((ISingleResult<spImage_GetImage_Input_Entry_v2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Export_Data_V2")]
+		public ISingleResult<Admin_Export_Data_V2Result> Admin_Export_Data_V2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="List_ID_Batch", DbType="NVarChar(MAX)")] string list_ID_Batch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), list_ID_Batch);
+			return ((ISingleResult<Admin_Export_Data_V2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCheck_GetLishCheck_v3")]
+		public ISingleResult<spCheck_GetLishCheck_v3Result> spCheck_GetLishCheck_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, level_Image);
+			return ((ISingleResult<spCheck_GetLishCheck_v3Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_GetListbatch_v3")]
+		public ISingleResult<spEntry_GetListbatch_v3Result> spEntry_GetListbatch_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(255)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(50)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string level_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(255)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), level_Image, iD_Batch, level_User, userName);
+			return ((ISingleResult<spEntry_GetListbatch_v3Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_InsertData_ENTRY_v2")]
+		public ISingleResult<spData_InsertData_ENTRY_v2Result> spData_InsertData_ENTRY_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="NVarChar(5)")] string pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="NVarChar(50)")] string lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split, userName);
+			return ((ISingleResult<spData_InsertData_ENTRY_v2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAdmin_Pfm_Entry")]
+		public void spAdmin_Pfm_Entry([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
+		{
+			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End);
 		}
 	}
 	
@@ -1683,86 +1683,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class spBatch_getListBatch_Check_v2Result
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _BatchName;
-		
-		private string _BatchType;
-		
-		private System.Nullable<bool> _ChiaUser;
-		
-		public spBatch_getListBatch_Check_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(1)")]
-		public string BatchName
-		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(1)")]
-		public string BatchType
-		{
-			get
-			{
-				return this._BatchType;
-			}
-			set
-			{
-				if ((this._BatchType != value))
-				{
-					this._BatchType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
-		public System.Nullable<bool> ChiaUser
-		{
-			get
-			{
-				return this._ChiaUser;
-			}
-			set
-			{
-				if ((this._ChiaUser != value))
-				{
-					this._ChiaUser = value;
-				}
-			}
-		}
-	}
-	
 	public partial class spData_GetImage_Check_v2Result
 	{
 		
@@ -2158,86 +2078,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._Số_phiếu_đã_check != value))
 				{
 					this._Số_phiếu_đã_check = value;
-				}
-			}
-		}
-	}
-	
-	public partial class spBatch_GetListBatch_Entry_v2Result
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _BatchName;
-		
-		private string _BatchType;
-		
-		private System.Nullable<bool> _ChiaUser;
-		
-		public spBatch_GetListBatch_Entry_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
-		public string BatchName
-		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
-		public string BatchType
-		{
-			get
-			{
-				return this._BatchType;
-			}
-			set
-			{
-				if ((this._BatchType != value))
-				{
-					this._BatchType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
-		public System.Nullable<bool> ChiaUser
-		{
-			get
-			{
-				return this._ChiaUser;
-			}
-			set
-			{
-				if ((this._ChiaUser != value))
-				{
-					this._ChiaUser = value;
 				}
 			}
 		}
@@ -3449,148 +3289,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class Main_GetListBatch_Check_NewResult
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _BatchName;
-		
-		private string _BatchType;
-		
-		private System.Nullable<bool> _ChiaUser;
-		
-		private string _Ngaytao;
-		
-		private System.Nullable<int> _Hit_E11;
-		
-		public Main_GetListBatch_Check_NewResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
-		public string BatchName
-		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
-		public string BatchType
-		{
-			get
-			{
-				return this._BatchType;
-			}
-			set
-			{
-				if ((this._BatchType != value))
-				{
-					this._BatchType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
-		public System.Nullable<bool> ChiaUser
-		{
-			get
-			{
-				return this._ChiaUser;
-			}
-			set
-			{
-				if ((this._ChiaUser != value))
-				{
-					this._ChiaUser = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaytao", DbType="NVarChar(50)")]
-		public string Ngaytao
-		{
-			get
-			{
-				return this._Ngaytao;
-			}
-			set
-			{
-				if ((this._Ngaytao != value))
-				{
-					this._Ngaytao = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
-		public System.Nullable<int> Hit_E11
-		{
-			get
-			{
-				return this._Hit_E11;
-			}
-			set
-			{
-				if ((this._Hit_E11 != value))
-				{
-					this._Hit_E11 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class spData_InsertData_ENTRY_v2Result
-	{
-		
-		private string _Column1;
-		
-		public spData_InsertData_ENTRY_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
-		public string Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class Admin_View_Status_V3Result
 	{
 		
@@ -4088,6 +3786,344 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._content2 != value))
 				{
 					this._content2 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Admin_Export_Data_V2Result
+	{
+		
+		private string _BatchName;
+		
+		private System.Nullable<int> _ID_Batch;
+		
+		private string _ImageName;
+		
+		private string _ResultLC;
+		
+		private string _Thang;
+		
+		public Admin_Export_Data_V2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int")]
+		public System.Nullable<int> ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this._ID_Batch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(500)")]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this._ImageName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResultLC", DbType="NVarChar(MAX)")]
+		public string ResultLC
+		{
+			get
+			{
+				return this._ResultLC;
+			}
+			set
+			{
+				if ((this._ResultLC != value))
+				{
+					this._ResultLC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thang", DbType="NVarChar(5)")]
+		public string Thang
+		{
+			get
+			{
+				return this._Thang;
+			}
+			set
+			{
+				if ((this._Thang != value))
+				{
+					this._Thang = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spCheck_GetLishCheck_v3Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _BatchName;
+		
+		private string _BatchType;
+		
+		private System.Nullable<bool> _ChiaUser;
+		
+		private System.Nullable<int> _Hit_E11;
+		
+		public spCheck_GetLishCheck_v3Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this._BatchType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
+		public System.Nullable<bool> ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
+		public System.Nullable<int> Hit_E11
+		{
+			get
+			{
+				return this._Hit_E11;
+			}
+			set
+			{
+				if ((this._Hit_E11 != value))
+				{
+					this._Hit_E11 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spEntry_GetListbatch_v3Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _BatchName;
+		
+		private string _BatchType;
+		
+		private System.Nullable<bool> _ChiaUser;
+		
+		private System.Nullable<int> _CountChiaUser;
+		
+		private System.Nullable<int> _CountNoChiaUser;
+		
+		public spEntry_GetListbatch_v3Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this._BatchType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
+		public System.Nullable<bool> ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountChiaUser", DbType="Int")]
+		public System.Nullable<int> CountChiaUser
+		{
+			get
+			{
+				return this._CountChiaUser;
+			}
+			set
+			{
+				if ((this._CountChiaUser != value))
+				{
+					this._CountChiaUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountNoChiaUser", DbType="Int")]
+		public System.Nullable<int> CountNoChiaUser
+		{
+			get
+			{
+				return this._CountNoChiaUser;
+			}
+			set
+			{
+				if ((this._CountNoChiaUser != value))
+				{
+					this._CountNoChiaUser = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spData_InsertData_ENTRY_v2Result
+	{
+		
+		private string _Column1;
+		
+		public spData_InsertData_ENTRY_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
 				}
 			}
 		}

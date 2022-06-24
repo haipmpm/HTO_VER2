@@ -39,7 +39,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // lb_STT
             // 
             this.lb_STT.AutoSize = true;
-            this.lb_STT.Location = new System.Drawing.Point(4, 11);
+            this.lb_STT.Location = new System.Drawing.Point(4, 14);
             this.lb_STT.Name = "lb_STT";
             this.lb_STT.Size = new System.Drawing.Size(19, 13);
             this.lb_STT.TabIndex = 5;
@@ -49,9 +49,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.txt_Truong10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_Truong10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Truong10.Location = new System.Drawing.Point(245, 3);
+            this.txt_Truong10.Location = new System.Drawing.Point(363, 6);
             this.txt_Truong10.Name = "txt_Truong10";
-            this.txt_Truong10.Size = new System.Drawing.Size(38, 26);
+            this.txt_Truong10.Size = new System.Drawing.Size(44, 26);
             this.txt_Truong10.TabIndex = 1;
             this.txt_Truong10.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.txt_Truong10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_MaSP_KeyDown);
@@ -62,9 +62,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.txt_truong8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_truong8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_truong8.Location = new System.Drawing.Point(286, 3);
+            this.txt_truong8.Location = new System.Drawing.Point(413, 6);
             this.txt_truong8.Name = "txt_truong8";
-            this.txt_truong8.Size = new System.Drawing.Size(78, 26);
+            this.txt_truong8.Size = new System.Drawing.Size(107, 26);
             this.txt_truong8.TabIndex = 2;
             this.txt_truong8.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.txt_truong8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_MaSP_KeyDown);
@@ -75,7 +75,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.txt_truong9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_truong9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_truong9.Location = new System.Drawing.Point(367, 3);
+            this.txt_truong9.Location = new System.Drawing.Point(526, 6);
             this.txt_truong9.Name = "txt_truong9";
             this.txt_truong9.Size = new System.Drawing.Size(133, 26);
             this.txt_truong9.TabIndex = 3;
@@ -91,9 +91,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.txt_Truong7.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txt_Truong7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_Truong7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Truong7.Location = new System.Drawing.Point(29, 3);
+            this.txt_Truong7.Location = new System.Drawing.Point(29, 6);
             this.txt_Truong7.Name = "txt_Truong7";
-            this.txt_Truong7.Size = new System.Drawing.Size(210, 26);
+            this.txt_Truong7.Size = new System.Drawing.Size(328, 26);
             this.txt_Truong7.TabIndex = 0;
             this.txt_Truong7.TextChanged += new System.EventHandler(this.txt_TextChanged);
             this.txt_Truong7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_MaSP_KeyDown);
@@ -110,7 +110,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Controls.Add(this.txt_truong8);
             this.Controls.Add(this.txt_Truong10);
             this.Name = "UC_Detail_AT";
-            this.Size = new System.Drawing.Size(521, 33);
+            this.Size = new System.Drawing.Size(662, 40);
             this.ResumeLayout(false);
             this.PerformLayout();
 

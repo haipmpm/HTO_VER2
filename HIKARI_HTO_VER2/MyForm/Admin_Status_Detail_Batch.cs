@@ -32,7 +32,7 @@ namespace HIKARI_HTO_VER2.MyForm
                                       select new
                                       { w.ID, w.ImageName, w.Level_Image, w.Content_E1, w.UserName_E1, w.Content_E2, w.UserName_E2, w.Content_Check, w.UserName_Check, w.Content_LC }).ToList();
             
-            btn_BackCheck.Enabled = false;
+            //btn_BackCheck.Enabled = false;
         }
 
         private void grdV_Chitiet_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -68,7 +68,7 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void grdV_Chitiet_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            btn_BackCheck.Enabled = false;
+            //btn_BackCheck.Enabled = false;
             try
             {
                 if (grdV_Chitiet.GetFocusedRowCellValue("Content_E2") != null && grdV_Chitiet.GetFocusedRowCellValue("Content_E1") != null)

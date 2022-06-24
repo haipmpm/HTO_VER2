@@ -461,7 +461,7 @@ namespace HIKARI_HTO_VER2.MyForm
                                 }
                                 else if (t == 1) // Check thông tin trường 3
                                 {
-                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 4)
+                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 4 && lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Length != 0)
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 khác 4 kí tự", i, 0, t);
                                     }
@@ -609,19 +609,20 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     splitContainerControl3.SplitterPosition = splitContainerControl3.Height - 10;
                 }
-                if (Done_batch == true)
-                {
-                    btn_start.Enabled = false;
-                }
-                else
-                {
-                    btn_start.Enabled = true;
-                }
+                //if (Done_batch == true)
+                //{
+                //    btn_start.Enabled = false;
+                //}
+                //else
+                //{
+                //    btn_start.Enabled = true;
+                //}
             }
             else
             {
                 MessageBox.Show("Dữ liệu Batch trống ???");return;
-            }            
+            }
+            btn_start.Enabled = true;
         }
 
         private void grdV_CheckLogic_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -687,17 +688,42 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void btn_SaveData_Click(object sender, EventArgs e)
         {
-            lb_BatchName.Focus();
+            #region Nhảy qua cell khác để thực hiện even savedata 
+            int Column_GridData = grdV_Data.FocusedColumn.ColumnHandle;
+            int Row_GridData = grdV_Data.FocusedRowHandle;
+            grdV_Data.Focus();
+            grdV_Data.FocusedRowHandle = Row_GridData;
+            try
+            {
+                ColumnView View = (ColumnView)grd_Data.FocusedView;
+                GridColumn column = View.Columns[lc_info.Tb_Cloumns.Columns[Column_GridData - 1].ToString()];
+                grdV_Data.FocusedColumn = column;                
+            }
+            catch
+            {
+                ColumnView View = (ColumnView)grd_Data.FocusedView;
+                GridColumn column = View.Columns[lc_info.Tb_Cloumns.Columns[Column_GridData + 1].ToString()];
+                grdV_Data.FocusedColumn = column;
+            }
+            grdV_Data.Focus();
+            grdV_Data.FocusedRowHandle = Row_GridData;
+            ColumnView View1 = (ColumnView)grd_Data.FocusedView;
+            GridColumn column1 = View1.Columns[lc_info.Tb_Cloumns.Columns[Column_GridData].ToString()];
+            grdV_Data.FocusedColumn = column1;
+            grdV_Data.Focus();
+            #endregion
+            btn_CheckLogic.Focus();
             if (change_data_save)
             {
                 DataTable dt_update = new DataTable();
                 dt_update.Columns.Add("ID");
-                dt_update.Columns.Add("Data_update");                
+                dt_update.Columns.Add("Content_LC");                
                 for (int i = 0; i < lc_info.Tb_Data_Batch.Rows.Count; i++)
                 {
                     if (lc_info.Tb_Data_Batch.Rows[i]["Changed_Data"].ToString() == "1")
                     {
                         dt_update.Rows.Add(lc_info.Tb_Data_Batch.Rows[i]["ID"].ToString(), lc_info.Tb_Data_Batch.Rows[i]["Content_LC"].ToString());
+                        lc_info.Tb_Data_Batch.Rows[i]["Changed_Data"] = "";
                     }
                 }
                 try
@@ -779,7 +805,11 @@ namespace HIKARI_HTO_VER2.MyForm
 
         private void grdV_Data_CellValueChanging(object sender, CellValueChangedEventArgs e)
         {
-            
+            if (e.RowHandle > -1)
+            {
+                change = true;
+                change_data_save = true;
+            }
         }
     }
 }

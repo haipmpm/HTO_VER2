@@ -72,7 +72,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 DataTable dt_Entry = new DataTable();
                 string ConnectionString = Global.ConnectionString;
                 SqlConnection con = new SqlConnection(ConnectionString);
-                SqlCommand cmd = new SqlCommand("Admin_Pfm_GetData", con);
+                SqlCommand cmd = new SqlCommand("spAdmin_Pfm_Entry", con);
                 try
                 {
                     DataSet ds = new DataSet();                    
@@ -92,25 +92,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     con.Close(); MessageBox.Show(ex.ToString());
                 }
                 if (dt_Entry.Rows.Count > 0)
-                {                    
-                    for (int i = 0; i < dt_Entry.Rows.Count; i++)
-                    {
-                        if (dt_Entry.Rows[i]["LoaiNhap"].ToString() == "AE")
-                        {
-                            dt_Entry.Rows[i]["ContentE"] = (dt_Entry.Rows[i]["ContentE"].ToString().Split('‡')[1].Split('†').Where(x => x.ToString() != "").Count() + 1).ToString();                            
-                        }
-                        else
-                        {
-                            dt_Entry.Rows[i]["ContentE"] = "11";                            
-                        }                        
-                    }
+                { 
                     var results = from status in dt_Entry.AsEnumerable()
-                                  group status by (status.Field<string>("UserName"),status.Field<string>("LoaiNhap")) into status
+                                  group status by (status.Field<string>("UserName").ToLower(),status.Field<string>("LoaiNhap")) into status
                                   select new
                                   {              
                                       UserName = status.Select(x => x.Field<string>("UserName")).FirstOrDefault(),
                                       Fullname = status.Select(x => x.Field<string>("FullName")).FirstOrDefault(),
-                                      Tongtruong = status.Select(x => Convert.ToInt32(x.Field<string>("ContentE"))).Sum(),
+                                      Tongtruong = status.Select(x => Convert.ToInt32(x.Field<string>("LenDong"))).Sum(),
                                       Loisai = status.Select(x => x.Field<int>("Error_Entry")).Sum(),
                                       Thoigian = ((status.Select(x => x.Field<int>("TimeEntry")).Sum()) / 1000.0) / 360,
                                       LoaiNhap = status.Select(x => x.Field<string>("LoaiNhap")).FirstOrDefault(),

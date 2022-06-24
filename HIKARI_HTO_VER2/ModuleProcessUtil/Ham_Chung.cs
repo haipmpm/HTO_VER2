@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HIKARI_HTO_VER2.ModuleProcessUtil
 {
@@ -74,7 +76,48 @@ namespace HIKARI_HTO_VER2.ModuleProcessUtil
 
         }
         #endregion
+        List<int> IndexDiffs;
+        private string BackTrack_new(string s1, string s2, int lengs1, int lengs2, RichTextBox rtb)
+        {
+            if (lengs1 == 0 || lengs2 == 0)
+                return "";
+            if (s1[lengs1 - 1] == s2[lengs2 - 1])
+            {
+                IndexDiffs.Add(lengs1 - 1);
+                //rtb.SelectionStart = i - 1;
+                //rtb.SelectionLength = 1;
+                //rtb.SelectionColor = Color.Black;
+                return BackTrack_new(s1, s2, lengs1 - 1, lengs2 - 1, rtb); //+ s1[lengs1 - 1];
+            }
+            else if (c[lengs1 - 1, lengs2] >= c[lengs1, lengs2 - 1])
+                return BackTrack_new(s1, s2, lengs1 - 1, lengs2, rtb);
 
+            else
+                return BackTrack_new(s1, s2, lengs1, lengs2 - 1, rtb);
+
+        }
+        void FillColorDiff(RichTextBox rtb, List<int> lDiff, bool isReverse)
+        {
+            if (isReverse)
+            {
+                //lDiff.Reverse();
+                foreach (int diff in lDiff)
+                {
+                    rtb.SelectionStart = rtb.TextLength - diff - 1;
+                    rtb.SelectionLength = 1;
+                    rtb.SelectionColor = Color.Black;
+                }
+            }
+            else
+            {
+                foreach (int diff in lDiff)
+                {
+                    rtb.SelectionStart = diff;
+                    rtb.SelectionLength = 1;
+                    rtb.SelectionColor = Color.Black;
+                }
+            }
+        }
         public int return_error(string vl1, string vl2)
         {
             int eror = 0;

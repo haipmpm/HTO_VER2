@@ -30,6 +30,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Export_Excel = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Import_txt = new System.Windows.Forms.Button();
             this.rdb_AT = new System.Windows.Forms.RadioButton();
@@ -77,6 +78,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(150)))), ((int)(((byte)(190)))));
+            this.panel1.Controls.Add(this.btn_Export_Excel);
             this.panel1.Controls.Add(this.btn_Save);
             this.panel1.Controls.Add(this.btn_Import_txt);
             this.panel1.Controls.Add(this.rdb_AT);
@@ -89,8 +91,22 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1339, 46);
+            this.panel1.Size = new System.Drawing.Size(1521, 46);
             this.panel1.TabIndex = 2;
+            // 
+            // btn_Export_Excel
+            // 
+            this.btn_Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Export_Excel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Export_Excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Export_Excel.ForeColor = System.Drawing.Color.Black;
+            this.btn_Export_Excel.Location = new System.Drawing.Point(1250, 3);
+            this.btn_Export_Excel.Name = "btn_Export_Excel";
+            this.btn_Export_Excel.Size = new System.Drawing.Size(120, 33);
+            this.btn_Export_Excel.TabIndex = 15;
+            this.btn_Export_Excel.Text = "Export Excel";
+            this.btn_Export_Excel.UseVisualStyleBackColor = false;
+            this.btn_Export_Excel.Click += new System.EventHandler(this.btn_Export_Excel_Click);
             // 
             // btn_Save
             // 
@@ -151,7 +167,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.btn_Export.Enabled = false;
             this.btn_Export.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Export.ForeColor = System.Drawing.Color.Black;
-            this.btn_Export.Location = new System.Drawing.Point(1219, 4);
+            this.btn_Export.Location = new System.Drawing.Point(1401, 3);
             this.btn_Export.Name = "btn_Export";
             this.btn_Export.Size = new System.Drawing.Size(120, 33);
             this.btn_Export.TabIndex = 10;
@@ -200,7 +216,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1339, 660);
+            this.panel2.Size = new System.Drawing.Size(1521, 660);
             this.panel2.TabIndex = 3;
             // 
             // panel3
@@ -211,7 +227,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel3.Controls.Add(this.splitContainerControl1);
             this.panel3.Location = new System.Drawing.Point(0, 47);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1339, 613);
+            this.panel3.Size = new System.Drawing.Size(1521, 613);
             this.panel3.TabIndex = 3;
             // 
             // splitContainerControl1
@@ -226,8 +242,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1339, 613);
-            this.splitContainerControl1.SplitterPosition = 928;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1521, 613);
+            this.splitContainerControl1.SplitterPosition = 1163;
             this.splitContainerControl1.TabIndex = 3;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -237,7 +253,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.Tab_Result;
-            this.xtraTabControl1.Size = new System.Drawing.Size(924, 605);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1159, 605);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Tab_Result,
@@ -247,7 +263,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.Tab_Result.Controls.Add(this.grd_img);
             this.Tab_Result.Name = "Tab_Result";
-            this.Tab_Result.Size = new System.Drawing.Size(918, 577);
+            this.Tab_Result.Size = new System.Drawing.Size(1153, 577);
             this.Tab_Result.Text = "Tab Result";
             // 
             // grd_img
@@ -256,7 +272,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grd_img.Location = new System.Drawing.Point(0, 0);
             this.grd_img.MainView = this.grdV_img;
             this.grd_img.Name = "grd_img";
-            this.grd_img.Size = new System.Drawing.Size(918, 577);
+            this.grd_img.Size = new System.Drawing.Size(1153, 577);
             this.grd_img.TabIndex = 0;
             this.grd_img.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_img});
@@ -283,7 +299,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.Tab_Error.Controls.Add(this.grd_Error);
             this.Tab_Error.Name = "Tab_Error";
-            this.Tab_Error.Size = new System.Drawing.Size(918, 577);
+            this.Tab_Error.Size = new System.Drawing.Size(1153, 577);
             this.Tab_Error.Text = "Tab Error";
             // 
             // grd_Error
@@ -292,7 +308,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grd_Error.Location = new System.Drawing.Point(0, 0);
             this.grd_Error.MainView = this.grdV_Error;
             this.grd_Error.Name = "grd_Error";
-            this.grd_Error.Size = new System.Drawing.Size(918, 577);
+            this.grd_Error.Size = new System.Drawing.Size(1153, 577);
             this.grd_Error.TabIndex = 1;
             this.grd_Error.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_Error});
@@ -320,7 +336,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.rtb_txt);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(398, 605);
+            this.splitContainerControl2.Size = new System.Drawing.Size(345, 605);
             this.splitContainerControl2.SplitterPosition = 420;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
@@ -332,7 +348,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grd_CheckTxt.Location = new System.Drawing.Point(0, 0);
             this.grd_CheckTxt.MainView = this.grdV_CheckTxt;
             this.grd_CheckTxt.Name = "grd_CheckTxt";
-            this.grd_CheckTxt.Size = new System.Drawing.Size(394, 420);
+            this.grd_CheckTxt.Size = new System.Drawing.Size(341, 420);
             this.grd_CheckTxt.TabIndex = 1;
             this.grd_CheckTxt.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_CheckTxt});
@@ -358,7 +374,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.rtb_txt.Location = new System.Drawing.Point(0, 0);
             this.rtb_txt.Name = "rtb_txt";
             this.rtb_txt.ReadOnly = true;
-            this.rtb_txt.Size = new System.Drawing.Size(394, 176);
+            this.rtb_txt.Size = new System.Drawing.Size(341, 176);
             this.rtb_txt.TabIndex = 0;
             this.rtb_txt.Text = "";
             // 
@@ -378,7 +394,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "UC_Export_Excel";
-            this.Size = new System.Drawing.Size(1339, 660);
+            this.Size = new System.Drawing.Size(1521, 660);
             this.Load += new System.EventHandler(this.UC_Export_Excel_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -431,5 +447,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private System.ComponentModel.BackgroundWorker bgw_CheckData;
         private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Button btn_Export_Excel;
     }
 }

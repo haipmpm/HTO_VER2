@@ -220,4 +220,7 @@ D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\obj\Debug\HIKARI_HTO_VER
 D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\obj\Debug\HIKARI_HTO_VER2.MyUserControl.WaitForm1.resources
 D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\obj\Debug\HIKARI_HTO_VER2.MyUserControl.Uc_CheckAE_Back.resources
 D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\obj\Debug\HIKARI_HTO_VER2.MyUserControl.Uc_CheckAT_Back.resources
+D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\bin\Debug\AutocompleteMenu-ScintillaNET.dll
+D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\bin\Debug\ScintillaNET.dll
+D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\bin\Debug\ScintillaNET.xml
 D:\APPLICATION\Hikari_HTO_Ver2\HTO_VER2\HIKARI_HTO_VER2\obj\Debug\HIKARI_HTO_VER2.csproj.AssemblyReference.cache

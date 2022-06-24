@@ -284,7 +284,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_IdImage.Text = "";
             lb_batchname.Text = "";
 
-            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker_New0806(Global.Level_Image, Global.BatchIDSelected) select new { w.ID, w.BatchName, w.BatchType , w.Hit_E11}).Where(x=>x.Hit_E11 > 0).ToList();
+            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image, Global.BatchIDSelected) select new { w.ID, w.BatchName, w.BatchType , w.Hit_E11}).Where(x=>x.Hit_E11 > 0).ToList();
 
             if (listResult.Count > 0)
             {

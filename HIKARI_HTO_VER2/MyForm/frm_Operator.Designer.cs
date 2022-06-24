@@ -86,14 +86,15 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.tab_AT.Controls.Add(this.uC_PhieuAT1);
             this.tab_AT.Name = "tab_AT";
-            this.tab_AT.Size = new System.Drawing.Size(558, 465);
+            this.tab_AT.Size = new System.Drawing.Size(670, 465);
             this.tab_AT.Text = "Phiếu AT";
             // 
             // uC_PhieuAT1
             // 
-            this.uC_PhieuAT1.Location = new System.Drawing.Point(10, 15);
+            this.uC_PhieuAT1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uC_PhieuAT1.Location = new System.Drawing.Point(0, 0);
             this.uC_PhieuAT1.Name = "uC_PhieuAT1";
-            this.uC_PhieuAT1.Size = new System.Drawing.Size(537, 403);
+            this.uC_PhieuAT1.Size = new System.Drawing.Size(670, 465);
             this.uC_PhieuAT1.TabIndex = 0;
             // 
             // lb_IdImage
@@ -204,7 +205,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(2, 685);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(564, 46);
+            this.panelControl2.Size = new System.Drawing.Size(676, 46);
             this.panelControl2.TabIndex = 1;
             // 
             // btn_Cancel
@@ -212,7 +213,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Cancel.Appearance.Options.UseFont = true;
-            this.btn_Cancel.Location = new System.Drawing.Point(296, 7);
+            this.btn_Cancel.Location = new System.Drawing.Point(352, 7);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(85, 37);
             this.btn_Cancel.TabIndex = 6;
@@ -226,7 +227,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Save.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Save.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Save.Appearance.Options.UseFont = true;
-            this.btn_Save.Location = new System.Drawing.Point(114, 6);
+            this.btn_Save.Location = new System.Drawing.Point(170, 6);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(85, 37);
             this.btn_Save.TabIndex = 5;
@@ -239,7 +240,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_BackImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_BackImage.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_BackImage.Appearance.Options.UseFont = true;
-            this.btn_BackImage.Location = new System.Drawing.Point(5, 13);
+            this.btn_BackImage.Location = new System.Drawing.Point(117, 13);
             this.btn_BackImage.Name = "btn_BackImage";
             this.btn_BackImage.Size = new System.Drawing.Size(85, 25);
             this.btn_BackImage.TabIndex = 4;
@@ -253,7 +254,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Submit_Logout.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Submit_Logout.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Submit_Logout.Appearance.Options.UseFont = true;
-            this.btn_Submit_Logout.Location = new System.Drawing.Point(353, 7);
+            this.btn_Submit_Logout.Location = new System.Drawing.Point(409, 7);
             this.btn_Submit_Logout.Name = "btn_Submit_Logout";
             this.btn_Submit_Logout.Size = new System.Drawing.Size(131, 35);
             this.btn_Submit_Logout.TabIndex = 2;
@@ -266,7 +267,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Submit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_Submit.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Submit.Appearance.Options.UseFont = true;
-            this.btn_Submit.Location = new System.Drawing.Point(205, 6);
+            this.btn_Submit.Location = new System.Drawing.Point(261, 6);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(85, 37);
             this.btn_Submit.TabIndex = 1;
@@ -324,7 +325,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.tabcontrol.Location = new System.Drawing.Point(0, 0);
             this.tabcontrol.Name = "tabcontrol";
             this.tabcontrol.SelectedTabPage = this.tab_AE;
-            this.tabcontrol.Size = new System.Drawing.Size(564, 493);
+            this.tabcontrol.Size = new System.Drawing.Size(676, 493);
             this.tabcontrol.TabIndex = 0;
             this.tabcontrol.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tab_AE,
@@ -335,14 +336,15 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.tab_AE.Controls.Add(this.uC_PhieuAE1);
             this.tab_AE.Name = "tab_AE";
-            this.tab_AE.Size = new System.Drawing.Size(558, 465);
+            this.tab_AE.Size = new System.Drawing.Size(653, 465);
             this.tab_AE.Text = "Phiếu AE";
             // 
             // uC_PhieuAE1
             // 
-            this.uC_PhieuAE1.Location = new System.Drawing.Point(18, 10);
+            this.uC_PhieuAE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uC_PhieuAE1.Location = new System.Drawing.Point(0, 0);
             this.uC_PhieuAE1.Name = "uC_PhieuAE1";
-            this.uC_PhieuAE1.Size = new System.Drawing.Size(524, 420);
+            this.uC_PhieuAE1.Size = new System.Drawing.Size(653, 465);
             this.uC_PhieuAE1.TabIndex = 0;
             // 
             // labelControl1
@@ -364,7 +366,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitContainerControl1.Panel2.Controls.Add(this.label1);
             this.splitContainerControl1.Panel2.Controls.Add(this.lb_quyDinh);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(564, 683);
+            this.splitContainerControl1.Size = new System.Drawing.Size(676, 683);
             this.splitContainerControl1.SplitterPosition = 493;
             this.splitContainerControl1.TabIndex = 2;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -389,7 +391,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel_Right.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Right.Location = new System.Drawing.Point(0, 0);
             this.panel_Right.Name = "panel_Right";
-            this.panel_Right.Size = new System.Drawing.Size(568, 733);
+            this.panel_Right.Size = new System.Drawing.Size(680, 733);
             this.panel_Right.TabIndex = 18;
             // 
             // btn_Review
@@ -397,7 +399,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Review.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Review.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Review.Appearance.Options.UseFont = true;
-            this.btn_Review.Location = new System.Drawing.Point(752, 703);
+            this.btn_Review.Location = new System.Drawing.Point(640, 703);
             this.btn_Review.Name = "btn_Review";
             this.btn_Review.Size = new System.Drawing.Size(85, 25);
             this.btn_Review.TabIndex = 3;
@@ -416,7 +418,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.splitMain.Panel2.Controls.Add(this.panel_Right);
             this.splitMain.Panel2.Text = "Panel2";
             this.splitMain.Size = new System.Drawing.Size(1434, 733);
-            this.splitMain.SplitterPosition = 568;
+            this.splitMain.SplitterPosition = 680;
             this.splitMain.TabIndex = 38;
             this.splitMain.Text = "splitContainerControl1";
             // 
@@ -431,7 +433,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.ImgV.MaxZoom = 20F;
             this.ImgV.MinZoom = 0.05F;
             this.ImgV.Name = "ImgV";
-            this.ImgV.Size = new System.Drawing.Size(861, 733);
+            this.ImgV.Size = new System.Drawing.Size(749, 733);
             this.ImgV.TabIndex = 5;
             this.ImgV.TabStop = false;
             // 

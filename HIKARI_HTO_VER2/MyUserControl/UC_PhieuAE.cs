@@ -190,7 +190,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 // Dữ liệu đã được bỏ ô trống để qua LC
                 string str_data_body_AE_Split = String.Join("†", lst_texbox_Entry_AE_Body.Where(x=>x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string Data_Split = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE_Split);                
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Split('‡')[1].ToString().Split('†').Length.ToString(), Data_Split);
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), str_data_body_AE_Split.Split('†').Length.ToString(), Data_Split, Global.strUsername);
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";
@@ -249,6 +249,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
             return tbDetail;
         }
 
+        private void UC_PhieuAE_Load(object sender, EventArgs e)
+        {
+
+        }
+
         //public bool Save_DataChecker(string idbatch, string iDImage, string strUsername, string userNaemInputU1, string userNaemInputU2)
         //{
         //    if (String.IsNullOrEmpty(uC_HeaderAE1.txt_Truong2.Text) == true)
@@ -259,7 +264,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         //    if (idbatch == "" || iDImage == "")
         //        return false;
 
-           
+
 
         //    string ConnectionString = Global.ConnectionString;
         //    SqlConnection con = new SqlConnection(ConnectionString);

@@ -17,3 +17,13 @@ HIKARI_HTO_VER2/bin/Debug/
 *.application
 *.exe
 *.cache
+.vs/HIKARI_HTO_VER2/v16/.suo
+*.application
+*.pdb
+*.manifest
+*.application
+*.exe
+*.csproj
+*.resources
+*.cache
+*.cache

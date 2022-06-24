@@ -74,7 +74,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         hd.txt_truong5.Focus();
                     }
                 break;
-                case Keys.Down:
+                case Keys.Down: case Keys.Enter:
                     if (_next is UC_HeaderAT hd1)
                     {
                         hd1.Focus();
@@ -192,9 +192,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
             txt_Truong7.Location = pt;
         }
 
-      
-
-       
 
         private void txt_truong8_KeyUp(object sender, KeyEventArgs e)
         {
@@ -235,11 +232,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                             txt_Truong10.Text = at.txt_Truong10.Text;
                             txt_Truong10.SelectAll();
                         }
-
                     }
-
-                }
-                
+                }                
             }
         }
         private void txt_TextChanged(object sender, EventArgs e)
@@ -258,7 +252,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 e.Handled = true;
             }
-
             // only allow one decimal point
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
@@ -273,7 +266,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         private void txt_Truong7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
+            //e.Handled = (e.KeyChar == (char)Keys.Space || e.KeyChar == '-' || e.KeyChar == 'ｰ');
+            if (e.KeyChar == 'ｰ')
+            {
+                e.Handled = true ;
+            }
         }
 
         private void UC_Detail_AT_Load()

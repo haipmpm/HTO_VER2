@@ -111,6 +111,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lst.Add(uC_Detail_AT9);
             lst.Add(uC_Detail_AT10);
 
+            
             uC_Detail_AT1.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
             uC_Detail_AT2.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
             uC_Detail_AT3.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
@@ -121,9 +122,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
             uC_Detail_AT8.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
             uC_Detail_AT9.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
             uC_Detail_AT10.txt_Truong7.TextChanged += Txt_Truong7_TextChanged;
+
         }
-
-
 
         public void FocusUC()
         {
@@ -293,17 +293,23 @@ namespace HIKARI_HTO_VER2.MyUserControl
             { return "2"; }
             else
             {
+                int RowLenght_Nhap = 0;
                 string str_data_header_AE = String.Join("†", lst_header_AT.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 List<string> lst_str_data_body_AE = new List<string>();
                 for (int i = 0; i < lst_to_List_body.Count; i++)
                 {
-                    if (lst_to_List_body[i].ToList()[1].ToString() != "")
+                    if (lst_to_List_body[i][0].ToString() != "")
                     {
                         lst_str_data_body_AE.Add(String.Join("†", lst_to_List_body[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
                     }
+                    string DatarowAT = lst_to_List_body[i][0].Text.ToString();
+                    if (DatarowAT != "SAKUJYO" && DatarowAT != "YOHAKU" && DatarowAT != "KAKISONJI" && DatarowAT != "MISIYO")
+                    {
+                        RowLenght_Nhap++;
+                    }
                 }
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), data_full.Replace("†", "").Replace("‡", "").ToString().Length.ToString(), data_full);
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), RowLenght_Nhap.ToString(), data_full, Global.strUsername);
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";

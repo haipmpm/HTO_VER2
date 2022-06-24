@@ -56,7 +56,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             dt_exportexcel.Columns.Add("3. Code");
             dt_exportexcel.Columns.Add("4. 班");
             dt_exportexcel.Columns.Add("5.棚番");
-            dt_exportexcel.Columns.Add("6. STT");
+            dt_exportexcel.Columns.Add("6. STT", typeof(int));
             dt_exportexcel.Columns.Add("7. Mã SP");
             dt_exportexcel.Columns.Add("8. Mã 工号");
             dt_exportexcel.Columns.Add("9. Số lượng");
@@ -86,7 +86,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             dt_exportexcel.Columns.Add("3. Code");
             dt_exportexcel.Columns.Add("4. 班");
             dt_exportexcel.Columns.Add("5.棚番");
-            dt_exportexcel.Columns.Add("6. STT");
+            dt_exportexcel.Columns.Add("6. STT", typeof(int));
             dt_exportexcel.Columns.Add("7. Mã SP");
             dt_exportexcel.Columns.Add("8. Mã 工号");
             dt_exportexcel.Columns.Add("9. Số lượng");
@@ -247,11 +247,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 { splashScreenManager1.CloseWaitForm(); MessageBox.Show("Thiếu thông tin Loại được chọn ???"); return; }
             }
             else { splashScreenManager1.CloseWaitForm(); MessageBox.Show("Thiếu thông tin Batch được chọn ???"); return; }
-            List<int> lst_Data_Excel_T2 = new List<int>(tb_Result.Rows.Count);
-            DataRow[] dtr = tb_Result.Select("[" + tb_Result.Columns[Constant.Truong02].ColumnName + "] <> ''");
-            lst_Data_Excel_T2.AddRange(dtr.Select(x => Convert.ToInt32(x.ItemArray[2].ToString())).Distinct());
-            
-            
+            //List<int> lst_Data_Excel_T2 = new List<int>(tb_Result.Rows.Count);
+            //DataRow[] dtr = tb_Result.Select("[" + tb_Result.Columns[Constant.Truong02].ColumnName + "] <> ''");
+            //lst_Data_Excel_T2.AddRange(dtr.Select(x => Convert.ToInt32(x.ItemArray[2].ToString())).Distinct());
+            btn_Export.Enabled = true;
+
+
             splashScreenManager1.CloseWaitForm();
         }
 
@@ -309,7 +310,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             if (path == "")
                 return "";
 
-            string s = path.Substring(7, 4);
+            string s = path.Substring(10, 4);
             switch (s)
             {
                 case "SOKA":
@@ -423,7 +424,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
                         advOptions.SheetName = "Data";
                         advOptions.CustomizeCell += AdvOptions_CustomizeCell; ;
-                        grd_img.ExportToXlsx(Filename + @"\" + "File_Excel_Data.xlsx" , advOptions);
+                        grd_img.ExportToXlsx(Filename + @"\" +  Path.GetFileName(sfd.FileName).Split('.')[0].ToString() +  "File_Excel_Data.xlsx" , advOptions);
 
                         grdV_Error.ClearSorting();
                         grdV_Error.ClearColumnsFilter();
@@ -436,7 +437,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions_Err.SheetName = "Data_Error";
 
                         advOptions_Err.CustomizeCell += AdvOptions_CustomizeCell_Error; ;
-                        grd_Error.ExportToXlsx(Filename + @"\" + "File_Excel_Data_Error.xlsx", advOptions_Err);
+                        grd_Error.ExportToXlsx(Filename + @"\" + Path.GetFileName(sfd.FileName).Split('.')[0].ToString() + "File_Excel_Data_Error.xlsx", advOptions_Err);
 
                         try
                         {
@@ -452,7 +453,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][3].ToString()), 4, " ");//truong code
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][4].ToString()), 10, " ");//truong 04
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][5].ToString()), 15, " ");//truong 05
-                                logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][6].ToString()), 2, " ");//truong stt
+                                logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][6].ToString().PadLeft(2,'0')), 2, " ");//truong stt
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][7].ToString()), 30, " ");//truong 07
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][8].ToString()), 25, " ");//truong 08
                                 if (string.IsNullOrEmpty(tb_Result.Rows[i][9].ToString()))
@@ -729,12 +730,31 @@ namespace HIKARI_HTO_VER2.MyUserControl
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
-        {            
+        {
+            #region Nhảy qua cell khác để thực hiện even savedata
+            int Column_GridData = grdV_img.FocusedColumn.ColumnHandle;
+            int Row_GridData = grdV_img.FocusedRowHandle;
+            grdV_img.Focus();            
+            try
+            {
+                grdV_img.FocusedRowHandle = Row_GridData - 1;                
+            }
+            catch
+            {
+                grdV_img.FocusedRowHandle = Row_GridData + 1;                
+            }
+            ColumnView View = (ColumnView)grd_img.FocusedView;
+            GridColumn column = View.Columns[tb_Result.Columns[Column_GridData].ToString()];
+            grdV_img.FocusedColumn = column;
+            grdV_img.Focus();
+            grdV_img.FocusedRowHandle = Row_GridData;            
+            grdV_img.Focus();
+            #endregion
             if (tb_Image_Change.Rows.Count > 0)
             {
                 DataTable dt_update = new DataTable();
                 dt_update.Columns.Add("ID_Batch");
-                dt_update.Columns.Add("Data_update");
+                dt_update.Columns.Add("Content_LC");
                 dt_update.Columns.Add("ImageName");
                 for (int i = 0; i < tb_Image_Change.Rows.Count; i++)
                 {
@@ -753,7 +773,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         str_SaveData = Vung1 + "‡" + String.Join("†", lst_Data);
                     }
                     else if (rdb_AT.Checked)
-                    { //‡
+                    { 
                         List<string> lst_Data = new List<string>();
                         foreach (DataRow item in dtr.Rows)
                         {
@@ -794,6 +814,55 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {//Global.StrPath + @"\" + item.ID_Batch + "_" + item.BatchName + @"\" + item.ImageName;
                 string nameImg = Global.StrPath + @"\" + grdV_img.GetFocusedRowCellValue("BatchID").ToString() + "_" + grdV_img.GetFocusedRowCellValue("BatchName").ToString() + @"\" + grdV_img.GetFocusedRowCellValue("TRƯỜNG").ToString();
                 Process.Start(nameImg);
+            }
+        }
+
+        private void btn_Export_Excel_Click(object sender, EventArgs e)
+        {
+            if (tb_Image_Change.Rows.Count > 0)
+            {
+                MessageBox.Show("Dữ liệu có Sửa nhưng chưa Save Data !!!");
+                return;
+            }
+            var MessQuesstion = MessageBox.Show("Thực hiện Export Dữ liệu ra 2 File Excel", "Question ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (MessQuesstion == DialogResult.Yes)
+            {
+                if (tb_Result.Rows.Count > 0)
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "Excel Files (.xlsx) |*.xlsx";
+                    sfd.Title = "Save Excel File";
+                    sfd.FileName = "";
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        //string Filename = Path.GetDirectoryName(sfd.FileName);
+                        grdV_img.ClearSorting();
+                        grdV_img.ClearColumnsFilter();
+                        grdV_img.ClearGrouping();
+                        (grd_img.MainView as GridView).OptionsPrint.PrintHorzLines = false;
+                        XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
+                        //advOptions.TextExportMode = TextExportMode.Text;
+                        advOptions.ExportMode = XlsxExportMode.SingleFile;
+                        advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                        advOptions.SheetName = "Data";
+                        advOptions.CustomizeCell += AdvOptions_CustomizeCell; ;
+                        grd_img.ExportToXlsx(sfd.FileName, advOptions);
+
+                        grdV_Error.ClearSorting();
+                        grdV_Error.ClearColumnsFilter();
+                        grdV_Error.ClearGrouping();
+                        (grd_Error.MainView as GridView).OptionsPrint.PrintHeader = true;
+                        XlsxExportOptionsEx advOptions_Err = new XlsxExportOptionsEx();
+                        advOptions_Err.TextExportMode = TextExportMode.Text;
+                        advOptions_Err.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
+                        advOptions_Err.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                        advOptions_Err.SheetName = "Data_Error";
+
+                        advOptions_Err.CustomizeCell += AdvOptions_CustomizeCell_Error; ;
+                        grd_Error.ExportToXlsx(sfd.FileName, advOptions_Err);
+                    }
+                }
             }
         }
 

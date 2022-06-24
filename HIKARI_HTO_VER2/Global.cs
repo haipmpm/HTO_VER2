@@ -40,6 +40,7 @@ namespace HIKARI_HTO_VER2
         public const string success = "Information";
         public static string strIP_Adress = "127.0.0.1";
 
+        public static AutocompleteMenuNS.AutocompleteMenu ListAutoComP;
         public static string Strtoken = "";
 
         public static string MsgWarning = " Bạn đang để trống toàn bộ trường! Bạn có muốn tiêp tục submit không?\n" +

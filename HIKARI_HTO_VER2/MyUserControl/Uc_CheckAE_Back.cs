@@ -35,9 +35,28 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 x.KeyDown += X_KeyDown;
                 x.Enter += X_Enter;
+                x.KeyPress += X_KeyPress;
             });
             // Clear Toàn bộ dữ liệu
             lst_all_rtb.ForEach(x => x.Clear());           
+        }
+
+        private void X_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            RichTextBox rtb = (RichTextBox)sender;
+            if (rtb.TabIndex > 4)
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '?') && (e.KeyChar != 't'))
+                {
+                    e.Handled = true;
+                }
+                // only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
 
         private void X_Enter(object sender, EventArgs e)
@@ -160,15 +179,75 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             // Tính lỗi phần Body của AE
             //string str_data_body_AE = String.Join("†", lst_body.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
-            for (int i = 0; i < lst_body.Count; i++)
+            if (Error_E1 == 0)
             {
-                if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[1].Split('†')[i].ToString(), lst_body[i].Text.ToString()) > 0)
+                for (int i = 0; i < lst_body.Count; i++)
                 {
-                    Error_E1++;
+                    if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[1].Split('†')[i].ToString(), lst_body[i].Text.ToString()) > 0)
+                    {
+                        Error_E1++;
+                    }
                 }
-                if (Function_tinhloi.return_error(CheckInfo.Content_E2.Split('‡')[1].Split('†')[i].ToString(), lst_body[i].Text.ToString()) > 0)
+
+                int row_E1_Create = 0;
+                for (int i = 0; i < lst_body.Count; i++)
                 {
-                    Error_E2++;
+                    if (CheckInfo.Content_E1.Split('‡')[1].Split('†')[i].ToString() != "")
+                    {
+                        row_E1_Create = i + 1;
+                    }
+                }
+
+                if (Error_E1 > row_E1_Create)
+                {
+                    Error_E1 = row_E1_Create;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lst_body.Count; i++)
+                {
+                    if (CheckInfo.Content_E1.Split('‡')[1].Split('†')[i].ToString() != "")
+                    {
+                        Error_E1 = i + 1;
+                    }
+                }
+            }
+            // TH NLV nhập thiếu dòng nhưng xử lý lỗi tối đa là số dòng Entry nhập
+
+
+            if (Error_E2 == 0)
+            {
+                for (int i = 0; i < lst_body.Count; i++)
+                {
+                    if (Function_tinhloi.return_error(CheckInfo.Content_E2.Split('‡')[1].Split('†')[i].ToString(), lst_body[i].Text.ToString()) > 0)
+                    {
+                        Error_E2++;
+                    }
+                }
+
+                int row_E2_Create = 0;
+                for (int i = 0; i < lst_body.Count; i++)
+                {
+                    if (CheckInfo.Content_E2.Split('‡')[1].Split('†')[i].ToString() != "")
+                    {
+                        row_E2_Create = i + 1;
+                    }
+                }
+
+                if (Error_E2 > row_E2_Create)
+                {
+                    Error_E2 = row_E2_Create;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lst_body.Count; i++)
+                {
+                    if (CheckInfo.Content_E2.Split('‡')[1].Split('†')[i].ToString() != "")
+                    {
+                        Error_E2 = i + 1;
+                    }
                 }
             }
             string str_data_body_AE_last = String.Join("†", lst_body.Where(x => x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));

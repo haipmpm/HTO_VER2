@@ -55,7 +55,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         dt.txt_truong9.Focus();
                     }
                     break;
-                case Keys.Down:
+                case Keys.Down: case Keys.Enter:
                     if (next is UC_Detail_AT dt1)
                     {
                         dt1.Focus();

@@ -44,12 +44,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             // txt_Truong9
             // 
+            this.txt_Truong9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txt_Truong9.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txt_Truong9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txt_Truong9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Truong9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Truong9.Location = new System.Drawing.Point(28, 3);
-            this.txt_Truong9.MaxLength = 10;
+            this.txt_Truong9.MaxLength = 12;
             this.txt_Truong9.Name = "txt_Truong9";
-            this.txt_Truong9.Size = new System.Drawing.Size(208, 26);
+            this.txt_Truong9.Size = new System.Drawing.Size(176, 31);
             this.txt_Truong9.TabIndex = 2;
             this.txt_Truong9.TextChanged += new System.EventHandler(this.txt_Truong9_TextChanged);
             this.txt_Truong9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SoLuong_KeyDown);
@@ -63,7 +65,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Controls.Add(this.lb_STT);
             this.Controls.Add(this.txt_Truong9);
             this.Name = "UC_Detail_AE";
-            this.Size = new System.Drawing.Size(239, 31);
+            this.Size = new System.Drawing.Size(221, 36);
             this.ResumeLayout(false);
             this.PerformLayout();
 

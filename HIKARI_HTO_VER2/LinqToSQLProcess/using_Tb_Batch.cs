@@ -20,35 +20,23 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
         {
             logErr = new using_Tb_LogErr();
         }        
-        public List<spBatch_GetListBatch_Entry_v2Result> Get_ListBatch_Entry(int level_image, string ID_Batch, string level_User, string UserName)
-        {
-            try 
-            {
-                return GlobalDB.DBLinq.spBatch_GetListBatch_Entry_v2(level_image.ToString(), ID_Batch, level_User, UserName).ToList();
-            }
-            catch (Exception ex)
-            {
-                logErr.AddLogErr(ex);
-            }
-            return null;
-        }
-        public List<spBatch_getListBatch_Check_v2Result> Get_ListBatch_Checker(int level_image, string ID_Batch)
-        {
-            try
-            {
-                return GlobalDB.DBLinq.spBatch_getListBatch_Check_v2(ID_Batch,level_image.ToString()).ToList();
-            }
-            catch (Exception ex)
-            {
-                logErr.AddLogErr(ex);
-            }
-            return null;
-        }
-        public List<Main_GetListBatch_Check_NewResult> Get_ListBatch_Checker_New0806(int level_image, string ID_Batch)
+        //public List<spBatch_GetListBatch_Entry_v2Result> Get_ListBatch_Entry(int level_image, string ID_Batch, string level_User, string UserName)
+        //{
+        //    try 
+        //    {
+        //        return GlobalDB.DBLinq.spBatch_GetListBatch_Entry_v2(level_image.ToString(), ID_Batch, level_User, UserName).ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logErr.AddLogErr(ex);
+        //    }
+        //    return null;
+        //}
+        public List<spEntry_GetListbatch_v3Result> Get_ListBatch_Entry_new(int level_image, string ID_Batch, string level_User, string UserName)
         {
             try
             {
-                return GlobalDB.DBLinq.Main_GetListBatch_Check_New(ID_Batch, level_image.ToString()).ToList();
+                return GlobalDB.DBLinq.spEntry_GetListbatch_v3(level_image.ToString(), ID_Batch, level_User, UserName).ToList();
             }
             catch (Exception ex)
             {
@@ -56,6 +44,30 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return null;
         }
+        public List<spCheck_GetLishCheck_v3Result> Get_ListBatch_Checker(int level_image, string ID_Batch)
+        {
+            try
+            {
+                return GlobalDB.DBLinq.spCheck_GetLishCheck_v3(ID_Batch,level_image.ToString()).ToList();
+            }
+            catch (Exception ex)
+            {
+                logErr.AddLogErr(ex);
+            }
+            return null;
+        }
+        //public List<Main_GetListBatch_Check_NewResult> Get_ListBatch_Checker_New0806(int level_image, string ID_Batch)
+        //{
+        //    try
+        //    {
+        //        return GlobalDB.DBLinq.Main_GetListBatch_Check_New(ID_Batch, level_image.ToString()).ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logErr.AddLogErr(ex);
+        //    }
+        //    return null;
+        //}
         public List<spBatch_getListbatch_LC_v2Result> get_batch_LastCheck(string UserName)
         {
             try

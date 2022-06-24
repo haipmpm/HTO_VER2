@@ -30,6 +30,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
         Ham_Chung Function_tinhloi;
         List<Label> lb_header = new List<Label>();
         bool bl_Load = false;
+        bool isSuggestOpened;
+        bool index_User1 = true;
         public UC_CHECKER_AT()
         {
             InitializeComponent();
@@ -52,8 +54,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
         
         private void UC_CHECKER_AT_Load(object sender, EventArgs e)
         {
-            lst_to_List_Rtb.ForEach(x =>
-            {
+            autocompleteMenu1.Items = Global.ListAutoComP.Items;
+            autocompleteMenu1.AllowsTabKey = true;
+            autocompleteMenu1.Opening += AutocompleteMenu1_Opening;
+            autocompleteMenu1.Selected += AutocompleteMenu1_Selected;
+            
+            lst_to_List_Rtb.ForEach(x =>{
                 x.ForEach(s =>
                 {
                     s.MouseDown += new MouseEventHandler(this.rtb_MouseDown);
@@ -61,69 +67,108 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     s.TextChanged += new EventHandler(this.rtb_TextChanged);
                     s.KeyDown += new KeyEventHandler(this.rtb_KeyDown);
                     s.Enter += new EventHandler(this.rtb_Enter);
+                    s.Leave += S_Leave;
                 });
-            });
+            });            
             // Clear Toàn bộ dữ liệu
             //lst_to_List_Rtb.ForEach(x => x.Clear());
         }
+
+        private void S_Leave(object sender, EventArgs e)
+        {
+            RichTextBox rtb = (RichTextBox)(sender);            
+            isSuggestOpened = false;
+            if (rtb.Name.Contains("rtb_truong7_"))
+            {
+                autocompleteMenu1.Enabled = false;
+            }
+        }
+
+        private void AutocompleteMenu1_Selected(object sender, AutocompleteMenuNS.SelectedEventArgs e)
+        {
+            isSuggestOpened = false;
+        }
+
+        private void AutocompleteMenu1_Opening(object sender, CancelEventArgs e)
+        {
+            isSuggestOpened = true;
+        }
+
         private void rtb_Enter(object sender, EventArgs e)
         {
             RichTextBox rtb = (RichTextBox)(sender);
             rtb.SelectAll();
+            isSuggestOpened = false;
+            if (rtb.Name.Contains("rtb_truong7_"))
+            {
+                autocompleteMenu1.Enabled = true;
+            }
         }
         private void rtb_KeyDown(object sender, KeyEventArgs e)
         {
             RichTextBox rtb = (RichTextBox)(sender);
-            if (e.KeyCode == Keys.Up)
+            if (isSuggestOpened == false)
             {
-                try
+                if (e.KeyCode == Keys.Up)
                 {
-                    lst_to_List_Rtb[((rtb.TabIndex - 1) / 4 ) - 1][(rtb.TabIndex - 1) % 4].Focus();
-                    e.Handled = true;
+                    try
+                    {
+                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) - 1][(rtb.TabIndex - 1) % 4].Focus();
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
                 }
-                catch { rtb.Focus(); e.Handled = true; }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    try
+                    {
+                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][(rtb.TabIndex - 1) % 4].Focus();
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    try
+                    {
+                        if ((rtb.TabIndex) % 4 == 0 && rtb.TabIndex > 1)
+                        {
+                            lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][0].Focus();
+                        }
+                        else
+                        {
+                            lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 1) % 4) + 1].Focus();
+                        }
 
-            }
-            else if (e.KeyCode == Keys.Down)
-            {
-                try
-                {
-                    lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][(rtb.TabIndex - 1) % 4].Focus();
-                    e.Handled = true;
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
                 }
-                catch { rtb.Focus(); e.Handled = true; }
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                try
+                else if (e.KeyCode == Keys.Left)
                 {
-                    if ((rtb.TabIndex) % 4 == 0 && rtb.TabIndex > 1)
+                    try
                     {
-                        lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][0].Focus();
-                    }
-                    else
-                    {
-                        lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 1) % 4) + 1].Focus();
-                    }
-                    
-                    e.Handled = true;
-                }
-                catch { rtb.Focus(); e.Handled = true; }
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                try
-                {
-                    if ((rtb.TabIndex - 1) % 4 == 0 && rtb.TabIndex > 1)
-                    {
-                        lst_to_List_Rtb[((rtb.TabIndex -2) / 4)][3].Focus();
-                    }
-                    else
-                    {
-                        lst_to_List_Rtb[(rtb.TabIndex - 1)/ 4][((rtb.TabIndex -2) % 4)].Focus();
-                    }
+                        if ((rtb.TabIndex - 1) % 4 == 0 && rtb.TabIndex > 1)
+                        {
+                            lst_to_List_Rtb[((rtb.TabIndex - 2) / 4)][3].Focus();
+                        }
+                        else
+                        {
+                            lst_to_List_Rtb[(rtb.TabIndex - 1) / 4][((rtb.TabIndex - 2) % 4)].Focus();
+                        }
 
+                        e.Handled = true;
+                    }
+                    catch { rtb.Focus(); e.Handled = true; }
+                }
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    lst_to_List_Rtb[((rtb.TabIndex - 1) / 4) + 1][(rtb.TabIndex - 1) % 4].Focus();                    
                     e.Handled = true;
+                    isSuggestOpened = false;
                 }
                 catch { rtb.Focus(); e.Handled = true; }
             }
@@ -139,9 +184,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     lst_to_List_Rtb[index_rtb_7_inList][1].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][2].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][3].Text = "";
-                    //lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = false;
-                    //lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = false;
-                    //lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = false;
+                    lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = false;
+                    lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = false;
+                    lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = false;
                     if (bl_Load == false)
                     {
                         if (rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
@@ -172,6 +217,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 }
                 else
                 {
+                    lst_to_List_Rtb[index_rtb_7_inList][0].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][1].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][2].Enabled = true;
                     lst_to_List_Rtb[index_rtb_7_inList][3].Enabled = true;
@@ -179,7 +225,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     lst_header_AT[2].Enabled = true;
                     lst_header_AT[3].Enabled = true;
                 }                
-            }
+            }            
         }
         private void rtb_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -191,10 +237,21 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     e.Handled = true;
                 }
             }
-            if ((e.KeyChar == '@') && (e.KeyChar != '#') && (e.KeyChar != '-'))
+            else if (rtb.TabIndex / 4 > 1 && rtb.TabIndex % 4 == 0)
             {
-                e.Handled = true;
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '?') && (e.KeyChar != 't'))
+                {
+                    e.Handled = true;
+                }
+
+                // only allow one decimal point
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
             }
+            e.KeyChar = Char.ToUpper(e.KeyChar);
+
         }
         private void rtb_Click(object sender, KeyEventArgs e)
         {
@@ -209,15 +266,15 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 if (rtb.TabIndex > 0)
                 {
                     bl_Load = true;
-                    if (rtb.Text == CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) /4].Split('†')[(rtb.TabIndex - 1) % 4].ToString())
+                    if (rtb.Text == CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) /4].Split('†')[(rtb.TabIndex - 1) % 4].ToString())
                     {
                         rtb.SelectionStart = 0;
                         rtb.SelectionLength = rtb.Text.Length;
                         rtb.SelectionColor = Color.Red;
-                        rtb.Text = CheckInfo.Content_E2.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        rtb.Text = CheckInfo.Content_E2_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         string s1, s2;
-                        s1 = CheckInfo.Content_E2.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
-                        s2 = CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s1 = CheckInfo.Content_E2_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s2 = CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         c = null;
                         c = new int[s1.Length + 1, s2.Length + 1];
                         LCS(s1, s2);
@@ -225,15 +282,15 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         lb_User2.ForeColor = Color.Orange;
                         lb_User1.ForeColor = Color.Black;
                     }
-                    else if (rtb.Text == CheckInfo.Content_E2.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString())
+                    else if (rtb.Text == CheckInfo.Content_E2_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString())
                     {
                         rtb.SelectionStart = 0;
                         rtb.SelectionLength = rtb.Text.Length;
                         rtb.SelectionColor = Color.Red;
-                        rtb.Text = CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        rtb.Text = CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         string s1, s2;
-                        s1 = CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
-                        s2 = CheckInfo.Content_E2.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s1 = CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s2 = CheckInfo.Content_E2_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         c = null;
                         c = new int[s1.Length + 1, s2.Length + 1];
                         LCS(s1, s2);
@@ -246,10 +303,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         rtb.SelectionStart = 0;
                         rtb.SelectionLength = rtb.Text.Length;
                         rtb.SelectionColor = Color.Red;
-                        rtb.Text = CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        rtb.Text = CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         string s1, s2;
-                        s1 = CheckInfo.Content_E1.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
-                        s2 = CheckInfo.Content_E2.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s1 = CheckInfo.Content_E1_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
+                        s2 = CheckInfo.Content_E2_Tam.Split('‡')[(rtb.TabIndex - 1) / 4].Split('†')[(rtb.TabIndex - 1) % 4].ToString();
                         c = null;
                         c = new int[s1.Length + 1, s2.Length + 1];
                         LCS(s1, s2);
@@ -289,40 +346,43 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
             lst_to_List_Rtb.ForEach(x => x.ForEach(s=> { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));            
             CheckInfo = InfoCheck;
+
+            CheckInfo.Content_E1_Tam = CheckInfo.Content_E1;
+            CheckInfo.Content_E2_Tam = CheckInfo.Content_E2;
+
             lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
             lb_User1.ForeColor = Color.Orange;
             lb_User2.Text = "Name 2: " + CheckInfo.UserName_E2.ToString();
-            lb_User2.ForeColor = Color.Black;
-            if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
+            lb_User2.ForeColor = Color.Black;            
+            //string s1 = "", s2 = "";
+            #region ADD Info cho các trường ở giao diện AT
+            bl_Load = true;
+            for (int i = 0; i < lst_to_List_Rtb.Count; i++)
             {
-                //string s1 = "", s2 = "";
-                #region ADD Info cho các trường ở giao diện AT
-                bl_Load = true;
-                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
                 {
-                    for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
+                    lst_to_List_Rtb[i][z].ForeColor =  Color.Red;
+                    string s1 = "", s2 = "";
+                    s1 = CheckInfo.Content_E1_Tam.Split('‡')[i].Split('†')[z];
+                    s2 = CheckInfo.Content_E2_Tam.Split('‡')[i].Split('†')[z];
+                    lst_to_List_Rtb[i][z].Text = s1;
+                    if (s1 != s2)
                     {
-                        lst_to_List_Rtb[i][z].ForeColor =  Color.Red;
-                        string s1 = "", s2 = "";
-                        s1 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
-                        s2 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
-                        lst_to_List_Rtb[i][z].Text = s1;
-                        if (s1 != s2)
-                        {
-                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
-                        }                        
-                        c = null;
-                        c = new int[s1.Length + 1, s2.Length + 1];
-                        LCS(s1, s2);
-                        BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
-                    }
+                        lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
+                    }                        
+                    c = null;
+                    c = new int[s1.Length + 1, s2.Length + 1];
+                    LCS(s1, s2);
+                    BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                 }
-                bl_Load = false;
-                #endregion
             }
+            bl_Load = false;
+            index_User1 = true;
+            #endregion
         }
         public int Submit_Data_Check(int ID_Batch, int ID_Image)
-        {            
+        {
+            isSuggestOpened = false;
             if (String.IsNullOrEmpty(rtb_truong2.Text) == true)
             {
                 return 1;
@@ -341,38 +401,99 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             // Trường 7 ở mỗi dòng không được bỏ trống
             //string str_data_header_AE = String.Join("†", lst_header_AT.Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
+            
             List<string> lst_str_data_body_AT = new List<string>();
-            //for (int i = 0; i < lst_to_List_Rtb.Count; i++)
-            //{
-            //    if (lst_to_List_Rtb[i].ToList()[1].ToString() != "")
-            //    {
-            //        lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
-            //    }
-            //    else
-            //    {
-            //        if (i == 0)
-            //        {                        
-            //            return 1;
-            //        }
-            //        else
-            //        {                        
-            //            return 2;
-            //        }                    
-            //    }
-            //}
-            
-            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT)); /*str_data_header_AE + "‡" +*/
-            
-            int Error_E1 = 0, Error_E2 = 0;
             for (int i = 0; i < lst_to_List_Rtb.Count; i++)
             {
-                if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[i].ToString().Replace("‡", "").Replace("†", "").ToString(), String.Join("", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()))) > 0)
+                if (lst_to_List_Rtb[i].ToList()[1].ToString() != "")
                 {
-                    Error_E1++;
+                    lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
                 }
-                if (Function_tinhloi.return_error(CheckInfo.Content_E2.Split('‡')[i].ToString().Replace("‡", "").Replace("†", "").ToString(), String.Join("", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()))) > 0)
+                else
                 {
-                    Error_E2++;
+                    if (i == 0)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 2;
+                    }
+                }
+            }
+            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));            
+            
+            int Error_E1 = 0, Error_E2 = 0;
+            if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[0].ToString(), String.Join("†",lst_header_AT.Select(x => x.Text)).ToString() ) > 0)
+            {
+                Error_E1++;
+            }
+            if (Function_tinhloi.return_error(CheckInfo.Content_E2.Split('‡')[0].ToString(), String.Join("†", lst_header_AT.Select(x => x.Text)).ToString()) > 0)
+            {
+                Error_E2++;
+            }
+
+            if (Error_E1 == 0)
+            {
+                int row_E1_Create = 0;
+                for (int i = 1; i < lst_to_List_Rtb.Count; i++)
+                {
+                    if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[i].ToString().Replace("‡", "").Replace("†", "").ToString(), String.Join("", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()))) > 0)
+                    {
+                        Error_E1++;
+                    }
+                    string Data_nhap = CheckInfo.Content_E1.Split('‡')[i].ToString().Split('†')[0].ToString();
+                    if (Data_nhap != "" && Data_nhap == "SAKUJYO" && Data_nhap == "YOHAKU" && Data_nhap == "KAKISONJI" && Data_nhap == "MISIYO")
+                    {
+                        row_E1_Create = i + 1;
+                    }
+                }
+                if (Error_E1 > row_E1_Create)
+                {
+                    Error_E1 = row_E1_Create;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    string Data_nhap = CheckInfo.Content_E1.Split('‡')[i].ToString().Split('†')[0].ToString();
+                    if (Data_nhap != "" && Data_nhap == "SAKUJYO" && Data_nhap == "YOHAKU" && Data_nhap == "KAKISONJI" && Data_nhap == "MISIYO")
+                    {
+                        Error_E1 = i + 1;
+                    }
+                }
+            }
+
+            if (Error_E2 == 0)
+            {
+                int row_E2_Create = 0;
+                for (int i = 1; i < lst_to_List_Rtb.Count; i++)
+                {
+                    if (Function_tinhloi.return_error(CheckInfo.Content_E2.Split('‡')[i].ToString().Replace("‡", "").Replace("†", "").ToString(), String.Join("", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()))) > 0)
+                    {
+                        Error_E2++;
+                    }
+                    string Data_nhap = CheckInfo.Content_E2.Split('‡')[i].ToString().Split('†')[0].ToString();
+                    if (Data_nhap != "" && Data_nhap == "SAKUJYO" && Data_nhap == "YOHAKU" && Data_nhap == "KAKISONJI" && Data_nhap == "MISIYO")
+                    {
+                        row_E2_Create = i + 1;
+                    }
+                }
+                if (Error_E2 > row_E2_Create)
+                {
+                    Error_E2 = row_E2_Create;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    string Data_nhap = CheckInfo.Content_E2.Split('‡')[i].ToString().Split('†')[0].ToString();
+                    if (Data_nhap != "" && Data_nhap == "SAKUJYO" && Data_nhap == "YOHAKU" && Data_nhap == "KAKISONJI" && Data_nhap == "MISIYO")
+                    {
+                        Error_E2 = i + 1;
+                    }
                 }
             }
 
@@ -472,76 +593,95 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         private void lb_User1_Click(object sender, EventArgs e)
         {
+            if (!index_User1 )
+            {
+                List<string> lst_str_data_body_AT = new List<string>();
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));
+                }
+                string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));
+                CheckInfo.Content_E2_Tam = data_full;
+            }
+            
+
             lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
             lst_to_List_Rtb.ForEach(x => x.ForEach(s => { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));
             lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
             lb_User1.ForeColor = Color.Orange;
             lb_User2.Text = "Name 2: " + CheckInfo.UserName_E2.ToString();
-            lb_User2.ForeColor = Color.Black;
-            if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
+            lb_User2.ForeColor = Color.Black;            
+            bl_Load = true;
+            //string s1 = "", s2 = "";
+            #region ADD Info cho các trường ở giao diện AT
+            for (int i = 0; i < lst_to_List_Rtb.Count; i++)
             {
-                bl_Load = true;
-                //string s1 = "", s2 = "";
-                #region ADD Info cho các trường ở giao diện AT
-                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
                 {
-                    for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
+                    lst_to_List_Rtb[i][z].ForeColor = Color.Red;
+                    string s1 = "", s2 = "";
+                    s1 = CheckInfo.Content_E1_Tam.Split('‡')[i].Split('†')[z];
+                    s2 = CheckInfo.Content_E2_Tam.Split('‡')[i].Split('†')[z];
+                    lst_to_List_Rtb[i][z].Text = s1;
+                    if (s1 != s2)
                     {
-                        lst_to_List_Rtb[i][z].ForeColor = Color.Red;
-                        string s1 = "", s2 = "";
-                        s1 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
-                        s2 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
-                        lst_to_List_Rtb[i][z].Text = s1;
-                        if (s1 != s2)
-                        {
-                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
-                        }
-                        c = null;
-                        c = new int[s1.Length + 1, s2.Length + 1];
-                        LCS(s1, s2);
-                        BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
+                        lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
                     }
+                    c = null;
+                    c = new int[s1.Length + 1, s2.Length + 1];
+                    LCS(s1, s2);
+                    BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                 }
-                bl_Load = false;
-                #endregion
             }
+            bl_Load = false;
+            #endregion
+            index_User1 = true;
         }
 
         private void lb_User2_Click(object sender, EventArgs e)
         {
+            if (index_User1)
+            {
+                List<string> lst_str_data_body_AT = new List<string>();
+                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                {
+                    lst_str_data_body_AT.Add(String.Join("†", lst_to_List_Rtb[i].Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString())));                   
+                }
+                string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));
+                CheckInfo.Content_E1_Tam = data_full;
+            }
             lb_header.ForEach(x => x.BackColor = Color.WhiteSmoke);
             lst_to_List_Rtb.ForEach(x => x.ForEach(s => { s.Text = ""; s.ForeColor = Color.Red; s.BackColor = Color.WhiteSmoke; }));
             lb_User1.Text = "Name 1: " + CheckInfo.UserName_E1.ToString();
             lb_User1.ForeColor = Color.Black;
             lb_User2.Text = "Name 2: " + CheckInfo.UserName_E2.ToString();
             lb_User2.ForeColor = Color.Orange;
-            if (CheckInfo.Content_E1.ToString() != "" && CheckInfo.Content_E2.ToString() != "")
+            
+            bl_Load = true;
+            //string s1 = "", s2 = "";
+            #region ADD Info cho các trường ở giao diện AT
+            for (int i = 0; i < lst_to_List_Rtb.Count; i++)
             {
-                bl_Load = true;
-                //string s1 = "", s2 = "";
-                #region ADD Info cho các trường ở giao diện AT
-                for (int i = 0; i < lst_to_List_Rtb.Count; i++)
+                for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
                 {
-                    for (int z = 0; z < lst_to_List_Rtb[i].Count; z++)
+                    lst_to_List_Rtb[i][z].ForeColor = Color.Red;
+                    string s1 = "", s2 = "";
+                    s1 = CheckInfo.Content_E2_Tam.Split('‡')[i].Split('†')[z];
+                    s2 = CheckInfo.Content_E1_Tam.Split('‡')[i].Split('†')[z];
+                    lst_to_List_Rtb[i][z].Text = s1;
+                    if (s1 != s2)
                     {
-                        lst_to_List_Rtb[i][z].ForeColor = Color.Red;
-                        string s1 = "", s2 = "";
-                        s1 = CheckInfo.Content_E2.Split('‡')[i].Split('†')[z];
-                        s2 = CheckInfo.Content_E1.Split('‡')[i].Split('†')[z];
-                        lst_to_List_Rtb[i][z].Text = s1;
-                        if (s1 != s2)
-                        {
-                            lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
-                        }
-                        c = null;
-                        c = new int[s1.Length + 1, s2.Length + 1];
-                        LCS(s1, s2);
-                        BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
+                        lst_to_List_Rtb[i][z].BackColor = Color.SandyBrown;
                     }
+                    c = null;
+                    c = new int[s1.Length + 1, s2.Length + 1];
+                    LCS(s1, s2);
+                    BackTrack(s1, s2, s1.Length, s2.Length, lst_to_List_Rtb[i][z]);
                 }
-                bl_Load = false;
-                #endregion
             }
+            bl_Load = false;
+            #endregion
+            index_User1 = false;
         }
 
         public string getDataFull()
