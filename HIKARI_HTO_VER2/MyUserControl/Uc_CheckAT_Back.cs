@@ -190,13 +190,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 int index_rtb_7_inList = Convert.ToInt32(rtb.Name.ToString().Substring(rtb.Name.ToString().Length - 1, 1));
                 if (rtb.Text.ToUpper() == "SAKUJYO" || rtb.Text.ToUpper() == "YOHAKU" || rtb.Text.ToUpper() == "KAKISONJI" || rtb.Text.ToUpper() == "MISIYO")
-                {
-                    lst_header_AT[1].Text = "";
-                    lst_header_AT[2].Text = "";
-                    lst_header_AT[3].Text = "";
-                    lst_header_AT[1].Enabled = false;
-                    lst_header_AT[2].Enabled = false;
-                    lst_header_AT[3].Enabled = false;
+                {                    
                     lst_to_List_Rtb[index_rtb_7_inList][1].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][2].Text = "";
                     lst_to_List_Rtb[index_rtb_7_inList][3].Text = "";

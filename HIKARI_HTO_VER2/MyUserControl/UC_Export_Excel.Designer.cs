@@ -286,6 +286,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grdV_img.GridControl = this.grd_img;
             this.grdV_img.IndicatorWidth = 35;
             this.grdV_img.Name = "grdV_img";
+            this.grdV_img.OptionsCustomization.AllowSort = false;
             this.grdV_img.OptionsFind.AlwaysVisible = true;
             this.grdV_img.OptionsPrint.PrintHorzLines = false;
             this.grdV_img.OptionsPrint.PrintVertLines = false;

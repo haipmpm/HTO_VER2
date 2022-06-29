@@ -541,24 +541,6 @@ namespace HIKARI_HTO_VER2.MyForm
                                 //    }
                                 //}
                             }
-                            //else if(t == 4)
-                            //{
-                            //    //if (t == 4)
-                            //    //{
-                            //    //    // Trường 7 giá trị: Sakujyo, Yohaku, Kakisonji, Misiyo: check trường 3 4 5
-                            //    //    if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString() == "" && lc_info.Tb_Data_QuetLogic.Rows[0][2].ToString() == "" && lc_info.Tb_Data_QuetLogic.Rows[0][3].ToString() == "")
-                            //    //    {
-                            //    //        for (int z = 0; z < lc_info.Tb_Data_QuetLogic.Rows.Count; z++)
-                            //    //        {
-                            //    //            if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "SAKUJYO" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "YOHAKU" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "KAKISONJI" && lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() != "MISIYO")
-                            //    //            {
-                            //    //                lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 4 5 trống nhưng Trường 7 khác quy định", i, z, 5);
-                            //    //                Done_batch = true;
-                            //    //            }
-                            //    //        }
-                            //    //    }
-                            //    //}
-                            //}
                             else
                             {
                                 bool number_T7 = true;
@@ -570,9 +552,9 @@ namespace HIKARI_HTO_VER2.MyForm
                                         {
                                             if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "KAKISONJI" || lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "MISIYO")
                                             {
-                                                if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString() != "" || lc_info.Tb_Data_QuetLogic.Rows[0][2].ToString() != "" && lc_info.Tb_Data_QuetLogic.Rows[0][3].ToString() != "")
+                                                if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString() != "" || lc_info.Tb_Data_QuetLogic.Rows[0][2].ToString() != "" || lc_info.Tb_Data_QuetLogic.Rows[0][3].ToString() != "")
                                                 {
-                                                    lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 (KAKISONJI - MISIYO) và  3 4 5 có dữ liệu", i, z, t);
+                                                    //lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 (KAKISONJI - MISIYO) và  3 4 5 có dữ liệu", i, z, t);
                                                     number_T7 = false;
                                                 }
                                             }
@@ -599,15 +581,18 @@ namespace HIKARI_HTO_VER2.MyForm
                                     }
                                 }
 
-                                if (number_T7 == true)
+                                if (lc_info.Tb_Data_QuetLogic.Columns[t].ColumnName == "Truong:7")
                                 {
-                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length != 4)
+                                    if (number_T7 == true)
                                     {
-                                        lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 khác 4 kí tự", i, 0, t);
-                                    }
-                                    if (Regex.Matches(lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString(), @"[0-9]").Count != lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length) //int errorCounter = Regex.Matches(test, @"[a-zA-Z]").Count;
-                                    {
-                                        lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 có kí tự khác số", i, 0, t);
+                                        if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length != 4 && lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length != 0)
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 khác 4 kí tự", i, 0, 1);
+                                        }
+                                        if (Regex.Matches(lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString(), @"[0-9]").Count != lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length) //int errorCounter = Regex.Matches(test, @"[a-zA-Z]").Count;
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 có kí tự khác số", i, 0, t);
+                                        }
                                     }
                                 }
                             }
@@ -836,6 +821,11 @@ namespace HIKARI_HTO_VER2.MyForm
                 change = true;
                 change_data_save = true;
             }
+        }
+
+        private void grd_Data_EditorKeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
     }
 }

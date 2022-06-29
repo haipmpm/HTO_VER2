@@ -256,6 +256,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.grd_Data.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdV_Data});
             this.grd_Data.EditorKeyDown += new System.Windows.Forms.KeyEventHandler(this.grd_Data_EditorKeyDown);
+            this.grd_Data.EditorKeyPress += new System.Windows.Forms.KeyPressEventHandler(this.grd_Data_EditorKeyPress);
             this.grd_Data.Leave += new System.EventHandler(this.grd_Data_Leave);
             // 
             // grdV_Data

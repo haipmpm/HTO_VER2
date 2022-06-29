@@ -665,7 +665,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 try
                 {
                     string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Back", "1").FirstOrDefault().ToString();
-                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"/" + rs_nameImg;
+                    string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"\" + rs_nameImg;
                     Process.Start(path_webservice);
                 }
                 catch (Exception)
@@ -677,7 +677,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 try
                 {
                     string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, CheckInfo.ID_image.ToString(), "Back", "1").FirstOrDefault().Column1.ToString();
-                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"/" + rs_nameImg;
+                    string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"\" + rs_nameImg;
                     Process.Start(path_webservice);
                 }
                 catch (Exception)
@@ -693,7 +693,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 try
                 {
                     string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Next", "1").FirstOrDefault().ToString();
-                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"/" + rs_nameImg;
+                    string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"\" + rs_nameImg;
                     Process.Start(path_webservice);
                 }
                 catch (Exception)
@@ -705,7 +705,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 try
                 {
                     string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, CheckInfo.ID_image.ToString(), "Next", "1").FirstOrDefault().Column1.ToString();
-                    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"/" + rs_nameImg;
+                    string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + CheckInfo.BatchName + @"\" + rs_nameImg;                    
                     Process.Start(path_webservice);
                 }
                 catch (Exception)

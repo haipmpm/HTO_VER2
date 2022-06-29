@@ -56,7 +56,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             dt_exportexcel.Columns.Add("3. Code");
             dt_exportexcel.Columns.Add("4. 班");
             dt_exportexcel.Columns.Add("5.棚番");
-            dt_exportexcel.Columns.Add("6. STT", typeof(int));
+            dt_exportexcel.Columns.Add("6. STT");
             dt_exportexcel.Columns.Add("7. Mã SP");
             dt_exportexcel.Columns.Add("8. Mã 工号");
             dt_exportexcel.Columns.Add("9. Số lượng");
@@ -86,7 +86,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             dt_exportexcel.Columns.Add("3. Code");
             dt_exportexcel.Columns.Add("4. 班");
             dt_exportexcel.Columns.Add("5.棚番");
-            dt_exportexcel.Columns.Add("6. STT", typeof(int));
+            dt_exportexcel.Columns.Add("6. STT");
             dt_exportexcel.Columns.Add("7. Mã SP");
             dt_exportexcel.Columns.Add("8. Mã 工号");
             dt_exportexcel.Columns.Add("9. Số lượng");
@@ -146,7 +146,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                 dtr_Rs_or_Error[Constant.Truong04] = item.ResultLC.Split('‡')[0].Split('†')[2].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[2].ToString();//4
                                 dtr_Rs_or_Error[Constant.Truong05] = item.ResultLC.Split('‡')[0].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[3].ToString();//5
 
-                                dtr_Rs_or_Error[Constant.Truong06] = (i + 1).ToString();//STT
+                                dtr_Rs_or_Error[Constant.Truong06] = (i + 1).ToString().PadLeft(2,'0').ToString();//STT
                                 dtr_Rs_or_Error[Constant.Truong07] = "";//7
                                 dtr_Rs_or_Error[Constant.Truong08] = "";//8
                                 dtr_Rs_or_Error[Constant.Truong09] = item.ResultLC.Split('‡')[1].Split('†')[i].ToString() == null ? "" : item.ResultLC.Split('‡')[1].Split('†')[i].ToString();//9
@@ -195,7 +195,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                     dtr_Rs_or_Error[Constant.Truong05] = item.ResultLC.Split('‡')[0].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[3].ToString();//5
                                 }                                
 
-                                dtr_Rs_or_Error[Constant.Truong06] = (i).ToString();//STT
+                                dtr_Rs_or_Error[Constant.Truong06] = (i).ToString().PadLeft(2, '0').ToString();//STT
                                 dtr_Rs_or_Error[Constant.Truong07] = item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString();//7
 
                                 if (checkTruong7LoaiAT(item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString()) == false)
@@ -424,7 +424,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
                         advOptions.SheetName = "Data";
                         advOptions.CustomizeCell += AdvOptions_CustomizeCell; ;
-                        grd_img.ExportToXlsx(Filename + @"\" +  Path.GetFileName(sfd.FileName).Split('.')[0].ToString() +  "File_Excel_Data.xlsx" , advOptions);
+                        grd_img.ExportToXlsx(Filename + @"\" +  Path.GetFileName(sfd.FileName).Split('.')[0].ToString() +  "_Excel_Data.xlsx" , advOptions);
 
                         grdV_Error.ClearSorting();
                         grdV_Error.ClearColumnsFilter();
@@ -437,7 +437,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions_Err.SheetName = "Data_Error";
 
                         advOptions_Err.CustomizeCell += AdvOptions_CustomizeCell_Error; ;
-                        grd_Error.ExportToXlsx(Filename + @"\" + Path.GetFileName(sfd.FileName).Split('.')[0].ToString() + "File_Excel_Data_Error.xlsx", advOptions_Err);
+                        grd_Error.ExportToXlsx(Filename + @"\" + Path.GetFileName(sfd.FileName).Split('.')[0].ToString() + "_Excel_Data_Error.xlsx", advOptions_Err);
 
                         try
                         {
@@ -835,7 +835,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     sfd.FileName = "";
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        //string Filename = Path.GetDirectoryName(sfd.FileName);
+                        string Filename = Path.GetDirectoryName(sfd.FileName);
                         grdV_img.ClearSorting();
                         grdV_img.ClearColumnsFilter();
                         grdV_img.ClearGrouping();
@@ -847,7 +847,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
                         advOptions.SheetName = "Data";
                         advOptions.CustomizeCell += AdvOptions_CustomizeCell; ;
-                        grd_img.ExportToXlsx(sfd.FileName, advOptions);
+                        grd_img.ExportToXlsx(Filename + @"\" + Path.GetFileName(sfd.FileName).Split('.')[0].ToString() + "_Excel_Data.xlsx", advOptions);
 
                         grdV_Error.ClearSorting();
                         grdV_Error.ClearColumnsFilter();
@@ -858,9 +858,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         advOptions_Err.AllowGrouping = DevExpress.Utils.DefaultBoolean.False;
                         advOptions_Err.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
                         advOptions_Err.SheetName = "Data_Error";
-
                         advOptions_Err.CustomizeCell += AdvOptions_CustomizeCell_Error; ;
-                        grd_Error.ExportToXlsx(sfd.FileName, advOptions_Err);
+                        grdV_Error.ExportToXlsx(Filename + @"\" + Path.GetFileName(sfd.FileName).Split('.')[0].ToString() + "_Excel_Data_Error.xlsx", advOptions_Err);
+                        Process.Start(Filename);
                     }
                 }
             }
