@@ -101,14 +101,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                       Fullname = status.Select(x => x.Field<string>("FullName")).FirstOrDefault(),
                                       Tongtruong = status.Select(x => Convert.ToInt32(x.Field<string>("LenDong"))).Sum(),
                                       Loisai = status.Select(x => x.Field<int>("Error_Entry")).Sum(),
-                                      Thoigian = ((status.Select(x => x.Field<int>("TimeEntry")).Sum()) / 1000.0) / 360,
+                                      Thoigian = ((status.Select(x => x.Field<int>("TimeEntry")).Sum()) / 1000.0) / 3600,
                                       LoaiNhap = status.Select(x => x.Field<string>("LoaiNhap")).FirstOrDefault(),
                                   };
                     double FullTruong = results.Sum(x => x.Tongtruong);
                     double FullLoisai = results.Sum(x => x.Loisai);
                     double FullThoigian = results.Sum(x => x.Thoigian);
                     foreach (var element in results)
-                    {                                                
+                    {
                         if (element.LoaiNhap == "AE")
                         {
                             var rowindex = pfm_AE.NewRow(); 
@@ -139,6 +139,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     #region Tính tổng thông số cho AE
                     if (pfm_AE.Rows.Count > 0)
                     {
+                        double db_time_Ae =  Math.Round(double.Parse(pfm_AE.Compute("Sum ([Thời gian (h)])", "").ToString()), 2);
                         DataRow newRow = pfm_AE.NewRow();
                         DataRow newRow1 = pfm_AE.NewRow();
                         DataRow newRow2 = pfm_AE.NewRow();
@@ -173,13 +174,20 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         pfm_AE.Rows.Add(newRow); pfm_AE.Rows.Add(newRow1); pfm_AE.Rows.Add(newRow2); pfm_AE.Rows.Add(newRow3); pfm_AE.Rows.Add(newRow4);
                         DataRow newRow5 = pfm_AE.NewRow();
                         DataRow newRow6 = pfm_AE.NewRow();
-                        pfm_AE.Rows.Add(newRow5);                        
+                        pfm_AE.Rows.Add(newRow5);
+                        int _tongtruongAE = results.Where(x => x.LoaiNhap == "AE").Sum(x => Convert.ToInt32(x.Tongtruong));
+                        int _tongLoiSaiAE = results.Where(x => x.LoaiNhap == "AE").Sum(x => Convert.ToInt32(x.Loisai));
                         newRow6[1] = "ALL";
-                        newRow6[2] = FullTruong;
-                        newRow6[3] = (FullTruong - FullLoisai).ToString();
-                        newRow6[4] = FullLoisai.ToString();
-                        newRow6[5] = Math.Round(FullThoigian, 2);
-                        newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong)*100, 2);
+                        //newRow6[2] = Math.Round(double.Parse(pfm_AE.Compute("Sum ([Tổng dòng nhập])", "").ToString()), 0);
+                        newRow6[2] = _tongtruongAE;
+                        newRow6[3] = _tongtruongAE - _tongLoiSaiAE;
+                        newRow6[4] = _tongLoiSaiAE;
+                        newRow6[5] = db_time_Ae;
+                        //newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong) * 100, 2);
+                        //newRow6[3] = (FullTruong - FullLoisai).ToString();
+                        //newRow6[4] = FullLoisai.ToString();
+                        //newRow6[5] = Math.Round(FullThoigian, 2);
+                        newRow6[6] = Math.Round((Convert.ToDouble(_tongtruongAE - _tongLoiSaiAE) / _tongtruongAE) * 100, 2);
                         pfm_AE.Rows.Add(newRow6);
                     }
                     #endregion
@@ -187,6 +195,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     #region Tính tổng thông số cho AT
                     if (pfm_AT.Rows.Count >0)
                     {
+                        double db_time_AT = Math.Round(double.Parse(pfm_AT.Compute("Sum ([Thời gian (h)])", "").ToString()), 2);
                         DataRow newRow = pfm_AT.NewRow();
                         DataRow newRow1 = pfm_AT.NewRow();
                         DataRow newRow2 = pfm_AT.NewRow();
@@ -221,13 +230,20 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         pfm_AT.Rows.Add(newRow); pfm_AT.Rows.Add(newRow1); pfm_AT.Rows.Add(newRow2); pfm_AT.Rows.Add(newRow3); pfm_AT.Rows.Add(newRow4);
                         DataRow newRow5 = pfm_AT.NewRow();
                         DataRow newRow6 = pfm_AT.NewRow();
-                        pfm_AT.Rows.Add(newRow5);                        
+                        pfm_AT.Rows.Add(newRow5);
+                        int _tongtruongAT = results.Where(x => x.LoaiNhap == "AT").Sum(x => Convert.ToInt32(x.Tongtruong));
+                        int _tongLoiSaiAT = results.Where(x => x.LoaiNhap == "AT").Sum(x => Convert.ToInt32(x.Loisai));
                         newRow6[1] = "ALL";
-                        newRow6[2] = FullTruong;
-                        newRow6[3] = (FullTruong - FullLoisai).ToString();
-                        newRow6[4] = FullLoisai.ToString();
-                        newRow6[5] = Math.Round(FullThoigian, 2);
-                        newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong) * 100, 2);
+                        //newRow6[2] = Math.Round(double.Parse(pfm_AE.Compute("Sum ([Tổng dòng nhập])", "").ToString()), 0);
+                        newRow6[2] = _tongtruongAT;
+                        newRow6[3] = _tongtruongAT - _tongLoiSaiAT;
+                        newRow6[4] = _tongLoiSaiAT;
+                        newRow6[5] = db_time_AT;
+                        //newRow6[6] = Math.Round((Convert.ToDouble(FullTruong - FullLoisai) / FullTruong) * 100, 2);
+                        //newRow6[3] = (FullTruong - FullLoisai).ToString();
+                        //newRow6[4] = FullLoisai.ToString();
+                        //newRow6[5] = Math.Round(FullThoigian, 2);
+                        newRow6[6] = Math.Round((Convert.ToDouble(_tongtruongAT - _tongLoiSaiAT) / _tongtruongAT) * 100, 2);
                         pfm_AT.Rows.Add(newRow6);
                     }
                     grdV_pfm_AE.Columns.Clear();

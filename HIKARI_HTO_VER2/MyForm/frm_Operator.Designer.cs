@@ -66,6 +66,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.ImgV = new ImageViewerTR.ImageViewerTR();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel_Top = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.tab_AT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -336,7 +337,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.tab_AE.Controls.Add(this.uC_PhieuAE1);
             this.tab_AE.Name = "tab_AE";
-            this.tab_AE.Size = new System.Drawing.Size(653, 465);
+            this.tab_AE.Size = new System.Drawing.Size(670, 465);
             this.tab_AE.Text = "Phiếu AE";
             // 
             // uC_PhieuAE1
@@ -344,7 +345,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.uC_PhieuAE1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uC_PhieuAE1.Location = new System.Drawing.Point(0, 0);
             this.uC_PhieuAE1.Name = "uC_PhieuAE1";
-            this.uC_PhieuAE1.Size = new System.Drawing.Size(653, 465);
+            this.uC_PhieuAE1.Size = new System.Drawing.Size(670, 465);
             this.uC_PhieuAE1.TabIndex = 0;
             // 
             // labelControl1
@@ -444,6 +445,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // panel_Top
             // 
+            this.panel_Top.Controls.Add(this.labelControl8);
             this.panel_Top.Controls.Add(this.lb_IdImage);
             this.panel_Top.Controls.Add(this.btn_CopyInfo);
             this.panel_Top.Controls.Add(this.lb_City);
@@ -464,6 +466,15 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel_Top.Name = "panel_Top";
             this.panel_Top.Size = new System.Drawing.Size(1434, 26);
             this.panel_Top.TabIndex = 37;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl8.Location = new System.Drawing.Point(789, 6);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(22, 13);
+            this.labelControl8.TabIndex = 14;
+            this.labelControl8.Text = "Pair:";
             // 
             // frm_Operator
             // 
@@ -536,5 +547,6 @@ namespace HIKARI_HTO_VER2.MyForm
         protected DevExpress.XtraEditors.SimpleButton btn_BackImage;
         protected DevExpress.XtraEditors.SimpleButton btn_Cancel;
         protected DevExpress.XtraEditors.SimpleButton btn_Save;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
     }
 }

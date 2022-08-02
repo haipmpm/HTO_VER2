@@ -200,11 +200,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 if (txt.Text == "SAKUJYO" || txt.Text == "YOHAKU" || txt.Text == "KAKISONJI" || txt.Text == "MISIYO")
                 {
                     s.txt_truong8.Text = "";
-                    //s.txt_truong8.Enabled = false;
+                    s.txt_truong8.Enabled = false;
                     s.txt_truong9.Text = "";
-                    //s.txt_truong9.Enabled = false;
+                    s.txt_truong9.Enabled = false;
                     s.txt_Truong10.Text = "";
-                    //s.txt_Truong10.Enabled = false;
+                    s.txt_Truong10.Enabled = false;
                 }
                 else
                 {
@@ -333,6 +333,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
             return data_full;
+        }
+
+        private void UC_PhieuAT_Load(object sender, EventArgs e)
+        {
+
         }
         //public DataTable takeDataTableDetail()
         //{

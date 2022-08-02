@@ -20,6 +20,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         List<Label> lb_all = new List<Label>();
         Check_Info CheckInfo;
         Ham_Chung Function_tinhloi;
+        List<int> IndexDiffs;
 
         public UC_CHECKER_AE()
         {
@@ -30,6 +31,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lb_all = new List<Label>() { lb_t2, lb_t3, lb_t4, lb_t5,lb_t9_1, lb_t9_2, lb_t9_3, lb_t9_4, lb_t9_5, lb_t9_6, lb_t9_7, lb_t9_8, lb_t9_9, lb_t9_10 };
             CheckInfo = new Check_Info();
             Function_tinhloi = new Ham_Chung();
+            IndexDiffs = new List<int>();
         }
         private void UC_CHECKER_AE_Load(object sender, EventArgs e)
         {
@@ -76,19 +78,20 @@ namespace HIKARI_HTO_VER2.MyUserControl
             lb_User2.ForeColor = Color.Black;            
             #region ADD Info cho các trường ở phần Header
             for (int i = 0; i < lst_all_rtb.Count(); i++)
-            {                    
+            {
+                IndexDiffs = new List<int>();
                 string s1 = "", s2 = "";
                 if (i < 4)
                 {
                     lst_all_rtb[i].Text = CheckInfo.Content_E1.Split('‡')[0].Split('†')[i];
-                    s1 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[i];
-                    s2 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[i];
+                    s1 = new string(CheckInfo.Content_E1.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
+                    s2 = new string(CheckInfo.Content_E2.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
                 }
                 else
                 {
                     try { lst_all_rtb[i].Text = CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4]; } catch { lst_all_rtb[i].Text = ""; }
-                    try { s1 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4]; } catch { s1 = ""; }
-                    try { s2 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4]; } catch { s2 = ""; }  
+                    try { s1 = new string(CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s1 = ""; }
+                    try { s2 = new string(CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s2 = ""; }  
                 }
                 if (s1 != s2)
                 {
@@ -97,7 +100,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 c = null;
                 c = new int[s1.Length + 1, s2.Length + 1];
                 LCS(s1, s2);
-                BackTrack(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                BackTrack_new(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                FillColorDiff(lst_all_rtb[i], IndexDiffs, true);
             }
             #endregion            
         }
@@ -115,24 +119,65 @@ namespace HIKARI_HTO_VER2.MyUserControl
         }
         static int[,] c;
         //Prints one LCS
-        private string BackTrack(string s1, string s2, int i, int j, RichTextBox rtb)
+        //private string BackTrack(string s1, string s2, int i, int j, RichTextBox rtb)
+        //{
+        //    if (i == 0 || j == 0)
+        //        return "";
+        //    if (s1[i - 1] == s2[j - 1])
+        //    {
+        //        rtb.SelectionStart = i - 1;
+        //        rtb.SelectionLength = 1;
+        //        rtb.SelectionColor = Color.Black;
+        //        return BackTrack(s1, s2, i - 1, j - 1, rtb) + s1[i - 1];
+        //    }
+        //    else if (c[i - 1, j] > c[i, j - 1])
+        //        return BackTrack(s1, s2, i - 1, j, rtb);
+
+        //    else
+        //        return BackTrack(s1, s2, i, j - 1, rtb);
+
+        //}
+        private string BackTrack_new(string s1, string s2, int lengs1, int lengs2, RichTextBox rtb)
         {
-            if (i == 0 || j == 0)
+            if (lengs1 == 0 || lengs2 == 0)
                 return "";
-            if (s1[i - 1] == s2[j - 1])
+            if (s1[lengs1 - 1] == s2[lengs2 - 1])
             {
-                rtb.SelectionStart = i - 1;
-                rtb.SelectionLength = 1;
-                rtb.SelectionColor = Color.Black;
-                return BackTrack(s1, s2, i - 1, j - 1, rtb) + s1[i - 1];
+                IndexDiffs.Add(lengs1 - 1);
+                //rtb.SelectionStart = i - 1;
+                //rtb.SelectionLength = 1;
+                //rtb.SelectionColor = Color.Black;
+                return BackTrack_new(s1, s2, lengs1 - 1, lengs2 - 1, rtb); //+ s1[lengs1 - 1];
             }
-            else if (c[i - 1, j] > c[i, j - 1])
-                return BackTrack(s1, s2, i - 1, j, rtb);
+            else if (c[lengs1 - 1, lengs2] >= c[lengs1, lengs2 - 1])
+                return BackTrack_new(s1, s2, lengs1 - 1, lengs2, rtb);
 
             else
-                return BackTrack(s1, s2, i, j - 1, rtb);
+                return BackTrack_new(s1, s2, lengs1, lengs2 - 1, rtb);
 
-        }        
+        }
+        void FillColorDiff(RichTextBox rtb, List<int> lDiff, bool isReverse)
+        {
+            if (isReverse)
+            {
+                //lDiff.Reverse();
+                foreach (int diff in lDiff)
+                {
+                    rtb.SelectionStart = rtb.TextLength - diff - 1;
+                    rtb.SelectionLength = 1;
+                    rtb.SelectionColor = Color.Black;
+                }
+            }
+            else
+            {
+                foreach (int diff in lDiff)
+                {
+                    rtb.SelectionStart = diff;
+                    rtb.SelectionLength = 1;
+                    rtb.SelectionColor = Color.Black;
+                }
+            }
+        }
         //Nghịch       
         //private string BackTrack2(string s1, string s2, int i, int j)
         //{
@@ -261,49 +306,55 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     {
                         if (rtb.Text == CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString())
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
-                            s2 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
+                            s1 = new string(CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string(CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User2.ForeColor = Color.Orange;
                             lb_User1.ForeColor = Color.Black;
                         }
                         else if (rtb.Text == CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString())
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
-                            s2 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
+                            s1 = new string( CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string( CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User1.ForeColor = Color.Orange;
                             lb_User2.ForeColor = Color.Black;
                         }
                         else
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
-                            s2 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString();
+                            s1 = new string( CheckInfo.Content_E1.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string( CheckInfo.Content_E2.Split('‡')[0].Split('†')[rtb.TabIndex - 1].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User1.ForeColor = Color.Orange;
                             lb_User2.ForeColor = Color.Black;
                         }
@@ -312,49 +363,55 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     {
                         if (rtb.Text == CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString())
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
-                            s2 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
+                            s1 = new string( CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string( CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User2.ForeColor = Color.Orange;
                             lb_User1.ForeColor = Color.Black;
                         }
                         else if (rtb.Text == CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString())
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
-                            s2 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
+                            s1 = new string( CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string( CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User1.ForeColor = Color.Orange;
                             lb_User2.ForeColor = Color.Black;
                         }
                         else
                         {
+                            IndexDiffs = new List<int>();
                             rtb.SelectionStart = 0;
                             rtb.SelectionLength = rtb.Text.Length;
                             rtb.SelectionColor = Color.Red;
                             rtb.Text = CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
                             string s1, s2;
-                            s1 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
-                            s2 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString();
+                            s1 = new string(CheckInfo.Content_E1.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
+                            s2 = new string(CheckInfo.Content_E2.Split('‡')[1].Split('†')[rtb.TabIndex - 5].ToString().ToArray().Reverse().ToArray());
                             c = null;
                             c = new int[s1.Length + 1, s2.Length + 1];
                             LCS(s1, s2);
-                            BackTrack(s1, s2, s1.Length, s2.Length, rtb);
+                            BackTrack_new(s1, s2, s1.Length, s2.Length, rtb);
+                            FillColorDiff(rtb, IndexDiffs, true);
                             lb_User1.ForeColor = Color.Orange;
                             lb_User2.ForeColor = Color.Black;
                         }
@@ -511,18 +568,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
             #region ADD Info cho các trường ở phần Header
             for (int i = 0; i < lst_all_rtb.Count(); i++)
             {
+                IndexDiffs = new List<int>();
                 string s1 = "", s2 = "";
                 if (i < 4)
                 {
                     lst_all_rtb[i].Text = CheckInfo.Content_E1.Split('‡')[0].Split('†')[i];
-                    s1 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[i];
-                    s2 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[i];
+                    s1 = new string( CheckInfo.Content_E1.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
+                    s2 = new string( CheckInfo.Content_E2.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
                 }
                 else
                 {
                     try { lst_all_rtb[i].Text = CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4]; } catch { lst_all_rtb[i].Text = ""; }
-                    try { s1 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4]; } catch { s1 = ""; }
-                    try { s2 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4]; } catch { s2 = ""; }
+                    try { s1 = new string(CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s1 = ""; }
+                    try { s2 = new string(CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s2 = ""; }
                 }
                 if (s1 != s2)
                 {
@@ -532,7 +590,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 c = null;
                 c = new int[s1.Length + 1, s2.Length + 1];
                 LCS(s1, s2);
-                BackTrack(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                BackTrack_new(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                FillColorDiff(lst_all_rtb[i], IndexDiffs, true);
             }
             #endregion            
         }
@@ -549,18 +608,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
             #region ADD Info cho các trường ở phần Header
             for (int i = 0; i < lst_all_rtb.Count(); i++)
             {
+                IndexDiffs = new List<int>();
                 string s1 = "", s2 = "";
                 if (i < 4)
                 {
                     lst_all_rtb[i].Text = CheckInfo.Content_E2.Split('‡')[0].Split('†')[i];
-                    s1 = CheckInfo.Content_E2.Split('‡')[0].Split('†')[i];
-                    s2 = CheckInfo.Content_E1.Split('‡')[0].Split('†')[i];
+                    s1 = new string( CheckInfo.Content_E2.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
+                    s2 = new string( CheckInfo.Content_E1.Split('‡')[0].Split('†')[i].ToString().ToArray().Reverse().ToArray());
                 }
                 else
                 {
                     try { lst_all_rtb[i].Text = CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4]; } catch { lst_all_rtb[i].Text = ""; }
-                    try { s1 = CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4]; } catch { s1 = ""; }
-                    try { s2 = CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4]; } catch { s2 = ""; }
+                    try { s1 = new string(CheckInfo.Content_E2.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s1 = ""; }
+                    try { s2 = new string(CheckInfo.Content_E1.Split('‡')[1].Split('†')[i - 4].ToString().ToArray().Reverse().ToArray()); } catch { s2 = ""; }
                 }
                 if (s1 != s2)
                 {
@@ -569,7 +629,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 c = null;
                 c = new int[s1.Length + 1, s2.Length + 1];
                 LCS(s1, s2);
-                BackTrack(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                BackTrack_new(s1, s2, s1.Length, s2.Length, lst_all_rtb[i]);
+                FillColorDiff(lst_all_rtb[i], IndexDiffs, true);
             }
             #endregion            
         }

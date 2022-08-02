@@ -12,7 +12,7 @@ namespace HIKARI_HTO_VER2
         public static string strUsername = "";
         public const string Webservice = "http://10.10.1.15:8888/Hikari_HTO_2022/";
         public const string StrPath = @"\\10.10.1.15\Hikari_HTO_2022$";
-        public const string ConnectionString = "Server=10.10.1.15;Database=DB_HIKARI_VER2;User id=haipm;Password=Minhhai@171192;";
+        public const string ConnectionString = "Server=10.10.1.15;Database=DB_HIKARI_HTO2022_VER2;User id=hto2022;Password=ilzwvOH3L0SSLQXi;";
         public static object ControlFocusReturn;
 
         public static int LevelUser = 1;

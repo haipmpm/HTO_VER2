@@ -130,13 +130,13 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox11 = new System.Windows.Forms.RichTextBox();
+            this.rtb_AT_T5 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox12 = new System.Windows.Forms.RichTextBox();
+            this.rtb_AT_T4 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox13 = new System.Windows.Forms.RichTextBox();
+            this.rtb_AT_T3 = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.richTextBox14 = new System.Windows.Forms.RichTextBox();
+            this.rtb_AT_T2 = new System.Windows.Forms.RichTextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabcontrol)).BeginInit();
@@ -687,13 +687,13 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.richTextBox11);
+            this.panel4.Controls.Add(this.rtb_AT_T5);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.richTextBox12);
+            this.panel4.Controls.Add(this.rtb_AT_T4);
             this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.richTextBox13);
+            this.panel4.Controls.Add(this.rtb_AT_T3);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.richTextBox14);
+            this.panel4.Controls.Add(this.rtb_AT_T2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
@@ -1392,18 +1392,18 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label1.TabIndex = 64;
             this.label1.Text = "5.";
             // 
-            // richTextBox11
+            // rtb_AT_T5
             // 
-            this.richTextBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox11.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox11.Location = new System.Drawing.Point(593, 43);
-            this.richTextBox11.MaxLength = 15;
-            this.richTextBox11.Multiline = false;
-            this.richTextBox11.Name = "richTextBox11";
-            this.richTextBox11.ReadOnly = true;
-            this.richTextBox11.Size = new System.Drawing.Size(171, 30);
-            this.richTextBox11.TabIndex = 59;
-            this.richTextBox11.Text = "";
+            this.rtb_AT_T5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtb_AT_T5.ForeColor = System.Drawing.Color.Red;
+            this.rtb_AT_T5.Location = new System.Drawing.Point(593, 43);
+            this.rtb_AT_T5.MaxLength = 15;
+            this.rtb_AT_T5.Multiline = false;
+            this.rtb_AT_T5.Name = "rtb_AT_T5";
+            this.rtb_AT_T5.ReadOnly = true;
+            this.rtb_AT_T5.Size = new System.Drawing.Size(171, 30);
+            this.rtb_AT_T5.TabIndex = 59;
+            this.rtb_AT_T5.Text = "";
             // 
             // label2
             // 
@@ -1415,18 +1415,18 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label2.TabIndex = 61;
             this.label2.Text = "4.";
             // 
-            // richTextBox12
+            // rtb_AT_T4
             // 
-            this.richTextBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox12.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox12.Location = new System.Drawing.Point(413, 43);
-            this.richTextBox12.MaxLength = 10;
-            this.richTextBox12.Multiline = false;
-            this.richTextBox12.Name = "richTextBox12";
-            this.richTextBox12.ReadOnly = true;
-            this.richTextBox12.Size = new System.Drawing.Size(144, 30);
-            this.richTextBox12.TabIndex = 57;
-            this.richTextBox12.Text = "";
+            this.rtb_AT_T4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtb_AT_T4.ForeColor = System.Drawing.Color.Red;
+            this.rtb_AT_T4.Location = new System.Drawing.Point(413, 43);
+            this.rtb_AT_T4.MaxLength = 10;
+            this.rtb_AT_T4.Multiline = false;
+            this.rtb_AT_T4.Name = "rtb_AT_T4";
+            this.rtb_AT_T4.ReadOnly = true;
+            this.rtb_AT_T4.Size = new System.Drawing.Size(144, 30);
+            this.rtb_AT_T4.TabIndex = 57;
+            this.rtb_AT_T4.Text = "";
             // 
             // label3
             // 
@@ -1438,18 +1438,18 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label3.TabIndex = 58;
             this.label3.Text = "3.";
             // 
-            // richTextBox13
+            // rtb_AT_T3
             // 
-            this.richTextBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox13.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox13.Location = new System.Drawing.Point(270, 43);
-            this.richTextBox13.MaxLength = 4;
-            this.richTextBox13.Multiline = false;
-            this.richTextBox13.Name = "richTextBox13";
-            this.richTextBox13.ReadOnly = true;
-            this.richTextBox13.Size = new System.Drawing.Size(102, 30);
-            this.richTextBox13.TabIndex = 55;
-            this.richTextBox13.Text = "";
+            this.rtb_AT_T3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtb_AT_T3.ForeColor = System.Drawing.Color.Red;
+            this.rtb_AT_T3.Location = new System.Drawing.Point(270, 43);
+            this.rtb_AT_T3.MaxLength = 4;
+            this.rtb_AT_T3.Multiline = false;
+            this.rtb_AT_T3.Name = "rtb_AT_T3";
+            this.rtb_AT_T3.ReadOnly = true;
+            this.rtb_AT_T3.Size = new System.Drawing.Size(102, 30);
+            this.rtb_AT_T3.TabIndex = 55;
+            this.rtb_AT_T3.Text = "";
             // 
             // label4
             // 
@@ -1461,18 +1461,18 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label4.TabIndex = 56;
             this.label4.Text = "2.";
             // 
-            // richTextBox14
+            // rtb_AT_T2
             // 
-            this.richTextBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox14.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox14.Location = new System.Drawing.Point(117, 43);
-            this.richTextBox14.MaxLength = 6;
-            this.richTextBox14.Multiline = false;
-            this.richTextBox14.Name = "richTextBox14";
-            this.richTextBox14.ReadOnly = true;
-            this.richTextBox14.Size = new System.Drawing.Size(114, 30);
-            this.richTextBox14.TabIndex = 54;
-            this.richTextBox14.Text = "";
+            this.rtb_AT_T2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtb_AT_T2.ForeColor = System.Drawing.Color.Red;
+            this.rtb_AT_T2.Location = new System.Drawing.Point(117, 43);
+            this.rtb_AT_T2.MaxLength = 6;
+            this.rtb_AT_T2.Multiline = false;
+            this.rtb_AT_T2.Name = "rtb_AT_T2";
+            this.rtb_AT_T2.ReadOnly = true;
+            this.rtb_AT_T2.Size = new System.Drawing.Size(114, 30);
+            this.rtb_AT_T2.TabIndex = 54;
+            this.rtb_AT_T2.Text = "";
             // 
             // Admin_Status_Detail_Data_Image
             // 
@@ -1601,13 +1601,13 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox11;
+        private System.Windows.Forms.RichTextBox rtb_AT_T5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox12;
+        private System.Windows.Forms.RichTextBox rtb_AT_T4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox13;
+        private System.Windows.Forms.RichTextBox rtb_AT_T3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox richTextBox14;
+        private System.Windows.Forms.RichTextBox rtb_AT_T2;
         private System.Windows.Forms.Label lb_User1_AT;
         private System.Windows.Forms.Label lb_tenanh;
     }

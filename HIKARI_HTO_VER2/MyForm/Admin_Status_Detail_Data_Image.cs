@@ -57,7 +57,7 @@ namespace HIKARI_HTO_VER2.MyForm
             datacheck = Checker; User_Check = UserCheck;
             datalc = Lastcheck; stylebatch = style_batch;
             lst_all_rtb_AE = new List<RichTextBox>() { rtb_truong2, rtb_truong3, rtb_truong4, rtb_truong5, rtb_truong9_1, rtb_truong9_2, rtb_truong9_3, rtb_truong9_4, rtb_truong9_5, rtb_truong9_6, rtb_truong9_7, rtb_truong9_8, rtb_truong9_9, rtb_truong9_10 };
-            lst_header_AT = new List<RichTextBox>() { rtb_truong2, rtb_truong3, rtb_truong4, rtb_truong5 };
+            lst_header_AT = new List<RichTextBox>() { rtb_AT_T2, rtb_AT_T3, rtb_AT_T4, rtb_AT_T5 };
             lst_body_AT1 = new List<RichTextBox>() { rtb_truong7_1, rtb_truong10_1, rtb_truong8_1, rtb_truong9_1 };
             lst_body_AT2 = new List<RichTextBox>() { rtb_truong7_2, rtb_truong10_2, rtb_truong8_2, rtb_truong9_2 };
             lst_body_AT3 = new List<RichTextBox>() { rtb_truong7_3, rtb_truong10_3, rtb_truong8_3, rtb_truong9_3 };

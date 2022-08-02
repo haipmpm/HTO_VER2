@@ -26,11 +26,11 @@ namespace HIKARI_HTO_VER2.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.1.15;Initial Catalog=DB_HIKARI_VER2;Persist Security Info=True;" +
-            "User ID=haipm;Password=Minhhai@171192")]
-        public string DB_HIKARI_VER2ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.1.15;Initial Catalog=DB_HIKARI_HTO2022_VER2;Persist Security In" +
+            "fo=True;User ID=hto2022;Password=ilzwvOH3L0SSLQXi")]
+        public string DB_HIKARI_HTO2022_VER2ConnectionString {
             get {
-                return ((string)(this["DB_HIKARI_VER2ConnectionString"]));
+                return ((string)(this["DB_HIKARI_HTO2022_VER2ConnectionString"]));
             }
         }
     }

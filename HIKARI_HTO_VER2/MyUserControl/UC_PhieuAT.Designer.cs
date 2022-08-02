@@ -218,6 +218,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.Controls.Add(this.uC_HeaderAT1);
             this.Name = "UC_PhieuAT";
             this.Size = new System.Drawing.Size(677, 439);
+            this.Load += new System.EventHandler(this.UC_PhieuAT_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

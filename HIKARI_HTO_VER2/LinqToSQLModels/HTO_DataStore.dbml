@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_HIKARI_VER2" Class="HTO_DataStoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=10.10.1.15;Initial Catalog=DB_HIKARI_VER2;Persist Security Info=True;User ID=haipm" SettingsObjectName="HIKARI_HTO_VER2.Properties.Settings" SettingsPropertyName="DB_HIKARI_VER2ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=10.10.1.15;Initial Catalog=DB_HIKARI_HTO2022_VER2;Persist Security Info=True;User ID=hto2022" SettingsObjectName="HIKARI_HTO_VER2.Properties.Settings" SettingsPropertyName="DB_HIKARI_HTO2022_VER2ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Tb_Batch" Member="Tb_Batches">
     <Type Name="Tb_Batch">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
@@ -443,9 +443,23 @@
       <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.spAdmin_Pfm_Entry" Method="spAdmin_Pfm_Entry">
+  <Function Name="dbo.spAdmin_Pfm_Entry" Method="spAdmin_Pfm_Entry" IsComposable="true">
     <Parameter Name="style_Pfm" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="Time_Start" Parameter="time_Start" Type="System.String" DbType="NVarChar(50)" />
     <Parameter Name="Time_End" Parameter="time_End" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.spEntry_Submit_New_v3" Method="spEntry_Submit_New_v3">
+    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Data_Entry" Parameter="data_Entry" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LenData_Entry" Parameter="lenData_Entry" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Data_Entry_Split" Parameter="data_Entry_Split" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="spEntry_Submit_New_v3Result">
+      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

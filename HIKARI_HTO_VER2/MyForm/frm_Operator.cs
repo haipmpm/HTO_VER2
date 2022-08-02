@@ -310,7 +310,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_IdImage.Text = "";
             DataTable dt_info_img = new DataTable();
             if (Global.isOperatorGroup)
-            {                
+            {
                 try
                 {
                     DataSet ds = new DataSet();
@@ -338,9 +338,13 @@ namespace HIKARI_HTO_VER2.MyForm
                     Entry_info.imageName = dt_info_img.Rows[0]["Name_Img"].ToString();
                     Entry_info.ID_Getdata = Convert.ToInt32(dt_info_img.Rows[0]["ID"].ToString());
                     Entry_info.int_pair_Entry_Nhap = Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString());
+                    labelControl8.Text = "Pair:" + Entry_info.int_pair_Entry_Nhap;
+                    if (Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString()) == 0)
+                    {
+                        return "NULL";
+                    }
                     Global.Level_Pair_Entry_Nhap = Entry_info.int_pair_Entry_Nhap;
                     string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName;
-
                     if (Show_image(path_webservice, Entry_info.imageName) == "ERROR")
                     {
                         MessageBox.Show("Không thể load hình! \r\n " + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName);

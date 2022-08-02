@@ -664,7 +664,7 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 try
                 {
-                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Back", "1").FirstOrDefault().ToString();
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Back", "1").FirstOrDefault().Column1.ToString();
                     string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"\" + rs_nameImg;
                     Process.Start(path_webservice);
                 }
@@ -692,7 +692,7 @@ namespace HIKARI_HTO_VER2.MyForm
             {
                 try
                 {
-                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Next", "1").FirstOrDefault().ToString();
+                    string rs_nameImg = GlobalDB.DBLinq.Check_ViewImage_Back_Next(Global.BatchIDSelected, Data_ImgBack.ID_image.ToString(), "Next", "1").FirstOrDefault().Column1.ToString();
                     string path_webservice = Global.StrPath + @"\" + Global.BatchIDSelected + "_" + Data_ImgBack.BatchName + @"\" + rs_nameImg;
                     Process.Start(path_webservice);
                 }

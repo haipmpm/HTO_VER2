@@ -39,7 +39,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
     #endregion
 		
 		public HTO_DataStoreDataContext() : 
-				base(global::HIKARI_HTO_VER2.Properties.Settings.Default.DB_HIKARI_VER2ConnectionString, mappingSource)
+				base(global::HIKARI_HTO_VER2.Properties.Settings.Default.DB_HIKARI_HTO2022_VER2ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -352,10 +352,17 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spData_InsertData_ENTRY_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAdmin_Pfm_Entry")]
-		public void spAdmin_Pfm_Entry([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAdmin_Pfm_Entry", IsComposable=true)]
+		public object spAdmin_Pfm_Entry([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
 		{
-			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End);
+			return ((object)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_Submit_New_v3")]
+		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="NVarChar(5)")] string pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="NVarChar(50)")] string lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split, userName);
+			return ((ISingleResult<spEntry_Submit_New_v3Result>)(result.ReturnValue));
 		}
 	}
 	
@@ -4109,6 +4116,32 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		private string _Column1;
 		
 		public spData_InsertData_ENTRY_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spEntry_Submit_New_v3Result
+	{
+		
+		private string _Column1;
+		
+		public spEntry_Submit_New_v3Result()
 		{
 		}
 		

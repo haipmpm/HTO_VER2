@@ -71,14 +71,30 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return result;
         }      
-        public spData_InsertData_ENTRY_v2Result Entry_insertData(string ID_Image,string batchID, string DataEntry, string PairEntry, string levelimg, string Lendata, string Data_Split, string User_Name)
+        //public spData_InsertData_ENTRY_v2Result Entry_insertData(string ID_Image,string batchID, string DataEntry, string PairEntry, string levelimg, string Lendata, string Data_Split, string User_Name)
+        //{
+        //    spData_InsertData_ENTRY_v2Result result = new spData_InsertData_ENTRY_v2Result();
+        //    try
+        //    {
+        //        //using (var DBLinq = new LinqToSQLModels.DBHikari_HPTDataContext(Global.ConnectionString))
+        //        //{
+        //        result = GlobalDB.DBLinq.spData_InsertData_ENTRY_v2(ID_Image, batchID, DataEntry, PairEntry, levelimg, Lendata, Data_Split, User_Name).FirstOrDefault();
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logErr.AddLogErr(ex);
+        //    }
+        //    return result;
+        //}
+        public spEntry_Submit_New_v3Result Entry_insertData(string ID_Image, string batchID, string DataEntry, string PairEntry, string levelimg, string Lendata, string Data_Split, string User_Name)
         {
-            spData_InsertData_ENTRY_v2Result result = new spData_InsertData_ENTRY_v2Result();
+            spEntry_Submit_New_v3Result result = new spEntry_Submit_New_v3Result();
             try
             {
                 //using (var DBLinq = new LinqToSQLModels.DBHikari_HPTDataContext(Global.ConnectionString))
                 //{
-                result = GlobalDB.DBLinq.spData_InsertData_ENTRY_v2(ID_Image, batchID, DataEntry, PairEntry, levelimg, Lendata, Data_Split, User_Name).FirstOrDefault();
+                result = GlobalDB.DBLinq.spEntry_Submit_New_v3(ID_Image, batchID, DataEntry, PairEntry, levelimg, Lendata, Data_Split, User_Name).FirstOrDefault();
                 //}
             }
             catch (Exception ex)
