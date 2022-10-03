@@ -75,16 +75,16 @@ namespace HIKARI_HTO_VER2.MyForm
             this.panel4 = new System.Windows.Forms.Panel();
             this.lb_User1_AT = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox9 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox10 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_10 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_9 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_8 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_7 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_6 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_5 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_4 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_3 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_2 = new System.Windows.Forms.RichTextBox();
+            this.AT_Rtb_truong9_1 = new System.Windows.Forms.RichTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.rtb_truong8_10 = new System.Windows.Forms.RichTextBox();
             this.rtb_truong8_9 = new System.Windows.Forms.RichTextBox();
@@ -632,16 +632,16 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             this.panel4.Controls.Add(this.lb_User1_AT);
             this.panel4.Controls.Add(this.label19);
-            this.panel4.Controls.Add(this.richTextBox1);
-            this.panel4.Controls.Add(this.richTextBox2);
-            this.panel4.Controls.Add(this.richTextBox3);
-            this.panel4.Controls.Add(this.richTextBox4);
-            this.panel4.Controls.Add(this.richTextBox5);
-            this.panel4.Controls.Add(this.richTextBox6);
-            this.panel4.Controls.Add(this.richTextBox7);
-            this.panel4.Controls.Add(this.richTextBox8);
-            this.panel4.Controls.Add(this.richTextBox9);
-            this.panel4.Controls.Add(this.richTextBox10);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_10);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_9);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_8);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_7);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_6);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_5);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_4);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_3);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_2);
+            this.panel4.Controls.Add(this.AT_Rtb_truong9_1);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.rtb_truong8_10);
             this.panel4.Controls.Add(this.rtb_truong8_9);
@@ -721,135 +721,135 @@ namespace HIKARI_HTO_VER2.MyForm
             this.label19.TabIndex = 116;
             this.label19.Text = "9.  SỐ LƯỢNG";
             // 
-            // richTextBox1
+            // AT_Rtb_truong9_10
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox1.Location = new System.Drawing.Point(691, 440);
-            this.richTextBox1.MaxLength = 30;
-            this.richTextBox1.Multiline = false;
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox1.TabIndex = 115;
-            this.richTextBox1.Text = "";
+            this.AT_Rtb_truong9_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_10.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_10.Location = new System.Drawing.Point(691, 440);
+            this.AT_Rtb_truong9_10.MaxLength = 30;
+            this.AT_Rtb_truong9_10.Multiline = false;
+            this.AT_Rtb_truong9_10.Name = "AT_Rtb_truong9_10";
+            this.AT_Rtb_truong9_10.ReadOnly = true;
+            this.AT_Rtb_truong9_10.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_10.TabIndex = 115;
+            this.AT_Rtb_truong9_10.Text = "";
             // 
-            // richTextBox2
+            // AT_Rtb_truong9_9
             // 
-            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox2.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox2.Location = new System.Drawing.Point(691, 404);
-            this.richTextBox2.MaxLength = 30;
-            this.richTextBox2.Multiline = false;
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox2.TabIndex = 110;
-            this.richTextBox2.Text = "";
+            this.AT_Rtb_truong9_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_9.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_9.Location = new System.Drawing.Point(691, 404);
+            this.AT_Rtb_truong9_9.MaxLength = 30;
+            this.AT_Rtb_truong9_9.Multiline = false;
+            this.AT_Rtb_truong9_9.Name = "AT_Rtb_truong9_9";
+            this.AT_Rtb_truong9_9.ReadOnly = true;
+            this.AT_Rtb_truong9_9.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_9.TabIndex = 110;
+            this.AT_Rtb_truong9_9.Text = "";
             // 
-            // richTextBox3
+            // AT_Rtb_truong9_8
             // 
-            this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox3.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox3.Location = new System.Drawing.Point(691, 368);
-            this.richTextBox3.MaxLength = 30;
-            this.richTextBox3.Multiline = false;
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox3.TabIndex = 106;
-            this.richTextBox3.Text = "";
+            this.AT_Rtb_truong9_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_8.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_8.Location = new System.Drawing.Point(691, 368);
+            this.AT_Rtb_truong9_8.MaxLength = 30;
+            this.AT_Rtb_truong9_8.Multiline = false;
+            this.AT_Rtb_truong9_8.Name = "AT_Rtb_truong9_8";
+            this.AT_Rtb_truong9_8.ReadOnly = true;
+            this.AT_Rtb_truong9_8.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_8.TabIndex = 106;
+            this.AT_Rtb_truong9_8.Text = "";
             // 
-            // richTextBox4
+            // AT_Rtb_truong9_7
             // 
-            this.richTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox4.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox4.Location = new System.Drawing.Point(691, 332);
-            this.richTextBox4.MaxLength = 30;
-            this.richTextBox4.Multiline = false;
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.ReadOnly = true;
-            this.richTextBox4.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox4.TabIndex = 102;
-            this.richTextBox4.Text = "";
+            this.AT_Rtb_truong9_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_7.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_7.Location = new System.Drawing.Point(691, 332);
+            this.AT_Rtb_truong9_7.MaxLength = 30;
+            this.AT_Rtb_truong9_7.Multiline = false;
+            this.AT_Rtb_truong9_7.Name = "AT_Rtb_truong9_7";
+            this.AT_Rtb_truong9_7.ReadOnly = true;
+            this.AT_Rtb_truong9_7.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_7.TabIndex = 102;
+            this.AT_Rtb_truong9_7.Text = "";
             // 
-            // richTextBox5
+            // AT_Rtb_truong9_6
             // 
-            this.richTextBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox5.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox5.Location = new System.Drawing.Point(691, 296);
-            this.richTextBox5.MaxLength = 30;
-            this.richTextBox5.Multiline = false;
-            this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.ReadOnly = true;
-            this.richTextBox5.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox5.TabIndex = 97;
-            this.richTextBox5.Text = "";
+            this.AT_Rtb_truong9_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_6.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_6.Location = new System.Drawing.Point(691, 296);
+            this.AT_Rtb_truong9_6.MaxLength = 30;
+            this.AT_Rtb_truong9_6.Multiline = false;
+            this.AT_Rtb_truong9_6.Name = "AT_Rtb_truong9_6";
+            this.AT_Rtb_truong9_6.ReadOnly = true;
+            this.AT_Rtb_truong9_6.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_6.TabIndex = 97;
+            this.AT_Rtb_truong9_6.Text = "";
             // 
-            // richTextBox6
+            // AT_Rtb_truong9_5
             // 
-            this.richTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox6.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox6.Location = new System.Drawing.Point(691, 261);
-            this.richTextBox6.MaxLength = 30;
-            this.richTextBox6.Multiline = false;
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.ReadOnly = true;
-            this.richTextBox6.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox6.TabIndex = 93;
-            this.richTextBox6.Text = "";
+            this.AT_Rtb_truong9_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_5.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_5.Location = new System.Drawing.Point(691, 261);
+            this.AT_Rtb_truong9_5.MaxLength = 30;
+            this.AT_Rtb_truong9_5.Multiline = false;
+            this.AT_Rtb_truong9_5.Name = "AT_Rtb_truong9_5";
+            this.AT_Rtb_truong9_5.ReadOnly = true;
+            this.AT_Rtb_truong9_5.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_5.TabIndex = 93;
+            this.AT_Rtb_truong9_5.Text = "";
             // 
-            // richTextBox7
+            // AT_Rtb_truong9_4
             // 
-            this.richTextBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox7.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox7.Location = new System.Drawing.Point(691, 225);
-            this.richTextBox7.MaxLength = 30;
-            this.richTextBox7.Multiline = false;
-            this.richTextBox7.Name = "richTextBox7";
-            this.richTextBox7.ReadOnly = true;
-            this.richTextBox7.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox7.TabIndex = 88;
-            this.richTextBox7.Text = "";
+            this.AT_Rtb_truong9_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_4.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_4.Location = new System.Drawing.Point(691, 225);
+            this.AT_Rtb_truong9_4.MaxLength = 30;
+            this.AT_Rtb_truong9_4.Multiline = false;
+            this.AT_Rtb_truong9_4.Name = "AT_Rtb_truong9_4";
+            this.AT_Rtb_truong9_4.ReadOnly = true;
+            this.AT_Rtb_truong9_4.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_4.TabIndex = 88;
+            this.AT_Rtb_truong9_4.Text = "";
             // 
-            // richTextBox8
+            // AT_Rtb_truong9_3
             // 
-            this.richTextBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox8.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox8.Location = new System.Drawing.Point(691, 189);
-            this.richTextBox8.MaxLength = 30;
-            this.richTextBox8.Multiline = false;
-            this.richTextBox8.Name = "richTextBox8";
-            this.richTextBox8.ReadOnly = true;
-            this.richTextBox8.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox8.TabIndex = 81;
-            this.richTextBox8.Text = "";
+            this.AT_Rtb_truong9_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_3.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_3.Location = new System.Drawing.Point(691, 189);
+            this.AT_Rtb_truong9_3.MaxLength = 30;
+            this.AT_Rtb_truong9_3.Multiline = false;
+            this.AT_Rtb_truong9_3.Name = "AT_Rtb_truong9_3";
+            this.AT_Rtb_truong9_3.ReadOnly = true;
+            this.AT_Rtb_truong9_3.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_3.TabIndex = 81;
+            this.AT_Rtb_truong9_3.Text = "";
             // 
-            // richTextBox9
+            // AT_Rtb_truong9_2
             // 
-            this.richTextBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox9.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox9.Location = new System.Drawing.Point(691, 153);
-            this.richTextBox9.MaxLength = 30;
-            this.richTextBox9.Multiline = false;
-            this.richTextBox9.Name = "richTextBox9";
-            this.richTextBox9.ReadOnly = true;
-            this.richTextBox9.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox9.TabIndex = 72;
-            this.richTextBox9.Text = "";
+            this.AT_Rtb_truong9_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_2.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_2.Location = new System.Drawing.Point(691, 153);
+            this.AT_Rtb_truong9_2.MaxLength = 30;
+            this.AT_Rtb_truong9_2.Multiline = false;
+            this.AT_Rtb_truong9_2.Name = "AT_Rtb_truong9_2";
+            this.AT_Rtb_truong9_2.ReadOnly = true;
+            this.AT_Rtb_truong9_2.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_2.TabIndex = 72;
+            this.AT_Rtb_truong9_2.Text = "";
             // 
-            // richTextBox10
+            // AT_Rtb_truong9_1
             // 
-            this.richTextBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox10.ForeColor = System.Drawing.Color.Red;
-            this.richTextBox10.Location = new System.Drawing.Point(691, 117);
-            this.richTextBox10.MaxLength = 30;
-            this.richTextBox10.Multiline = false;
-            this.richTextBox10.Name = "richTextBox10";
-            this.richTextBox10.ReadOnly = true;
-            this.richTextBox10.Size = new System.Drawing.Size(150, 30);
-            this.richTextBox10.TabIndex = 65;
-            this.richTextBox10.Text = "";
+            this.AT_Rtb_truong9_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AT_Rtb_truong9_1.ForeColor = System.Drawing.Color.Red;
+            this.AT_Rtb_truong9_1.Location = new System.Drawing.Point(691, 117);
+            this.AT_Rtb_truong9_1.MaxLength = 30;
+            this.AT_Rtb_truong9_1.Multiline = false;
+            this.AT_Rtb_truong9_1.Name = "AT_Rtb_truong9_1";
+            this.AT_Rtb_truong9_1.ReadOnly = true;
+            this.AT_Rtb_truong9_1.Size = new System.Drawing.Size(150, 30);
+            this.AT_Rtb_truong9_1.TabIndex = 65;
+            this.AT_Rtb_truong9_1.Text = "";
             // 
             // label18
             // 
@@ -1546,16 +1546,16 @@ namespace HIKARI_HTO_VER2.MyForm
         private System.Windows.Forms.Label lb_User1_AE;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox4;
-        private System.Windows.Forms.RichTextBox richTextBox5;
-        private System.Windows.Forms.RichTextBox richTextBox6;
-        private System.Windows.Forms.RichTextBox richTextBox7;
-        private System.Windows.Forms.RichTextBox richTextBox8;
-        private System.Windows.Forms.RichTextBox richTextBox9;
-        private System.Windows.Forms.RichTextBox richTextBox10;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_10;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_9;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_8;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_7;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_6;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_5;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_4;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_3;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_2;
+        private System.Windows.Forms.RichTextBox AT_Rtb_truong9_1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RichTextBox rtb_truong8_10;
         private System.Windows.Forms.RichTextBox rtb_truong8_9;
