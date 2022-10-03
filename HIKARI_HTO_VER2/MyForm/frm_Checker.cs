@@ -316,7 +316,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             lb_IdImage.Text = "";
             DataTable dt_info_img = new DataTable();
-            if (Global.isOperatorGroup)
+            if (Global.isCheckerVNGroup)
             {
                 var Info_Image_check = using_Tb_Data.Get_Image_Check(Global.BatchIDSelected.ToString(), Global.strUsername, Global.Level_Image);
                 #region đóng code cũ

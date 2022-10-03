@@ -271,6 +271,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 e.Handled = true ;
             }
+            if (e.KeyChar==' ')
+            {
+                e.Handled = true;
+            }
         }
 
         private void UC_Detail_AT_Load()

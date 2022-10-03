@@ -49,6 +49,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 {
                     txt.Text = txt.Text.Replace("ｰ", "");
                 }
+                if (txt.Text.Contains(' '))
+                {
+                    txt.Text.Replace(" ", "");
+                }
             }
         }
         private void Txt_GotFocus(object sender, EventArgs e)

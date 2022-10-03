@@ -37,7 +37,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Enter)
             {
-                if (btn_Submit.Visible == true)
+                if (btn_Submit.Visible == true )
                 {
                     btn_Submit_Click(null, null);
                     e.Handled = true;
@@ -474,7 +474,13 @@ namespace HIKARI_HTO_VER2.MyForm
             if (BackImage.data_nhap != "")
             {
                 string path_webservice = Global.Webservice + BackImage.ID_Batch + "_" + BackImage.BatchName + @"/" + BackImage.Image_Name;
-                Show_image(path_webservice, BackImage.Image_Name);
+                string getimg = Show_image(path_webservice, BackImage.Image_Name);
+                if (getimg == "ERROR")
+                {
+                    MessageBox.Show("Lỗi lấy ảnh --> Out Tools");
+                    Entry_info.imageName = "";
+                    this.Close();
+                }
                 Add_Data(BackImage.data_nhap, BackImage.BatchType);
             }
             btn_Save.Visible = true; btn_Cancel.Visible = true;
@@ -525,11 +531,11 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     uC_PhieuAT1.lst_header_AT[i].Text = linkDataImg.Split('‡')[0].Split('†')[i].ToString();
                 }
-                for (int i = 1; i <= uC_PhieuAT1.lst_to_List_body.Count; i++)
+                for (int i = 0; i < uC_PhieuAT1.lst_to_List_body.Count; i++)
                 {
                     for (int t = 0; t < uC_PhieuAT1.lst_to_List_body[i].Count; t++)
                     {
-                        uC_PhieuAT1.lst_to_List_body[i][t].Text = linkDataImg.Split('‡')[i].Split('†')[t].ToString();
+                        uC_PhieuAT1.lst_to_List_body[i][t].Text = linkDataImg.Split('‡')[i+1].Split('†')[t].ToString();
                     }
                 }
                 uC_PhieuAT1.uC_HeaderAT1.txt_Truong2.Focus();
@@ -579,11 +585,16 @@ namespace HIKARI_HTO_VER2.MyForm
                 ResetDataAllUC();
                 SetInformation();
                 string path_webservice = Global.Webservice + ImageNhap.ID_Batch + "_" + ImageNhap.BatchName + @"/" + ImageNhap.Image_Name;
-                Show_image(path_webservice, ImageNhap.Image_Name);
+                string getimg =  Show_image(path_webservice, ImageNhap.Image_Name);
+                if (getimg == "ERROR")
+                {
+                    MessageBox.Show("Lỗi lấy ảnh --> Out Tools");
+                    Entry_info.imageName = "";
+                    this.Close();
+                }
                 Add_Data(ImageNhap.data_nhap, ImageNhap.BatchType);
                 btn_Save.Visible = false; btn_Cancel.Visible = false;
                 btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;
-
             }
             else if (kqsubmit == "1")
             {
@@ -610,7 +621,14 @@ namespace HIKARI_HTO_VER2.MyForm
             ResetDataAllUC();
             SetInformation();
             string path_webservice = Global.Webservice + ImageNhap.ID_Batch + "_" + ImageNhap.BatchName + @"/" + ImageNhap.Image_Name;
-            Show_image(path_webservice, ImageNhap.Image_Name);
+            string getimg = Show_image(path_webservice, ImageNhap.Image_Name);
+            if (getimg == "ERROR")
+            {
+                MessageBox.Show("Lỗi lấy ảnh --> Out Tools");
+                Entry_info.imageName = "";
+                this.Close();
+            }
+            //Show_image(path_webservice, ImageNhap.Image_Name);
             Add_Data(ImageNhap.data_nhap, ImageNhap.BatchType);
             btn_Save.Visible = false; btn_Cancel.Visible = false;
             btn_Submit.Visible = true; btn_Submit_Logout.Visible = true;

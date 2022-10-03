@@ -241,7 +241,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_BackImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_BackImage.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_BackImage.Appearance.Options.UseFont = true;
-            this.btn_BackImage.Location = new System.Drawing.Point(117, 13);
+            this.btn_BackImage.Location = new System.Drawing.Point(6, 16);
             this.btn_BackImage.Name = "btn_BackImage";
             this.btn_BackImage.Size = new System.Drawing.Size(85, 25);
             this.btn_BackImage.TabIndex = 4;

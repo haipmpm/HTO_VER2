@@ -119,11 +119,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private void txt_Truong9_TextChanged(object sender, EventArgs e)
         {
            
-                if (txt_Truong9.Text.Contains('ｰ'))
-                {
-                    txt_Truong9.Text = txt_Truong9.Text.Replace("ｰ","");
-                }
-            
+            if (txt_Truong9.Text.Contains('ｰ'))
+            {
+                txt_Truong9.Text = txt_Truong9.Text.Replace("ｰ","");
+            }
+           
+
         }
     }
 }

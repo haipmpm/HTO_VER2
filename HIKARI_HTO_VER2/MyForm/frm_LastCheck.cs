@@ -379,8 +379,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 change_data_save = true;
                 SendKeys.Send("{F2}");
                 SendKeys.Send("{END}");
-            }
-            
+            }            
         }
         private void grdV_Image_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
@@ -513,6 +512,7 @@ namespace HIKARI_HTO_VER2.MyForm
                         lc_info.Tb_Data_QuetLogic.Clear();
                         string nameimage = lc_info.Tb_Data_Batch.Rows[i]["NameImage"].ToString();
                         lc_info.Tb_Data_QuetLogic = Function_Data(lc_info.Tb_Data_Batch.Rows[i]["Content_LC"].ToString());
+                        
                         for (int t = 0; t < lc_info.Tb_Data_QuetLogic.Columns.Count; t++)
                         {
                             if(t < 4)
@@ -527,6 +527,12 @@ namespace HIKARI_HTO_VER2.MyForm
                                     {
                                         lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 2 khác 6 kí tự", i, 0, t);
                                         Done_batch = true;
+                                    }
+                                }
+                                else {                                    
+                                    if (lc_info.Tb_Data_QuetLogic.Rows[0][t].ToString().Contains("?") == true)
+                                    {
+                                        lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường " + (t + 2).ToString() + " có kí tự '?'", i, 0, t);
                                     }
                                 }
                                 //else if (t == 1) // Check thông tin trường 3
@@ -550,7 +556,7 @@ namespace HIKARI_HTO_VER2.MyForm
                                     {
                                         if (number_T7 == true)
                                         {
-                                            if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "KAKISONJI" || lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "MISIYO")
+                                            if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "KAKISONJI" || lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "MISIYO" || lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "YOHAKU" || lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() == "SAKUJYO")
                                             {
                                                 if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString() != "" || lc_info.Tb_Data_QuetLogic.Rows[0][2].ToString() != "" || lc_info.Tb_Data_QuetLogic.Rows[0][3].ToString() != "")
                                                 {
@@ -563,6 +569,7 @@ namespace HIKARI_HTO_VER2.MyForm
                                         {
                                             lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 có dấu phẩy ','", i, z, t);
                                         }
+                                        
                                         if (lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() != "SAKUJYO" && lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() != "YOHAKU" && lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() != "KAKISONJI" && lc_info.Tb_Data_QuetLogic.Rows[z][t].ToString().ToUpper() != "MISIYO")
                                         {
                                             if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:9"].ToString() == "")
@@ -578,13 +585,50 @@ namespace HIKARI_HTO_VER2.MyForm
                                         {
                                             lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 và 9 cùng trống", i, z, t);
                                         }
+                                        if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().Contains("?"))
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 có dấu phẩy '?'", i, z, t);
+                                        }
+                                    }
+                                    if (lc_info.Tb_Data_QuetLogic.Columns[t].ColumnName == "Truong:10")
+                                    {
+                                        if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:10"].ToString().Contains("?"))
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 10 có dấu phẩy '?'", i, z, t);
+                                        }
+                                    }
+                                    else if (lc_info.Tb_Data_QuetLogic.Columns[t].ColumnName == "Truong:8")
+                                    {
+                                        if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:8"].ToString().Contains("?"))
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 8 có dấu phẩy '?'", i, z, t);
+                                        }
+                                    }
+                                    else if (lc_info.Tb_Data_QuetLogic.Columns[t].ColumnName == "Truong:9")
+                                    {
+                                        if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:9"].ToString().Contains("?"))
+                                        {
+                                            lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 9 có dấu phẩy '?'", i, z, t);
+                                        }
                                     }
                                 }
-
+                                
                                 if (lc_info.Tb_Data_QuetLogic.Columns[t].ColumnName == "Truong:7")
                                 {
                                     if (number_T7 == true)
                                     {
+                                        //if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString() == "")
+                                        //{
+                                        //    lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 trống", i, 0, 1);
+                                        //}
+                                        //if (lc_info.Tb_Data_QuetLogic.Rows[0][2].ToString() == "")
+                                        //{
+                                        //    lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 4 trống", i, 0, 2);
+                                        //}
+                                        //if (lc_info.Tb_Data_QuetLogic.Rows[0][3].ToString() == "")
+                                        //{
+                                        //    lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 5 trống", i, 0, 3);
+                                        //}
                                         if (lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length != 4 && lc_info.Tb_Data_QuetLogic.Rows[0][1].ToString().Length != 0)
                                         {
                                             lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 khác 4 kí tự", i, 0, 1);
@@ -594,8 +638,12 @@ namespace HIKARI_HTO_VER2.MyForm
                                             lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 3 có kí tự khác số", i, 0, t);
                                         }
                                     }
+                                    else
+                                    {
+                                        lc_info.Tb_CheckLogic.Rows.Add(nameimage, "Dữ liệu Trường 7 (KAKISONJI - MISIYO - KAKISONJI - YOHAKU) và  3 4 5 có dữ liệu", i, 0, 1);
+                                    }
                                 }
-                            }
+                            }                            
                         }
                     }
                 }
@@ -675,7 +723,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     string Result_change = "";
                     string header = lc_info.Tb_LC.Rows[0][0].ToString().Trim() + "†" + lc_info.Tb_LC.Rows[0][1].ToString().Trim() + "†" + lc_info.Tb_LC.Rows[0][2].ToString().Trim() + "†" + lc_info.Tb_LC.Rows[0][3].ToString().Trim() + "†";
-                    string str_body = String.Join("†", lc_info.Tb_LC.Select("[Truong:9] <> ''").Where(s => s.ItemArray[4].ToString() != "").Select(x => x.ItemArray[4])).Trim();
+                    string str_body = String.Join("†", lc_info.Tb_LC.Rows.OfType<DataRow>().Select(x => x.ItemArray[4])).Trim();
                     Result_change = header + "‡" + str_body;
                     lc_info.Tb_Data_Batch.Rows[lc_info.index_Click]["Content_LC"] = Result_change;
                     lc_info.Tb_Data_Batch.Rows[lc_info.index_Click]["Changed_Data"] = "1";
