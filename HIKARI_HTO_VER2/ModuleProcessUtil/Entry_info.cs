@@ -12,7 +12,5 @@ namespace HIKARI_HTO_VER2.ModuleProcessUtil
         public int ID_Getdata { get; set; }
         public int int_pair_Entry_Nhap { get; set; }
         public float flZoom { get; set; }
-
-        
     }
 }

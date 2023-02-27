@@ -68,21 +68,21 @@ namespace HIKARI_HTO_VER2.MyForm
             cbb_batchname.DataSource = null;
             if (cbb_Role.Text == Constant.DESO)
             {
-                var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry_new(Global.Level_Image,"0",Global.LevelUser.ToString(),Global.strUsername) select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser }).ToList();
+                var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry_2023(Global.Level_Image,0,Global.LevelUser,Global.strUsername) select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser }).OrderBy(x => x.ID).ToList();
                 cbb_batchname.DataSource = listResult;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";
             }
             else if (cbb_Role.Text == Constant.CHECKDESO)
             {
-                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image,"0") select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser, w.Hit_E11 }).Where(x => x.Hit_E11 > 0).ToList();
+                var List_check = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image,0) select new { w.ID, w.BatchName, w.BatchType, w.ChiaUser, w.Hit_E11 }).Where(x => x.Hit_E11 > 0).OrderBy(x=>x.ID).ToList();
                 cbb_batchname.DataSource = List_check;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";
             }
             else if (cbb_Role.Text == Constant.LASTCHECK)
             {
-                var query = (from w in using_Tb_Batch.get_batch_LastCheck(Global.strUsername) select new { w.ID, w.BatchName }).ToList();
+                var query = (from w in using_Tb_Batch.get_batch_LastCheck(Global.strUsername) select new { w.ID, w.BatchName }).OrderBy(x => x.ID).ToList();
                 cbb_batchname.DataSource = query;
                 cbb_batchname.DisplayMember = "BatchName";
                 cbb_batchname.ValueMember = "ID";

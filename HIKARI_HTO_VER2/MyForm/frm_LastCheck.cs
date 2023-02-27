@@ -43,7 +43,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     btn_SaveData.Enabled = true;
                     btn_CheckLogic.Enabled = true;
                     DataTable dt_Data_batch = new DataTable();
-                    dt_Data_batch = using_data.LC_GetData_batch(Global.BatchIDSelected, Global.strUsername, Global.Level_Image.ToString());
+                    dt_Data_batch = using_data.LC_GetData_batch(Convert.ToInt32(Global.BatchIDSelected), Global.strUsername, Global.Level_Image);
                     if (dt_Data_batch.Rows.Count > 0)
                     {
                         StartLC = 1;
@@ -801,7 +801,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     cmd.Parameters.Clear();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 60 * 60;
-                    cmd.Parameters.AddWithValue("@ID_Batch", Global.BatchIDSelected);
+                    cmd.Parameters.AddWithValue("@ID_Batch", Convert.ToInt32(Global.BatchIDSelected));
                     cmd.Parameters.AddWithValue("@table_truyen", dt_update).SqlDbType = SqlDbType.Structured;
                     cmd.ExecuteNonQuery();
                     con.Close();

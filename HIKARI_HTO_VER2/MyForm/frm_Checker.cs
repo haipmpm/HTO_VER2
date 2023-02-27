@@ -284,7 +284,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_IdImage.Text = "";
             lb_batchname.Text = "";
 
-            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image, Global.BatchIDSelected) select new { w.ID, w.BatchName, w.BatchType , w.Hit_E11}).Where(x=>x.Hit_E11 > 0).ToList();
+            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Checker(Global.Level_Image, Convert.ToInt32(Global.BatchIDSelected)) select new { w.ID, w.BatchName, w.BatchType , w.Hit_E11}).Where(x=>x.Hit_E11 > 0).OrderBy(x=>x.ID).ToList();
 
             if (listResult.Count > 0)
             {
@@ -318,7 +318,7 @@ namespace HIKARI_HTO_VER2.MyForm
             DataTable dt_info_img = new DataTable();
             if (Global.isCheckerVNGroup)
             {
-                var Info_Image_check = using_Tb_Data.Get_Image_Check(Global.BatchIDSelected.ToString(), Global.strUsername, Global.Level_Image);
+                var Info_Image_check = using_Tb_Data.Get_Image_Check(Convert.ToInt32(Global.BatchIDSelected), Global.strUsername, Global.Level_Image);
                 #region đóng code cũ
                 //try
                 //{
@@ -491,7 +491,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     Handle_RefreshImage refreshImage;
                     refreshImage = new Handle_RefreshImage();
                     //int level = Hikari_LoginDLL.Hikari_Login.GetLevelUserOfGroupProject(Global.strUsername, Global.Group_Operator_VN_Code);
-                    refreshImage.spData_Refresh_Image_Entry_Check(Global.BatchIDSelected, "", CheckInfo.ID_image.ToString(), "CHECK");
+                    refreshImage.spData_Refresh_Image_Entry_Check(Convert.ToInt32(Global.BatchIDSelected), 0, CheckInfo.ID_image, "CHECK");
                 }
                 else
                 {

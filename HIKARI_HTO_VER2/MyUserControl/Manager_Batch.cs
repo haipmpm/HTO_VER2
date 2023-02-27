@@ -61,7 +61,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 foreach (var item in selectHanle)
                 {
                     gridView1.SetRowCellValue(item, "CongKhaiBatch", true);
-                    using_Batch.UpdateCongKhaiBatch(gridView1.GetRowCellValue(item, "ID").ToString(), 1);
+                    using_Batch.UpdateCongKhaiBatch(Convert.ToInt32(gridView1.GetRowCellValue(item, "ID").ToString()), 1);
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 foreach (var item in selectHanle)
                 {
                     gridView1.SetRowCellValue(item, "CongKhaiBatch", false);
-                    using_Batch.UpdateCongKhaiBatch(gridView1.GetRowCellValue(item, "ID").ToString(), 0);
+                    using_Batch.UpdateCongKhaiBatch(Convert.ToInt32(gridView1.GetRowCellValue(item, "ID").ToString()), 0);
                 }
             }
         }
@@ -100,10 +100,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 foreach (var rowHandle in gridView1.GetSelectedRows())
                 {
-                    string BatchID = gridView1.GetRowCellValue(rowHandle, "ID").ToString();
+                    int BatchID = Convert.ToInt32(gridView1.GetRowCellValue(rowHandle, "ID").ToString());
                     string temp = Global.StrPath + "\\" + BatchID + "_" + gridView1.GetRowCellValue(rowHandle, "BatchName").ToString();
                     string str_Table_Data = Convert.ToDateTime(gridView1.GetRowCellValue(rowHandle, "DateCreate").ToString()).ToString("yyyyMM");
-                    using_Batch.Delete_Batch(BatchID.ToString(), str_Table_Data);
+                    using_Batch.Delete_Batch(BatchID, str_Table_Data);
                     try
                     {
                         Directory.Delete(temp, true);
@@ -122,11 +122,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
         {
             try
             {
-                string BatchID = gridView1.GetFocusedRowCellValue("ID") + "";
+                int BatchID = Convert.ToInt32(gridView1.GetFocusedRowCellValue("ID"));
                 string str_Table_Data = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("DateCreate").ToString()).ToString("yyyyMM");
                 string fielname = e.Column.FieldName;
                 bool check;
-                int rowHandle;
+                int rowHandle = gridView1.FocusedRowHandle;                
                 switch (fielname)
                 {
                     case "CongKhaiBatch":
@@ -139,7 +139,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         {
                             using_Batch.UpdateCongKhaiBatch(BatchID, 0);
                         }
-                        rowHandle = gridView1.LocateByValue("ID", BatchID);
                         refresh();
                         if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                             gridView1.FocusedRowHandle = rowHandle;
@@ -161,8 +160,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                             {
                                 using_Batch.UpdateBatchChiaUser(BatchID, 0);
                             }
-                        }
-                        rowHandle = gridView1.LocateByValue("ID", BatchID);
+                        }                        
                         refresh();
                         if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                             gridView1.FocusedRowHandle = rowHandle;

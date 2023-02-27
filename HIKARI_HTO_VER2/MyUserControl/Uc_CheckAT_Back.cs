@@ -1,4 +1,5 @@
-﻿using HIKARI_HTO_VER2.ModuleProcessUtil;
+﻿using HIKARI_HTO_VER2.LinqToSQLProcess;
+using HIKARI_HTO_VER2.ModuleProcessUtil;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -311,29 +312,38 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             try
             {
-                string ConnectionString = Global.ConnectionString;
-                SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("Check_Update_Image_Back", con);
-                cmd.Parameters.Clear();
-                cmd.CommandTimeout = 10 * 60;
-                cmd.CommandType = CommandType.StoredProcedure;
-                //SqlParameter param = new SqlParameter();
-                //cmd.Parameters.AddWithValue("@ListDetail", takeDataTableDetail()).SqlDbType = SqlDbType.Structured;
-                cmd.Parameters.AddWithValue("@ID_Image_Data", ID_Image.ToString());
-                cmd.Parameters.AddWithValue("@BatchID", ID_Batch.ToString());
-                cmd.Parameters.AddWithValue("@Data_Submit", data_full);
-                cmd.Parameters.AddWithValue("@Error_E1", Error_E1.ToString());
-                cmd.Parameters.AddWithValue("@Error_E2", Error_E2.ToString());
-                cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
-                cmd.Parameters.AddWithValue("@TimeCheckUp", timeUpdate.ToString());
-                cmd.ExecuteNonQuery();
-                con.Close();
+                GlobalDB.DBLinq.Check_Update_Image_Back(ID_Batch, ID_Image, Error_E1, Error_E2, data_full,
+                    Global.Level_Image, timeUpdate);
             }
             catch
-            {
-                return 4;
-            }
+            { return 4; }
+            #region 
+            //try
+            //{
+            //    string ConnectionString = Global.ConnectionString;
+            //    SqlConnection con = new SqlConnection(ConnectionString);
+            //    con.Open();
+            //    SqlCommand cmd = new SqlCommand("Check_Update_Image_Back", con);
+            //    cmd.Parameters.Clear();
+            //    cmd.CommandTimeout = 10 * 60;
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    //SqlParameter param = new SqlParameter();
+            //    //cmd.Parameters.AddWithValue("@ListDetail", takeDataTableDetail()).SqlDbType = SqlDbType.Structured;
+            //    cmd.Parameters.AddWithValue("@ID_Image_Data", ID_Image.ToString());
+            //    cmd.Parameters.AddWithValue("@BatchID", ID_Batch.ToString());
+            //    cmd.Parameters.AddWithValue("@Data_Submit", data_full);
+            //    cmd.Parameters.AddWithValue("@Error_E1", Error_E1.ToString());
+            //    cmd.Parameters.AddWithValue("@Error_E2", Error_E2.ToString());
+            //    cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
+            //    cmd.Parameters.AddWithValue("@TimeCheckUp", timeUpdate.ToString());
+            //    cmd.ExecuteNonQuery();
+            //    con.Close();
+            //}
+            //catch
+            //{
+            //    return 4;
+            //}
+            #endregion
             return 3;
         }
     }

@@ -110,7 +110,6 @@ namespace HIKARI_HTO_VER2.MyForm
             
         }
 
-
         private void btn_Submit_Click(object sender, EventArgs e)
         {
             //tránh click submit duble //////
@@ -156,7 +155,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     {
                         return;
                     }
-                    kqsubmit = uC_PhieuAE1.Submit(Global.BatchIDSelected, Entry_info.ID_Getdata.ToString());
+                    kqsubmit = uC_PhieuAE1.Submit(Convert.ToInt32(Global.BatchIDSelected), Entry_info.ID_Getdata);
                 }
                 else if (tabcontrol.SelectedTabPage.Name == "tab_AT")
                 {
@@ -164,7 +163,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     {
                         return;
                     }
-                    kqsubmit = uC_PhieuAT1.Submit(Global.BatchIDSelected, Entry_info.ID_Getdata.ToString());
+                    kqsubmit = uC_PhieuAT1.Submit(Convert.ToInt32(Global.BatchIDSelected), Entry_info.ID_Getdata);
                 }
 
                 if (kqsubmit == "3")
@@ -172,10 +171,10 @@ namespace HIKARI_HTO_VER2.MyForm
                     btn_BackImage.Enabled = true;
                     BackImage = new Info_Image_Back {
                         data_nhap = tabcontrol.SelectedTabPage.Name == "tab_AE" ? uC_PhieuAE1.getDataFull() : uC_PhieuAT1.getDataFull(),
-                        ID_Batch = Global.BatchIDSelected,
-                        ID_Data = Entry_info.ID_Getdata.ToString(),
-                        Level_entry_Check = Global.Level_Pair_Entry_Nhap.ToString(),
-                        Level_img = Global.Level_Image.ToString(),
+                        ID_Batch = Convert.ToInt32(Global.BatchIDSelected),
+                        ID_Data = Entry_info.ID_Getdata,
+                        Level_entry_Check = Global.Level_Pair_Entry_Nhap,
+                        Level_img = Global.Level_Image,
                         Image_Name = Entry_info.imageName,
                         BatchName = Global.BatchNameSelected,
                         BatchType = Global.BatchTypeSelected
@@ -209,7 +208,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             try
             {
-                var a = using_Tb_Data.GetInforBatchForOperator(Global.BatchIDSelected, Global.Level_Image.ToString(),Global.LevelUser.ToString(),Global.strUsername, Global.BatchChiaUser.ToString());
+                var a = using_Tb_Data.GetInforBatchForOperator(Convert.ToInt32(Global.BatchIDSelected), Global.Level_Image,Global.LevelUser,Global.strUsername, Global.BatchChiaUser);
                 lb_SoPhieuCon.Text = a.Số_phiếu_còn + "";
                 lb_SoPhieuNhap.Text = a.Số_phiếu_nhập + "";
                 lb_TongPhieu.Text = a.Tổng_số_phiếu + "";
@@ -277,7 +276,7 @@ namespace HIKARI_HTO_VER2.MyForm
             lb_IdImage.Text = "";
             lb_fBatchName.Text = "";
 
-            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry_new(Global.Level_Image, Global.BatchIDSelected, Global.LevelUser.ToString(), Global.strUsername) select new { w.ID, w.BatchName, w.BatchType }).ToList();
+            var listResult = (from w in using_Tb_Batch.Get_ListBatch_Entry_2023(Global.Level_Image, Convert.ToInt32(Global.BatchIDSelected), Global.LevelUser, Global.strUsername) select new { w.ID, w.BatchName, w.BatchType }).ToList();
 
             if (listResult.Count > 0)
             {
@@ -308,38 +307,18 @@ namespace HIKARI_HTO_VER2.MyForm
         public string GetImageAndShow()
         {
             lb_IdImage.Text = "";
-            DataTable dt_info_img = new DataTable();
+            //DataTable dt_info_img = new DataTable();
             if (Global.isOperatorGroup)
             {
-                try
+                var Info_GetImageName = GlobalDB.DBLinq.spEntryGetImage_v2(Convert.ToInt32(Global.BatchIDSelected), Global.strUsername,
+                    Global.LevelUser, Global.BatchChiaUser, Global.Level_Image).FirstOrDefault();
+                if (Info_GetImageName != null) //(dt_info_img.Rows.Count > 0)
                 {
-                    DataSet ds = new DataSet();
-                    SqlConnection con = new SqlConnection(Global.ConnectionString);
-                    SqlCommand cmd = new SqlCommand("spImage_GetImage_Input_Entry_v2", con);
-                    cmd.CommandTimeout = 10 * 60;
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@BatchID", Global.BatchIDSelected.ToString());
-                    cmd.Parameters.AddWithValue("@User", Global.strUsername);
-                    cmd.Parameters.AddWithValue("@LevelUser", Global.LevelUser);
-                    cmd.Parameters.AddWithValue("@ChiaUser", Global.BatchChiaUser);
-                    cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmd;
-                    da.Fill(ds);
-                    dt_info_img = ds.Tables[0];
-                }
-                catch (Exception exx)
-                {
-                    MessageBox.Show(exx.ToString());
-                    return "ERROR";
-                }
-                if (dt_info_img.Rows.Count > 0)
-                {
-                    Entry_info.imageName = dt_info_img.Rows[0]["Name_Img"].ToString();
-                    Entry_info.ID_Getdata = Convert.ToInt32(dt_info_img.Rows[0]["ID"].ToString());
-                    Entry_info.int_pair_Entry_Nhap = Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString());
+                    Entry_info.imageName = Info_GetImageName.NameImage;
+                    Entry_info.ID_Getdata = Convert.ToInt32(Info_GetImageName.IDImage);
+                    Entry_info.int_pair_Entry_Nhap = Convert.ToInt32(Info_GetImageName.Pair);
                     labelControl8.Text = "Pair:" + Entry_info.int_pair_Entry_Nhap;
-                    if (Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString()) == 0)
+                    if (Entry_info.int_pair_Entry_Nhap == 0)
                     {
                         return "NULL";
                     }
@@ -356,7 +335,57 @@ namespace HIKARI_HTO_VER2.MyForm
                 else
                 {
                     return "NULL";
-                }                
+                }
+                #region close code
+                //try
+                //{
+                //    DataSet ds = new DataSet();
+                //    SqlConnection con = new SqlConnection(Global.ConnectionString);
+                //    SqlCommand cmd = new SqlCommand("spImage_GetImage_Input_Entry_v2", con);
+                //    cmd.CommandTimeout = 10 * 60;
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.Parameters.AddWithValue("@BatchID", Global.BatchIDSelected.ToString());
+                //    cmd.Parameters.AddWithValue("@User", Global.strUsername);
+                //    cmd.Parameters.AddWithValue("@LevelUser", Global.LevelUser);
+                //    cmd.Parameters.AddWithValue("@ChiaUser", Global.BatchChiaUser);
+                //    cmd.Parameters.AddWithValue("@Level_Image", Global.Level_Image.ToString());
+                //    SqlDataAdapter da = new SqlDataAdapter();
+                //    da.SelectCommand = cmd;
+                //    da.Fill(ds);
+                //    dt_info_img = ds.Tables[0];
+                //}
+                //catch (Exception exx)
+                //{
+                //    MessageBox.Show(exx.ToString());
+                //    return "ERROR";
+                //}
+
+
+                //if (dt_info_img.Rows.Count > 0)
+                //{
+                //    Entry_info.imageName = dt_info_img.Rows[0]["Name_Img"].ToString();
+                //    Entry_info.ID_Getdata = Convert.ToInt32(dt_info_img.Rows[0]["ID"].ToString());
+                //    Entry_info.int_pair_Entry_Nhap = Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString());
+                //    labelControl8.Text = "Pair:" + Entry_info.int_pair_Entry_Nhap;
+                //    if (Convert.ToInt32(dt_info_img.Rows[0]["pair"].ToString()) == 0)
+                //    {
+                //        return "NULL";
+                //    }
+                //    Global.Level_Pair_Entry_Nhap = Entry_info.int_pair_Entry_Nhap;
+                //    string path_webservice = Global.Webservice + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName;
+                //    if (Show_image(path_webservice, Entry_info.imageName) == "ERROR")
+                //    {
+                //        MessageBox.Show("Không thể load hình! \r\n " + Global.BatchIDSelected + "_" + Global.BatchNameSelected + @"/" + Entry_info.imageName);
+                //        lb_IdImage.Text = "";
+                //        return "ERROR";
+                //    }
+                //    return "OK";
+                //}
+                //else
+                //{
+                //    return "NULL";
+                //}
+                #endregion
             }
             return null;
         }
@@ -371,7 +400,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     Handle_RefreshImage refreshImage;
                     refreshImage = new Handle_RefreshImage();
                     //int level = Hikari_LoginDLL.Hikari_Login.GetLevelUserOfGroupProject(Global.strUsername, Global.Group_Operator_VN_Code);
-                    refreshImage.spData_Refresh_Image_Entry_Check(Global.BatchIDSelected, Entry_info.int_pair_Entry_Nhap.ToString(), Entry_info.ID_Getdata.ToString() ,"ENTRY");
+                    refreshImage.spData_Refresh_Image_Entry_Check(Convert.ToInt32(Global.BatchIDSelected), Entry_info.int_pair_Entry_Nhap, Entry_info.ID_Getdata ,"ENTRY");
                 }
                 else
                 {
@@ -388,7 +417,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     return;
                 }
-                kqsubmit = uC_PhieuAT1.Submit(Global.BatchIDSelected, Entry_info.ID_Getdata.ToString());
+                kqsubmit = uC_PhieuAT1.Submit(Convert.ToInt32(Global.BatchIDSelected), Entry_info.ID_Getdata);
             }
             else if (tabcontrol.SelectedTabPage.Name == "tab_AE")
             {
@@ -396,7 +425,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     return;
                 }
-                kqsubmit = uC_PhieuAE1.Submit(Global.BatchIDSelected, Entry_info.ID_Getdata.ToString());
+                kqsubmit = uC_PhieuAE1.Submit(Convert.ToInt32(Global.BatchIDSelected), Entry_info.ID_Getdata);
             }            
             if (kqsubmit == "3")
             {
@@ -570,7 +599,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     return;
                 }
-                kqsubmit = uC_PhieuAE1.Submit(BackImage.ID_Batch, BackImage.ID_Data.ToString());
+                kqsubmit = uC_PhieuAE1.Submit(BackImage.ID_Batch, BackImage.ID_Data);
             }
             else if (tabcontrol.SelectedTabPage.Name == "tab_AT")
             {
@@ -578,7 +607,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     return;
                 }
-                kqsubmit = uC_PhieuAT1.Submit(BackImage.ID_Batch, BackImage.ID_Data.ToString());
+                kqsubmit = uC_PhieuAT1.Submit(BackImage.ID_Batch, BackImage.ID_Data);
             }
             if (kqsubmit == "3")
             {

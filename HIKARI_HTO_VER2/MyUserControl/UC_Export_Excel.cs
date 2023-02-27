@@ -120,11 +120,18 @@ namespace HIKARI_HTO_VER2.MyUserControl
             {
                 if (rdb_AE.Checked == true || rdb_AT.Checked == true)
                 {
+                    DataTable TbLstID = new DataTable();
+                    TbLstID.Columns.Add("IdBatch", typeof(int));
+                    for (int i = 0; i < str_batchId.Split(',').Count(); i++)
+                    {
+                        TbLstID.Rows.Add(Convert.ToInt32(str_batchId.Split(',')[i].ToString()));
+                    }
+                    var ResultData = (from w in GlobalDB.DBLinq.Admin_Export_Data(str_batchId) select new {w.IDImg, w.BatchName, w.ID_Batch, w.ImageName, w.ResultLC, w.Loai, w.PathPicture }).OrderBy(x=>x.IDImg).ToList();
+                    
                     tb_Result = new DataTable(); tb_Result_Error = new DataTable();
-                    var Result = (from w in GlobalDB.DBLinq.Admin_Export_Data(str_batchId) select new { w.BatchName, w.ID_Batch, w.ImageName, w.ResultLC, w.Loai, w.PathPicture }).ToList();
                     tb_Result = rdb_AE.Checked ? AddColumnDataAE() : AddColumnDataAT();
                     tb_Result_Error = rdb_AE.Checked ? AddColumnDataAE() : AddColumnDataAT();
-                    foreach (var item in Result)
+                    foreach (var item in ResultData)
                     {
                         if (rdb_AE.Checked)
                         {
@@ -251,8 +258,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
             //DataRow[] dtr = tb_Result.Select("[" + tb_Result.Columns[Constant.Truong02].ColumnName + "] <> ''");
             //lst_Data_Excel_T2.AddRange(dtr.Select(x => Convert.ToInt32(x.ItemArray[2].ToString())).Distinct());
             btn_Export.Enabled = true;
-
-
             splashScreenManager1.CloseWaitForm();
         }
 

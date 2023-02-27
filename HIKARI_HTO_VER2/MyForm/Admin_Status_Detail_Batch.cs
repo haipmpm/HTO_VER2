@@ -83,7 +83,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (MessageBox.Show("Bạn muốn trả ảnh này về Entry Level 1 xử lý lại ???","Question",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GlobalDB.DBLinq.Admin_return_Role_image_v2("E1", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("E1", BatchID, Convert.ToInt32(grdV_Chitiet.GetFocusedRowCellValue("ID").ToString()), Global.Level_Image);
                 Admin_Status_Detail_Batch_Load(null, null);
             }
             else { return; }
@@ -93,7 +93,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (MessageBox.Show("Bạn muốn trả ảnh này về Entry Level 2 xử lý lại ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GlobalDB.DBLinq.Admin_return_Role_image_v2("E2", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("E2", BatchID, Convert.ToInt32(grdV_Chitiet.GetFocusedRowCellValue("ID").ToString()), Global.Level_Image);
                 Admin_Status_Detail_Batch_Load(null, null);
             }
             else { return; }
@@ -103,7 +103,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (MessageBox.Show("Bạn muốn trả ảnh này về Checker xử lý lại ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GlobalDB.DBLinq.Admin_return_Role_image_v2("CHECK", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("CHECK", BatchID, Convert.ToInt32(grdV_Chitiet.GetFocusedRowCellValue("ID")), Global.Level_Image);
                 Admin_Status_Detail_Batch_Load(null, null);
             }
             else { return; }
@@ -113,7 +113,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (MessageBox.Show("Bạn muốn trả ảnh này về Entry xử lý lại ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GlobalDB.DBLinq.Admin_return_Role_image_v2("E1E2", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("E1E2", BatchID, Convert.ToInt32(grdV_Chitiet.GetFocusedRowCellValue("ID").ToString()), Global.Level_Image);
                 Admin_Status_Detail_Batch_Load(null, null);
             }
             else { return; }
@@ -123,7 +123,7 @@ namespace HIKARI_HTO_VER2.MyForm
         {
             if (MessageBox.Show("Bạn muốn thực hiện LC lại Bacth đang chọn ???", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GlobalDB.DBLinq.Admin_return_Role_image_v2("LC", BatchID.ToString(), grdV_Chitiet.GetFocusedRowCellValue("ID").ToString(), Global.Level_Image.ToString());
+                GlobalDB.DBLinq.Admin_return_Role_image_v2("LC", BatchID, Convert.ToInt32(grdV_Chitiet.GetFocusedRowCellValue("ID").ToString()), Global.Level_Image);
                 Admin_Status_Detail_Batch_Load(null, null);
             }
             else { return; }

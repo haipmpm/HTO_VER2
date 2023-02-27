@@ -276,7 +276,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
             return rs;
         }
-        public string Submit(string ID_Batch, string ID_Image)
+        public string Submit(int ID_Batch, int ID_Image)
         {
             if (String.IsNullOrEmpty(uC_HeaderAT1.txt_Truong2.Text) == true)
             {
@@ -289,7 +289,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     return "5";
                 }
             }
-            if (ID_Batch == "" || ID_Image == "")
+            if (ID_Batch <= 0 || ID_Image <= 0 )
             { return "2"; }
             else
             {
@@ -309,7 +309,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     }
                 }
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
-                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap.ToString(), Global.Level_Image.ToString(), RowLenght_Nhap.ToString(), data_full, Global.strUsername);
+                var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap, Global.Level_Image, RowLenght_Nhap, data_full, Global.strUsername);
                 if (type_Submit.Column1.ToString() == "OK")
                 {
                     return "3";

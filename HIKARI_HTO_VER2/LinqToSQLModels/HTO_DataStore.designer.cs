@@ -22,7 +22,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_HIKARI_VER2")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_HIKARI_HTO2022_VER2")]
 	public partial class HTO_DataStoreDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,6 +36,12 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
     partial void Inserttbl_LogErr(tbl_LogErr instance);
     partial void Updatetbl_LogErr(tbl_LogErr instance);
     partial void Deletetbl_LogErr(tbl_LogErr instance);
+    partial void InsertTb_Batch(Tb_Batch instance);
+    partial void UpdateTb_Batch(Tb_Batch instance);
+    partial void DeleteTb_Batch(Tb_Batch instance);
+    partial void InsertTb_AllData(Tb_AllData instance);
+    partial void UpdateTb_AllData(Tb_AllData instance);
+    partial void DeleteTb_AllData(Tb_AllData instance);
     #endregion
 		
 		public HTO_DataStoreDataContext() : 
@@ -68,22 +74,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Tb_Batch> Tb_Batches
-		{
-			get
-			{
-				return this.GetTable<Tb_Batch>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tb_Data_Batch> Tb_Data_Batches
-		{
-			get
-			{
-				return this.GetTable<Tb_Data_Batch>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DataAutocomplete> DataAutocompletes
 		{
 			get
@@ -97,6 +87,22 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			get
 			{
 				return this.GetTable<tbl_LogErr>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tb_Batch> Tb_Batches
+		{
+			get
+			{
+				return this.GetTable<Tb_Batch>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tb_AllData> Tb_AllDatas
+		{
+			get
+			{
+				return this.GetTable<Tb_AllData>();
 			}
 		}
 		
@@ -135,34 +141,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spBatch_GetBatchType_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_XoaBatch_v2")]
-		public int spBatch_XoaBatch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name_Table", DbType="NVarChar(255)")] string name_Table)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, name_Table);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_UpdateCongKhaiBatch_v2")]
-		public int spBatch_UpdateCongKhaiBatch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_UpdateBatchChiaUser_v2")]
-		public int spBatch_UpdateBatchChiaUser_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_CheckBatch_ChiaUser_v2")]
-		public ISingleResult<spData_CheckBatch_ChiaUser_v2Result> spData_CheckBatch_ChiaUser_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Table_Data", DbType="NVarChar(50)")] string table_Data)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, table_Data);
-			return ((ISingleResult<spData_CheckBatch_ChiaUser_v2Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Get_ChiaUser_Batch_v2")]
 		public ISingleResult<Get_ChiaUser_Batch_v2Result> Get_ChiaUser_Batch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID)
 		{
@@ -170,46 +148,11 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<Get_ChiaUser_Batch_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_Refresh_Image_Entry_Check_v2")]
-		public int spData_Refresh_Image_Entry_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level", DbType="NVarChar(255)")] string level, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Data", DbType="NVarChar(255)")] string iD_Data)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status, level, iD_Data);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetImage_Check_v2")]
-		public ISingleResult<spData_GetImage_Check_v2Result> spData_GetImage_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(255)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(5)")] string level_Image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, level_Image);
-			return ((ISingleResult<spData_GetImage_Check_v2Result>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_Submit_Check_v2")]
-		public int spData_Submit_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E1", DbType="NVarChar(50)")] string error_E1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E2", DbType="NVarChar(50)")] string error_E2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Submit", DbType="NVarChar(MAX)")] string data_Submit)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_Image_Data, error_E1, error_E2, data_Submit);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_getListbatch_LC_v2")]
 		public ISingleResult<spBatch_getListbatch_LC_v2Result> spBatch_getListbatch_LC_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(255)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string level_Image)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, level_Image);
 			return ((ISingleResult<spBatch_getListbatch_LC_v2Result>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LC_spData_Getdata")]
-		public ISingleResult<LC_spData_GetdataResult> LC_spData_Getdata([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(500)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(500)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_LC", DbType="NVarChar(50)")] string level_LC)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Batch, userName, level_LC);
-			return ((ISingleResult<LC_spData_GetdataResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetInfo_MissImage_Entry_v2")]
-		public ISingleResult<spData_GetInfo_MissImage_Entry_v2Result> spData_GetInfo_MissImage_Entry_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string level_image, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string lv_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(5)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string chiaUser)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, level_image, lv_User, userName, chiaUser);
-			return ((ISingleResult<spData_GetInfo_MissImage_Entry_v2Result>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_Getinfo_Image_Check_v2")]
@@ -240,13 +183,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<Admin_StatusResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_return_Role_image_v2")]
-		public int Admin_return_Role_image_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Role", DbType="NVarChar(50)")] string style_Role, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(50)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageID", DbType="NVarChar(50)")] string imageID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_image", DbType="NVarChar(50)")] string level_image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Role, batchID, imageID, level_image);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_GetListLC_Export")]
 		public ISingleResult<Admin_GetListLC_ExportResult> Admin_GetListLC_Export([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Batch", DbType="NVarChar(5)")] string style_Batch)
 		{
@@ -268,32 +204,11 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Export_Data")]
-		public ISingleResult<Admin_Export_DataResult> Admin_Export_Data([global::System.Data.Linq.Mapping.ParameterAttribute(Name="List_ID_Batch", DbType="NVarChar(MAX)")] string list_ID_Batch)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), list_ID_Batch);
-			return ((ISingleResult<Admin_Export_DataResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_AddBatch_v2")]
 		public ISingleResult<spBatch_AddBatch_v2Result> spBatch_AddBatch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchName", DbType="NVarChar(255)")] string batchName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PathPicture", DbType="NVarChar(255)")] string pathPicture, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Location", DbType="NVarChar(255)")] string location, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumberImage", DbType="Int")] System.Nullable<int> numberImage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchType", DbType="NVarChar(255)")] string batchType, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Bit")] System.Nullable<bool> chiaUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CongKhaiBatch", DbType="Bit")] System.Nullable<bool> congKhaiBatch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserCreate", DbType="NVarChar(255)")] string userCreate)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchName, pathPicture, location, numberImage, batchType, chiaUser, congKhaiBatch, userCreate);
 			return ((ISingleResult<spBatch_AddBatch_v2Result>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Entry_Check_ReturnBack_Image")]
-		public ISingleResult<Entry_Check_ReturnBack_ImageResult> Entry_Check_ReturnBack_Image([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_image", DbType="NVarChar(255)")] string iD_image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="NVarChar(5)")] string pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(255)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_image, pair_Entry, userName);
-			return ((ISingleResult<Entry_Check_ReturnBack_ImageResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Check_Update_Image_Back")]
-		public int Check_Update_Image_Back([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E1", DbType="NVarChar(50)")] string error_E1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E2", DbType="NVarChar(50)")] string error_E2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Submit", DbType="NVarChar(MAX)")] string data_Submit, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TimeCheckUp", DbType="NVarChar(100)")] string timeCheckUp)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_Image_Data, error_E1, error_E2, data_Submit, level_Image, timeCheckUp);
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Check_ViewImage_Back_Next")]
@@ -331,13 +246,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<Admin_Export_Data_V2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCheck_GetLishCheck_v3")]
-		public ISingleResult<spCheck_GetLishCheck_v3Result> spCheck_GetLishCheck_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="NVarChar(50)")] string id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, level_Image);
-			return ((ISingleResult<spCheck_GetLishCheck_v3Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_GetListbatch_v3")]
 		public ISingleResult<spEntry_GetListbatch_v3Result> spEntry_GetListbatch_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(255)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="NVarChar(50)")] string iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string level_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(255)")] string userName)
 		{
@@ -352,719 +260,137 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spData_InsertData_ENTRY_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAdmin_Pfm_Entry", IsComposable=true)]
-		public object spAdmin_Pfm_Entry([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_XoaBatch_v2")]
+		public int spBatch_XoaBatch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name_Table", DbType="NVarChar(150)")] string name_Table)
 		{
-			return ((object)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End).ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, name_Table);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_UpdateBatchChiaUser_v2")]
+		public int spBatch_UpdateBatchChiaUser_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spBatch_UpdateCongKhaiBatch_v2")]
+		public int spBatch_UpdateCongKhaiBatch_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_CheckBatch_ChiaUser_v2")]
+		public ISingleResult<spData_CheckBatch_ChiaUser_v2Result> spData_CheckBatch_ChiaUser_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="Int")] System.Nullable<int> id_Batch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch);
+			return ((ISingleResult<spData_CheckBatch_ChiaUser_v2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntryGetListBatch_v4")]
+		public ISingleResult<spEntryGetListBatch_v4Result> spEntryGetListBatch_v4([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="Int")] System.Nullable<int> iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> level_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), level_Image, iD_Batch, level_User, userName);
+			return ((ISingleResult<spEntryGetListBatch_v4Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spCheck_GetLishCheck_v3")]
+		public ISingleResult<spCheck_GetLishCheck_v3Result> spCheck_GetLishCheck_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Batch", DbType="Int")] System.Nullable<int> id_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Batch, level_Image);
+			return ((ISingleResult<spCheck_GetLishCheck_v3Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntryGetImage_v2")]
+		public ISingleResult<spEntryGetImage_v2Result> spEntryGetImage_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(100)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LevelUser", DbType="Int")] System.Nullable<int> levelUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Int")] System.Nullable<int> chiaUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, levelUser, chiaUser, level_Image);
+			return ((ISingleResult<spEntryGetImage_v2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetInfo_MissImage_Entry_v2")]
+		public ISingleResult<spData_GetInfo_MissImage_Entry_v2Result> spData_GetInfo_MissImage_Entry_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> level_image, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> lv_User, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> chiaUser)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, level_image, lv_User, userName, chiaUser);
+			return ((ISingleResult<spData_GetInfo_MissImage_Entry_v2Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Entry_Check_ReturnBack_Image")]
+		public ISingleResult<Entry_Check_ReturnBack_ImageResult> Entry_Check_ReturnBack_Image([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_image", DbType="Int")] System.Nullable<int> iD_image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_image, pair_Entry, userName);
+			return ((ISingleResult<Entry_Check_ReturnBack_ImageResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_Submit_New_v3")]
-		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="NVarChar(255)")] string iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="NVarChar(255)")] string batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="NVarChar(5)")] string pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="NVarChar(50)")] string level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="NVarChar(50)")] string lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="Int")] System.Nullable<int> lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split, userName);
 			return ((ISingleResult<spEntry_Submit_New_v3Result>)(result.ReturnValue));
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tb_Batch")]
-	public partial class Tb_Batch
-	{
 		
-		private int _ID;
-		
-		private string _BatchName;
-		
-		private System.Nullable<int> _NumberImage;
-		
-		private string _PathPicture;
-		
-		private string _Location;
-		
-		private System.Nullable<int> _Hit_E1;
-		
-		private System.Nullable<int> _Hit_E2;
-		
-		private System.Nullable<int> _Hit_E31;
-		
-		private System.Nullable<int> _Hit_E32;
-		
-		private System.Nullable<bool> _ChiaUser;
-		
-		private System.Nullable<bool> _CongKhaiBatch;
-		
-		private string _Usercreate;
-		
-		private string _BatchType;
-		
-		private System.Nullable<System.DateTime> _DateCreate;
-		
-		public Tb_Batch()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetImage_Check_v2")]
+		public ISingleResult<spData_GetImage_Check_v2Result> spData_GetImage_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(100)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image)
 		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, user, level_Image);
+			return ((ISingleResult<spData_GetImage_Check_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Check_Update_Image_Back")]
+		public int Check_Update_Image_Back([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E1", DbType="Int")] System.Nullable<int> error_E1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E2", DbType="Int")] System.Nullable<int> error_E2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Submit", DbType="NVarChar(MAX)")] string data_Submit, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TimeCheckUp", DbType="Int")] System.Nullable<int> timeCheckUp)
 		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_Image_Data, error_E1, error_E2, data_Submit, level_Image, timeCheckUp);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(255)")]
-		public string BatchName
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_Submit_Check_v2")]
+		public int spData_Submit_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E1", DbType="Int")] System.Nullable<int> error_E1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Error_E2", DbType="Int")] System.Nullable<int> error_E2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Submit", DbType="NVarChar(MAX)")] string data_Submit, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image)
 		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_Image_Data, error_E1, error_E2, data_Submit, level_Image);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberImage", DbType="Int")]
-		public System.Nullable<int> NumberImage
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LC_spData_Getdata")]
+		public ISingleResult<LC_spData_GetdataResult> LC_spData_Getdata([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Batch", DbType="Int")] System.Nullable<int> iD_Batch, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_LC", DbType="Int")] System.Nullable<int> level_LC)
 		{
-			get
-			{
-				return this._NumberImage;
-			}
-			set
-			{
-				if ((this._NumberImage != value))
-				{
-					this._NumberImage = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Batch, userName, level_LC);
+			return ((ISingleResult<LC_spData_GetdataResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PathPicture", DbType="NVarChar(255)")]
-		public string PathPicture
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_return_Role_image_v2")]
+		public int Admin_return_Role_image_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Style_Role", DbType="NVarChar(50)")] string style_Role, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageID", DbType="Int")] System.Nullable<int> imageID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_image", DbType="Int")] System.Nullable<int> level_image)
 		{
-			get
-			{
-				return this._PathPicture;
-			}
-			set
-			{
-				if ((this._PathPicture != value))
-				{
-					this._PathPicture = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Role, batchID, imageID, level_image);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Location", DbType="NVarChar(255)")]
-		public string Location
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAdmin_Pfm_Entry")]
+		public ISingleResult<spAdmin_Pfm_EntryResult> spAdmin_Pfm_Entry([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string style_Pfm, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
 		{
-			get
-			{
-				return this._Location;
-			}
-			set
-			{
-				if ((this._Location != value))
-				{
-					this._Location = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), style_Pfm, time_Start, time_End);
+			return ((ISingleResult<spAdmin_Pfm_EntryResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E1", DbType="Int")]
-		public System.Nullable<int> Hit_E1
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_Refresh_Image_Entry_Check_v2")]
+		public int spData_Refresh_Image_Entry_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="NVarChar(50)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LevelUser", DbType="Int")] System.Nullable<int> levelUser, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdData", DbType="Int")] System.Nullable<int> idData)
 		{
-			get
-			{
-				return this._Hit_E1;
-			}
-			set
-			{
-				if ((this._Hit_E1 != value))
-				{
-					this._Hit_E1 = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, status, levelUser, idData);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E2", DbType="Int")]
-		public System.Nullable<int> Hit_E2
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Pfm_Checker")]
+		public ISingleResult<Admin_Pfm_CheckerResult> Admin_Pfm_Checker([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_Start", DbType="NVarChar(50)")] string time_Start, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Time_End", DbType="NVarChar(50)")] string time_End)
 		{
-			get
-			{
-				return this._Hit_E2;
-			}
-			set
-			{
-				if ((this._Hit_E2 != value))
-				{
-					this._Hit_E2 = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), time_Start, time_End);
+			return ((ISingleResult<Admin_Pfm_CheckerResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E31", DbType="Int")]
-		public System.Nullable<int> Hit_E31
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Admin_Export_Data")]
+		public ISingleResult<Admin_Export_DataResult> Admin_Export_Data([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListIDBatch", DbType="NVarChar(500)")] string listIDBatch)
 		{
-			get
-			{
-				return this._Hit_E31;
-			}
-			set
-			{
-				if ((this._Hit_E31 != value))
-				{
-					this._Hit_E31 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E32", DbType="Int")]
-		public System.Nullable<int> Hit_E32
-		{
-			get
-			{
-				return this._Hit_E32;
-			}
-			set
-			{
-				if ((this._Hit_E32 != value))
-				{
-					this._Hit_E32 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
-		public System.Nullable<bool> ChiaUser
-		{
-			get
-			{
-				return this._ChiaUser;
-			}
-			set
-			{
-				if ((this._ChiaUser != value))
-				{
-					this._ChiaUser = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CongKhaiBatch", DbType="Bit")]
-		public System.Nullable<bool> CongKhaiBatch
-		{
-			get
-			{
-				return this._CongKhaiBatch;
-			}
-			set
-			{
-				if ((this._CongKhaiBatch != value))
-				{
-					this._CongKhaiBatch = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usercreate", DbType="NVarChar(255)")]
-		public string Usercreate
-		{
-			get
-			{
-				return this._Usercreate;
-			}
-			set
-			{
-				if ((this._Usercreate != value))
-				{
-					this._Usercreate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(255)")]
-		public string BatchType
-		{
-			get
-			{
-				return this._BatchType;
-			}
-			set
-			{
-				if ((this._BatchType != value))
-				{
-					this._BatchType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateCreate
-		{
-			get
-			{
-				return this._DateCreate;
-			}
-			set
-			{
-				if ((this._DateCreate != value))
-				{
-					this._DateCreate = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tb_Data_Batch")]
-	public partial class Tb_Data_Batch
-	{
-		
-		private int _ID;
-		
-		private string _ImageName;
-		
-		private System.Nullable<int> _Level_User;
-		
-		private string _Content_E1;
-		
-		private string _UserName_E1;
-		
-		private System.Nullable<System.DateTime> _DateStart_E1;
-		
-		private System.Nullable<System.DateTime> _DateEnd_E1;
-		
-		private System.Nullable<int> _Time_E1;
-		
-		private string _Content_E2;
-		
-		private string _UserName_E2;
-		
-		private System.Nullable<System.DateTime> _DateStart_E2;
-		
-		private System.Nullable<System.DateTime> _DateEnd_E2;
-		
-		private System.Nullable<int> _Time_E2;
-		
-		private System.Nullable<int> _Error_E1;
-		
-		private System.Nullable<int> _Error_E2;
-		
-		private System.Nullable<int> _Length_E1;
-		
-		private System.Nullable<int> _Length_E2;
-		
-		private string _Content_Check;
-		
-		private string _UserName_Check;
-		
-		private System.Nullable<System.DateTime> _DateStart_Check;
-		
-		private System.Nullable<System.DateTime> _DateEnd_Check;
-		
-		private System.Nullable<int> _Time_Check;
-		
-		private string _Content_LC;
-		
-		private string _UserName_LC;
-		
-		public Tb_Data_Batch()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(200)")]
-		public string ImageName
-		{
-			get
-			{
-				return this._ImageName;
-			}
-			set
-			{
-				if ((this._ImageName != value))
-				{
-					this._ImageName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Level_User", DbType="Int")]
-		public System.Nullable<int> Level_User
-		{
-			get
-			{
-				return this._Level_User;
-			}
-			set
-			{
-				if ((this._Level_User != value))
-				{
-					this._Level_User = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
-		public string Content_E1
-		{
-			get
-			{
-				return this._Content_E1;
-			}
-			set
-			{
-				if ((this._Content_E1 != value))
-				{
-					this._Content_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E1", DbType="NVarChar(200)")]
-		public string UserName_E1
-		{
-			get
-			{
-				return this._UserName_E1;
-			}
-			set
-			{
-				if ((this._UserName_E1 != value))
-				{
-					this._UserName_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_E1", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateStart_E1
-		{
-			get
-			{
-				return this._DateStart_E1;
-			}
-			set
-			{
-				if ((this._DateStart_E1 != value))
-				{
-					this._DateStart_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_E1", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateEnd_E1
-		{
-			get
-			{
-				return this._DateEnd_E1;
-			}
-			set
-			{
-				if ((this._DateEnd_E1 != value))
-				{
-					this._DateEnd_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_E1", DbType="Int")]
-		public System.Nullable<int> Time_E1
-		{
-			get
-			{
-				return this._Time_E1;
-			}
-			set
-			{
-				if ((this._Time_E1 != value))
-				{
-					this._Time_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
-		public string Content_E2
-		{
-			get
-			{
-				return this._Content_E2;
-			}
-			set
-			{
-				if ((this._Content_E2 != value))
-				{
-					this._Content_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E2", DbType="NVarChar(200)")]
-		public string UserName_E2
-		{
-			get
-			{
-				return this._UserName_E2;
-			}
-			set
-			{
-				if ((this._UserName_E2 != value))
-				{
-					this._UserName_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_E2", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateStart_E2
-		{
-			get
-			{
-				return this._DateStart_E2;
-			}
-			set
-			{
-				if ((this._DateStart_E2 != value))
-				{
-					this._DateStart_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_E2", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateEnd_E2
-		{
-			get
-			{
-				return this._DateEnd_E2;
-			}
-			set
-			{
-				if ((this._DateEnd_E2 != value))
-				{
-					this._DateEnd_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_E2", DbType="Int")]
-		public System.Nullable<int> Time_E2
-		{
-			get
-			{
-				return this._Time_E2;
-			}
-			set
-			{
-				if ((this._Time_E2 != value))
-				{
-					this._Time_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error_E1", DbType="Int")]
-		public System.Nullable<int> Error_E1
-		{
-			get
-			{
-				return this._Error_E1;
-			}
-			set
-			{
-				if ((this._Error_E1 != value))
-				{
-					this._Error_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error_E2", DbType="Int")]
-		public System.Nullable<int> Error_E2
-		{
-			get
-			{
-				return this._Error_E2;
-			}
-			set
-			{
-				if ((this._Error_E2 != value))
-				{
-					this._Error_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length_E1", DbType="Int")]
-		public System.Nullable<int> Length_E1
-		{
-			get
-			{
-				return this._Length_E1;
-			}
-			set
-			{
-				if ((this._Length_E1 != value))
-				{
-					this._Length_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length_E2", DbType="Int")]
-		public System.Nullable<int> Length_E2
-		{
-			get
-			{
-				return this._Length_E2;
-			}
-			set
-			{
-				if ((this._Length_E2 != value))
-				{
-					this._Length_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_Check", DbType="NVarChar(MAX)")]
-		public string Content_Check
-		{
-			get
-			{
-				return this._Content_Check;
-			}
-			set
-			{
-				if ((this._Content_Check != value))
-				{
-					this._Content_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_Check", DbType="NVarChar(200)")]
-		public string UserName_Check
-		{
-			get
-			{
-				return this._UserName_Check;
-			}
-			set
-			{
-				if ((this._UserName_Check != value))
-				{
-					this._UserName_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_Check", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateStart_Check
-		{
-			get
-			{
-				return this._DateStart_Check;
-			}
-			set
-			{
-				if ((this._DateStart_Check != value))
-				{
-					this._DateStart_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_Check", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateEnd_Check
-		{
-			get
-			{
-				return this._DateEnd_Check;
-			}
-			set
-			{
-				if ((this._DateEnd_Check != value))
-				{
-					this._DateEnd_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_Check", DbType="Int")]
-		public System.Nullable<int> Time_Check
-		{
-			get
-			{
-				return this._Time_Check;
-			}
-			set
-			{
-				if ((this._Time_Check != value))
-				{
-					this._Time_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_LC", DbType="NVarChar(MAX)")]
-		public string Content_LC
-		{
-			get
-			{
-				return this._Content_LC;
-			}
-			set
-			{
-				if ((this._Content_LC != value))
-				{
-					this._Content_LC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_LC", DbType="NVarChar(200)")]
-		public string UserName_LC
-		{
-			get
-			{
-				return this._UserName_LC;
-			}
-			set
-			{
-				if ((this._UserName_LC != value))
-				{
-					this._UserName_LC = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), listIDBatch);
+			return ((ISingleResult<Admin_Export_DataResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1311,6 +637,1330 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 					this._IP_Adress = value;
 					this.SendPropertyChanged("IP_Adress");
 					this.OnIP_AdressChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tb_Batch")]
+	public partial class Tb_Batch : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _BatchName;
+		
+		private System.Nullable<int> _NumberImage;
+		
+		private string _PathPicture;
+		
+		private string _Location;
+		
+		private System.Nullable<int> _Hit_E11;
+		
+		private System.Nullable<int> _Hit_E12;
+		
+		private System.Nullable<int> _Hit_E31;
+		
+		private System.Nullable<int> _Hit_E32;
+		
+		private bool _ChiaUser;
+		
+		private System.Nullable<bool> _CongKhaiBatch;
+		
+		private string _Usercreate;
+		
+		private string _BatchType;
+		
+		private System.Nullable<System.DateTime> _DateCreate;
+		
+		private string _UserLC_1;
+		
+		private string _UserLC_3;
+		
+		private string _Status_LC_1;
+		
+		private string _Status_LC_3;
+		
+		private string _User_Export;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnBatchNameChanging(string value);
+    partial void OnBatchNameChanged();
+    partial void OnNumberImageChanging(System.Nullable<int> value);
+    partial void OnNumberImageChanged();
+    partial void OnPathPictureChanging(string value);
+    partial void OnPathPictureChanged();
+    partial void OnLocationChanging(string value);
+    partial void OnLocationChanged();
+    partial void OnHit_E11Changing(System.Nullable<int> value);
+    partial void OnHit_E11Changed();
+    partial void OnHit_E12Changing(System.Nullable<int> value);
+    partial void OnHit_E12Changed();
+    partial void OnHit_E31Changing(System.Nullable<int> value);
+    partial void OnHit_E31Changed();
+    partial void OnHit_E32Changing(System.Nullable<int> value);
+    partial void OnHit_E32Changed();
+    partial void OnChiaUserChanging(bool value);
+    partial void OnChiaUserChanged();
+    partial void OnCongKhaiBatchChanging(System.Nullable<bool> value);
+    partial void OnCongKhaiBatchChanged();
+    partial void OnUsercreateChanging(string value);
+    partial void OnUsercreateChanged();
+    partial void OnBatchTypeChanging(string value);
+    partial void OnBatchTypeChanged();
+    partial void OnDateCreateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateCreateChanged();
+    partial void OnUserLC_1Changing(string value);
+    partial void OnUserLC_1Changed();
+    partial void OnUserLC_3Changing(string value);
+    partial void OnUserLC_3Changed();
+    partial void OnStatus_LC_1Changing(string value);
+    partial void OnStatus_LC_1Changed();
+    partial void OnStatus_LC_3Changing(string value);
+    partial void OnStatus_LC_3Changed();
+    partial void OnUser_ExportChanging(string value);
+    partial void OnUser_ExportChanged();
+    #endregion
+		
+		public Tb_Batch()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(255)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this.OnBatchNameChanging(value);
+					this.SendPropertyChanging();
+					this._BatchName = value;
+					this.SendPropertyChanged("BatchName");
+					this.OnBatchNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberImage", DbType="Int")]
+		public System.Nullable<int> NumberImage
+		{
+			get
+			{
+				return this._NumberImage;
+			}
+			set
+			{
+				if ((this._NumberImage != value))
+				{
+					this.OnNumberImageChanging(value);
+					this.SendPropertyChanging();
+					this._NumberImage = value;
+					this.SendPropertyChanged("NumberImage");
+					this.OnNumberImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PathPicture", DbType="NVarChar(255)")]
+		public string PathPicture
+		{
+			get
+			{
+				return this._PathPicture;
+			}
+			set
+			{
+				if ((this._PathPicture != value))
+				{
+					this.OnPathPictureChanging(value);
+					this.SendPropertyChanging();
+					this._PathPicture = value;
+					this.SendPropertyChanged("PathPicture");
+					this.OnPathPictureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Location", DbType="NVarChar(255)")]
+		public string Location
+		{
+			get
+			{
+				return this._Location;
+			}
+			set
+			{
+				if ((this._Location != value))
+				{
+					this.OnLocationChanging(value);
+					this.SendPropertyChanging();
+					this._Location = value;
+					this.SendPropertyChanged("Location");
+					this.OnLocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
+		public System.Nullable<int> Hit_E11
+		{
+			get
+			{
+				return this._Hit_E11;
+			}
+			set
+			{
+				if ((this._Hit_E11 != value))
+				{
+					this.OnHit_E11Changing(value);
+					this.SendPropertyChanging();
+					this._Hit_E11 = value;
+					this.SendPropertyChanged("Hit_E11");
+					this.OnHit_E11Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E12", DbType="Int")]
+		public System.Nullable<int> Hit_E12
+		{
+			get
+			{
+				return this._Hit_E12;
+			}
+			set
+			{
+				if ((this._Hit_E12 != value))
+				{
+					this.OnHit_E12Changing(value);
+					this.SendPropertyChanging();
+					this._Hit_E12 = value;
+					this.SendPropertyChanged("Hit_E12");
+					this.OnHit_E12Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E31", DbType="Int")]
+		public System.Nullable<int> Hit_E31
+		{
+			get
+			{
+				return this._Hit_E31;
+			}
+			set
+			{
+				if ((this._Hit_E31 != value))
+				{
+					this.OnHit_E31Changing(value);
+					this.SendPropertyChanging();
+					this._Hit_E31 = value;
+					this.SendPropertyChanged("Hit_E31");
+					this.OnHit_E31Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E32", DbType="Int")]
+		public System.Nullable<int> Hit_E32
+		{
+			get
+			{
+				return this._Hit_E32;
+			}
+			set
+			{
+				if ((this._Hit_E32 != value))
+				{
+					this.OnHit_E32Changing(value);
+					this.SendPropertyChanging();
+					this._Hit_E32 = value;
+					this.SendPropertyChanged("Hit_E32");
+					this.OnHit_E32Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit NOT NULL")]
+		public bool ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this.OnChiaUserChanging(value);
+					this.SendPropertyChanging();
+					this._ChiaUser = value;
+					this.SendPropertyChanged("ChiaUser");
+					this.OnChiaUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CongKhaiBatch", DbType="Bit")]
+		public System.Nullable<bool> CongKhaiBatch
+		{
+			get
+			{
+				return this._CongKhaiBatch;
+			}
+			set
+			{
+				if ((this._CongKhaiBatch != value))
+				{
+					this.OnCongKhaiBatchChanging(value);
+					this.SendPropertyChanging();
+					this._CongKhaiBatch = value;
+					this.SendPropertyChanged("CongKhaiBatch");
+					this.OnCongKhaiBatchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usercreate", DbType="NVarChar(255)")]
+		public string Usercreate
+		{
+			get
+			{
+				return this._Usercreate;
+			}
+			set
+			{
+				if ((this._Usercreate != value))
+				{
+					this.OnUsercreateChanging(value);
+					this.SendPropertyChanging();
+					this._Usercreate = value;
+					this.SendPropertyChanged("Usercreate");
+					this.OnUsercreateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(255)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this.OnBatchTypeChanging(value);
+					this.SendPropertyChanging();
+					this._BatchType = value;
+					this.SendPropertyChanged("BatchType");
+					this.OnBatchTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateCreate
+		{
+			get
+			{
+				return this._DateCreate;
+			}
+			set
+			{
+				if ((this._DateCreate != value))
+				{
+					this.OnDateCreateChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreate = value;
+					this.SendPropertyChanged("DateCreate");
+					this.OnDateCreateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLC_1", DbType="NVarChar(500)")]
+		public string UserLC_1
+		{
+			get
+			{
+				return this._UserLC_1;
+			}
+			set
+			{
+				if ((this._UserLC_1 != value))
+				{
+					this.OnUserLC_1Changing(value);
+					this.SendPropertyChanging();
+					this._UserLC_1 = value;
+					this.SendPropertyChanged("UserLC_1");
+					this.OnUserLC_1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserLC_3", DbType="NVarChar(500)")]
+		public string UserLC_3
+		{
+			get
+			{
+				return this._UserLC_3;
+			}
+			set
+			{
+				if ((this._UserLC_3 != value))
+				{
+					this.OnUserLC_3Changing(value);
+					this.SendPropertyChanging();
+					this._UserLC_3 = value;
+					this.SendPropertyChanged("UserLC_3");
+					this.OnUserLC_3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_1", DbType="NVarChar(50)")]
+		public string Status_LC_1
+		{
+			get
+			{
+				return this._Status_LC_1;
+			}
+			set
+			{
+				if ((this._Status_LC_1 != value))
+				{
+					this.OnStatus_LC_1Changing(value);
+					this.SendPropertyChanging();
+					this._Status_LC_1 = value;
+					this.SendPropertyChanged("Status_LC_1");
+					this.OnStatus_LC_1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status_LC_3", DbType="NVarChar(50)")]
+		public string Status_LC_3
+		{
+			get
+			{
+				return this._Status_LC_3;
+			}
+			set
+			{
+				if ((this._Status_LC_3 != value))
+				{
+					this.OnStatus_LC_3Changing(value);
+					this.SendPropertyChanging();
+					this._Status_LC_3 = value;
+					this.SendPropertyChanged("Status_LC_3");
+					this.OnStatus_LC_3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Export", DbType="NVarChar(50)")]
+		public string User_Export
+		{
+			get
+			{
+				return this._User_Export;
+			}
+			set
+			{
+				if ((this._User_Export != value))
+				{
+					this.OnUser_ExportChanging(value);
+					this.SendPropertyChanging();
+					this._User_Export = value;
+					this.SendPropertyChanged("User_Export");
+					this.OnUser_ExportChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tb_AllData")]
+	public partial class Tb_AllData : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _ID_Batch;
+		
+		private string _ImageName;
+		
+		private int _Level_Image;
+		
+		private string _Content_E1;
+		
+		private string _UserName_E1;
+		
+		private System.DateTime _DateStart_E1;
+		
+		private System.Nullable<System.DateTime> _DateEnd_E1;
+		
+		private System.Nullable<int> _Time_E1;
+		
+		private string _Content_E2;
+		
+		private string _UserName_E2;
+		
+		private System.DateTime _DateStart_E2;
+		
+		private System.Nullable<System.DateTime> _DateEnd_E2;
+		
+		private System.Nullable<int> _Time_E2;
+		
+		private System.Nullable<int> _Error_E1;
+		
+		private System.Nullable<int> _Error_E2;
+		
+		private System.Nullable<int> _Length_E1;
+		
+		private System.Nullable<int> _Length_E2;
+		
+		private string _Content_Check;
+		
+		private string _UserName_Check;
+		
+		private System.Nullable<System.DateTime> _DateStart_Check;
+		
+		private System.Nullable<System.DateTime> _DateEnd_Check;
+		
+		private System.Nullable<int> _Time_Check;
+		
+		private string _Content_LC;
+		
+		private string _UserName_LC;
+		
+		private System.Nullable<short> _ReadImageDESO_1;
+		
+		private System.Nullable<short> _ReadImageDESO_2;
+		
+		private string _LoaiPhieuE1;
+		
+		private string _LoaiPhieuE2;
+		
+		private string _LoaiPhieuCheck;
+		
+		private string _LoaiPhieuLC;
+		
+		private bool _Submit_E1;
+		
+		private bool _Submit_E2;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnID_BatchChanging(int value);
+    partial void OnID_BatchChanged();
+    partial void OnImageNameChanging(string value);
+    partial void OnImageNameChanged();
+    partial void OnLevel_ImageChanging(int value);
+    partial void OnLevel_ImageChanged();
+    partial void OnContent_E1Changing(string value);
+    partial void OnContent_E1Changed();
+    partial void OnUserName_E1Changing(string value);
+    partial void OnUserName_E1Changed();
+    partial void OnDateStart_E1Changing(System.DateTime value);
+    partial void OnDateStart_E1Changed();
+    partial void OnDateEnd_E1Changing(System.Nullable<System.DateTime> value);
+    partial void OnDateEnd_E1Changed();
+    partial void OnTime_E1Changing(System.Nullable<int> value);
+    partial void OnTime_E1Changed();
+    partial void OnContent_E2Changing(string value);
+    partial void OnContent_E2Changed();
+    partial void OnUserName_E2Changing(string value);
+    partial void OnUserName_E2Changed();
+    partial void OnDateStart_E2Changing(System.DateTime value);
+    partial void OnDateStart_E2Changed();
+    partial void OnDateEnd_E2Changing(System.Nullable<System.DateTime> value);
+    partial void OnDateEnd_E2Changed();
+    partial void OnTime_E2Changing(System.Nullable<int> value);
+    partial void OnTime_E2Changed();
+    partial void OnError_E1Changing(System.Nullable<int> value);
+    partial void OnError_E1Changed();
+    partial void OnError_E2Changing(System.Nullable<int> value);
+    partial void OnError_E2Changed();
+    partial void OnLength_E1Changing(System.Nullable<int> value);
+    partial void OnLength_E1Changed();
+    partial void OnLength_E2Changing(System.Nullable<int> value);
+    partial void OnLength_E2Changed();
+    partial void OnContent_CheckChanging(string value);
+    partial void OnContent_CheckChanged();
+    partial void OnUserName_CheckChanging(string value);
+    partial void OnUserName_CheckChanged();
+    partial void OnDateStart_CheckChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateStart_CheckChanged();
+    partial void OnDateEnd_CheckChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateEnd_CheckChanged();
+    partial void OnTime_CheckChanging(System.Nullable<int> value);
+    partial void OnTime_CheckChanged();
+    partial void OnContent_LCChanging(string value);
+    partial void OnContent_LCChanged();
+    partial void OnUserName_LCChanging(string value);
+    partial void OnUserName_LCChanged();
+    partial void OnReadImageDESO_1Changing(System.Nullable<short> value);
+    partial void OnReadImageDESO_1Changed();
+    partial void OnReadImageDESO_2Changing(System.Nullable<short> value);
+    partial void OnReadImageDESO_2Changed();
+    partial void OnLoaiPhieuE1Changing(string value);
+    partial void OnLoaiPhieuE1Changed();
+    partial void OnLoaiPhieuE2Changing(string value);
+    partial void OnLoaiPhieuE2Changed();
+    partial void OnLoaiPhieuCheckChanging(string value);
+    partial void OnLoaiPhieuCheckChanged();
+    partial void OnLoaiPhieuLCChanging(string value);
+    partial void OnLoaiPhieuLCChanged();
+    partial void OnSubmit_E1Changing(bool value);
+    partial void OnSubmit_E1Changed();
+    partial void OnSubmit_E2Changing(bool value);
+    partial void OnSubmit_E2Changed();
+    #endregion
+		
+		public Tb_AllData()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this.OnID_BatchChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Batch = value;
+					this.SendPropertyChanged("ID_Batch");
+					this.OnID_BatchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this.OnImageNameChanging(value);
+					this.SendPropertyChanging();
+					this._ImageName = value;
+					this.SendPropertyChanged("ImageName");
+					this.OnImageNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Level_Image", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Level_Image
+		{
+			get
+			{
+				return this._Level_Image;
+			}
+			set
+			{
+				if ((this._Level_Image != value))
+				{
+					this.OnLevel_ImageChanging(value);
+					this.SendPropertyChanging();
+					this._Level_Image = value;
+					this.SendPropertyChanged("Level_Image");
+					this.OnLevel_ImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
+		public string Content_E1
+		{
+			get
+			{
+				return this._Content_E1;
+			}
+			set
+			{
+				if ((this._Content_E1 != value))
+				{
+					this.OnContent_E1Changing(value);
+					this.SendPropertyChanging();
+					this._Content_E1 = value;
+					this.SendPropertyChanged("Content_E1");
+					this.OnContent_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E1", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserName_E1
+		{
+			get
+			{
+				return this._UserName_E1;
+			}
+			set
+			{
+				if ((this._UserName_E1 != value))
+				{
+					this.OnUserName_E1Changing(value);
+					this.SendPropertyChanging();
+					this._UserName_E1 = value;
+					this.SendPropertyChanged("UserName_E1");
+					this.OnUserName_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_E1", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime DateStart_E1
+		{
+			get
+			{
+				return this._DateStart_E1;
+			}
+			set
+			{
+				if ((this._DateStart_E1 != value))
+				{
+					this.OnDateStart_E1Changing(value);
+					this.SendPropertyChanging();
+					this._DateStart_E1 = value;
+					this.SendPropertyChanged("DateStart_E1");
+					this.OnDateStart_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_E1", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateEnd_E1
+		{
+			get
+			{
+				return this._DateEnd_E1;
+			}
+			set
+			{
+				if ((this._DateEnd_E1 != value))
+				{
+					this.OnDateEnd_E1Changing(value);
+					this.SendPropertyChanging();
+					this._DateEnd_E1 = value;
+					this.SendPropertyChanged("DateEnd_E1");
+					this.OnDateEnd_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_E1", DbType="Int")]
+		public System.Nullable<int> Time_E1
+		{
+			get
+			{
+				return this._Time_E1;
+			}
+			set
+			{
+				if ((this._Time_E1 != value))
+				{
+					this.OnTime_E1Changing(value);
+					this.SendPropertyChanging();
+					this._Time_E1 = value;
+					this.SendPropertyChanged("Time_E1");
+					this.OnTime_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
+		public string Content_E2
+		{
+			get
+			{
+				return this._Content_E2;
+			}
+			set
+			{
+				if ((this._Content_E2 != value))
+				{
+					this.OnContent_E2Changing(value);
+					this.SendPropertyChanging();
+					this._Content_E2 = value;
+					this.SendPropertyChanged("Content_E2");
+					this.OnContent_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E2", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserName_E2
+		{
+			get
+			{
+				return this._UserName_E2;
+			}
+			set
+			{
+				if ((this._UserName_E2 != value))
+				{
+					this.OnUserName_E2Changing(value);
+					this.SendPropertyChanging();
+					this._UserName_E2 = value;
+					this.SendPropertyChanged("UserName_E2");
+					this.OnUserName_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_E2", DbType="DateTime NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime DateStart_E2
+		{
+			get
+			{
+				return this._DateStart_E2;
+			}
+			set
+			{
+				if ((this._DateStart_E2 != value))
+				{
+					this.OnDateStart_E2Changing(value);
+					this.SendPropertyChanging();
+					this._DateStart_E2 = value;
+					this.SendPropertyChanged("DateStart_E2");
+					this.OnDateStart_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_E2", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateEnd_E2
+		{
+			get
+			{
+				return this._DateEnd_E2;
+			}
+			set
+			{
+				if ((this._DateEnd_E2 != value))
+				{
+					this.OnDateEnd_E2Changing(value);
+					this.SendPropertyChanging();
+					this._DateEnd_E2 = value;
+					this.SendPropertyChanged("DateEnd_E2");
+					this.OnDateEnd_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_E2", DbType="Int")]
+		public System.Nullable<int> Time_E2
+		{
+			get
+			{
+				return this._Time_E2;
+			}
+			set
+			{
+				if ((this._Time_E2 != value))
+				{
+					this.OnTime_E2Changing(value);
+					this.SendPropertyChanging();
+					this._Time_E2 = value;
+					this.SendPropertyChanged("Time_E2");
+					this.OnTime_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error_E1", DbType="Int")]
+		public System.Nullable<int> Error_E1
+		{
+			get
+			{
+				return this._Error_E1;
+			}
+			set
+			{
+				if ((this._Error_E1 != value))
+				{
+					this.OnError_E1Changing(value);
+					this.SendPropertyChanging();
+					this._Error_E1 = value;
+					this.SendPropertyChanged("Error_E1");
+					this.OnError_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error_E2", DbType="Int")]
+		public System.Nullable<int> Error_E2
+		{
+			get
+			{
+				return this._Error_E2;
+			}
+			set
+			{
+				if ((this._Error_E2 != value))
+				{
+					this.OnError_E2Changing(value);
+					this.SendPropertyChanging();
+					this._Error_E2 = value;
+					this.SendPropertyChanged("Error_E2");
+					this.OnError_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length_E1", DbType="Int")]
+		public System.Nullable<int> Length_E1
+		{
+			get
+			{
+				return this._Length_E1;
+			}
+			set
+			{
+				if ((this._Length_E1 != value))
+				{
+					this.OnLength_E1Changing(value);
+					this.SendPropertyChanging();
+					this._Length_E1 = value;
+					this.SendPropertyChanged("Length_E1");
+					this.OnLength_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length_E2", DbType="Int")]
+		public System.Nullable<int> Length_E2
+		{
+			get
+			{
+				return this._Length_E2;
+			}
+			set
+			{
+				if ((this._Length_E2 != value))
+				{
+					this.OnLength_E2Changing(value);
+					this.SendPropertyChanging();
+					this._Length_E2 = value;
+					this.SendPropertyChanged("Length_E2");
+					this.OnLength_E2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_Check", DbType="NVarChar(MAX)")]
+		public string Content_Check
+		{
+			get
+			{
+				return this._Content_Check;
+			}
+			set
+			{
+				if ((this._Content_Check != value))
+				{
+					this.OnContent_CheckChanging(value);
+					this.SendPropertyChanging();
+					this._Content_Check = value;
+					this.SendPropertyChanged("Content_Check");
+					this.OnContent_CheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_Check", DbType="NVarChar(50)")]
+		public string UserName_Check
+		{
+			get
+			{
+				return this._UserName_Check;
+			}
+			set
+			{
+				if ((this._UserName_Check != value))
+				{
+					this.OnUserName_CheckChanging(value);
+					this.SendPropertyChanging();
+					this._UserName_Check = value;
+					this.SendPropertyChanged("UserName_Check");
+					this.OnUserName_CheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateStart_Check", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateStart_Check
+		{
+			get
+			{
+				return this._DateStart_Check;
+			}
+			set
+			{
+				if ((this._DateStart_Check != value))
+				{
+					this.OnDateStart_CheckChanging(value);
+					this.SendPropertyChanging();
+					this._DateStart_Check = value;
+					this.SendPropertyChanged("DateStart_Check");
+					this.OnDateStart_CheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateEnd_Check", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateEnd_Check
+		{
+			get
+			{
+				return this._DateEnd_Check;
+			}
+			set
+			{
+				if ((this._DateEnd_Check != value))
+				{
+					this.OnDateEnd_CheckChanging(value);
+					this.SendPropertyChanging();
+					this._DateEnd_Check = value;
+					this.SendPropertyChanged("DateEnd_Check");
+					this.OnDateEnd_CheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_Check", DbType="Int")]
+		public System.Nullable<int> Time_Check
+		{
+			get
+			{
+				return this._Time_Check;
+			}
+			set
+			{
+				if ((this._Time_Check != value))
+				{
+					this.OnTime_CheckChanging(value);
+					this.SendPropertyChanging();
+					this._Time_Check = value;
+					this.SendPropertyChanged("Time_Check");
+					this.OnTime_CheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_LC", DbType="NVarChar(MAX)")]
+		public string Content_LC
+		{
+			get
+			{
+				return this._Content_LC;
+			}
+			set
+			{
+				if ((this._Content_LC != value))
+				{
+					this.OnContent_LCChanging(value);
+					this.SendPropertyChanging();
+					this._Content_LC = value;
+					this.SendPropertyChanged("Content_LC");
+					this.OnContent_LCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_LC", DbType="NVarChar(50)")]
+		public string UserName_LC
+		{
+			get
+			{
+				return this._UserName_LC;
+			}
+			set
+			{
+				if ((this._UserName_LC != value))
+				{
+					this.OnUserName_LCChanging(value);
+					this.SendPropertyChanging();
+					this._UserName_LC = value;
+					this.SendPropertyChanged("UserName_LC");
+					this.OnUserName_LCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadImageDESO_1", DbType="SmallInt")]
+		public System.Nullable<short> ReadImageDESO_1
+		{
+			get
+			{
+				return this._ReadImageDESO_1;
+			}
+			set
+			{
+				if ((this._ReadImageDESO_1 != value))
+				{
+					this.OnReadImageDESO_1Changing(value);
+					this.SendPropertyChanging();
+					this._ReadImageDESO_1 = value;
+					this.SendPropertyChanged("ReadImageDESO_1");
+					this.OnReadImageDESO_1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadImageDESO_2", DbType="SmallInt")]
+		public System.Nullable<short> ReadImageDESO_2
+		{
+			get
+			{
+				return this._ReadImageDESO_2;
+			}
+			set
+			{
+				if ((this._ReadImageDESO_2 != value))
+				{
+					this.OnReadImageDESO_2Changing(value);
+					this.SendPropertyChanging();
+					this._ReadImageDESO_2 = value;
+					this.SendPropertyChanged("ReadImageDESO_2");
+					this.OnReadImageDESO_2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiPhieuE1", DbType="NVarChar(50)")]
+		public string LoaiPhieuE1
+		{
+			get
+			{
+				return this._LoaiPhieuE1;
+			}
+			set
+			{
+				if ((this._LoaiPhieuE1 != value))
+				{
+					this.OnLoaiPhieuE1Changing(value);
+					this.SendPropertyChanging();
+					this._LoaiPhieuE1 = value;
+					this.SendPropertyChanged("LoaiPhieuE1");
+					this.OnLoaiPhieuE1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiPhieuE2", DbType="NVarChar(50)")]
+		public string LoaiPhieuE2
+		{
+			get
+			{
+				return this._LoaiPhieuE2;
+			}
+			set
+			{
+				if ((this._LoaiPhieuE2 != value))
+				{
+					this.OnLoaiPhieuE2Changing(value);
+					this.SendPropertyChanging();
+					this._LoaiPhieuE2 = value;
+					this.SendPropertyChanged("LoaiPhieuE2");
+					this.OnLoaiPhieuE2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiPhieuCheck", DbType="NVarChar(50)")]
+		public string LoaiPhieuCheck
+		{
+			get
+			{
+				return this._LoaiPhieuCheck;
+			}
+			set
+			{
+				if ((this._LoaiPhieuCheck != value))
+				{
+					this.OnLoaiPhieuCheckChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiPhieuCheck = value;
+					this.SendPropertyChanged("LoaiPhieuCheck");
+					this.OnLoaiPhieuCheckChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiPhieuLC", DbType="NVarChar(50)")]
+		public string LoaiPhieuLC
+		{
+			get
+			{
+				return this._LoaiPhieuLC;
+			}
+			set
+			{
+				if ((this._LoaiPhieuLC != value))
+				{
+					this.OnLoaiPhieuLCChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiPhieuLC = value;
+					this.SendPropertyChanged("LoaiPhieuLC");
+					this.OnLoaiPhieuLCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Submit_E1", DbType="Bit NOT NULL", IsPrimaryKey=true)]
+		public bool Submit_E1
+		{
+			get
+			{
+				return this._Submit_E1;
+			}
+			set
+			{
+				if ((this._Submit_E1 != value))
+				{
+					this.OnSubmit_E1Changing(value);
+					this.SendPropertyChanging();
+					this._Submit_E1 = value;
+					this.SendPropertyChanged("Submit_E1");
+					this.OnSubmit_E1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Submit_E2", DbType="Bit NOT NULL", IsPrimaryKey=true)]
+		public bool Submit_E2
+		{
+			get
+			{
+				return this._Submit_E2;
+			}
+			set
+			{
+				if ((this._Submit_E2 != value))
+				{
+					this.OnSubmit_E2Changing(value);
+					this.SendPropertyChanging();
+					this._Submit_E2 = value;
+					this.SendPropertyChanged("Submit_E2");
+					this.OnSubmit_E2Changed();
 				}
 			}
 		}
@@ -1638,32 +2288,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class spData_CheckBatch_ChiaUser_v2Result
-	{
-		
-		private string _Row_E;
-		
-		public spData_CheckBatch_ChiaUser_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Row_E", DbType="NVarChar(1)")]
-		public string Row_E
-		{
-			get
-			{
-				return this._Row_E;
-			}
-			set
-			{
-				if ((this._Row_E != value))
-				{
-					this._Row_E = value;
-				}
-			}
-		}
-	}
-	
 	public partial class Get_ChiaUser_Batch_v2Result
 	{
 		
@@ -1685,122 +2309,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._ChiaUser != value))
 				{
 					this._ChiaUser = value;
-				}
-			}
-		}
-	}
-	
-	public partial class spData_GetImage_Check_v2Result
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _Content_E1;
-		
-		private string _UserName_E1;
-		
-		private string _Content_E2;
-		
-		private string _UserName_E2;
-		
-		private string _ImageName;
-		
-		public spData_GetImage_Check_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
-		public string Content_E1
-		{
-			get
-			{
-				return this._Content_E1;
-			}
-			set
-			{
-				if ((this._Content_E1 != value))
-				{
-					this._Content_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E1", DbType="NVarChar(500)")]
-		public string UserName_E1
-		{
-			get
-			{
-				return this._UserName_E1;
-			}
-			set
-			{
-				if ((this._UserName_E1 != value))
-				{
-					this._UserName_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
-		public string Content_E2
-		{
-			get
-			{
-				return this._Content_E2;
-			}
-			set
-			{
-				if ((this._Content_E2 != value))
-				{
-					this._Content_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E2", DbType="NVarChar(500)")]
-		public string UserName_E2
-		{
-			get
-			{
-				return this._UserName_E2;
-			}
-			set
-			{
-				if ((this._UserName_E2 != value))
-				{
-					this._UserName_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(2000)")]
-		public string ImageName
-		{
-			get
-			{
-				return this._ImageName;
-			}
-			set
-			{
-				if ((this._ImageName != value))
-				{
-					this._ImageName = value;
 				}
 			}
 		}
@@ -1863,184 +2371,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._BatchType != value))
 				{
 					this._BatchType = value;
-				}
-			}
-		}
-	}
-	
-	public partial class LC_spData_GetdataResult
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _NameImage;
-		
-		private string _Content_E1;
-		
-		private string _Content_E2;
-		
-		private string _Content_Check;
-		
-		private string _Content_LC;
-		
-		public LC_spData_GetdataResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NameImage", DbType="NVarChar(2000)")]
-		public string NameImage
-		{
-			get
-			{
-				return this._NameImage;
-			}
-			set
-			{
-				if ((this._NameImage != value))
-				{
-					this._NameImage = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
-		public string Content_E1
-		{
-			get
-			{
-				return this._Content_E1;
-			}
-			set
-			{
-				if ((this._Content_E1 != value))
-				{
-					this._Content_E1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
-		public string Content_E2
-		{
-			get
-			{
-				return this._Content_E2;
-			}
-			set
-			{
-				if ((this._Content_E2 != value))
-				{
-					this._Content_E2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_Check", DbType="NVarChar(MAX)")]
-		public string Content_Check
-		{
-			get
-			{
-				return this._Content_Check;
-			}
-			set
-			{
-				if ((this._Content_Check != value))
-				{
-					this._Content_Check = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_LC", DbType="NVarChar(MAX)")]
-		public string Content_LC
-		{
-			get
-			{
-				return this._Content_LC;
-			}
-			set
-			{
-				if ((this._Content_LC != value))
-				{
-					this._Content_LC = value;
-				}
-			}
-		}
-	}
-	
-	public partial class spData_GetInfo_MissImage_Entry_v2Result
-	{
-		
-		private System.Nullable<int> _Tổng_số_phiếu;
-		
-		private System.Nullable<int> _Số_phiếu_còn;
-		
-		private System.Nullable<int> _Số_phiếu_nhập;
-		
-		public spData_GetInfo_MissImage_Entry_v2Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Tổng số phiếu]", Storage="_Tổng_số_phiếu", DbType="Int")]
-		public System.Nullable<int> Tổng_số_phiếu
-		{
-			get
-			{
-				return this._Tổng_số_phiếu;
-			}
-			set
-			{
-				if ((this._Tổng_số_phiếu != value))
-				{
-					this._Tổng_số_phiếu = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Số phiếu còn]", Storage="_Số_phiếu_còn", DbType="Int")]
-		public System.Nullable<int> Số_phiếu_còn
-		{
-			get
-			{
-				return this._Số_phiếu_còn;
-			}
-			set
-			{
-				if ((this._Số_phiếu_còn != value))
-				{
-					this._Số_phiếu_còn = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Số phiếu nhập]", Storage="_Số_phiếu_nhập", DbType="Int")]
-		public System.Nullable<int> Số_phiếu_nhập
-		{
-			get
-			{
-				return this._Số_phiếu_nhập;
-			}
-			set
-			{
-				if ((this._Số_phiếu_nhập != value))
-				{
-					this._Số_phiếu_nhập = value;
 				}
 			}
 		}
@@ -2734,122 +3064,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class Admin_Export_DataResult
-	{
-		
-		private string _BatchName;
-		
-		private System.Nullable<int> _ID_Batch;
-		
-		private string _ImageName;
-		
-		private string _ResultLC;
-		
-		private string _Loai;
-		
-		private string _PathPicture;
-		
-		public Admin_Export_DataResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
-		public string BatchName
-		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int")]
-		public System.Nullable<int> ID_Batch
-		{
-			get
-			{
-				return this._ID_Batch;
-			}
-			set
-			{
-				if ((this._ID_Batch != value))
-				{
-					this._ID_Batch = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(500)")]
-		public string ImageName
-		{
-			get
-			{
-				return this._ImageName;
-			}
-			set
-			{
-				if ((this._ImageName != value))
-				{
-					this._ImageName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResultLC", DbType="NVarChar(MAX)")]
-		public string ResultLC
-		{
-			get
-			{
-				return this._ResultLC;
-			}
-			set
-			{
-				if ((this._ResultLC != value))
-				{
-					this._ResultLC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loai", DbType="NVarChar(50)")]
-		public string Loai
-		{
-			get
-			{
-				return this._Loai;
-			}
-			set
-			{
-				if ((this._Loai != value))
-				{
-					this._Loai = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PathPicture", DbType="NVarChar(MAX)")]
-		public string PathPicture
-		{
-			get
-			{
-				return this._PathPicture;
-			}
-			set
-			{
-				if ((this._PathPicture != value))
-				{
-					this._PathPicture = value;
-				}
-			}
-		}
-	}
-	
 	public partial class spBatch_AddBatch_v2Result
 	{
 		
@@ -2861,32 +3075,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
 		public System.Nullable<int> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class Entry_Check_ReturnBack_ImageResult
-	{
-		
-		private string _Column1;
-		
-		public Entry_Check_ReturnBack_ImageResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
-		public string Column1
 		{
 			get
 			{
@@ -3896,104 +4084,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class spCheck_GetLishCheck_v3Result
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		private string _BatchName;
-		
-		private string _BatchType;
-		
-		private System.Nullable<bool> _ChiaUser;
-		
-		private System.Nullable<int> _Hit_E11;
-		
-		public spCheck_GetLishCheck_v3Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
-		public string BatchName
-		{
-			get
-			{
-				return this._BatchName;
-			}
-			set
-			{
-				if ((this._BatchName != value))
-				{
-					this._BatchName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
-		public string BatchType
-		{
-			get
-			{
-				return this._BatchType;
-			}
-			set
-			{
-				if ((this._BatchType != value))
-				{
-					this._BatchType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
-		public System.Nullable<bool> ChiaUser
-		{
-			get
-			{
-				return this._ChiaUser;
-			}
-			set
-			{
-				if ((this._ChiaUser != value))
-				{
-					this._ChiaUser = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
-		public System.Nullable<int> Hit_E11
-		{
-			get
-			{
-				return this._Hit_E11;
-			}
-			set
-			{
-				if ((this._Hit_E11 != value))
-				{
-					this._Hit_E11 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class spEntry_GetListbatch_v3Result
 	{
 		
@@ -4136,6 +4226,396 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
+	public partial class spData_CheckBatch_ChiaUser_v2Result
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public spData_CheckBatch_ChiaUser_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spEntryGetListBatch_v4Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _BatchName;
+		
+		private string _BatchType;
+		
+		private System.Nullable<bool> _ChiaUser;
+		
+		public spEntryGetListBatch_v4Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(500)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(500)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this._BatchType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
+		public System.Nullable<bool> ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spCheck_GetLishCheck_v3Result
+	{
+		
+		private int _ID;
+		
+		private string _BatchName;
+		
+		private string _BatchType;
+		
+		private bool _ChiaUser;
+		
+		private System.Nullable<int> _Hit_E11;
+		
+		public spCheck_GetLishCheck_v3Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(255)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchType", DbType="NVarChar(255)")]
+		public string BatchType
+		{
+			get
+			{
+				return this._BatchType;
+			}
+			set
+			{
+				if ((this._BatchType != value))
+				{
+					this._BatchType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit NOT NULL")]
+		public bool ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit_E11", DbType="Int")]
+		public System.Nullable<int> Hit_E11
+		{
+			get
+			{
+				return this._Hit_E11;
+			}
+			set
+			{
+				if ((this._Hit_E11 != value))
+				{
+					this._Hit_E11 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spEntryGetImage_v2Result
+	{
+		
+		private System.Nullable<int> _IDImage;
+		
+		private System.Nullable<int> _Pair;
+		
+		private System.Nullable<int> _Flast1;
+		
+		private System.Nullable<int> _Flast2;
+		
+		private string _NameImage;
+		
+		public spEntryGetImage_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDImage", DbType="Int")]
+		public System.Nullable<int> IDImage
+		{
+			get
+			{
+				return this._IDImage;
+			}
+			set
+			{
+				if ((this._IDImage != value))
+				{
+					this._IDImage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pair", DbType="Int")]
+		public System.Nullable<int> Pair
+		{
+			get
+			{
+				return this._Pair;
+			}
+			set
+			{
+				if ((this._Pair != value))
+				{
+					this._Pair = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flast1", DbType="Int")]
+		public System.Nullable<int> Flast1
+		{
+			get
+			{
+				return this._Flast1;
+			}
+			set
+			{
+				if ((this._Flast1 != value))
+				{
+					this._Flast1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flast2", DbType="Int")]
+		public System.Nullable<int> Flast2
+		{
+			get
+			{
+				return this._Flast2;
+			}
+			set
+			{
+				if ((this._Flast2 != value))
+				{
+					this._Flast2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NameImage", DbType="NVarChar(255)")]
+		public string NameImage
+		{
+			get
+			{
+				return this._NameImage;
+			}
+			set
+			{
+				if ((this._NameImage != value))
+				{
+					this._NameImage = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spData_GetInfo_MissImage_Entry_v2Result
+	{
+		
+		private System.Nullable<int> _Tổng_số_phiếu;
+		
+		private System.Nullable<int> _Số_phiếu_còn;
+		
+		private System.Nullable<int> _Số_phiếu_nhập;
+		
+		public spData_GetInfo_MissImage_Entry_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Tổng số phiếu]", Storage="_Tổng_số_phiếu", DbType="Int")]
+		public System.Nullable<int> Tổng_số_phiếu
+		{
+			get
+			{
+				return this._Tổng_số_phiếu;
+			}
+			set
+			{
+				if ((this._Tổng_số_phiếu != value))
+				{
+					this._Tổng_số_phiếu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Số phiếu còn]", Storage="_Số_phiếu_còn", DbType="Int")]
+		public System.Nullable<int> Số_phiếu_còn
+		{
+			get
+			{
+				return this._Số_phiếu_còn;
+			}
+			set
+			{
+				if ((this._Số_phiếu_còn != value))
+				{
+					this._Số_phiếu_còn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Số phiếu nhập]", Storage="_Số_phiếu_nhập", DbType="Int")]
+		public System.Nullable<int> Số_phiếu_nhập
+		{
+			get
+			{
+				return this._Số_phiếu_nhập;
+			}
+			set
+			{
+				if ((this._Số_phiếu_nhập != value))
+				{
+					this._Số_phiếu_nhập = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Entry_Check_ReturnBack_ImageResult
+	{
+		
+		private string _Column1;
+		
+		public Entry_Check_ReturnBack_ImageResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
+		public string Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
 	public partial class spEntry_Submit_New_v3Result
 	{
 		
@@ -4157,6 +4637,604 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spData_GetImage_Check_v2Result
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _Content_E1;
+		
+		private string _UserName_E1;
+		
+		private string _Content_E2;
+		
+		private string _UserName_E2;
+		
+		private string _ImageName;
+		
+		public spData_GetImage_Check_v2Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
+		public string Content_E1
+		{
+			get
+			{
+				return this._Content_E1;
+			}
+			set
+			{
+				if ((this._Content_E1 != value))
+				{
+					this._Content_E1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E1", DbType="NVarChar(100)")]
+		public string UserName_E1
+		{
+			get
+			{
+				return this._UserName_E1;
+			}
+			set
+			{
+				if ((this._UserName_E1 != value))
+				{
+					this._UserName_E1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
+		public string Content_E2
+		{
+			get
+			{
+				return this._Content_E2;
+			}
+			set
+			{
+				if ((this._Content_E2 != value))
+				{
+					this._Content_E2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName_E2", DbType="NVarChar(100)")]
+		public string UserName_E2
+		{
+			get
+			{
+				return this._UserName_E2;
+			}
+			set
+			{
+				if ((this._UserName_E2 != value))
+				{
+					this._UserName_E2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(200)")]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this._ImageName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class LC_spData_GetdataResult
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _NameImage;
+		
+		private string _Content_E1;
+		
+		private string _Content_E2;
+		
+		private string _Content_Check;
+		
+		private string _Content_LC;
+		
+		public LC_spData_GetdataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NameImage", DbType="NVarChar(200)")]
+		public string NameImage
+		{
+			get
+			{
+				return this._NameImage;
+			}
+			set
+			{
+				if ((this._NameImage != value))
+				{
+					this._NameImage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E1", DbType="NVarChar(MAX)")]
+		public string Content_E1
+		{
+			get
+			{
+				return this._Content_E1;
+			}
+			set
+			{
+				if ((this._Content_E1 != value))
+				{
+					this._Content_E1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_E2", DbType="NVarChar(MAX)")]
+		public string Content_E2
+		{
+			get
+			{
+				return this._Content_E2;
+			}
+			set
+			{
+				if ((this._Content_E2 != value))
+				{
+					this._Content_E2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_Check", DbType="NVarChar(MAX)")]
+		public string Content_Check
+		{
+			get
+			{
+				return this._Content_Check;
+			}
+			set
+			{
+				if ((this._Content_Check != value))
+				{
+					this._Content_Check = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content_LC", DbType="NVarChar(MAX)")]
+		public string Content_LC
+		{
+			get
+			{
+				return this._Content_LC;
+			}
+			set
+			{
+				if ((this._Content_LC != value))
+				{
+					this._Content_LC = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spAdmin_Pfm_EntryResult
+	{
+		
+		private int _ID_Batch;
+		
+		private string _UserName;
+		
+		private string _FullName;
+		
+		private int _Time_Entry;
+		
+		private int _Error_Entry;
+		
+		private string _Content;
+		
+		private string _LoaiNhap;
+		
+		private System.Nullable<int> _LenDong;
+		
+		public spAdmin_Pfm_EntryResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int NOT NULL")]
+		public int ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this._ID_Batch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time_Entry", DbType="Int NOT NULL")]
+		public int Time_Entry
+		{
+			get
+			{
+				return this._Time_Entry;
+			}
+			set
+			{
+				if ((this._Time_Entry != value))
+				{
+					this._Time_Entry = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error_Entry", DbType="Int NOT NULL")]
+		public int Error_Entry
+		{
+			get
+			{
+				return this._Error_Entry;
+			}
+			set
+			{
+				if ((this._Error_Entry != value))
+				{
+					this._Error_Entry = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this._Content = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiNhap", DbType="NVarChar(255)")]
+		public string LoaiNhap
+		{
+			get
+			{
+				return this._LoaiNhap;
+			}
+			set
+			{
+				if ((this._LoaiNhap != value))
+				{
+					this._LoaiNhap = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LenDong", DbType="Int")]
+		public System.Nullable<int> LenDong
+		{
+			get
+			{
+				return this._LenDong;
+			}
+			set
+			{
+				if ((this._LenDong != value))
+				{
+					this._LenDong = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Admin_Pfm_CheckerResult
+	{
+		
+		private System.Nullable<int> _ID_Batch;
+		
+		private string _UserName;
+		
+		private string _FullName;
+		
+		private System.Nullable<int> _TimeCheck;
+		
+		public Admin_Pfm_CheckerResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int")]
+		public System.Nullable<int> ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this._ID_Batch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(200)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeCheck", DbType="Int")]
+		public System.Nullable<int> TimeCheck
+		{
+			get
+			{
+				return this._TimeCheck;
+			}
+			set
+			{
+				if ((this._TimeCheck != value))
+				{
+					this._TimeCheck = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Admin_Export_DataResult
+	{
+		
+		private System.Nullable<int> _IDImg;
+		
+		private string _BatchName;
+		
+		private System.Nullable<int> _ID_Batch;
+		
+		private string _ImageName;
+		
+		private string _ResultLC;
+		
+		private string _Loai;
+		
+		private string _PathPicture;
+		
+		public Admin_Export_DataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDImg", DbType="Int")]
+		public System.Nullable<int> IDImg
+		{
+			get
+			{
+				return this._IDImg;
+			}
+			set
+			{
+				if ((this._IDImg != value))
+				{
+					this._IDImg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchName", DbType="NVarChar(200)")]
+		public string BatchName
+		{
+			get
+			{
+				return this._BatchName;
+			}
+			set
+			{
+				if ((this._BatchName != value))
+				{
+					this._BatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Batch", DbType="Int")]
+		public System.Nullable<int> ID_Batch
+		{
+			get
+			{
+				return this._ID_Batch;
+			}
+			set
+			{
+				if ((this._ID_Batch != value))
+				{
+					this._ID_Batch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="NVarChar(200)")]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this._ImageName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResultLC", DbType="NVarChar(MAX)")]
+		public string ResultLC
+		{
+			get
+			{
+				return this._ResultLC;
+			}
+			set
+			{
+				if ((this._ResultLC != value))
+				{
+					this._ResultLC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loai", DbType="NVarChar(50)")]
+		public string Loai
+		{
+			get
+			{
+				return this._Loai;
+			}
+			set
+			{
+				if ((this._Loai != value))
+				{
+					this._Loai = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PathPicture", DbType="NVarChar(MAX)")]
+		public string PathPicture
+		{
+			get
+			{
+				return this._PathPicture;
+			}
+			set
+			{
+				if ((this._PathPicture != value))
+				{
+					this._PathPicture = value;
 				}
 			}
 		}

@@ -70,29 +70,61 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 pfm_AE = admin_info.dt_pfm_Entry.Clone();
                 pfm_AT = admin_info.dt_pfm_Entry.Clone();
                 DataTable dt_Entry = new DataTable();
-                string ConnectionString = Global.ConnectionString;
-                SqlConnection con = new SqlConnection(ConnectionString);
-                SqlCommand cmd = new SqlCommand("spAdmin_Pfm_Entry", con);
-                try
+                dt_Entry.Columns.Add("ID_Batch", typeof(int));
+                dt_Entry.Columns.Add("UserName", typeof(string));
+                dt_Entry.Columns.Add("FullName", typeof(string));
+                dt_Entry.Columns.Add("TimeEntry", typeof(int));
+                dt_Entry.Columns.Add("Error_Entry", typeof(int));
+                dt_Entry.Columns.Add("LoaiNhap", typeof(string));
+                dt_Entry.Columns.Add("LenDong", typeof(string));
+                var infoPFM = GlobalDB.DBLinq.spAdmin_Pfm_Entry("ENTRY", admin_info.Time_Start, admin_info.Time_End).ToList();
+                if (infoPFM != null)
                 {
-                    DataSet ds = new DataSet();                    
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 60 * 60;
-                    cmd.Parameters.AddWithValue("@style_Pfm", "ENTRY");
-                    cmd.Parameters.AddWithValue("@Time_Start", admin_info.Time_Start);
-                    cmd.Parameters.AddWithValue("@Time_End", admin_info.Time_End);
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmd;
-                    da.Fill(ds);
-                    dt_Entry = ds.Tables[0];
-                    con.Close();
+                    if (infoPFM.Count() > 0)
+                    {
+                        foreach (var item in infoPFM)
+                        {
+                            DataRow dtRow = dt_Entry.NewRow();
+                            dtRow["ID_Batch"] = item.ID_Batch;
+                            dtRow["UserName"] = item.UserName;
+                            dtRow["FullName"] = item.FullName;
+                            dtRow["TimeEntry"] = item.Time_Entry;
+                            dtRow["Error_Entry"] = item.Error_Entry;
+                            dtRow["LoaiNhap"] = item.LoaiNhap;
+                            dtRow["LenDong"] = item.LenDong;
+                            dt_Entry.Rows.Add(dtRow);
+                        }
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    con.Close(); MessageBox.Show(ex.ToString());
+                    return;
                 }
+                #region Close Code
+                //string ConnectionString = Global.ConnectionString;
+                //SqlConnection con = new SqlConnection(ConnectionString);
+                //SqlCommand cmd = new SqlCommand("spAdmin_Pfm_Entry", con);
+                //try
+                //{
+                //    DataSet ds = new DataSet();                    
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.CommandTimeout = 60 * 60;
+                //    cmd.Parameters.AddWithValue("@style_Pfm", "ENTRY");
+                //    cmd.Parameters.AddWithValue("@Time_Start", admin_info.Time_Start);
+                //    cmd.Parameters.AddWithValue("@Time_End", admin_info.Time_End);
+                //    SqlDataAdapter da = new SqlDataAdapter();
+                //    da.SelectCommand = cmd;
+                //    da.Fill(ds);
+                //    dt_Entry = ds.Tables[0];
+                //    con.Close();
+                //}
+                //catch (Exception ex)
+                //{
+                //    con.Close(); MessageBox.Show(ex.ToString());
+                //}
+                #endregion
                 if (dt_Entry.Rows.Count > 0)
-                { 
+                {
                     var results = from status in dt_Entry.AsEnumerable()
                                   group status by (status.Field<string>("UserName").ToLower(),status.Field<string>("LoaiNhap")) into status
                                   select new
@@ -262,39 +294,65 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 admin_info.Str_Select_Pfm = "Check";
                 admin_info.dt_pfm_Check.Clear();                            
                 DataTable dt_Checker = new DataTable();
-                string ConnectionString = Global.ConnectionString;
-                SqlConnection con = new SqlConnection(ConnectionString);
-                SqlCommand cmd = new SqlCommand("Admin_Pfm_Checker", con);
-                try
+                dt_Checker.Columns.Add("ID_Batch", typeof(int));
+                dt_Checker.Columns.Add("UserName", typeof(string));
+                dt_Checker.Columns.Add("FullName", typeof(string));
+                dt_Checker.Columns.Add("TimeCheck", typeof(int));
+                var infoPFM = GlobalDB.DBLinq.Admin_Pfm_Checker(admin_info.Time_Start, admin_info.Time_End).ToList();
+                if (infoPFM != null)
                 {
-                    DataSet ds = new DataSet();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 60 * 60;                    
-                    cmd.Parameters.AddWithValue("@Time_Start", admin_info.Time_Start);
-                    cmd.Parameters.AddWithValue("@Time_End", admin_info.Time_End);
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmd;
-                    da.Fill(ds);
-                    dt_Checker = ds.Tables[0];
-                    con.Close();
+                    if (infoPFM.Count() > 0)
+                    {
+                        foreach (var item in infoPFM)
+                        {
+                            DataRow dtRow = dt_Checker.NewRow();
+                            dtRow["ID_Batch"] = item.ID_Batch;
+                            dtRow["UserName"] = item.UserName;
+                            dtRow["FullName"] = item.FullName;
+                            dtRow["TimeCheck"] = item.TimeCheck;
+                            dt_Checker.Rows.Add(dtRow);
+                        }
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    con.Close(); MessageBox.Show(ex.ToString());
+                    return;
                 }
+                #region 
+                //string ConnectionString = Global.ConnectionString;
+                //SqlConnection con = new SqlConnection(ConnectionString);
+                //SqlCommand cmd = new SqlCommand("Admin_Pfm_Checker", con);
+                //try
+                //{
+                //    DataSet ds = new DataSet();
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.CommandTimeout = 60 * 60;                    
+                //    cmd.Parameters.AddWithValue("@Time_Start", admin_info.Time_Start);
+                //    cmd.Parameters.AddWithValue("@Time_End", admin_info.Time_End);
+                //    SqlDataAdapter da = new SqlDataAdapter();
+                //    da.SelectCommand = cmd;
+                //    da.Fill(ds);
+                //    dt_Checker = ds.Tables[0];
+                //    con.Close();
+                //}
+                //catch (Exception ex)
+                //{
+                //    con.Close(); MessageBox.Show(ex.ToString());
+                //}
+                #endregion
                 var results = from status in dt_Checker.AsEnumerable()
-                              group status by (status.Field<string>("UserName")) into status
+                              group status by (status.Field<string>("UserName").ToLower()) into status
                               select new
                               {
                                   UserName = status.Select(x => x.Field<string>("UserName")).FirstOrDefault(),
                                   Fullname = status.Select(x => x.Field<string>("FullName")).FirstOrDefault(),
                                   Tongtruong = status.Select(x => x.Field<string>("UserName")).Count(),                                  
-                                  Thoigian = ((status.Select(x => x.Field<int>("TimeEntry")).Sum()) / 1000.0) / 360,                                  
+                                  Thoigian = ((status.Select(x => x.Field<int>("TimeCheck")).Sum()) / 1000.0) / 360,                                  
                               };
                 double FullTruong = results.Sum(x => x.Tongtruong);                
                 double FullThoigian = results.Sum(x => x.Thoigian);
                 foreach (var element in results)
-                {                    
+                {
                     var rowindex = admin_info.dt_pfm_Check.NewRow();
                     rowindex[admin_info.dt_pfm_Check.Columns[0].ToString()] = element.UserName;
                     rowindex[admin_info.dt_pfm_Check.Columns[1].ToString()] = element.Fullname;

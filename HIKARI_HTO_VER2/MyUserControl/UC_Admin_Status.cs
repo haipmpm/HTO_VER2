@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -70,9 +71,52 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             if (str_batchId != "")
             {
-                var Result = (from w in GlobalDB.DBLinq.Admin_View_Status_V3(admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1, w.TongPhieuCheck1, w.UserLC_1, w.Status_LC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3, w.Status_LC_3, w.Ngaytao, w.User_Export, w.Hoanthanh1, w.Hoanthanh3 }).ToList();                
+                DataTable dtlistID = new DataTable();
+                dtlistID.Columns.Add("IdBatch", typeof(int));
+                for (int i = 0; i < str_batchId.Split(',').Count(); i++)
+                {
+                    dtlistID.Rows.Add(Convert.ToInt32(str_batchId.Split(',')[i].ToString()));
+                }
+                DataTable dt_info_img = new DataTable();
+                try
+                {
+                    DataSet ds = new DataSet();
+                    using (SqlConnection con = new SqlConnection(Global.ConnectionString))
+                    {
+                        try
+                        {
+                            SqlCommand cmd = new SqlCommand("Admin_View_Status_V3", con);
+                            cmd.CommandTimeout = 10 * 60;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Style_Batch", admin_info.Style_batch.ToString());
+                            cmd.Parameters.AddWithValue("@ListBatch", dtlistID);
+                            SqlDataAdapter da = new SqlDataAdapter();
+                            da.SelectCommand = cmd;
+                            da.Fill(ds);
+                            dt_info_img = ds.Tables[0];
+                            con.Close();
+                        }
+                        catch (Exception exx)
+                        {
+                            con.Close();
+                            MessageBox.Show(exx.ToString());
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lấy dữ liệu Status có vấn đề !!!"); return;
+                }
+                DataView view = dt_info_img.DefaultView;
+                view.Sort = "ID";
+                dt_info_img = view.ToTable();
+                //var Result = (from w in GlobalDB.DBLinq.Admin_View_Status_V3(admin_info.Style_batch, str_batchId) select new { w.ID, w.BatchName, w.BatchType, w.NumberImage, w.Hit_E11, w.Hit_E12, w.PhieuCheck1, w.TongPhieuCheck1, w.UserLC_1, w.Status_LC_1, w.Hit_E31, w.Hit_E32, w.PhieuCheck3, w.TongPhieuCheck3, w.UserLC_3, w.Status_LC_3, w.Ngaytao, w.User_Export, w.Hoanthanh1, w.Hoanthanh3 }).ToList();                
                 grd_Status.DataSource = null;
-                grd_Status.DataSource = Result;
+                grd_Status.DataSource = dt_info_img;
                 //// Tính toán và Add vào Footer
                 grdV_Status.Columns["TongPhieuCheck1"].Width = 280;
                 grdV_Status.Columns["NumberImage"].Summary.Clear();
@@ -80,16 +124,36 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 grdV_Status.Columns["Hit_E12"].Summary.Clear();
                 grdV_Status.Columns["PhieuCheck1"].Summary.Clear();
                 grdV_Status.Columns["TongPhieuCheck1"].Summary.Clear();
-                int tongSL = Result.Sum(x => Convert.ToInt32(x.NumberImage));
+
+                var Result = from status in dt_info_img.AsEnumerable()
+                             group status by (status.Field<string>("BatchName"), status.Field<int>("ID")) into status
+                             select new
+                             {
+                                 SoluongAnh = status.Select(x => x.Field<int>("NumberImage")).Sum(),
+                                 Conlai_LV1 = status.Select(x => x.Field<int>("Hit_E11")).Sum(),
+                                 Conlai_LV2 = status.Select(x => x.Field<int>("Hit_E12")).Sum(),
+                                 Hoanthanhlv1 = status.Select(x => x.Field<int>("Hoanthanh1")).Sum(),
+                                 Hoanthanhlv3 = status.Select(x => x.Field<int>("Hoanthanh3")).Sum(),
+                                 TongPhieuCheck1 = status.Select(x => x.Field<int>("TongPhieuCheck1")).Sum(),
+                                 PhieuCheck1 = status.Select(x => x.Field<int>("PhieuCheck1")).Sum(),
+                             };
+                int tongSL = Result.Sum(x => x.SoluongAnh);
+                int Conlai_LV1 = Result.Sum(x => x.Conlai_LV1);
+                int Conlai_LV2 = Result.Sum(x => x.Conlai_LV2);
+                int Conlai_Check = Result.Sum(x => Convert.ToInt32(x.PhieuCheck1));
+                int Tong_Check = Result.Sum(x => Convert.ToInt32(x.TongPhieuCheck1));
+                int Hoanthanhlv1 = Result.Sum(x => Convert.ToInt32(x.Hoanthanhlv1));
+
+                //int tongSL = Result.Sum(x => Convert.ToInt32(x.NumberImage));
                 grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng Ảnh");
                 grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Tổng nhập");
                 grdV_Status.Columns["NumberImage"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Count", "Còn lại");
-                int Conlai_LV1 = Result.Sum(x => Convert.ToInt32(x.Hit_E11));
-                int Conlai_LV2 = Result.Sum(x => Convert.ToInt32(x.Hit_E12));
-                int Conlai_Check = Result.Sum(x => Convert.ToInt32(x.PhieuCheck1));
-                int Tong_Check = Result.Sum(x => Convert.ToInt32(x.TongPhieuCheck1));
-                int Hoanthanhlv1 = Result.Sum(x => Convert.ToInt32(x.Hoanthanh1));
-                int Hoanthanhlv3 = Result.Sum(x => Convert.ToInt32(x.Hoanthanh3));
+                //int Conlai_LV1 = Result.Sum(x => Convert.ToInt32(x.Hit_E11));
+                //int Conlai_LV2 = Result.Sum(x => Convert.ToInt32(x.Hit_E12));
+                //int Conlai_Check = Result.Sum(x => Convert.ToInt32(x.PhieuCheck1));
+                //int Tong_Check = Result.Sum(x => Convert.ToInt32(x.TongPhieuCheck1));
+                //int Hoanthanhlv1 = Result.Sum(x => Convert.ToInt32(x.Hoanthanh1));
+                int Hoanthanhlv3 = Result.Sum(x => Convert.ToInt32(x.Hoanthanhlv3));
 
                 grdV_Status.Columns["Hit_E11"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E11", tongSL.ToString());
                 grdV_Status.Columns["Hit_E11"].Summary.Add(DevExpress.Data.SummaryItemType.Custom, "Hit_E11", (tongSL - Conlai_LV1).ToString());

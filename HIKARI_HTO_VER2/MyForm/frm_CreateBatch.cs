@@ -193,7 +193,7 @@ namespace HIKARI_HTO_VER2.MyForm
             ///*
             // * Tạo Batch mới.
             // */
-            int Id_batch = 0;
+            int Id_batch = 0;            
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new[] { new DataColumn("ImageName", typeof(string)) });
             for (int i = 0; i < _lFileNames.Count(); i++)
@@ -215,8 +215,15 @@ namespace HIKARI_HTO_VER2.MyForm
                     CongKhaiBatch = false,
                     Usercreate = txt_UserCreate.Text,
                     DateCreate = DateTime.Now,
+                    Hit_E11 = 0,
+                    Hit_E12 = 0,
+                    Hit_E31 = 0,
+                    Hit_E32 = 0,
                 };
-                Id_batch = tb_batch.AddBatch(fBatch);
+                GlobalDB.DBLinq.Tb_Batches.InsertOnSubmit(fBatch);
+                GlobalDB.DBLinq.SubmitChanges();
+                //Id_batch = tb_batch.AddBatch(fBatch);
+                Id_batch = GlobalDB.DBLinq.Tb_Batches.Where(x => x.BatchName == txt_BatchName.Text).Select(x => x.ID).FirstOrDefault();
             }
             else
             {
@@ -231,7 +238,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 cmd.CommandTimeout = 10 * 60;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID_Batch", Id_batch.ToString());
-                cmd.Parameters.AddWithValue("@Name_table", str_table_days);
+                //cmd.Parameters.AddWithValue("@Name_table", str_table_days);
                 cmd.Parameters.AddWithValue("@list_image", dt);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -239,7 +246,7 @@ namespace HIKARI_HTO_VER2.MyForm
             }
             catch (Exception exx)
             {
-                tb_batch.Delete_Batch(Id_batch.ToString(), str_table_days);
+                tb_batch.Delete_Batch(Id_batch, str_table_days);
                 MessageBox.Show(exx.ToString());
                 return;
             }
@@ -314,9 +321,11 @@ namespace HIKARI_HTO_VER2.MyForm
             foreach (string itemBatch in lStrBath)
             {
                 dt.Clear();
-                StringBuilder batchId = new StringBuilder();
-                CountBatchFinish++;
-                batchId.Append(new DirectoryInfo(itemBatch).Name + "_" + cbb_Loai.Text + "_" + Guid.NewGuid().ToString().Replace("-", ""));
+                //StringBuilder batchId = new StringBuilder();
+                //CountBatchFinish++;
+                //batchId.Append(new DirectoryInfo(itemBatch).Name + "_" + cbb_Loai.Text + "_" + Guid.NewGuid().ToString().Replace("-", ""));
+                
+                string batchName =  (new DirectoryInfo(itemBatch).Name);
                 var filters = new String[] { "jpg", "jpeg", "png", "gif", "tif", "bmp" };
                 string[] pathImageLocation = GetFilesFrom(itemBatch, filters, false);
                 int Id_batch = 0;
@@ -331,8 +340,12 @@ namespace HIKARI_HTO_VER2.MyForm
                     CongKhaiBatch = false,
                     Usercreate = txt_UserCreate.Text,
                     DateCreate = DateTime.Now,
+                    Hit_E11 = 0, Hit_E12 = 0, Hit_E31 = 0, Hit_E32 = 0,
                 };
-                Id_batch = tb_batch.AddBatch(fBatch);
+                GlobalDB.DBLinq.Tb_Batches.InsertOnSubmit(fBatch);
+                GlobalDB.DBLinq.SubmitChanges();
+                //Id_batch = tb_batch.AddBatch(fBatch);
+                Id_batch = GlobalDB.DBLinq.Tb_Batches.Where(x => x.BatchName == batchName).Select(x => x.ID).FirstOrDefault();
 
                 if (pathImageLocation.Count() > 0)
                 {
@@ -354,7 +367,7 @@ namespace HIKARI_HTO_VER2.MyForm
                         cmd.CommandTimeout = 10 * 60;
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ID_Batch", Id_batch.ToString());
-                        cmd.Parameters.AddWithValue("@Name_table", str_table_days);
+                        //cmd.Parameters.AddWithValue("@Name_table", str_table_days);
                         cmd.Parameters.AddWithValue("@list_image", dt);
                         con.Open();
                         cmd.ExecuteNonQuery();
@@ -362,7 +375,7 @@ namespace HIKARI_HTO_VER2.MyForm
                     }
                     catch (Exception exx)
                     {
-                        tb_batch.Delete_Batch(Id_batch.ToString(), str_table_days);
+                        tb_batch.Delete_Batch(Id_batch, str_table_days);
                         splashScreenManager1.CloseWaitForm();
                         MessageBox.Show(exx.ToString());
                         return;

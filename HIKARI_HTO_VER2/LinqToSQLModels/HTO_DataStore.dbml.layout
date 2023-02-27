@@ -2,18 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.625" name="HTO_DataStore">
   <DataContextMoniker Name="/HTO_DataStoreDataContext" />
   <nestedChildShapes>
-    <classShape Id="d8b11404-a305-4d58-abf7-4d6889ca67bb" absoluteBounds="0.75, 0.75, 2, 3.5016097005208326">
-      <DataClassMoniker Name="/HTO_DataStoreDataContext/Tb_Batch" />
-      <nestedChildShapes>
-        <elementListCompartment Id="aa0ddc8f-c512-4f1f-99cc-cd8750afe484" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4fbcdc22-11af-4b97-af7b-ef2e0dc3a3d9" absoluteBounds="3.5, 0.5, 2, 5.4246240234375">
-      <DataClassMoniker Name="/HTO_DataStoreDataContext/Tb_Data_Batch" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7c3859b4-0094-4da8-a219-84b946eaa9d2" absoluteBounds="3.515, 0.96, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="6699bd19-e31a-46f0-9b2b-d01219a91974" absoluteBounds="0.5, 5.375, 2, 1.3862939453125">
       <DataClassMoniker Name="/HTO_DataStoreDataContext/DataAutocomplete" />
       <nestedChildShapes>
@@ -24,6 +12,18 @@
       <DataClassMoniker Name="/HTO_DataStoreDataContext/tbl_LogErr" />
       <nestedChildShapes>
         <elementListCompartment Id="a6262e1d-c9e3-4582-bae7-b5834e5accfb" absoluteBounds="3.64, 7.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="204f833b-366b-49d2-a0d4-9588d75d94ad" absoluteBounds="0.5, 0.5, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/HTO_DataStoreDataContext/Tb_Batch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="740f850a-da69-49f4-b1ae-018a9d5d79c5" absoluteBounds="0.515, 0.96, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3505318c-b781-4625-a388-283da78c9ce0" absoluteBounds="3, 0.5, 2, 7.1553369140625">
+      <DataClassMoniker Name="/HTO_DataStoreDataContext/Tb_AllData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1a3331f-6908-4b8c-a6ba-c26e3984cb14" absoluteBounds="3.015, 0.96, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

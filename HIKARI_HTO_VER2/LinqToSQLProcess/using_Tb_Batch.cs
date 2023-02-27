@@ -32,11 +32,11 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
         //    }
         //    return null;
         //}
-        public List<spEntry_GetListbatch_v3Result> Get_ListBatch_Entry_new(int level_image, string ID_Batch, string level_User, string UserName)
+        public List<spEntryGetListBatch_v4Result> Get_ListBatch_Entry_2023(int level_image, int ID_Batch, int level_User, string UserName)
         {
             try
             {
-                return GlobalDB.DBLinq.spEntry_GetListbatch_v3(level_image.ToString(), ID_Batch, level_User, UserName).ToList();
+                return GlobalDB.DBLinq.spEntryGetListBatch_v4(level_image, ID_Batch, level_User, UserName).ToList();
             }
             catch (Exception ex)
             {
@@ -44,11 +44,11 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return null;
         }
-        public List<spCheck_GetLishCheck_v3Result> Get_ListBatch_Checker(int level_image, string ID_Batch)
+        public List<spCheck_GetLishCheck_v3Result> Get_ListBatch_Checker(int level_image, int ID_Batch)
         {
             try
             {
-                return GlobalDB.DBLinq.spCheck_GetLishCheck_v3(ID_Batch,level_image.ToString()).ToList();
+                return GlobalDB.DBLinq.spCheck_GetLishCheck_v3(ID_Batch,level_image).ToList();
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return get_id;
         }
-        public void Delete_Batch(string ID_Batch, string Batch_Table)
+        public void Delete_Batch(int ID_Batch, string Batch_Table)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             }
             return null;
         }
-        public void UpdateCongKhaiBatch(string batchID, int status)
+        public void UpdateCongKhaiBatch(int batchID, int status)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
                 logErr.AddLogErr(ex);
             }
         }
-        public void UpdateBatchChiaUser(string batchID, int status)
+        public void UpdateBatchChiaUser(int batchID, int status)
         {
             try
             {

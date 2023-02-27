@@ -219,6 +219,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.rdb_LastCheck.TabIndex = 2;
             this.rdb_LastCheck.Text = "LastCheck";
             this.rdb_LastCheck.UseVisualStyleBackColor = true;
+            this.rdb_LastCheck.Visible = false;
             // 
             // rdb_Check
             // 

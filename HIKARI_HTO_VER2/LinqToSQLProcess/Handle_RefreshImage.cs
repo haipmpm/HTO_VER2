@@ -23,7 +23,7 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
         //        throw;
         //    }
         //}
-        public void spData_Refresh_Image_Entry_Check(string batchID,string level,string ID_Data, string status)
+        public void spData_Refresh_Image_Entry_Check(int batchID, int level, int ID_Data, string status)
         {
             try
             {
