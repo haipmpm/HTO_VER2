@@ -316,13 +316,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spData_GetInfo_MissImage_Entry_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Entry_Check_ReturnBack_Image")]
-		public ISingleResult<Entry_Check_ReturnBack_ImageResult> Entry_Check_ReturnBack_Image([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_image", DbType="Int")] System.Nullable<int> iD_image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_image, pair_Entry, userName);
-			return ((ISingleResult<Entry_Check_ReturnBack_ImageResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_Submit_New_v3")]
 		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="Int")] System.Nullable<int> lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
 		{
@@ -391,6 +384,13 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), listIDBatch);
 			return ((ISingleResult<Admin_Export_DataResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Entry_Check_ReturnBack_Image")]
+		public ISingleResult<Entry_Check_ReturnBack_ImageResult> Entry_Check_ReturnBack_Image([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_image", DbType="Int")] System.Nullable<int> iD_image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_image, pair_Entry, userName);
+			return ((ISingleResult<Entry_Check_ReturnBack_ImageResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4590,32 +4590,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class Entry_Check_ReturnBack_ImageResult
-	{
-		
-		private string _Column1;
-		
-		public Entry_Check_ReturnBack_ImageResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
-		public string Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class spEntry_Submit_New_v3Result
 	{
 		
@@ -5235,6 +5209,32 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._PathPicture != value))
 				{
 					this._PathPicture = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Entry_Check_ReturnBack_ImageResult
+	{
+		
+		private string _ColumnData;
+		
+		public Entry_Check_ReturnBack_ImageResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColumnData", DbType="NVarChar(50)")]
+		public string ColumnData
+		{
+			get
+			{
+				return this._ColumnData;
+			}
+			set
+			{
+				if ((this._ColumnData != value))
+				{
+					this._ColumnData = value;
 				}
 			}
 		}

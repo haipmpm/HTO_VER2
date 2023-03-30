@@ -111,7 +111,9 @@ namespace HIKARI_HTO_VER2.LinqToSQLProcess
             {
                 //using (var DBLinq = new LinqToSQLModels.DBHikari_HPTDataContext(Global.ConnectionString))
                 //{
-                result = GlobalDB.DBLinq.Entry_Check_ReturnBack_Image(batchID, ID_Image,   PairEntry, username).FirstOrDefault();
+                //var kequa = (from w in GlobalDB.DBLinq.Entry_Check_ReturnBack_Image(batchID, ID_Image, PairEntry, username) select w.ColumnData).FirstOrDefault();
+                
+                result = GlobalDB.DBLinq.Entry_Check_ReturnBack_Image(batchID, ID_Image, PairEntry, username).FirstOrDefault();
                 //}
             }
             catch (Exception ex)

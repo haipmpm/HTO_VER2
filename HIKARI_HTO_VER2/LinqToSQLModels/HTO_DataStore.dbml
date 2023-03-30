@@ -404,15 +404,6 @@
       <Column Name="[Số phiếu nhập]" Member="Số_phiếu_nhập" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.Entry_Check_ReturnBack_Image" Method="Entry_Check_ReturnBack_Image">
-    <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ID_image" Parameter="iD_image" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.Int32" DbType="Int" />
-    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
-    <ElementType Name="Entry_Check_ReturnBack_ImageResult">
-      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.spEntry_Submit_New_v3" Method="spEntry_Submit_New_v3">
     <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.Int32" DbType="Int" />
     <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
@@ -520,6 +511,15 @@
       <Column Name="ResultLC" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Loai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PathPicture" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Entry_Check_ReturnBack_Image" Method="Entry_Check_ReturnBack_Image">
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_image" Parameter="iD_image" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="Entry_Check_ReturnBack_ImageResult">
+      <Column Name="ColumnData" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

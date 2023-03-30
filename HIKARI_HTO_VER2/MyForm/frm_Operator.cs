@@ -471,18 +471,18 @@ namespace HIKARI_HTO_VER2.MyForm
         private void btn_BackImage_Click(object sender, EventArgs e)
         {
             var status_imgBack = using_Tb_Data.InsertData_Back(BackImage.ID_Batch, BackImage.ID_Data, BackImage.Level_entry_Check, Global.strUsername);
-            if (status_imgBack.Column1.ToString() == "Tat Cong Khai")
+            if (status_imgBack.ColumnData.ToString() == "Tat Cong Khai")
             {
                 MessageBox.Show("Batch đã Tắt Công Khai !!!");
                 Entry_info.imageName = "";
                 this.Close();
             }
-            else if (status_imgBack.Column1.ToString() == "Dang Check")
+            else if (status_imgBack.ColumnData.ToString() == "Dang Check")
             {
                 MessageBox.Show("Ảnh thực hiện Sửa dữ liệu đang ở Check !!!");
                 return;
             }
-            else if (status_imgBack.Column1.ToString() == "User Khac")
+            else if (status_imgBack.ColumnData.ToString() == "User Khac")
             {
                 MessageBox.Show("Ảnh thực hiện Sửa dữ liệu được User Khác lấy rồi nhé !!!");
                 return;
@@ -574,19 +574,19 @@ namespace HIKARI_HTO_VER2.MyForm
         private void btn_Save_Click(object sender, EventArgs e)
         {
             var status_imgBack = using_Tb_Data.InsertData_Back(BackImage.ID_Batch, BackImage.ID_Data, BackImage.Level_entry_Check, Global.strUsername);
-            if (status_imgBack.Column1.ToString() == "Tat Cong Khai")
+            if (status_imgBack.ColumnData.ToString() == "Tat Cong Khai")
             {
                 MessageBox.Show("Batch đã Tắt Công Khai !!!");
                 Entry_info.imageName = "";
                 this.Close();
             }
-            else if (status_imgBack.Column1.ToString() == "Dang Check")
+            else if (status_imgBack.ColumnData.ToString() == "Dang Check")
             {
                 MessageBox.Show("Ảnh thực hiện Sửa dữ liệu đang ở Check !!!");                
                 btn_Cancel_Click(null,null);
                 return;
             }
-            else if (status_imgBack.Column1.ToString() == "User Khac")
+            else if (status_imgBack.ColumnData.ToString() == "User Khac")
             {
                 MessageBox.Show("Ảnh thực hiện Sửa dữ liệu được User Khác lấy rồi nhé !!!");
                 btn_Cancel_Click(null, null);
