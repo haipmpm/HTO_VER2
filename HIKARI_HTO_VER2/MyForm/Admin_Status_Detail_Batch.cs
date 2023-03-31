@@ -30,7 +30,7 @@ namespace HIKARI_HTO_VER2.MyForm
             grd_Chitiet.DataSource = null;
             grd_Chitiet.DataSource = (from w in GlobalDB.DBLinq.Admin_Status_ViewChitiet_V2(BatchID)
                                       select new
-                                      { w.ID, w.ImageName, w.Level_Image, w.Content_E1, w.UserName_E1, w.Content_E2, w.UserName_E2, w.Content_Check, w.UserName_Check, w.Content_LC }).ToList();
+                                      { w.ID, w.ImageName, w.Level_Image, w.Content_E1, w.UserName_E1, w.Content_E2, w.UserName_E2, w.Content_Check, w.UserName_Check, w.Content_LC }).OrderBy(x=>x.ImageName).ToList();
             
             //btn_BackCheck.Enabled = false;
         }

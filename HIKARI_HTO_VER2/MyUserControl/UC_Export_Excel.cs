@@ -126,7 +126,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     {
                         TbLstID.Rows.Add(Convert.ToInt32(str_batchId.Split(',')[i].ToString()));
                     }
-                    var ResultData = (from w in GlobalDB.DBLinq.Admin_Export_Data(str_batchId) select new {w.IDImg, w.BatchName, w.ID_Batch, w.ImageName, w.ResultLC, w.Loai, w.PathPicture }).OrderBy(x=>x.IDImg).ToList();
+                    var ResultData = (from w in GlobalDB.DBLinq.Admin_Export_Data(str_batchId) select new {w.IDImg, w.BatchName, w.ID_Batch, w.ImageName, w.ResultLC, w.Loai, w.PathPicture }).OrderBy(w =>w.ID_Batch).ThenBy(w=> w.ImageName).ToList();
                     
                     tb_Result = new DataTable(); tb_Result_Error = new DataTable();
                     tb_Result = rdb_AE.Checked ? AddColumnDataAE() : AddColumnDataAT();

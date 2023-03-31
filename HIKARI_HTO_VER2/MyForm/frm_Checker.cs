@@ -713,5 +713,10 @@ namespace HIKARI_HTO_VER2.MyForm
                 }
             }
         }
+
+        private void btn_Submit_Logout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

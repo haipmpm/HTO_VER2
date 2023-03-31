@@ -119,6 +119,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_CopyInfo.TabIndex = 1;
             this.btn_CopyInfo.Text = "Copy Info";
             this.toolTip1.SetToolTip(this.btn_CopyInfo, "Nhấn để copy Tên Batch, Tên Hình, Username");
+            this.btn_CopyInfo.Visible = false;
             this.btn_CopyInfo.Click += new System.EventHandler(this.btn_CopyInfo_Click);
             // 
             // lb_City

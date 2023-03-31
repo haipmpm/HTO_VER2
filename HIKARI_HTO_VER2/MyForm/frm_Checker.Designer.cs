@@ -408,6 +408,7 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_Submit_Logout.TabIndex = 2;
             this.btn_Submit_Logout.Text = "Submit + Logout";
             this.toolTip1.SetToolTip(this.btn_Submit_Logout, "Nhấn Ctrl + L để submit và Logout");
+            this.btn_Submit_Logout.Click += new System.EventHandler(this.btn_Submit_Logout_Click);
             // 
             // btn_Submit
             // 

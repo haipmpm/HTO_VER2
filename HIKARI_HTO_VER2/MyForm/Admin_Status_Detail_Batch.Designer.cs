@@ -47,11 +47,11 @@ namespace HIKARI_HTO_VER2.MyForm
             this.lb_hienthi = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btn_rt_batchLC = new System.Windows.Forms.Button();
             this.btn_backImage = new System.Windows.Forms.Button();
             this.btn_BackEntry_2 = new System.Windows.Forms.Button();
             this.btn_BackCheck = new System.Windows.Forms.Button();
             this.btn_BackEntry_1 = new System.Windows.Forms.Button();
-            this.btn_rt_batchLC = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Chitiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_Chitiet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -219,17 +219,29 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(150)))), ((int)(((byte)(190)))));
             this.panel3.Controls.Add(this.btn_rt_batchLC);
             this.panel3.Controls.Add(this.btn_backImage);
             this.panel3.Controls.Add(this.btn_BackEntry_2);
             this.panel3.Controls.Add(this.btn_BackCheck);
             this.panel3.Controls.Add(this.btn_BackEntry_1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 645);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1167, 41);
             this.panel3.TabIndex = 3;
+            // 
+            // btn_rt_batchLC
+            // 
+            this.btn_rt_batchLC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_rt_batchLC.Location = new System.Drawing.Point(1007, 3);
+            this.btn_rt_batchLC.Name = "btn_rt_batchLC";
+            this.btn_rt_batchLC.Size = new System.Drawing.Size(157, 35);
+            this.btn_rt_batchLC.TabIndex = 5;
+            this.btn_rt_batchLC.Text = "Return LC";
+            this.btn_rt_batchLC.UseVisualStyleBackColor = true;
+            this.btn_rt_batchLC.Click += new System.EventHandler(this.btn_rt_batchLC_Click);
             // 
             // btn_backImage
             // 
@@ -274,17 +286,6 @@ namespace HIKARI_HTO_VER2.MyForm
             this.btn_BackEntry_1.Text = "Return Entry LV1";
             this.btn_BackEntry_1.UseVisualStyleBackColor = true;
             this.btn_BackEntry_1.Click += new System.EventHandler(this.btn_BackEntry_1_Click);
-            // 
-            // btn_rt_batchLC
-            // 
-            this.btn_rt_batchLC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_rt_batchLC.Location = new System.Drawing.Point(1007, 3);
-            this.btn_rt_batchLC.Name = "btn_rt_batchLC";
-            this.btn_rt_batchLC.Size = new System.Drawing.Size(157, 35);
-            this.btn_rt_batchLC.TabIndex = 5;
-            this.btn_rt_batchLC.Text = "Return LC";
-            this.btn_rt_batchLC.UseVisualStyleBackColor = true;
-            this.btn_rt_batchLC.Click += new System.EventHandler(this.btn_rt_batchLC_Click);
             // 
             // Admin_Status_Detail_Batch
             // 

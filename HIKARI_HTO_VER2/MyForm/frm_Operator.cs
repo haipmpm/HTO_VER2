@@ -397,8 +397,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình. \r\nPhiếu của bạn đang nhập sẽ được trả lại để User khác nhập.", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Handle_RefreshImage refreshImage;
-                    refreshImage = new Handle_RefreshImage();
+                    Handle_RefreshImage refreshImage = new Handle_RefreshImage();
                     //int level = Hikari_LoginDLL.Hikari_Login.GetLevelUserOfGroupProject(Global.strUsername, Global.Group_Operator_VN_Code);
                     refreshImage.spData_Refresh_Image_Entry_Check(Convert.ToInt32(Global.BatchIDSelected), Entry_info.int_pair_Entry_Nhap, Entry_info.ID_Getdata ,"ENTRY");
                 }

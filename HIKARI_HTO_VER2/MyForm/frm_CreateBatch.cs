@@ -1,4 +1,5 @@
 ﻿using HIKARI_HTO_VER2.LinqToSQLProcess;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,16 +98,36 @@ namespace HIKARI_HTO_VER2.MyForm
                 txt_FolderName.ReadOnly = true;
             }
         }
-
+        List<string> Lst_StringBatch_Muti = new List<string>();
         private void btn_Browser_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            txt_PathFolder.Text = "";
+            txt_FolderName.Text = "";
+            Lst_StringBatch_Muti = new List<string>();
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
             {
-                txt_PathFolder.Text = folderBrowserDialog1.SelectedPath;
-                txt_FolderName.Text = Path.GetFileName(folderBrowserDialog1.SelectedPath);
-                btn_CleanSingle.Enabled = false;
-                btn_CleanMulti.Enabled = true;
+                IsFolderPicker = true,
+                Multiselect = true
+            };
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                Lst_StringBatch_Muti = new List<string>();
+                var folders = dialog.FileNames;
+                txt_PathFolder.Text = string.Join("\n", folders);
+                txt_FolderName.Text = Path.GetFileName(Directory.GetParent(folders.ToArray()[0].ToString()).ToString());
+                foreach (var item in folders)
+                {
+                    Lst_StringBatch_Muti.Add(item.ToString());
+                }
             }
+
+            //if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    txt_PathFolder.Text = folderBrowserDialog1.SelectedPath;
+            //    txt_FolderName.Text = Path.GetFileName(folderBrowserDialog1.SelectedPath);
+            //    btn_CleanSingle.Enabled = false;
+            //    btn_CleanMulti.Enabled = true;
+            //}
         }
 
         private void txt_PathFolder_EditValueChanged(object sender, EventArgs e)
@@ -311,7 +332,20 @@ namespace HIKARI_HTO_VER2.MyForm
             btn_Browser.Enabled = false;
             txt_PathFolder.Enabled = false;
             List<string> lStrBath = new List<string>();
-            lStrBath.AddRange(Directory.GetDirectories(txt_PathFolder.Text));
+            foreach (var item in Lst_StringBatch_Muti)
+            {
+                var FolderDirec = Directory.GetDirectories(item.ToString());
+                if (FolderDirec == null || FolderDirec.Count() <= 0)
+                {
+                    lStrBath.Add(item.ToString());
+                }
+                else
+                {
+                    lStrBath.AddRange(Directory.GetDirectories(item.ToString()));
+                }
+            }
+
+            //lStrBath.AddRange(Directory.GetDirectories(txt_PathFolder.Text));
             _multi = true;
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new[] { new DataColumn("ImageName", typeof(string)) });

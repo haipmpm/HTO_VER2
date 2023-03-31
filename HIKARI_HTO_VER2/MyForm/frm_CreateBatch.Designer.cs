@@ -389,6 +389,7 @@ namespace HIKARI_HTO_VER2.MyForm
             // 
             // txt_Location
             // 
+            this.txt_Location.EditValue = "X:\\SMC\\";
             this.txt_Location.Location = new System.Drawing.Point(156, 27);
             this.txt_Location.Name = "txt_Location";
             this.txt_Location.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
