@@ -309,8 +309,13 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     }
                 }
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + String.Join("‡", lst_str_data_body_AE));
+                // check dữ liệu có chứa các kí tự không cho phép hay không
+                if (Global.CheckCharacterError(data_full) == true)
+                {
+                    return "6";
+                }
                 var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap, Global.Level_Image, RowLenght_Nhap, data_full, Global.strUsername);
-                if (type_Submit.Column1.ToString() == "OK")
+                if (type_Submit.Status.ToString() == "OK")
                 {
                     return "3";
                 }

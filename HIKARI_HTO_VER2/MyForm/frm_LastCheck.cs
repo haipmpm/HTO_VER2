@@ -418,7 +418,7 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     e.Cancel = true;
                 }
-            }            
+            }
         }
 
         private void btn_CheckLogic_Click(object sender, EventArgs e)
@@ -635,6 +635,10 @@ namespace HIKARI_HTO_VER2.MyForm
                             if (lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() == "SAKUJYO" || lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() == "YOHAKU" || lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() == "KAKISONJI" || lc_info.Tb_Data_QuetLogic.Rows[z]["Truong:7"].ToString().ToUpper() == "MISIYO")
                             {
                                 checkJapan = false;
+                            }
+                            else
+                            {
+                                checkJapan = true;break;
                             }
                         }
                         if (checkJapan == true)

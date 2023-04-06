@@ -178,7 +178,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
             if (String.IsNullOrEmpty(uC_HeaderAE1.txt_Truong2.Text) == true)
             {
                 return "1";
-            }
+            }            
+            
 
             if (ID_Batch <= 0 || ID_Image <= 0)
                 return "2";
@@ -187,11 +188,16 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 string str_data_header_AE = String.Join("†", lst_texbox_Entry_AE_header.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string str_data_body_AE = String.Join("†", lst_texbox_Entry_AE_Body.Select(x=>x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string data_full = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE);
+                // check dữ liệu có chứa các kí tự không cho phép hay không
+                if(Global.CheckCharacterError(data_full) == true)
+                {
+                    return "6";
+                }    
                 // Dữ liệu đã được bỏ ô trống để qua LC
                 string str_data_body_AE_Split = String.Join("†", lst_texbox_Entry_AE_Body.Where(x=>x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
                 string Data_Split = ham_chung.ToHalfWidth(str_data_header_AE + "‡" + str_data_body_AE_Split);                
                 var type_Submit = tb_Data.Entry_insertData(ID_Image, ID_Batch, data_full, Global.Level_Pair_Entry_Nhap, Global.Level_Image, str_data_body_AE_Split.Split('†').Length, Data_Split, Global.strUsername);
-                if (type_Submit.Column1.ToString() == "OK")
+                if (type_Submit.Status.ToString() == "OK")
                 {
                     return "3";
                 }

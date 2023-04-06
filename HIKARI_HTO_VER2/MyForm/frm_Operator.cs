@@ -202,6 +202,10 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     MessageBox.Show("Trường số 7 trống thông tin \n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (kqsubmit == "6")
+                {
+                    MessageBox.Show("Có kí tự không cho phép trong dữ liệu nhập {Hiragana} {Katakana Full Width} {ｰーｮｭｬ}", "Thông Báo!", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
             }
         }
         private void SetInformation()

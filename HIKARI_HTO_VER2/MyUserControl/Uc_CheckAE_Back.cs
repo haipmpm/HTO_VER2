@@ -253,7 +253,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
             }
             string str_data_body_AE_last = String.Join("†", lst_body.Where(x => x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
             string data_full = str_data_header_AE + "‡" + str_data_body_AE_last;
-
+            if (Global.CheckCharacterError(data_full) == true)
+            {
+                return 6;
+            }
             try
             {
                 GlobalDB.DBLinq.Check_Update_Image_Back(ID_Batch, ID_Image, Error_E1, Error_E2, data_full,

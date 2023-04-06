@@ -316,13 +316,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 			return ((ISingleResult<spData_GetInfo_MissImage_Entry_v2Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_Submit_New_v3")]
-		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="Int")] System.Nullable<int> lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split, userName);
-			return ((ISingleResult<spEntry_Submit_New_v3Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spData_GetImage_Check_v2")]
 		public ISingleResult<spData_GetImage_Check_v2Result> spData_GetImage_Check_v2([global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User", DbType="NVarChar(100)")] string user, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image)
 		{
@@ -391,6 +384,13 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batchID, iD_image, pair_Entry, userName);
 			return ((ISingleResult<Entry_Check_ReturnBack_ImageResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spEntry_Submit_New_v3")]
+		public ISingleResult<spEntry_Submit_New_v3Result> spEntry_Submit_New_v3([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Image_Data", DbType="Int")] System.Nullable<int> iD_Image_Data, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BatchID", DbType="Int")] System.Nullable<int> batchID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry", DbType="NVarChar(MAX)")] string data_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pair_Entry", DbType="Int")] System.Nullable<int> pair_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level_Image", DbType="Int")] System.Nullable<int> level_Image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LenData_Entry", DbType="Int")] System.Nullable<int> lenData_Entry, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Data_Entry_Split", DbType="NVarChar(MAX)")] string data_Entry_Split, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(100)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Image_Data, batchID, data_Entry, pair_Entry, level_Image, lenData_Entry, data_Entry_Split, userName);
+			return ((ISingleResult<spEntry_Submit_New_v3Result>)(result.ReturnValue));
 		}
 	}
 	
@@ -4590,32 +4590,6 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 		}
 	}
 	
-	public partial class spEntry_Submit_New_v3Result
-	{
-		
-		private string _Column1;
-		
-		public spEntry_Submit_New_v3Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="NVarChar(50)")]
-		public string Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class spData_GetImage_Check_v2Result
 	{
 		
@@ -5235,6 +5209,32 @@ namespace HIKARI_HTO_VER2.LinqToSQLModels
 				if ((this._ColumnData != value))
 				{
 					this._ColumnData = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spEntry_Submit_New_v3Result
+	{
+		
+		private string _Status;
+		
+		public spEntry_Submit_New_v3Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
 				}
 			}
 		}

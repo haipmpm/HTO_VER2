@@ -298,6 +298,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 }
             }
             string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT)); /*str_data_header_AE + "‡" +*/
+            if (Global.CheckCharacterError(data_full) == true)
+            {
+                return 6;
+            }
             int Error_E1 = 0, Error_E2 = 0;
             for (int i = 0; i < lst_to_List_Rtb.Count; i++)
             {

@@ -525,6 +525,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
             
             string str_data_body_AE_last = String.Join("†", lst_body.Where(x => x.Text != "").Select(x => x.Text.Replace("†", "").Replace("‡", "").ToString()));
             string data_full = str_data_header_AE + "‡" + str_data_body_AE_last;
+            // check dữ liệu có chứa các kí tự không cho phép hay không
+            if (Global.CheckCharacterError(data_full) == true)
+            {
+                return 6;
+            }
             try
             {
                 GlobalDB.DBLinq.spData_Submit_Check_v2(ID_Batch, ID_Image, Error_E1, Error_E2, data_full,

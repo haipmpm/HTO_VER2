@@ -4,6 +4,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using HIKARI_HTO_VER2.LinqToSQLProcess;
 using HIKARI_HTO_VER2.ModuleProcessUtil;
+using HIKARI_HTO_VER2.MyForm;
 using HIKARI_HTO_VER2.ProcessUtil;
 using System;
 using System.Collections.Generic;
@@ -629,6 +630,10 @@ namespace HIKARI_HTO_VER2.MyUserControl
         
         private void btn_Import_txt_Click(object sender, EventArgs e)
         {
+            if (bgw_CheckData.IsBusy)
+            {
+                MessageBox.Show("Dữ liệu CheckData vẫn đang thực hiện ... Vui lòng chờ quá trình chạy hoàn tất !!! "); return;
+            }
             if (grdV_img.RowCount < 1)
             {
                 MessageBox.Show("Bảng hiển thị dữ liệu không có thông tin !!!");
@@ -682,14 +687,31 @@ namespace HIKARI_HTO_VER2.MyUserControl
                 catch { MessageBox.Show("Tồn tại dữ liệu trường 2 không phải là số !!!");btn_Export.Visible = false; return; }
                 splashScreenManager1.CloseWaitForm();
                 tb_Sosanh.Clear();
-                bgw_CheckData.RunWorkerAsync();
+                grd_CheckTxt.DataSource = null;
+                if (lst_Data_Excel_T2 != null)
+                {
+                    if (lst_Data_Excel_T2.Count() > 0)
+                    {
+                        prcess_CheckTxt.Step = 1;
+                        prcess_CheckTxt.Value = 1;
+                        prcess_CheckTxt.Maximum = lst_Data_Excel_T2.Count();
+                        prcess_CheckTxt.Minimum = 0;
+                        ModifyProgressBarColor.SetState(prcess_CheckTxt, 1);
+                        bgw_CheckData.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dữ liệu check txt không có lỗi sai ");
+                    }
+                }
             }
         }
 
         private void bgw_CheckData_DoWork(object sender, DoWorkEventArgs e)
         {
             for (int i = 0; i < lst_Data_Excel_T2.Count; i++)
-            {                
+            {
+                prcess_CheckTxt.PerformStep();
                 if (numberData.Where(x => x == lst_Data_Excel_T2[i]).Select(x => x).Count() != number_Excel.Where(x => x == lst_Data_Excel_T2[i]).Select(x => x).Count())
                 {
                     tb_Sosanh.Rows.Add(lst_Data_Excel_T2[i].ToString(), number_Excel.Where(x => x == lst_Data_Excel_T2[i]).Select(x => x).Count(), numberData.Where(x => x == lst_Data_Excel_T2[i]).Select(x => x).Count());
@@ -882,16 +904,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         private void bgw_CheckData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (tb_Sosanh.Rows.Count > 0)
+            if (Convert.ToInt32(prcess_CheckTxt.Value.ToString()) >= lst_Data_Excel_T2.Count())
             {
-                grd_CheckTxt.DataSource = null;
-                grd_CheckTxt.DataSource = tb_Sosanh;
-                MessageBox.Show("Dữ liệu lệch ... Vui lòng kiểm tra lại !!!");
-            }
-            else
-            {
-                grd_CheckTxt.DataSource = null;
-                MessageBox.Show("Không có dữ liệu lệch !!!");
+                if (tb_Sosanh.Rows.Count > 0)
+                {
+                    grd_CheckTxt.DataSource = null;
+                    grd_CheckTxt.DataSource = tb_Sosanh;
+                    MessageBox.Show("Dữ liệu lệch ... Vui lòng kiểm tra lại !!!");
+                }
+                else
+                {
+                    grd_CheckTxt.DataSource = null;
+                    MessageBox.Show("Không có dữ liệu lệch !!!");
+                }
             }
         }
         private void Change_Data_Export(string name_img, string BatchName, string ID_Batch)

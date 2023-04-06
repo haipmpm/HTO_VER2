@@ -404,19 +404,6 @@
       <Column Name="[Số phiếu nhập]" Member="Số_phiếu_nhập" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.spEntry_Submit_New_v3" Method="spEntry_Submit_New_v3">
-    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.Int32" DbType="Int" />
-    <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Data_Entry" Parameter="data_Entry" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.Int32" DbType="Int" />
-    <Parameter Name="LenData_Entry" Parameter="lenData_Entry" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Data_Entry_Split" Parameter="data_Entry_Split" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
-    <ElementType Name="spEntry_Submit_New_v3Result">
-      <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.spData_GetImage_Check_v2" Method="spData_GetImage_Check_v2">
     <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
     <Parameter Name="User" Parameter="user" Type="System.String" DbType="NVarChar(100)" />
@@ -520,6 +507,19 @@
     <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
     <ElementType Name="Entry_Check_ReturnBack_ImageResult">
       <Column Name="ColumnData" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spEntry_Submit_New_v3" Method="spEntry_Submit_New_v3">
+    <Parameter Name="ID_Image_Data" Parameter="iD_Image_Data" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BatchID" Parameter="batchID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Data_Entry" Parameter="data_Entry" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Pair_Entry" Parameter="pair_Entry" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Level_Image" Parameter="level_Image" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LenData_Entry" Parameter="lenData_Entry" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Data_Entry_Split" Parameter="data_Entry_Split" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="spEntry_Submit_New_v3Result">
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

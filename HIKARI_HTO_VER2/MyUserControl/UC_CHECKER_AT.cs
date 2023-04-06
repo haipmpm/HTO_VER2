@@ -432,8 +432,11 @@ namespace HIKARI_HTO_VER2.MyUserControl
                     }
                 }
             }
-            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));            
-            
+            string data_full = Function_tinhloi.ToHalfWidth(String.Join("‡", lst_str_data_body_AT));
+            if (Global.CheckCharacterError(data_full) == true)
+            {
+                return 6;
+            }
             int Error_E1 = 0, Error_E2 = 0;
             if (Function_tinhloi.return_error(CheckInfo.Content_E1.Split('‡')[0].ToString(), String.Join("†",lst_header_AT.Select(x => x.Text)).ToString() ) > 0)
             {

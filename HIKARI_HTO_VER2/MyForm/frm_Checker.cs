@@ -211,6 +211,10 @@ namespace HIKARI_HTO_VER2.MyForm
                 {
                     MessageBox.Show("Trường số 7 8 9 10 (Loại AT) trống dữ liệu", "Thông Báo!", MessageBoxButtons.OK); return;
                 }
+                else if (Complete == 6)
+                {
+                    MessageBox.Show("Có kí tự không cho phép trong dữ liệu nhập {Hiragana} {Katakana Full Width} {ｰーｮｭｬ}", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
                 Data_ImgBack = new Check_Info_imgBack {
                     BatchName = lb_batchname.Text,
                     Content_E1 = CheckInfo.Content_E1,
@@ -520,7 +524,31 @@ namespace HIKARI_HTO_VER2.MyForm
             AT_Back.PageVisible = false;
             if (Global.BatchTypeSelected == "AE")
             {
-                uc_CheckAE_Back1.Submit_Data_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                int Complete = uc_CheckAE_Back1.Submit_Data_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                if (Complete == 0)
+                {
+                    MessageBox.Show("Thiếu thông tin cho việc Submit"); return;
+                }
+                else if (Complete == 1)
+                {
+                    MessageBox.Show("Trường số 2 trống dữ liệu -- \r\n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !"); return;
+                }
+                else if (Complete == 2)
+                {
+                    MessageBox.Show("Trường số 7 có dòng trống dữ liệu -- \r\n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !"); return;
+                }
+                else if (Complete == 4)
+                {
+                    MessageBox.Show("Đã có lỗi trong quá trình lưu dữ liệu của checker", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
+                else if (Complete == 5)
+                {
+                    MessageBox.Show("Trường số 7 8 9 10 (Loại AT) trống dữ liệu", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
+                else if (Complete == 6)
+                {
+                    MessageBox.Show("Có kí tự không cho phép trong dữ liệu nhập {Hiragana} {Katakana Full Width} {ｰーｮｭｬ}", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
                 tab_AE.PageVisible = true;
                 tabcontrol.SelectedTabPage = tab_AE;
                 uC_CHECKER_AE1.FocusUC();
@@ -529,7 +557,31 @@ namespace HIKARI_HTO_VER2.MyForm
             }
             else
             {
-                uc_CheckAT_Back1.Submit_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                int Complete = uc_CheckAT_Back1.Submit_Check_Back(Data_ImgBack.ID_Batch, Data_ImgBack.ID_image, timerun);
+                if (Complete == 0)
+                {
+                    MessageBox.Show("Thiếu thông tin cho việc Submit"); return;
+                }
+                else if (Complete == 1)
+                {
+                    MessageBox.Show("Trường số 2 trống dữ liệu -- \r\n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !"); return;
+                }
+                else if (Complete == 2)
+                {
+                    MessageBox.Show("Trường số 7 có dòng trống dữ liệu -- \r\n Vui lòng đọc QUY ĐỊNH và kiểm tra lại !"); return;
+                }
+                else if (Complete == 4)
+                {
+                    MessageBox.Show("Đã có lỗi trong quá trình lưu dữ liệu của checker", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
+                else if (Complete == 5)
+                {
+                    MessageBox.Show("Trường số 7 8 9 10 (Loại AT) trống dữ liệu", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
+                else if (Complete == 6)
+                {
+                    MessageBox.Show("Có kí tự không cho phép trong dữ liệu nhập {Hiragana} {Katakana Full Width} {ｰーｮｭｬ}", "Thông Báo!", MessageBoxButtons.OK); return;
+                }
                 tab_AT.PageVisible = true;
                 tabcontrol.SelectedTabPage = tab_AT;
                 uC_CHECKER_AT1.FocusUC();
