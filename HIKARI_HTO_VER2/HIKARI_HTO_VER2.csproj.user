@@ -5,7 +5,7 @@
     <PublishUrlHistory>\\10.10.1.15\UpdateTool%24\Tool_Hikari_HTO_Ver2\|publish\</PublishUrlHistory>
     <InstallUrlHistory>http://10.10.1.18:8888/UpdateTool/Tool_Hikari_HTO_Ver2/|http://10.10.1.18:8888/UpdateTool/Tool_Hikari_HTO_2022/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>http://10.10.1.18:8888/UpdateTool/Tool_Hikari_HTO_Ver2/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
