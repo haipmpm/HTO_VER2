@@ -242,14 +242,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
                         grdV_img.Columns[Constant.ImageName].OptionsColumn.AllowEdit = false;
                         grdV_img.Columns[Constant.BatchID].Visible = false;
                     }
-                    if (tb_Result_Error.Rows.Count > 0)
-                    {
+                    //if (tb_Result_Error.Rows.Count > 0)
+                    //{
                         grd_Error.DataSource = null;
                         grd_Error.DataSource = tb_Result_Error;
                         grdV_Error.Columns[Constant.ImageName].OptionsColumn.ReadOnly = false;
                         grdV_Error.Columns[Constant.ImageName].OptionsColumn.AllowEdit = false;
                         grdV_img.Columns[Constant.BatchID].Visible = false;
-                    }                    
+                    //}                    
                 }
                 else
                 { splashScreenManager1.CloseWaitForm(); MessageBox.Show("Thiếu thông tin Loại được chọn ???"); return; }
@@ -509,14 +509,17 @@ namespace HIKARI_HTO_VER2.MyUserControl
 
         private void AdvOptions_CustomizeCell_Error(DevExpress.Export.CustomizeCellEventArgs e)
         {
-            e.Formatting.NumberFormat = DevExpress.Export.Xl.XlNumberFormat.Text;
-            string link = "";
-            if (e.ColumnFieldName == "TRƯỜNG")
+            if (tb_Result_Error.Rows.Count > 0)
             {
-                link = Global.StrPath + @"\" + tb_Result_Error.Rows[e.RowHandle]["BatchID"].ToString() + "_" + tb_Result_Error.Rows[e.RowHandle]["BatchName"].ToString() + @"\" + tb_Result_Error.Rows[e.RowHandle]["TRƯỜNG"].ToString();
-                e.Hyperlink = link;
+                e.Formatting.NumberFormat = DevExpress.Export.Xl.XlNumberFormat.Text;
+                string link = "";
+                if (e.ColumnFieldName == "TRƯỜNG")
+                {
+                    link = Global.StrPath + @"\" + tb_Result_Error.Rows[e.RowHandle]["BatchID"].ToString() + "_" + tb_Result_Error.Rows[e.RowHandle]["BatchName"].ToString() + @"\" + tb_Result_Error.Rows[e.RowHandle]["TRƯỜNG"].ToString();
+                    e.Hyperlink = link;
+                }
+                e.Handled = true;
             }
-            e.Handled = true;
         }
 
         private void AdvOptions_CustomizeCell(DevExpress.Export.CustomizeCellEventArgs e)

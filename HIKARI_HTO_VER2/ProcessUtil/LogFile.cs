@@ -56,6 +56,7 @@ namespace HIKARI_HTO_VER2.ProcessUtil
             {
                 w.Write("{0}", logMessage);
             }
+            w.Close();
             //w.WriteLine("-------------------------------");
         }
         public static void WriteLog(String fileName_username, String LogText, bool EndFile)
@@ -75,6 +76,7 @@ namespace HIKARI_HTO_VER2.ProcessUtil
             {
                 if (fs != null)
                     fs.Dispose();
+                fs.Close();
             }
 
             //using (StreamWriter w = File.AppendText(fileName_username))
