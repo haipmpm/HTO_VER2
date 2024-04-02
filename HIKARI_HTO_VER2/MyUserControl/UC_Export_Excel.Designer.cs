@@ -30,6 +30,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Exporttxt = new System.Windows.Forms.Button();
             this.btn_Export_Excel = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Import_txt = new System.Windows.Forms.Button();
@@ -50,14 +51,13 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grd_Error = new DevExpress.XtraGrid.GridControl();
             this.grdV_Error = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.grd_CheckTxt = new DevExpress.XtraGrid.GridControl();
             this.grdV_CheckTxt = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.prcess_CheckTxt = new System.Windows.Forms.ProgressBar();
             this.rtb_txt = new System.Windows.Forms.RichTextBox();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::HIKARI_HTO_VER2.MyUserControl.WaitForm1), true, true, typeof(System.Windows.Forms.UserControl));
             this.bgw_CheckData = new System.ComponentModel.BackgroundWorker();
-            this.btn_Exporttxt = new System.Windows.Forms.Button();
-            this.prcess_CheckTxt = new System.Windows.Forms.ProgressBar();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckCBB_Export.Properties)).BeginInit();
             this.panel2.SuspendLayout();
@@ -74,9 +74,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             ((System.ComponentModel.ISupportInitialize)(this.grdV_Error)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_CheckTxt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_CheckTxt)).BeginInit();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -98,6 +98,19 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1710, 46);
             this.panel1.TabIndex = 2;
+            // 
+            // btn_Exporttxt
+            // 
+            this.btn_Exporttxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Exporttxt.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Exporttxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Exporttxt.ForeColor = System.Drawing.Color.Black;
+            this.btn_Exporttxt.Location = new System.Drawing.Point(1276, 4);
+            this.btn_Exporttxt.Name = "btn_Exporttxt";
+            this.btn_Exporttxt.Size = new System.Drawing.Size(120, 33);
+            this.btn_Exporttxt.TabIndex = 16;
+            this.btn_Exporttxt.Text = "Export Txt";
+            this.btn_Exporttxt.UseVisualStyleBackColor = false;
             // 
             // btn_Export_Excel
             // 
@@ -289,7 +302,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grdV_img.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.White;
             this.grdV_img.Appearance.FocusedRow.Options.UseBackColor = true;
             this.grdV_img.GridControl = this.grd_img;
-            this.grdV_img.IndicatorWidth = 35;
+            this.grdV_img.IndicatorWidth = 45;
             this.grdV_img.Name = "grdV_img";
             this.grdV_img.OptionsCustomization.AllowSort = false;
             this.grdV_img.OptionsFind.AlwaysVisible = true;
@@ -348,6 +361,15 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.grd_CheckTxt);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(530, 397);
+            this.panel4.TabIndex = 3;
+            // 
             // grd_CheckTxt
             // 
             this.grd_CheckTxt.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -374,6 +396,14 @@ namespace HIKARI_HTO_VER2.MyUserControl
             this.grdV_CheckTxt.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.grdV_CheckTxt_CustomDrawRowIndicator);
             this.grdV_CheckTxt.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdV_CheckTxt_FocusedRowChanged);
             // 
+            // prcess_CheckTxt
+            // 
+            this.prcess_CheckTxt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.prcess_CheckTxt.Location = new System.Drawing.Point(0, 397);
+            this.prcess_CheckTxt.Name = "prcess_CheckTxt";
+            this.prcess_CheckTxt.Size = new System.Drawing.Size(530, 23);
+            this.prcess_CheckTxt.TabIndex = 2;
+            // 
             // rtb_txt
             // 
             this.rtb_txt.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -393,36 +423,6 @@ namespace HIKARI_HTO_VER2.MyUserControl
             // 
             this.bgw_CheckData.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_CheckData_DoWork);
             this.bgw_CheckData.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_CheckData_RunWorkerCompleted);
-            // 
-            // btn_Exporttxt
-            // 
-            this.btn_Exporttxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Exporttxt.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Exporttxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Exporttxt.ForeColor = System.Drawing.Color.Black;
-            this.btn_Exporttxt.Location = new System.Drawing.Point(1276, 4);
-            this.btn_Exporttxt.Name = "btn_Exporttxt";
-            this.btn_Exporttxt.Size = new System.Drawing.Size(120, 33);
-            this.btn_Exporttxt.TabIndex = 16;
-            this.btn_Exporttxt.Text = "Export Txt";
-            this.btn_Exporttxt.UseVisualStyleBackColor = false;
-            // 
-            // prcess_CheckTxt
-            // 
-            this.prcess_CheckTxt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.prcess_CheckTxt.Location = new System.Drawing.Point(0, 397);
-            this.prcess_CheckTxt.Name = "prcess_CheckTxt";
-            this.prcess_CheckTxt.Size = new System.Drawing.Size(530, 23);
-            this.prcess_CheckTxt.TabIndex = 2;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.grd_CheckTxt);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(530, 397);
-            this.panel4.TabIndex = 3;
             // 
             // UC_Export_Excel
             // 
@@ -450,9 +450,9 @@ namespace HIKARI_HTO_VER2.MyUserControl
             ((System.ComponentModel.ISupportInitialize)(this.grdV_Error)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grd_CheckTxt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdV_CheckTxt)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

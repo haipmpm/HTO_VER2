@@ -188,8 +188,8 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                 
                                 dtr_Rs_or_Error[Constant.ImageName] = item.ImageName; // Image                                                         // 1
                                 dtr_Rs_or_Error[Constant.Truong01] = "AT"; //AT hay AE
-                                dtr_Rs_or_Error[Constant.Truong02] = item.ResultLC.Split('‡')[0].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[0].ToString();//2  
-
+                                dtr_Rs_or_Error[Constant.Truong02] = item.ResultLC.Split('‡')[0].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[0].ToString().Replace("\n","").Replace("\r", "");//2  
+                                                               
                                 if (checkTruong7LoaiAT(item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString()) == false)
                                 {
                                     dtr_Rs_or_Error[Constant.Truong03] = ""; //3
@@ -198,13 +198,13 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                 }
                                 else
                                 {
-                                    dtr_Rs_or_Error[Constant.Truong03] = item.ResultLC.Split('‡')[0].Split('†')[1].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[1].ToString();//3  
-                                    dtr_Rs_or_Error[Constant.Truong04] = item.ResultLC.Split('‡')[0].Split('†')[2].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[2].ToString();//4
-                                    dtr_Rs_or_Error[Constant.Truong05] = item.ResultLC.Split('‡')[0].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[3].ToString();//5
+                                    dtr_Rs_or_Error[Constant.Truong03] = item.ResultLC.Split('‡')[0].Split('†')[1].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[1].ToString().Replace("\n", "").Replace("\r", "");//3  
+                                    dtr_Rs_or_Error[Constant.Truong04] = item.ResultLC.Split('‡')[0].Split('†')[2].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[2].ToString().Replace("\n", "").Replace("\r", "");//4
+                                    dtr_Rs_or_Error[Constant.Truong05] = item.ResultLC.Split('‡')[0].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[0].Split('†')[3].ToString().Replace("\n", "").Replace("\r", "");//5
                                 }                                
 
                                 dtr_Rs_or_Error[Constant.Truong06] = (i).ToString().PadLeft(2, '0').ToString();//STT
-                                dtr_Rs_or_Error[Constant.Truong07] = item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString();//7
+                                dtr_Rs_or_Error[Constant.Truong07] = item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString().Replace("\n", "").Replace("\r", "");//7
 
                                 if (checkTruong7LoaiAT(item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString()) == false)
                                 {
@@ -214,12 +214,12 @@ namespace HIKARI_HTO_VER2.MyUserControl
                                 }
                                 else
                                 {
-                                    dtr_Rs_or_Error[Constant.Truong08] = item.ResultLC.Split('‡')[i].Split('†')[2].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[2].ToString();//8  
-                                    dtr_Rs_or_Error[Constant.Truong09] = item.ResultLC.Split('‡')[i].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[3].ToString();//9
-                                    dtr_Rs_or_Error[Constant.Truong10] = item.ResultLC.Split('‡')[i].Split('†')[1].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[1].ToString();//10
+                                    dtr_Rs_or_Error[Constant.Truong08] = item.ResultLC.Split('‡')[i].Split('†')[2].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[2].ToString().Replace("\n", "").Replace("\r", "");//8  
+                                    dtr_Rs_or_Error[Constant.Truong09] = item.ResultLC.Split('‡')[i].Split('†')[3].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[3].ToString().Replace("\n", "").Replace("\r", "");//9
+                                    dtr_Rs_or_Error[Constant.Truong10] = item.ResultLC.Split('‡')[i].Split('†')[1].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[1].ToString().Replace("\n", "").Replace("\r", "");//10
                                 }
 
-                                dtr_Rs_or_Error[Constant.Truong11] = TakeFirstChar(item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString());//11
+                                dtr_Rs_or_Error[Constant.Truong11] = TakeFirstChar(item.ResultLC.Split('‡')[i].Split('†')[0].ToString() == null ? "" : item.ResultLC.Split('‡')[i].Split('†')[0].ToString()).Replace("\n", "").Replace("\r", "");//11
                                 dtr_Rs_or_Error[Constant.Truong12] = phanLoaiAT(item.PathPicture + item.BatchName + @"\" + item.ImageName == null ? "" : item.PathPicture + item.BatchName + @"\" + item.ImageName);//12 phân loại
                                 dtr_Rs_or_Error[13] = ""; //13
                                 dtr_Rs_or_Error[14] = "";//14
@@ -452,7 +452,7 @@ namespace HIKARI_HTO_VER2.MyUserControl
                             File.Delete(fullPath + "_WithPath" + ".txt");
                             int dem = 1;
                             for (int i = 0; i < tb_Result.Rows.Count; i++)
-                            {
+                            {                                
                                 string logd1 = "", logd2 = "";
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][1].ToString()), 2, " "); //Trường cố định
                                 logd1 += hamchung.ThemKyTubatKyStrPhiaSau(hamchung.ToHalfWidth(tb_Result.Rows[i][2].ToString()), 6, " ");//trường No
